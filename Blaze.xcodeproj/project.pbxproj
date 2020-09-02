@@ -27,6 +27,8 @@
 		E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
 		E9AF019524FDEC700058C184 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF019424FDEC700058C184 /* FeedKit */; };
 		E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019824FDF0D40058C184 /* ArticleContent.swift */; };
+		E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
+		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		E9AF018E24FDDE370058C184 /* NewsArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticleView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseModalButton.swift; sourceTree = "<group>"; };
 		E9AF019824FDF0D40058C184 /* ArticleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContent.swift; sourceTree = "<group>"; };
+		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
+		E9F222E525005BEB00EC5A06 /* ForestFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestFire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AF017024FDBC290058C184 /* NewsBackend.swift */,
+				E9F222E325005A5700EC5A06 /* FiresBackend.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AF017324FDBC870058C184 /* News.swift */,
+				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
 				E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */,
 				E9AF016C24FDBBF80058C184 /* SettingsView.swift in Sources */,
 				E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */,
@@ -259,6 +266,7 @@
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */,
+				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
 				E9AF018F24FDDE370058C184 /* NewsArticleView.swift in Sources */,
 				E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */,
 				E9AF016A24FDBBEB0058C184 /* FiresView.swift in Sources */,
