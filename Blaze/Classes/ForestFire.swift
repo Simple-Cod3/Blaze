@@ -10,6 +10,7 @@ import Foundation
 /// Represents a forest fire
 struct ForestFire: Codable {
     var name: String
+    var updated: String
     var start: String
     var county: String
     var location: String
@@ -21,6 +22,7 @@ struct ForestFire: Codable {
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
+        case updated = "Updated"
         case start = "Started"
         case county = "County"
         case location = "Location"

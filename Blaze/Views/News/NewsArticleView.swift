@@ -21,7 +21,7 @@ struct NewsArticleView: View {
                         .fontWeight(.bold)
                         .padding(.horizontal, 20)
                     HStack(spacing: 20) {
-                        URLImage(URL(string: news.authorImg)!,
+                        URLImage(URL(string: news.authorImg ?? "https://www.solidbackgrounds.com/images/1920x1080/1920x1080-amber-orange-solid-color-background.jpg")!,
                                  placeholder: {_ in Color.orange.aspectRatio(contentMode: .fill)},
                                  failure: {_ in Color.orange.aspectRatio(contentMode: .fill)}
                         ) { proxy in

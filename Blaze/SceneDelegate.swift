@@ -17,10 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
+        // Modifiers
+        UITableView.appearance().separatorColor = .clear
+        UINavigationBar.appearance().barTintColor = UIColor.systemBackground.withAlphaComponent(0.98)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
         // Create the SwiftUI view that provides the window contents.
+        let newsBack = NewsBackend()
+        newsBack.refreshNewsList()
+        
         let contentView = ContentView()
             .accentColor(.orange)
-            .environmentObject(NewsBackend())
+            .environmentObject(newsBack)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

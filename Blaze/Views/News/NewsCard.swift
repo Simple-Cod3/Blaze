@@ -72,7 +72,7 @@ struct NewsCard_Previews: PreviewProvider {
                         coverImage: "https://arc-anglerfish-arc2-prod-tbt.s3.amazonaws.com/public/BWRGAGGQUFAD5H6BQ2VRVKF6ZE.jpg",
                         publisher: "Fox News",
                         sourceURL: "https://quick-mass.netlify.app",
-                        date: "Mon, 31 Aug 2020 21:00:00 -05:00")
+                        date: Date(timeIntervalSinceNow: .pi))
         return NewsCard(news: news)
     }
 }

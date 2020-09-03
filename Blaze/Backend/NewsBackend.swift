@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import FeedKit
 
 class NewsBackend: ObservableObject {
     /// Stores `News` objects
@@ -23,7 +24,7 @@ class NewsBackend: ObservableObject {
                          coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
                          publisher: "Incident Information System",
                          sourceURL: "http://inciweb.nwcg.gov/incident/article/7071/54633/",
-                         date: "Mon, 31 Aug 2020 21:00:00 -05:00")
+                         date: Date(timeIntervalSinceNow: 100))
         
         let news2 = News(id: "Nobody knows where Nathan is going tomorrow.",
                          author: "Nathan Choi",
@@ -33,7 +34,7 @@ class NewsBackend: ObservableObject {
                          coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
                          publisher: "NBC News",
                          sourceURL: "https://quick-mass.netlify.app",
-                         date: "Mon, 31 Aug 2020 21:00:00 -05:00")
+                         date: Date(timeIntervalSinceNow: 100))
         
         self.newsList = [news1, news2, news1, news2]
         self.loaded = true
@@ -44,7 +45,44 @@ class NewsBackend: ObservableObject {
         self.loaded = false
         
         /// Load news content
+        var newNews = [News]()
+        let asyncTasks = DispatchGroup()
+        let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/incidents/")!
         
-        self.loaded = true
+        let parser = FeedParser(URL: feedURL)
+        
+        asyncTasks.enter()
+        parser.parseAsync(queue: .global(qos: .userInitiated)) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let feed):
+                    if let items = feed.rssFeed?.items {
+                        for item in items {
+                            let news = News(
+                                id: item.title ?? "Forest Fire",
+                                author: "Inciweb",
+                                authorBio: "Latest incident updates nationally",
+                                content: item.description ?? "<p style='text-align: center'>No Description</p>",
+                                coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
+                                publisher: "InciWeb National Incidents",
+                                sourceURL: item.link ?? "",
+                                date: item.pubDate ?? Date())
+                            
+                            /// Push to temp
+                            newNews.append(news)
+                        }
+                    }
+                        
+                case .failure(let error):
+                    print("* Couldn't get news: \(error)")
+                }
+                asyncTasks.leave()
+            }
+        }
+        
+        asyncTasks.notify(queue: .main) {
+            self.newsList = newNews.sorted(by: >)
+            self.loaded = true
+        }
     }
 }

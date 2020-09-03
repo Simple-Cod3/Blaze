@@ -29,6 +29,7 @@
 		E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019824FDF0D40058C184 /* ArticleContent.swift */; };
 		E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
 		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
+		E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		E9AF019824FDF0D40058C184 /* ArticleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContent.swift; sourceTree = "<group>"; };
 		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
 		E9F222E525005BEB00EC5A06 /* ForestFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestFire.swift; sourceTree = "<group>"; };
+		E9F222E72500886800EC5A06 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			children = (
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E9AF019824FDF0D40058C184 /* ArticleContent.swift */,
+				E9F222E72500886800EC5A06 /* DateExtension.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
+				E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */,
 				E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */,
 				E9AF016C24FDBBF80058C184 /* SettingsView.swift in Sources */,
 				E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */,

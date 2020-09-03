@@ -43,10 +43,7 @@ struct NewsView: View {
             }
         }
         .onAppear {
-            UITableView.appearance().separatorColor = .clear
-            UINavigationBar.appearance().barTintColor = UIColor.systemBackground.withAlphaComponent(0.98)
-            UINavigationBar.appearance().shadowImage = UIImage()
-            news.createTestCases()
+            
         }
     }
 }
