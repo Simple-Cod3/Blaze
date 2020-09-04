@@ -9,19 +9,32 @@ import Foundation
 
 /// https://medium.com/@iamjdpatel/time-ago-extension-for-date-swift-ed9b8d0a3a54
 extension Date {
-    func timeAgo() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        formatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
-        formatter.zeroFormattingBehavior = .dropAll
-        formatter.maximumUnitCount = 1
-        
-        return String(format: formatter.string(from: localTime(), to: Date()) ?? "", locale: .current)
-    }
     
-    func localTime() -> Date {
-        let timezone = TimeZone.current
-        let seconds = TimeInterval(timezone.secondsFromGMT(for: self))
-        return Date(timeInterval: seconds, since: self)
+    func getElapsedInterval() -> String {
+        
+        let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self, to: Date())
+        
+        if let year = interval.year, year > 0 {
+            return year == 1 ? "\(year)" + " " + "year" :
+                "\(year)" + " " + "years"
+        } else if let month = interval.month, month > 0 {
+            return month == 1 ? "\(month)" + " " + "month" :
+                "\(month)" + " " + "months"
+        } else if let day = interval.day, day > 0 {
+            return day == 1 ? "\(day)" + " " + "day" :
+                "\(day)" + " " + "days"
+        } else if let hour = interval.hour, hour > 0 {
+            return hour == 1 ? "\(hour)" + " " + "hour" :
+                "\(hour)" + " " + "hours"
+        } else if let minute = interval.minute, minute > 0 {
+            return minute == 1 ? "\(minute)" + " " + "minute" :
+                "\(minute)" + " " + "minutes"
+        } else if let second = interval.second, second > 0 {
+            return second == 1 ? "\(second)" + " " + "second" :
+                "\(second)" + " " + "seconds"
+        } else {
+            return "a moment ago"
+        }
+        
     }
 }

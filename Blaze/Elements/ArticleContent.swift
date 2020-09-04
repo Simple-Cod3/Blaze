@@ -77,7 +77,7 @@ struct HTMLWebView: UIViewRepresentable {
                         }
                         @media (prefers-color-scheme: dark) {
                             body {
-                                background-color: #000;
+                                color: #fff;
                             }
                             h1 {
                                 color: #fff;

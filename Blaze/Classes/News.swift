@@ -28,6 +28,6 @@ struct News: Comparable {
     var date: Date
     
     func getTimeAgo() -> String {
-        return date.timeAgo()
+        return date.getElapsedInterval()
     }
 }

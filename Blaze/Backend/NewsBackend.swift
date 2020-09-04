@@ -47,7 +47,7 @@ class NewsBackend: ObservableObject {
         /// Load news content
         var newNews = [News]()
         let asyncTasks = DispatchGroup()
-        let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/incidents/")!
+        let feedURL = URL(string: "https://www.firerescue1.com/firefighting-rss-feeds/news.xml")!
         
         let parser = FeedParser(URL: feedURL)
         

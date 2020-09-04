@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            NewsView().tabItem {
+            MapView().tabItem {
                 ItemLabel(icon: "doc.richtext",
                           title: "News")
             }
