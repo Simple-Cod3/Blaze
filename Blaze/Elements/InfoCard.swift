@@ -93,3 +93,4 @@ struct InfoCard_Previews: PreviewProvider {
         InfoCard("Elkhorn Fire", location: "Tomhead Mountain \narea, west of Red Bluff", acres: "39,995 Acres", containment: "40% Contained", updated: "9/1/2020, \n9:35:12 AM", cause: "Lightning", started: "8/17/2020, \n9:33 AM")
     }
 }
+
