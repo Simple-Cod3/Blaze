@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct TestView: View {
+    @State var cards = [WordCard(word: "Anchor \nPoint"), WordCard(word: "Anchor \nPoint"), WordCard(word: "Anchor \nPoint")]
+    @State var selected: Int = 0
+
     var body: some View {
-        VStack(spacing: 30) {
-            Spacer()
-            Header(title: "Big Fires", desc: "The US Forest Service is in unified command with CAL FIRE on the Elkhorn Fire, which is burning in the Tomhead Mountain area west of Red Bluff.")
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    TestCard(title: "ElkHorn Fire", acres: "39,995 Acres")
-                    TestCard(title: "ElkHorn Fire", acres: "39,995 Acres")
+        HStack {
+            ForEach(cards.indices, id: \.self) { i in
+                Button(action: {
+                    self.selected = i
+                })  {
+                    WordCard(word: "Anchor \nPoint")
+                        .foregroundColor(i == selected ? .orange : .black)
+                        .background(i == selected ? Color.orange : Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(15)
                 }
-                .padding(.leading, 20)
             }
         }
     }
