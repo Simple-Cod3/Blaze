@@ -32,6 +32,10 @@
 		E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
 		E9AF019524FDEC700058C184 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF019424FDEC700058C184 /* FeedKit */; };
 		E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019824FDF0D40058C184 /* ArticleContent.swift */; };
+		E9CE22A52502F48700929D13 /* NumberExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A42502F48700929D13 /* NumberExtension.swift */; };
+		E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* MiniFireCard.swift */; };
+		E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EC25031681006038FD /* ButtonStyles.swift */; };
+		E9E769EF250319F4006038FD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EE250319F4006038FD /* InformationView.swift */; };
 		E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
 		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
 		E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
@@ -61,6 +65,10 @@
 		E9AF018E24FDDE370058C184 /* NewsArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticleView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseModalButton.swift; sourceTree = "<group>"; };
 		E9AF019824FDF0D40058C184 /* ArticleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContent.swift; sourceTree = "<group>"; };
+		E9CE22A42502F48700929D13 /* NumberExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtension.swift; sourceTree = "<group>"; };
+		E9CE22A6250308F900929D13 /* MiniFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCard.swift; sourceTree = "<group>"; };
+		E9E769EC25031681006038FD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		E9E769EE250319F4006038FD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
 		E9F222E525005BEB00EC5A06 /* ForestFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestFire.swift; sourceTree = "<group>"; };
 		E9F222E72500886800EC5A06 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -157,6 +165,9 @@
 		E9AF017224FDBC7B0058C184 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E9CE22A42502F48700929D13 /* NumberExtension.swift */,
+				E9E769EC25031681006038FD /* ButtonStyles.swift */,
+				E9F222E72500886800EC5A06 /* DateExtension.swift */,
 				E9AF017324FDBC870058C184 /* News.swift */,
 				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 			);
@@ -167,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
+				E9E769EE250319F4006038FD /* InformationView.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
@@ -195,10 +207,10 @@
 			children = (
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E9AF019824FDF0D40058C184 /* ArticleContent.swift */,
-				E9F222E72500886800EC5A06 /* DateExtension.swift */,
-				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
 				6DF73D7A2502A3A90051E4A2 /* InfoCard.swift */,
+				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
+				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -296,22 +308,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DF73D7F2502AEAD0051E4A2 /* Header.swift in Sources */,
+				E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */,
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
 				E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */,
 				E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */,
 				E9AF016C24FDBBF80058C184 /* SettingsView.swift in Sources */,
 				E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */,
+				E9CE22A52502F48700929D13 /* NumberExtension.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */,
 				E9F222EB2500C4A800EC5A06 /* MapView.swift in Sources */,
+				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
 				6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */,
 				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
 				E9AF018F24FDDE370058C184 /* NewsArticleView.swift in Sources */,
 				E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */,
 				E9AF016A24FDBBEB0058C184 /* FiresView.swift in Sources */,
 				6D0E153D2500738E00E52DE1 /* TestCard.swift in Sources */,
+				E9E769EF250319F4006038FD /* InformationView.swift in Sources */,
 				6DF73D822502AFA30051E4A2 /* TestView.swift in Sources */,
 				E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */,
 				E9AF015924FDB8DD0058C184 /* ContentView.swift in Sources */,

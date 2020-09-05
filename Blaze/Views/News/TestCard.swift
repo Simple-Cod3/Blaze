@@ -34,7 +34,7 @@ struct TestCard: View {
                 
                 Spacer()
                 
-                TestButton(text: "Map")
+                InfoButton(text: "Map")
             }
         }
         .padding(20)
@@ -44,7 +44,7 @@ struct TestCard: View {
     }
 }
 
-struct TestButton: View {
+struct InfoButton: View {
     var text: String
         
     var body: some View {
@@ -67,6 +67,6 @@ struct TestButton: View {
 struct TestCard_Previews: PreviewProvider {
     static var previews: some View {
         TestCard(title: "ElkHorn Fire", acres: "39,995 Acres")
-        TestButton(text: "Map")
+        InfoButton(text: "Map")
     }
 }

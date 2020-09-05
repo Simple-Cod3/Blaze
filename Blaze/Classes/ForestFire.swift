@@ -8,13 +8,21 @@
 import Foundation
 
 /// Represents a forest fire
-struct ForestFire: Codable {
+struct ForestFire: Codable, Comparable {
+    static func < (lhs: ForestFire, rhs: ForestFire) -> Bool {
+        return lhs.updated < rhs.updated
+    }
+    
+    static func > (lhs: ForestFire, rhs: ForestFire) -> Bool {
+        return lhs.updated > rhs.updated
+    }
+    
     var name: String
-    var updated: String
-    var start: String
+    var updated: Date
+    var start: Date
     var county: String
     var location: String
-    var acres: String
+    var acres: Double
     var contained: Double
     var longitude: Double
     var latitude: Double
@@ -31,5 +39,17 @@ struct ForestFire: Codable {
         case longitude = "Longitude"
         case latitude = "Latitude"
         case url = "Url"
+    }
+    
+    func getAreaString() -> String {
+        return "\(acres.inCommas() ?? String(acres)) Acres"
+    }
+    
+    func getLocation() -> String {
+        if location == "see details below" {
+            return "More details on the website"
+        }
+        
+        return location.prefix(1).capitalized + location.dropFirst()
     }
 }

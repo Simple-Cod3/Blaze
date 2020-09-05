@@ -23,12 +23,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         
         // Create the SwiftUI view that provides the window contents.
+        let fireDatabase = FireBackend()
         let newsBack = NewsBackend()
+        
         newsBack.refreshNewsList()
+        fireDatabase.refreshFireList()
         
         let contentView = ContentView()
             .accentColor(.orange)
             .environmentObject(newsBack)
+            .environmentObject(fireDatabase)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
