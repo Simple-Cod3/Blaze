@@ -17,15 +17,12 @@ struct NewsView: View {
             if news.loaded {
                 ScrollView {
                     VStack(spacing: 20) {
-                        VStack {
-                            Text("News Stories")
-                                .fontWeight(.bold)
-                                .font(.largeTitle)
-                            Text("Latest collection")
-                                .foregroundColor(.secondary)
-                            Divider()
-                        }.padding(20)
-                        /// Must use i to keep the order intact
+                        HStack {
+                            Header(title: "News", desc: "Latest news about forest fires. This page may become obsolete so that is a huge F in the chat am I right? Any truers in the chat?")
+                            Spacer()
+                        }.padding(.top, 20)
+                        Divider().padding(20)
+                        /// Must use `i` to keep the order intact
                         ForEach(news.newsList.indices, id: \.self) { i in
                             ModalLink(destination: {
                                 NewsArticleView(dismiss: $0, news: news.newsList[i])
@@ -36,9 +33,11 @@ struct NewsView: View {
                     }
                 }
             } else {
-                VStack {
-                    Image(systemName: "antenna.radiowaves.left.and.right")
+                VStack(spacing: 10) {
+                    ProgressView()
                     Text("Loading Stories...")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
             }
         }

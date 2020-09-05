@@ -41,6 +41,10 @@ struct ForestFire: Codable, Comparable {
         case url = "Url"
     }
     
+    func getContained() -> String {
+        return "\(contained)%"
+    }
+    
     func getAreaString() -> String {
         return "\(acres.inCommas() ?? String(acres)) Acres"
     }

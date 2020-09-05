@@ -11,12 +11,16 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NewsView().tabItem {
-                ItemLabel(icon: "flame",
-                          title: "Fires")
+                ItemLabel(icon: "newspaper",
+                          title: "News")
             }
             FiresView().tabItem {
                 ItemLabel(icon: "flame",
                           title: "Fires")
+            }
+            GlossaryView().tabItem {
+                ItemLabel(icon: "a.book.closed",
+                          title: "Glossary")
             }
             SettingsView().tabItem {
                 ItemLabel(icon: "gear",

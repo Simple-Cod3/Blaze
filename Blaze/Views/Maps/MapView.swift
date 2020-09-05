@@ -29,11 +29,11 @@ struct MapView: View {
     private func moveBack() {
         let lat = fireData.latitude
         let long = fireData.longitude
-        let spread = 0.3
+        let spread = 0.15
         
         withAnimation {
             self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: lat-0.1, longitude: long),
+                center: .init(latitude: lat-0.05, longitude: long),
                 span: .init(latitudeDelta: spread, longitudeDelta: spread)
             )
         }
@@ -51,7 +51,7 @@ struct MapView: View {
                 
                     Button(action: {hide.toggle()}) {
                         InfoCard(fire: fireData, hide: $hide)
-                            .padding(.bottom, 50)
+                            .padding(.bottom, 20)
                             .buttonStyle(InfoCardButtonStyle())
                     }
                         .buttonStyle(InfoCardButtonStyle())
