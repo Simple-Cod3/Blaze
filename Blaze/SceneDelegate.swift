@@ -16,11 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-
-        // Modifiers
-        UITableView.appearance().separatorColor = .clear
-        UINavigationBar.appearance().barTintColor = UIColor.systemBackground.withAlphaComponent(0.98)
-        UINavigationBar.appearance().shadowImage = UIImage()
         
         // Create the SwiftUI view that provides the window contents.
         let fireDatabase = FireBackend()
@@ -30,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         fireDatabase.refreshFireList()
         
         let contentView = ContentView()
-            .accentColor(.orange)
             .environmentObject(newsBack)
             .environmentObject(fireDatabase)
 

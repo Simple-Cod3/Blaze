@@ -13,17 +13,12 @@ import ModalView
 struct MapView: View {
     @State var coordinateRegion = MKCoordinateRegion()
     @State var hide = true
+    @State var show = false
     
     var fireData: ForestFire
-    var annotations: [MKPointAnnotation]
     
-    init(fireData: ForestFire) {
-        self.fireData = fireData
-        
-        let pin = MKPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2D(latitude: fireData.latitude, longitude: fireData.longitude)
-        pin.title = fireData.name
-        self.annotations = [pin]
+    private func dismiss() {
+        show = false
     }
     
     private func moveBack() {
@@ -40,52 +35,45 @@ struct MapView: View {
     }
 
     var body: some View {
-        ModalPresenter {
-            ZStack(alignment: .bottom) {
-                Map(coordinateRegion: $coordinateRegion)
-                    .customAppearance()
-                    .addAnnotations(annotations)
-                    .offset(y: 30)
-                    .edgesIgnoringSafeArea(.all)
-                
-                
-                    Button(action: {hide.toggle()}) {
-                        InfoCard(fire: fireData, hide: $hide)
-                            .padding(.bottom, 20)
-                            .buttonStyle(InfoCardButtonStyle())
-                    }
-                        .buttonStyle(InfoCardButtonStyle())
-                        .offset(y: hide ? 570 : 0)
-                        .animation(.spring(), value: hide)
-                
-            }
-                .onAppear {
-                    moveBack()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        hide = false
+        ZStack(alignment: .bottom) {
+            Map(coordinateRegion: $coordinateRegion,
+                annotationItems: [fireData]) { fire in
+                MapAnnotation(coordinate: fire.coordinate) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.red.opacity(0.3))
+                            .frame(width: 100, height: 100)
+                        Image(systemName: "flame")
                     }
                 }
-                .navigationBarTitle(fireData.name, displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: moveBack) {
-                    Image(systemName: "location.fill")
-                })
-        }
-    }
-}
+            }
+                .offset(y: 30)
+                .edgesIgnoringSafeArea(.all)
 
-/// Adding waypoints
-extension Map {
-    func customAppearance() ->  Map {
-        MKMapView.appearance().showsBuildings = true
-        MKMapView.appearance().mapType = .hybridFlyover
-        
-        return self
-    }
-    
-    func addAnnotations(_ annotations: [MKAnnotation]) -> some View {
-        MKMapView.appearance().addAnnotations(annotations)
-        return self
+            Button(action: {hide.toggle()}) {
+                InfoCard(fire: fireData, hide: $hide, show: $show)
+                    .padding(.bottom, 20)
+                    .buttonStyle(InfoCardButtonStyle())
+            }
+                .buttonStyle(InfoCardButtonStyle())
+                .offset(y: hide ? 570 : 0)
+                .animation(.spring(), value: hide)
+            
+        }
+            .sheet(isPresented: $show) {
+                InformationView(fireData: fireData)
+            }
+            .onAppear {
+                moveBack()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    hide = false
+                }
+            }
+            .navigationBarTitle(fireData.name, displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: moveBack) {
+                Image(systemName: "location.fill")
+            })
     }
 }
 

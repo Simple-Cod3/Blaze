@@ -22,8 +22,8 @@ struct NewsArticleView: View {
                         .padding(20)
                     HStack(spacing: 20) {
                         URLImage(URL(string: news.authorImg ?? "https://www.solidbackgrounds.com/images/1920x1080/1920x1080-amber-orange-solid-color-background.jpg")!,
-                                 placeholder: {_ in Color.orange.aspectRatio(contentMode: .fill)},
-                                 failure: {_ in Color.orange.aspectRatio(contentMode: .fill)}
+                                 placeholder: {_ in Color.accentColor.aspectRatio(contentMode: .fill)},
+                                 failure: {_ in Color.accentColor.aspectRatio(contentMode: .fill)}
                         ) { proxy in
                             proxy.image.renderingMode(.original)
                                 .resizable()
@@ -58,7 +58,7 @@ struct NewsArticleView: View {
                     HStack {
                         Spacer()
                         Image(systemName: "arrow.down")
-                            .foregroundColor(.orange)
+                            .foregroundColor(.accentColor)
                             .font(.system(size: 20, weight: .bold))
                         Spacer()
                     }
@@ -70,7 +70,7 @@ struct NewsArticleView: View {
                     Divider()
                 }
             }
-            .accentColor(.orange)
+            .accentColor(.accentColor)
             .navigationBarTitle("News Story", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: dismiss) {
                 CloseModalButton()

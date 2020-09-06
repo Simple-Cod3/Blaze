@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import MapKit
 
 /// Represents a forest fire
-struct ForestFire: Codable, Comparable {
+struct ForestFire: Codable, Comparable, Identifiable {
     static func < (lhs: ForestFire, rhs: ForestFire) -> Bool {
         return lhs.updated < rhs.updated
     }
@@ -16,6 +17,8 @@ struct ForestFire: Codable, Comparable {
     static func > (lhs: ForestFire, rhs: ForestFire) -> Bool {
         return lhs.updated > rhs.updated
     }
+    
+    var id = UUID()
     
     var name: String
     var updated: Date
@@ -55,5 +58,9 @@ struct ForestFire: Codable, Comparable {
         }
         
         return location.prefix(1).capitalized + location.dropFirst()
+    }
+    
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

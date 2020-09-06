@@ -22,9 +22,9 @@ struct ContentView: View {
                 ItemLabel(icon: "a.book.closed",
                           title: "Glossary")
             }
-            SettingsView().tabItem {
-                ItemLabel(icon: "gear",
-                          title: "Settings")
+            SearchView().tabItem {
+                ItemLabel(icon: "magnifyingglass",
+                          title: "Search")
             }
         }
     }
@@ -41,6 +41,10 @@ struct ItemLabel: View {
             Image(systemName: icon)
         }
     }
+}
+
+extension Color {
+    static let blaze = Color("blaze")
 }
 
 struct ContentView_Previews: PreviewProvider {

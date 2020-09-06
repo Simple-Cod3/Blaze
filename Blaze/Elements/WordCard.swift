@@ -8,28 +8,26 @@
 import SwiftUI
 
 struct WordCard: View {
-    var word: String
+    var term: Term
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Image(systemName: "a.book.closed.fill")
-                .font(.system(size: 30))
-                .opacity(0.25)
-            
-            Text(word)
+            HStack{Spacer()}
+            Text(term.id)
                 .font(.title)
-                .fontWeight(.bold)
-                .opacity(0.75)
+                .fontWeight(.semibold)
+            Text(term.definition)
+                .font(.callout)
+                .foregroundColor(.secondary)
         }
-        .padding(20)
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(15)
+            .padding(20)
+            .background(Color(.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }
 
 struct WordCard_Previews: PreviewProvider {
     static var previews: some View {
-        WordCard(word: "Anchor \nPoint")
-        WordCard(word: "Environmental Impact \nStatement (EIS)")
+        WordCard(term: Term(id: "Paul", definition: "A very interesting person. Why? It's because he is a designer. Just kidding."))
     }
 }

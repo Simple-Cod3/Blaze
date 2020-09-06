@@ -9,19 +9,21 @@ import SwiftUI
 
 struct Header: View {
     var title: String
-    var desc: String
+    var desc: String?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        LazyVStack(alignment: .leading, spacing: 20) {
             Text(title)
                 .font(.system(size: 60))
                 .fontWeight(.bold)
-                .foregroundColor(.orange)
+                .foregroundColor(.blaze)
             
-            Text(desc)
-                .font(.body)
-                .fontWeight(.semibold)
-                .opacity(0.25)
+            if let desc = desc {
+                Text(desc)
+                    .font(.body)
+                    .fontWeight(.semibold)
+                    .opacity(0.25)
+            }
         }
         .padding(.horizontal, 20)
     }

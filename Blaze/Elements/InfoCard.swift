@@ -10,6 +10,8 @@ import ModalView
 
 struct InfoCard: View {
     @Binding var hide: Bool
+    @Binding var show: Bool
+    @State var random = false
     
     var fireData: ForestFire
     var name: String
@@ -19,8 +21,9 @@ struct InfoCard: View {
     var updated: String
     var started: String
     
-    init(fire: ForestFire, hide: Binding<Bool>) {
+    init(fire: ForestFire, hide: Binding<Bool>, show: Binding<Bool>) {
         self._hide = hide
+        self._show = show
         self.fireData = fire
         
         self.name = fire.name
@@ -35,16 +38,18 @@ struct InfoCard: View {
         VStack(alignment: .leading) {
             HStack {
                 Image(systemName: "flame.fill")
+                    .foregroundColor(.blaze)
                     .font(.system(size: 30))
-                    .opacity(0.25)
                 
                 Spacer()
                 
-                ModalLink(destination: {
-                    InformationView(dismiss: $0, fireData: fireData)
+                Button(action: {
+                    //InformationView(dismiss: print(""), fireData: fireData)
+                    show.toggle()
                 }) {
-                    InfoButton(text: "INFO")
-                }.buttonStyle(PlainButtonStyle())
+                    InfoButton()
+                }
+                    .buttonStyle(PlainButtonStyle())
                 
             }.padding(.bottom, 10)
             
@@ -57,50 +62,27 @@ struct InfoCard: View {
                     .opacity(0.75)
                     .padding(.bottom, 5)
                 
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(locations)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .opacity(0.25)
-                            .padding(.bottom, 30)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        Text(acres)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.orange)
-                        
-                        Text(containment)
-                            .font(.body)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.orange)
-                    }
-                    Spacer()
-                    VStack(alignment: .leading, spacing: 25) {
-                        HStack(alignment: .top, spacing: 3) {
-                            Image(systemName: "calendar.badge.exclamationmark")
-                                .padding(.top, 3)
-                            Text(updated)
-                                .font(.body)
-                                .fontWeight(.semibold)
-                        }
-                        
-                        HStack(alignment: .top, spacing: 3) {
-                            Image(systemName: "livephoto.play")
-                                .padding(.top, 3)
-                            Text(started)
-                                .font(.body)
-                                .fontWeight(.semibold)
-                        }
-                        
-                        
-                    }
-                    .foregroundColor(.orange)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(locations)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .opacity(0.25)
+                        .padding(.bottom, 30)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text(acres)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.blaze)
+                    
+                    Text(containment)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.blaze)
                 }
             }
         }
-            .frame(minHeight: 280)
+            .frame(minHeight: 200)
             .padding(20)
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(15)

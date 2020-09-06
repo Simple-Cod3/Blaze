@@ -9,18 +9,31 @@ import SwiftUI
 import ModalView
 
 struct GlossaryView: View {
+    @State var title = "Glossary"
+    @State var description = "Tap on any word below to view it's definition."
+    
+    var glossary = GlossaryDatabase.terms
+    
     var body: some View {
         ModalPresenter {
             ScrollView {
-                VStack {
+                VStack(spacing: 0) {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 200)
                         .padding(20)
                     
-                    HStack {
-                        Header(title: "Glossary", desc: "Tap on any word below to view it's definition.")
-                        Spacer()
+                    Header(title: title, desc: description)
+                    Spacer()
+                    
+                    VStack(alignment: .leading, spacing: 20) {
+                        ForEach(Array(glossary.keys).sorted(), id: \.self) { key in
+                            Header(title: key.capitalized)
+                            ForEach(glossary[key]!) { term in
+                                WordCard(term: term)
+                                    .padding(.horizontal, 20)
+                            }
+                        }
                     }
                 }
             }

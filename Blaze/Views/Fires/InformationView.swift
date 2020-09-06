@@ -47,7 +47,7 @@ struct InformationSection: View {
 }
 
 struct InformationView: View {
-    var dismiss: () -> ()
+    //var dismiss: () -> ()
     var fireData: ForestFire
     
     var body: some View {
@@ -66,7 +66,7 @@ struct InformationView: View {
                     title: "Times",
                     data: [
                         ["arrow.counterclockwise.icloud", "Updated", fireData.updated.getElapsedInterval(true)],
-                        ["calendar.badge.clock", "Fire Started", fireData.updated.getElapsedInterval(true)],
+                        ["calendar.badge.clock", "Fire Started", fireData.start.getElapsedInterval(true)],
                     ]
                 )
                 
@@ -87,10 +87,7 @@ struct InformationView: View {
             }
             .navigationBarTitle("Fire Info")
             .navigationBarItems(
-                leading: Button(action: {}) {
-                    Image(systemName: "square.and.arrow.up").font(.system(size: 20))
-                },
-                trailing: Button(action: dismiss){
+                trailing: Button(action: {}){
                     CloseModalButton()
                 }
             )

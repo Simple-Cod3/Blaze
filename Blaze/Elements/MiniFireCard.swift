@@ -17,11 +17,11 @@ struct MiniFireCard: View {
                 .padding(.horizontal, 10)
                 .padding(.top, 15)
                 .padding(.bottom, 5)
-                .foregroundColor(selected ? .white : .orange)
+                .foregroundColor(selected ? .white : .blaze)
             Text(fireData.name)
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(selected ? .white : .orange)
+                .foregroundColor(selected ? .white : .blaze)
                 .padding(.horizontal, 10)
             
             Spacer()
@@ -29,22 +29,22 @@ struct MiniFireCard: View {
                 Text(fireData.getAreaString())
                     .font(.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(selected ? .white : .orange)
+                    .foregroundColor(selected ? .white : .blaze)
                 Spacer()
                 NavigationLink(destination: MapView(fireData: fireData)) {
                     Text("MAP")
                         .font(.caption)
                         .fontWeight(.bold)
-                        .foregroundColor(selected ? .orange : .white)
+                        .foregroundColor(selected ? .blaze : .white)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
-                        .background(selected ? Color.white : Color.orange)
+                        .background(selected ? Color.white : Color.blaze)
                         .clipShape(Capsule())
                 }
             }.padding(10)
         }
             .frame(width: 200, height: 180)
-            .background(selected ? Color.orange : Color(.secondarySystemBackground))
+            .background(selected ? Color.blaze : Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }
