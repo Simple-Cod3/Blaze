@@ -36,23 +36,18 @@ struct FireMapView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            Map(coordinateRegion: $coordinateRegion,
+                Map(coordinateRegion: $coordinateRegion,
                 annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-                    LazyVStack(spacing: 15) {
-                        Image(systemName: "flame.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(.blaze)
-                        Text(fire.name)
-                            .font(.caption)
-                            .frame(maxWidth: 200)
-                    }
+                    Image("fire").resizable()
+                        .frame(width: 80, height: 80)
+                        .foregroundColor(.white)
                 }
             }
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
 
-            Button(action: {hide.toggle()}) {
+            Button(action: { hide.toggle() }) {
                 InfoCard(fire: fireData, hide: $hide, show: $show)
                     .padding(.bottom, 20)
                     .buttonStyle(InfoCardButtonStyle())
@@ -63,7 +58,7 @@ struct FireMapView: View {
             
         }
             .sheet(isPresented: $show) {
-                InformationView(fireData: fireData)
+                InformationView(show: $show, fireData: fireData)
             }
             .onAppear {
                 moveBack()
@@ -81,7 +76,7 @@ struct FireMapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        let fire = ForestFire(name: "Elkhorn Fire", updated: Date(), start: Date(), county: "Los Angeles", location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes", acres: 45340, contained: 58, longitude: 0, latitude: 0, url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/")
+        let fire = ForestFire(name: "Elkhorn Fire", updated: Date(), start: Date(), county: "Los Angeles", location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes", acres: 45340, contained: 58, longitude: -58, latitude: 40, url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/")
         
         FireMapView(fireData: fire)
             .environmentObject(FireBackend())

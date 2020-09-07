@@ -21,11 +21,6 @@ struct SearchView: View {
     @State var showWords = true
     
     private func getFires() {
-        if !showFires {
-            firesList = [ForestFire]()
-            return
-        }
-        
         DispatchQueue.main.async {
             self.firesList = self.fireback.fires.filter {
                 searchBar.text.isEmpty ||
@@ -35,11 +30,6 @@ struct SearchView: View {
     }
     
     private func getWords() {
-        if !showWords {
-            wordsList = [Term]()
-            return
-        }
-        
         DispatchQueue.main.async {
             self.wordsList = self.terms.filter {
                 searchBar.text.isEmpty ||
@@ -57,7 +47,7 @@ struct SearchView: View {
                         isExpanded: $showFires,
                         content: {
                             ForEach(firesList) { fire in
-                                NavigationLink(destination: MapView(fireData: fire)) {
+                                NavigationLink(destination: FireMapView(fireData: fire)) {
                                     Text(fire.name)
                                         .font(.headline)
                                         .fontWeight(.regular)
@@ -70,7 +60,7 @@ struct SearchView: View {
                             if !showFires {
                                 Text("\(firesList.count)")
                                     .scaleEffect(showFires ? 0 : 1)
-                                    .transition(.move(edge: .bottom))
+                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
                                     .animation(.spring())
                             }
                         }}
@@ -95,7 +85,7 @@ struct SearchView: View {
                             if !showWords {
                                 Text("\(wordsList.count)")
                                     .scaleEffect(showWords ? 0 : 1)
-                                    .transition(.move(edge: .bottom))
+                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
                                     .animation(.spring())
                             }
                         }}

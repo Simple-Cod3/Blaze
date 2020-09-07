@@ -44,7 +44,6 @@ struct InfoCard: View {
                 Spacer()
                 
                 Button(action: {
-                    //InformationView(dismiss: print(""), fireData: fireData)
                     show.toggle()
                 }) {
                     InfoButton()
@@ -87,7 +86,6 @@ struct InfoCard: View {
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(15)
             .padding(.horizontal, 20)
-
     }
 }
 

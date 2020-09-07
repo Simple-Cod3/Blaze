@@ -42,7 +42,7 @@
 		E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
 		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
 		E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
-		E9F222EB2500C4A800EC5A06 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* MapView.swift */; };
+		E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* FireMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +78,7 @@
 		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
 		E9F222E525005BEB00EC5A06 /* ForestFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestFire.swift; sourceTree = "<group>"; };
 		E9F222E72500886800EC5A06 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		E9F222EA2500C4A800EC5A06 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E9F222EA2500C4A800EC5A06 /* FireMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +227,7 @@
 		E9F222E92500C49E00EC5A06 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				E9F222EA2500C4A800EC5A06 /* MapView.swift */,
+				E9F222EA2500C4A800EC5A06 /* FireMapView.swift */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E985F5362503752000A3BA83 /* FormButton.swift in Sources */,
 				E9AF019924FDF0D40058C184 /* ArticleContent.swift in Sources */,
-				E9F222EB2500C4A800EC5A06 /* MapView.swift in Sources */,
+				E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */,
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
 				6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */,
 				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
@@ -483,10 +483,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,6 +495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -507,10 +509,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -518,6 +521,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

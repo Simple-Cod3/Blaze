@@ -31,7 +31,7 @@ struct MiniFireCard: View {
                     .fontWeight(.semibold)
                     .foregroundColor(selected ? .white : .blaze)
                 Spacer()
-                NavigationLink(destination: MapView(fireData: fireData)) {
+                NavigationLink(destination: FireMapView(fireData: fireData)) {
                     Text("MAP")
                         .font(.caption)
                         .fontWeight(.bold)

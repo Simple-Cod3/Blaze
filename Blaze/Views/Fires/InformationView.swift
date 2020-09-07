@@ -47,7 +47,7 @@ struct InformationSection: View {
 }
 
 struct InformationView: View {
-    //var dismiss: () -> ()
+    @Binding var show: Bool
     var fireData: ForestFire
     
     var body: some View {
@@ -87,7 +87,7 @@ struct InformationView: View {
             }
             .navigationBarTitle("Fire Info")
             .navigationBarItems(
-                trailing: Button(action: {}){
+                trailing: Button(action: { show.toggle() }){
                     CloseModalButton()
                 }
             )
