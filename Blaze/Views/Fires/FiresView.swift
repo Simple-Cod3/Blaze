@@ -22,11 +22,11 @@ struct FiresView: View {
                 VStack {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .padding(20)
+                        .frame(height: 300)
+                        .padding(25)
                     
                     HStack {
-                        Header(title: "Big Fires", desc: "The US Forest Service is in unified command with CAL FIRE on the Elkhorn Fire, which is burning in the Tomhead Mountain area west of Red Bluff.")
+                        Header(title: "Wild Fires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         Spacer()
                     }
                     

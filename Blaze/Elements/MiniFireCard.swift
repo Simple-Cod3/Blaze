@@ -14,20 +14,20 @@ struct MiniFireCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
-                .padding(.horizontal, 10)
-                .padding(.top, 15)
-                .padding(.bottom, 5)
-                .foregroundColor(selected ? .white : .blaze)
+                .font(.system(size: 26))
+                .padding([.top, .leading], 15)
+                .padding(.bottom, 10)
+                .foregroundColor(selected ? .white : .secondary)
             Text(fireData.name)
-                .font(.title2)
+                .font(.system(size: 26))
                 .fontWeight(.bold)
-                .foregroundColor(selected ? .white : .blaze)
-                .padding(.horizontal, 10)
+                .foregroundColor(selected ? .white : .secondary)
+                .padding(.horizontal, 15)
             
             Spacer()
             HStack {
                 Text(fireData.getAreaString())
-                    .font(.caption)
+                    .font(.callout)
                     .fontWeight(.semibold)
                     .foregroundColor(selected ? .white : .blaze)
                 Spacer()
@@ -41,7 +41,7 @@ struct MiniFireCard: View {
                         .background(selected ? Color.white : Color.blaze)
                         .clipShape(Capsule())
                 }
-            }.padding(10)
+            }.padding(15)
         }
             .frame(width: 200, height: 180)
             .background(selected ? Color.blaze : Color(.secondarySystemBackground))

@@ -12,7 +12,6 @@ struct WordCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack{Spacer()}
             Text(term.id)
                 .font(.title)
                 .fontWeight(.semibold)

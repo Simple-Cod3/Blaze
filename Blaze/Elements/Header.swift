@@ -12,7 +12,7 @@ struct Header: View {
     var desc: String?
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 20) {
+        LazyVStack(alignment: .leading, spacing: 15) {
             Text(title)
                 .font(.system(size: 60))
                 .fontWeight(.bold)
@@ -22,8 +22,7 @@ struct Header: View {
                 Text(desc)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .opacity(0.25)
-            }
+                    .foregroundColor(.secondary)            }
         }
         .padding(.horizontal, 20)
     }
