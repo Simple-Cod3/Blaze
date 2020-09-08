@@ -8,8 +8,11 @@
 import Foundation
 import MapKit
 
-/// Represents a forest fire
+
+/// A data structure that represents a forest fire
 struct ForestFire: Codable, Comparable, Identifiable {
+    // MARK: - Comparable Protocol Functions
+    
     static func < (lhs: ForestFire, rhs: ForestFire) -> Bool {
         return lhs.updated < rhs.updated
     }
@@ -18,19 +21,23 @@ struct ForestFire: Codable, Comparable, Identifiable {
         return lhs.updated > rhs.updated
     }
     
+    // MARK: - Attributes
+    
     var id = UUID()
+    var name: String /// name of the fire
+    var updated: Date /// `Date` of when the data was last updated
+    var start: Date /// `Date` of when the fire was first documented
+    var county: String /// counties affected by the fire
+    var location: String /// location(s) of the fire
+    var acres: Double /// area in acres of the fire
+    var contained: Double /// percent contained
+    var longitude: Double /// estimated starting location (longitude)
+    var latitude: Double /// estimated starting location (latitude)
+    var url: String /// url of the fire for more information at https://fire.ca.gov/incidents
     
-    var name: String
-    var updated: Date
-    var start: Date
-    var county: String
-    var location: String
-    var acres: Double
-    var contained: Double
-    var longitude: Double
-    var latitude: Double
-    var url: String
+    // MARK: - CodingKeys
     
+    /// Specific for `https://fire.ca.gov/ API`
     enum CodingKeys: String, CodingKey {
         case name = "Name"
         case updated = "Updated"
@@ -44,14 +51,19 @@ struct ForestFire: Codable, Comparable, Identifiable {
         case url = "Url"
     }
     
+    // MARK: - String Functions
+    
+    /// Returns a formatted string of the percent contained
     func getContained() -> String {
         return "\(contained)%"
     }
     
+    /// Returns a formatted string (with commas) of acres
     func getAreaString() -> String {
         return "\(acres.inCommas() ?? String(acres)) Acres"
     }
     
+    /// Returns a formatted string (with proper responses) for the location
     func getLocation() -> String {
         if location == "see details below" {
             return "More details on the website"
@@ -60,6 +72,9 @@ struct ForestFire: Codable, Comparable, Identifiable {
         return location.prefix(1).capitalized + location.dropFirst()
     }
     
+    // MARK: - Computed Properties
+    
+    /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }

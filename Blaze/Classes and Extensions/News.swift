@@ -9,6 +9,8 @@ import Foundation
 
 /// News data structure
 struct News: Comparable {
+    // MARK: - Comparable Protocol Functions
+    
     static func < (lhs: News, rhs: News) -> Bool {
         return lhs.date < rhs.date;
     }
@@ -16,6 +18,8 @@ struct News: Comparable {
     static func > (lhs: News, rhs: News) -> Bool {
         return lhs.date > rhs.date;
     }
+    
+    // MARK: - Attributes
     
     var id: String /// Title
     var author: String
@@ -26,6 +30,8 @@ struct News: Comparable {
     var publisher: String /// News site
     var sourceURL: String /// Direct link to article
     var date: Date
+    
+    // MARK: - String Functions
     
     func getTimeAgo() -> String {
         return date.getElapsedInterval()

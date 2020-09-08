@@ -17,6 +17,13 @@ struct FireMapView: View {
     
     var fireData: ForestFire
     
+    init(fireData: ForestFire) {
+        MKMapView.appearance().mapType = .hybrid
+        MKMapView.appearance().showsScale = true
+        
+        self.fireData = fireData
+    }
+    
     private func dismiss() {
         show = false
     }
@@ -42,6 +49,7 @@ struct FireMapView: View {
                     Image("fire").resizable()
                         .frame(width: 50, height: 50)
                         .foregroundColor(.white)
+                        .shadow(radius: 20, y: -10)
                 }
             }
                 .offset(y: 30)

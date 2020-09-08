@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A data structure that contains a word and its definition
 struct Term: Identifiable, Comparable {
     static func < (lhs: Term, rhs: Term) -> Bool {
         return lhs.id < rhs.id
@@ -17,28 +18,29 @@ struct Term: Identifiable, Comparable {
 }
 
 
-/// Data parsed with:
-/* javascript
+/**
+ Contains all of the words needed to understand wildfire reports
  
- console.clear()
- alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("")
- output = "[\n"
- for (const l of alphabet) {
-     output += `\t"${l.toLowerCase()}" : [`
-     $(`.tabbertab[title=${l}] > p:not([style])`).each(function() {
-         let id = $(this).children().first().text();
-         var def = $(this).clone().children().remove().end().text() + ""
-         def = def.trim().replaceAll("\n", "")
-         def = def.replaceAll("    ", "").replaceAll('"', '\\"')
-         console.log(def)
-         output += `\n\t\tTerm(id: "${id}", definition: "${def}"),`;
-     });
-     output += "\n\t],\n"
- }
- output += "]"
+ Data parsed with javascript script:
+ 
+     console.clear()
+     alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("")
+     output = "[\n"
+     for (const l of alphabet) {
+         output += `\t"${l.toLowerCase()}" : [`
+         $(`.tabbertab[title=${l}] > p:not([style])`).each(function() {
+             let id = $(this).children().first().text();
+             var def = $(this).clone().children().remove().end().text() + ""
+             def = def.trim().replaceAll("\n", "")
+             def = def.replaceAll("    ", "").replaceAll('"', '\\"')
+             console.log(def)
+             output += `\n\t\tTerm(id: "${id}", definition: "${def}"),`;
+         });
+         output += "\n\t],\n"
+     }
+     output += "]"
  
  */
-
 struct GlossaryDatabase {
     static var terms: [String: [Term]] = [
         "a" : [
@@ -329,6 +331,7 @@ struct GlossaryDatabase {
 //        "z" : [],
     ]
     
+    /// returns all of the `Term` objects in a list
     static func getAllWords() -> [Term] {
         return Array(GlossaryDatabase.terms.values.joined())
     }

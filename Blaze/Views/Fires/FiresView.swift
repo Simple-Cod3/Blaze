@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FiresView: View {
     @EnvironmentObject var fireB: FireBackend
-    @State var select = 0
+    @State var selectAll = 0
+    @State var selectLargest = 0
     
     let rows = [
         GridItem(.flexible()),
@@ -18,7 +19,7 @@ struct FiresView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
@@ -30,18 +31,44 @@ struct FiresView: View {
                         Spacer()
                     }
                     
-                    Spacer()
+                    Spacer().frame(height: 50)
+                    
+                    Header2(title: "Largest Fires", description: "Largest fires (acres) will be shown first.")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
-                            ForEach(fireB.fires.indices, id: \.self) { i in
-                                Button(action: { select = i }) {
-                                    MiniFireCard(selected: i == select, fireData: fireB.fires[i])
+                            ForEach(
+                                fireB.fires.sorted(by: { $0.acres > $1.acres }).indices,
+                                id: \.self
+                            ) { i in
+                                Button(action: { selectLargest = i }) {
+                                    MiniFireCard(
+                                        selected: i == selectLargest,
+                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]
+                                    )
                                 }
                             }
                         }
                             .padding(20)
                     }
+                    
+                    Divider().padding(.horizontal, 20)
+                    
+                    
+                    Header2(title: "All Fires", description: "Fires with more updated information will be listed first.")
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(fireB.fires.indices, id: \.self) { i in
+                                Button(action: { selectAll = i }) {
+                                    MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
+                                }
+                            }
+                        }
+                            .padding(20)
+                    }
+                    
+                    Spacer().frame(height: 50)
                 }
                     .navigationBarTitle("Big Fires", displayMode: .inline)
                 .navigationBarHidden(true)

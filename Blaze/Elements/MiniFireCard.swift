@@ -52,7 +52,7 @@ struct MiniFireCard: View {
 struct MiniFireCard_Previews: PreviewProvider {
     static var previews: some View {
         let fire = ForestFire(name: "Elkhorn Fire", updated: Date(), start: Date(), county: "Los Angeles", location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes", acres: 45340, contained: 58, longitude: -118.451917, latitude: 34.679402, url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/")
-        
+
         NavigationView {
             MiniFireCard(selected: true, fireData: fire)
         }

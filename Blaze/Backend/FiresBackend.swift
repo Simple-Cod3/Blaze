@@ -8,16 +8,45 @@
 import Foundation
 import SwiftUI
 
+/// Manages the fires behinds the scenes and updates UI accordingly
 class FireBackend: ObservableObject {
+    // MARK: - Published States
+    
     @Published var fires = [ForestFire]()
     
-    init() {}
+    // MARK: - Init Function
+    /**
+     You actually don't need any parameters to initialize this object
+     
+     - Parameters:
+        - fires: Optional argument to initialize fires list on initilization of the object
+     
+     - Returns:
+        - A fast, amazing, and clean `FireBackend`
+     */
+    init(fires: [ForestFire]? = nil) {
+        if let fires = fires {
+            self.fires = fires
+        }
+    }
+    // MARK: - Functions
     
-    /// Update the fire catalog
-    func refreshFireList() {
+    /**
+     Update the fire database from the `https://fire.ca.gov API`
+     
+     - Important:
+        Try not to spam the function. For example:
+     
+            let fireBackend = FireBackend()
+            while true {
+                fireBackend.refreshList()
+            }
+     
+     */
+    func refreshFireList(with: URL? = nil) {
         let group = DispatchGroup()
         
-        let url = URL(string: "https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false")!
+        let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false")!
         print("==== [ Grabbing new fires ] ====")
         
         group.enter()
