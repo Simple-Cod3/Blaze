@@ -11,12 +11,18 @@ import ModalView
 struct GlossaryView: View {
     @State var title = "Glossary"
     @State var description = "Tap on any word below to view it's definition."
-    @State var on: [Bool]
+    @State var on: [String : Bool]
     
     var glossary = GlossaryDatabase.terms
     
     init() {
-        self._on = State(initialValue: GlossaryDatabase.terms.map { _ in false })
+        var termsToBool: [String : Bool] = [:]
+        
+        for key in Array(GlossaryDatabase.terms.keys) {
+            termsToBool[key] = false
+        }
+        
+        self._on = State(initialValue: termsToBool)
     }
     
     var body: some View {
@@ -32,18 +38,29 @@ struct GlossaryView: View {
                     Spacer()
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        ForEach(Array(glossary.keys).sorted(), id: \.self) { key in
-                            DisclosureGroup(
-                                isExpanded: on,
-                                content: { /*@START_MENU_TOKEN@*/Text("Content")/*@END_MENU_TOKEN@*/ },
-                                label: { /*@START_MENU_TOKEN@*/Text("Label")/*@END_MENU_TOKEN@*/ }
-)
-                            Header(title: key.capitalized)
-                            ForEach(glossary[key]!) { term in
-                                WordCard(term: term)
-                                    .padding(.horizontal, 20)
+                        ForEach(Array(on.keys).sorted(), id: \.self) { key in
+                            HStack(alignment: .bottom) {
+                                Header(title: key.capitalized)
+                                Spacer()
+                                Button(
+                                    on[key] == true ? "Hide" : "Show",
+                                    action: {
+                                        withAnimation(.spring()) {
+                                            on[key]?.toggle()
+                                        }
+                                    })
+                                    .padding(.trailing, 20)
+                                    .foregroundColor(.secondary)
                             }
-                        }
+                            Divider().padding(.horizontal, 20)
+                            if on[key] != false {
+                                ForEach(glossary[key]!) { term in
+                                    WordCard(term: term)
+                                        .padding(.horizontal, 20)
+                                        .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .scale))
+                                }
+                            }
+                        }.animation(.spring(), value: on)
                     }
                 }
             }

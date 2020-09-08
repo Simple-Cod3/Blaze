@@ -22,18 +22,23 @@ struct SearchView: View {
     
     private func getFires() {
         DispatchQueue.main.async {
+            let query = searchBar.text.lowercased()
+            
             self.firesList = self.fireback.fires.filter {
-                searchBar.text.isEmpty ||
-                $0.name.contains(searchBar.text)
+                query.isEmpty ||
+                $0.name.lowercased().contains(query) ||
+                $0.location.lowercased().contains(query)
             }.sorted(by: {$0.name < $1.name})
         }
     }
     
     private func getWords() {
         DispatchQueue.main.async {
+            let query = searchBar.text.lowercased()
+            
             self.wordsList = self.terms.filter {
-                searchBar.text.isEmpty ||
-                $0.id.contains(searchBar.text)
+                query.isEmpty ||
+                $0.id.lowercased().contains(query)
             }.sorted()
         }
     }
@@ -43,56 +48,59 @@ struct SearchView: View {
         ModalPresenter {
             NavigationView {
                 Form {
-                    DisclosureGroup(
-                        isExpanded: $showFires,
-                        content: {
-                            ForEach(firesList) { fire in
-                                NavigationLink(destination: FireMapView(fireData: fire)) {
-                                    Text(fire.name)
-                                        .font(.headline)
-                                        .fontWeight(.regular)
-                                        .foregroundColor(.secondary)
+                    Section {
+                        DisclosureGroup(
+                            isExpanded: $showFires,
+                            content: {
+                                ForEach(firesList) { fire in
+                                    NavigationLink(destination: FireMapView(fireData: fire)) {
+                                        Text(fire.name)
+                                            .font(.headline)
+                                            .fontWeight(.regular)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }},
+                            label: { HStack {
+                                Text("Forest Fires").font(.headline)
+                                Spacer()
+                                if !showFires {
+                                    Text("\(firesList.count)")
+                                        .scaleEffect(showFires ? 0 : 1)
+                                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
+                                        .animation(.spring())
                                 }
-                            }},
-                        label: { HStack {
-                            Text("Forest Fires").font(.headline)
-                            Spacer()
-                            if !showFires {
-                                Text("\(firesList.count)")
-                                    .scaleEffect(showFires ? 0 : 1)
-                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                    .animation(.spring())
-                            }
-                        }}
-                    )
-                    DisclosureGroup(
-                        isExpanded: $showWords,
-                        content: {
-                            ForEach(wordsList) { word in
-                                NavigationLink(destination: Header(title: word.id, desc: word.definition)
-                                        .navigationBarTitle("Term", displayMode: .inline)
-                                ) {
-                                    Text(word.id)
-                                        .font(.headline)
-                                        .fontWeight(.regular)
-                                        .foregroundColor(.secondary)
+                            }}
+                        )
+                        DisclosureGroup(
+                            isExpanded: $showWords,
+                            content: {
+                                ForEach(wordsList) { word in
+                                    NavigationLink(destination: Header(title: word.id, desc: word.definition)
+                                            .navigationBarTitle("Term", displayMode: .inline)
+                                    ) {
+                                        Text(word.id)
+                                            .font(.headline)
+                                            .fontWeight(.regular)
+                                            .foregroundColor(.secondary)
+                                    }
                                 }
-                            }
-                        },
-                        label: { HStack {
-                            Text("Terms and Definitions").font(.headline)
-                            Spacer()
-                            if !showWords {
-                                Text("\(wordsList.count)")
-                                    .scaleEffect(showWords ? 0 : 1)
-                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                    .animation(.spring())
-                            }
-                        }}
-                    )
-                    
-                    NavigationLink(destination: CreditsView()) {
-                        Text("Credits").font(.headline)
+                            },
+                            label: { HStack {
+                                Text("Terms and Definitions").font(.headline)
+                                Spacer()
+                                if !showWords {
+                                    Text("\(wordsList.count)")
+                                        .scaleEffect(showWords ? 0 : 1)
+                                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
+                                        .animation(.spring())
+                                }
+                            }}
+                        )
+                    }
+                    Section {
+                        NavigationLink(destination: CreditsView()) {
+                            Text("Credits").font(.headline)
+                        }
                     }
                 }
                     .navigationBarTitle("Search")
@@ -142,14 +150,15 @@ struct SearchBarModifier: ViewModifier {
             .overlay(
                 ViewControllerResolver { viewController in
                     viewController.navigationItem.searchController = self.searchBar.searchController
+                    viewController.navigationItem.hidesSearchBarWhenScrolling = false
                 }
                     .frame(width: 0, height: 0)
             )
     }
+    
 }
 
 extension View {
-    
     func add(_ searchBar: SearchBar) -> some View {
         return self.modifier(SearchBarModifier(searchBar: searchBar))
     }
@@ -182,7 +191,7 @@ class ParentResolverViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("Use init(onResolve:) to instantiate ParentResolverViewController.")
     }
-        
+    
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         
