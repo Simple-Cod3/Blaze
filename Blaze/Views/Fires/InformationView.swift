@@ -52,45 +52,54 @@ struct InformationView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                InformationSection(
-                    title: "Basic Information",
-                    data: [
-                        ["flame", "Name", fireData.name],
-                        ["mappin.and.ellipse", "Location", fireData.getLocation(),
-                         String(fireData.latitude)+"°", String(fireData.longitude)+"°"],
-                    ]
-                )
-                
-                InformationSection(
-                    title: "Times",
-                    data: [
-                        ["arrow.counterclockwise.icloud", "Updated", fireData.updated.getElapsedInterval(true)],
-                        ["calendar.badge.clock", "Fire Started", fireData.start.getElapsedInterval(true)],
-                    ]
-                )
-                
-                InformationSection(
-                    title: "Fire Statistics",
-                    data: [
-                        ["greetingcard", "Acres", fireData.getAreaString()],
-                        ["lasso", "Contained", fireData.getContained()],
-                    ]
-                )
-            
-                if let url = URL(string: fireData.url) {
-                    FormButton(text: "More Info", url: url)
-                } else {
-                    FormButton(text: "More Info", url: URL(string: "https://google.com")!)
-                        .disabled(true)
-                }
-            }
-            .navigationBarTitle("Fire Info")
-            .navigationBarItems(
-                trailing: Button(action: { show.toggle() }){
-                    CloseModalButton()
-                }
-            )
+            InformationViewInner(show: $show, fireData: fireData)
         }
+    }
+}
+
+struct InformationViewInner: View {
+    @Binding var show: Bool
+    var fireData: ForestFire
+    
+    var body: some View {
+        Form {
+            InformationSection(
+                title: "Basic Information",
+                data: [
+                    ["flame", "Name", fireData.name],
+                    ["mappin.and.ellipse", "Location", fireData.getLocation(),
+                     String(fireData.latitude)+"°", String(fireData.longitude)+"°"],
+                ]
+            )
+            
+            InformationSection(
+                title: "Times",
+                data: [
+                    ["arrow.counterclockwise.icloud", "Updated", fireData.updated.getElapsedInterval(true)],
+                    ["calendar.badge.clock", "Fire Started", fireData.start.getElapsedInterval(true)],
+                ]
+            )
+            
+            InformationSection(
+                title: "Fire Statistics",
+                data: [
+                    ["greetingcard", "Acres", fireData.getAreaString()],
+                    ["lasso", "Contained", fireData.getContained()],
+                ]
+            )
+        
+            if let url = URL(string: fireData.url) {
+                FormButton(text: "More Info", url: url)
+            } else {
+                FormButton(text: "More Info", url: URL(string: "https://google.com")!)
+                    .disabled(true)
+            }
+        }
+        .navigationBarTitle("Fire Info")
+        .navigationBarItems(
+            trailing: Button(action: { show.toggle() }){
+                CloseModalButton()
+            }
+        )
     }
 }

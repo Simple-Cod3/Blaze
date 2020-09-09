@@ -23,7 +23,7 @@ struct FiresView: View {
                 VStack {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height: 300)
+                        .frame(height: 200)
                         .padding(25)
                     
                     HStack {
@@ -33,40 +33,56 @@ struct FiresView: View {
                     
                     Spacer().frame(height: 50)
                     
-                    Header2(title: "Largest Fires", description: "Largest fires (acres) will be shown first.")
+                    Header2(title: "Largest Fires", description: "Largest fires (acres) will be shown.")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
                             ForEach(
-                                fireB.fires.sorted(by: { $0.acres > $1.acres }).indices,
+                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
                                 id: \.self
                             ) { i in
-                                Button(action: { selectLargest = i }) {
+                                NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
                                     MiniFireCard(
                                         selected: i == selectLargest,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]
                                     )
                                 }
                             }
-                        }
-                            .padding(20)
-                    }
-                    
-                    Divider().padding(.horizontal, 20)
-                    
-                    
-                    Header2(title: "All Fires", description: "Fires with more updated information will be listed first.")
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(fireB.fires.indices, id: \.self) { i in
-                                Button(action: { selectAll = i }) {
-                                    MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
+                            Spacer()
+                            NavigationLink(destination: FullFireMapView()) {
+                                HStack {
+                                    Image(systemName: "plus.circle")
+                                    Text("View All")
                                 }
                             }
                         }
                             .padding(20)
                     }
+                        .edgesIgnoringSafeArea(.horizontal)
+
+                    Divider().padding(.horizontal, 20)
+                    
+                    
+                    Header2(title: "Latest Fires", description: "Fires with more updated information will be listed first.")
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(fireB.fires.prefix(5).indices, id: \.self) { i in
+                                NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
+                                    MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
+                                }
+                            }
+                            
+                            NavigationLink(destination: FullFireMapView()) {
+                                HStack {
+                                    Image(systemName: "plus.circle")
+                                    Text("View All")
+                                }
+                            }
+                        }
+                            .padding(20)
+                    }
+                        .edgesIgnoringSafeArea(.horizontal)
                     
                     Spacer().frame(height: 50)
                 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /// News data structure
-struct News: Comparable {
+struct News: Comparable, Identifiable {
     // MARK: - Comparable Protocol Functions
     
     static func < (lhs: News, rhs: News) -> Bool {
@@ -35,5 +35,11 @@ struct News: Comparable {
     
     func getTimeAgo() -> String {
         return date.getElapsedInterval()
+    }
+    
+    // MARK: - Computed Properties
+    
+    var url: URL {
+        URL(string: sourceURL) ?? URL(string: "https://inciweb.nwcg.gov/incidents")!
     }
 }

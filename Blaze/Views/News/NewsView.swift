@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ModalView
-import SwiftUIPullToRefresh
 
 struct NewsView: View {
     @EnvironmentObject var news: NewsBackend
@@ -20,14 +19,14 @@ struct NewsView: View {
                         HStack {
                             Header(title: "News", desc: "Latest news about forest fires. This page may become obsolete so that is a huge F in the chat am I right? Any truers in the chat?")
                             Spacer()
-                        }.padding(.top, 20)
+                        }
+                            .padding(.top, 20)
+                        
                         Divider().padding(20)
-                        /// Must use `i` to keep the order intact
-                        ForEach(news.newsList.indices, id: \.self) { i in
-                            ModalLink(destination: {
-                                NewsArticleView(dismiss: $0, news: news.newsList[i])
-                            }) {
-                                NewsCard(news: news.newsList[i])
+
+                        ForEach(news.newsList) { news in
+                            ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
+                                NewsCard(news: news)
                             }
                         }
                     }
@@ -40,9 +39,6 @@ struct NewsView: View {
                         .foregroundColor(.secondary)
                 }
             }
-        }
-        .onAppear {
-            
         }
     }
 }

@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Down",
-        "repositoryURL": "https://github.com/iwasrobbed/Down",
-        "state": {
-          "branch": null,
-          "revision": "427aec0a0ab342246ec02369dea398597b61174a",
-          "version": "0.9.3"
-        }
-      },
-      {
         "package": "FeedKit",
         "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {
@@ -25,15 +16,6 @@
         "state": {
           "branch": "master",
           "revision": "ad7c17cbbdf0662f3defc5bfefd6d912d458d4a4",
-          "version": null
-        }
-      },
-      {
-        "package": "SwiftUIPullToRefresh",
-        "repositoryURL": "https://github.com/AppPear/SwiftUI-PullToRefresh",
-        "state": {
-          "branch": "master",
-          "revision": "cd33c339e2a030804dfda6517536c941c12cb3a3",
           "version": null
         }
       },

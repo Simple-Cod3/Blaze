@@ -16,8 +16,8 @@ struct NewsCard: View {
             if let url = URL(string: news.coverImage) {
                 ZStack(alignment: .topLeading) {
                     URLImage(url,
-                             placeholder: {_ in Color.accentColor.aspectRatio(contentMode: .fill)},
-                             failure: {_ in Color.accentColor.aspectRatio(contentMode: .fill)}
+                             placeholder: {_ in Color.blaze.aspectRatio(contentMode: .fill)},
+                             failure: {_ in Color.blaze.aspectRatio(contentMode: .fill)}
                     ) { proxy in
                         proxy.image.renderingMode(.original)
                             .resizable()
@@ -32,7 +32,7 @@ struct NewsCard: View {
                         .font(.caption)
                         .foregroundColor(.white)
                         .padding(5)
-                        .background(Color.accentColor)
+                        .background(Color.blaze)
                         .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                         .padding(10)
                 }
@@ -46,7 +46,7 @@ struct NewsCard: View {
                         .fontWeight(.semibold)
                         .fixedSize(horizontal: false, vertical: true)
                     (Text(news.publisher)
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(.blaze)
                     + Text(" • " + news.author)
                         .foregroundColor(.secondary)
                     )
@@ -57,7 +57,7 @@ struct NewsCard: View {
             }.padding(20)
         }
             .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/))
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
         .padding([.bottom, .horizontal], 20)
     }
 }

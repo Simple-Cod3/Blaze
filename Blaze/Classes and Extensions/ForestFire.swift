@@ -35,6 +35,20 @@ struct ForestFire: Codable, Comparable, Identifiable {
     var latitude: Double /// estimated starting location (latitude)
     var url: String /// url of the fire for more information at https://fire.ca.gov/incidents
     
+    // MARK: - Init
+    init(name: String? = "Some Fire", updated: Date? = Date(), start: Date? = Date(), county: String? = "Some county", location: String? = "Some location", acres: Double? = 0, contained: Double? = 0, longitude: Double? = 36, latitude: Double? = 110, url: String? = "https://firenotfound") {
+        self.name = name!
+        self.updated = updated!
+        self.start = start!
+        self.county = county!
+        self.location = location!
+        self.acres = acres!
+        self.contained = contained!
+        self.longitude = longitude!
+        self.latitude = latitude!
+        self.url = url!
+    }
+    
     // MARK: - CodingKeys
     
     /// Specific for `https://fire.ca.gov/ API`
@@ -65,7 +79,7 @@ struct ForestFire: Codable, Comparable, Identifiable {
     
     /// Returns a formatted string (with proper responses) for the location
     func getLocation() -> String {
-        if location == "see details below" {
+        if location.lowercased() == "see details below" {
             return "More details on the website"
         }
         

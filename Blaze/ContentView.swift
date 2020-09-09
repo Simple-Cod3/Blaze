@@ -9,6 +9,13 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    @AppStorage("welcomed") var welcomed = false
+    
+    init() {
+        /// Preload the webview for faster initial loading times
+        let _ = WebView(url: URL(string: "https://127.0.0.1")!)
+    }
+    
     var body: some View {
         TabView {
             NewsView().tabItem {
@@ -19,14 +26,12 @@ struct ContentView: View {
                 ItemLabel(icon: "flame.fill",
                           title: "Fires")
             }
-//            GlossaryView().tabItem {
-//                ItemLabel(icon: "a.book.closed",
-//                          title: "Glossary")
-//            }
             SearchView().tabItem {
                 ItemLabel(icon: "magnifyingglass",
                           title: "Search")
             }
+        }.fullScreenCover(isPresented: !$welcomed) {
+            SplashScreen(show: $welcomed)
         }
     }
 }
@@ -46,6 +51,15 @@ struct ItemLabel: View {
 
 extension Color {
     static let blaze = Color("blaze")
+}
+
+/// Inverting any binding boolean with prefix: `!`
+/// https://stackoverflow.com/questions/59474045/swiftui-invert-a-boolean-binding
+prefix func ! (value: Binding<Bool>) -> Binding<Bool> {
+    Binding<Bool>(
+        get: { !value.wrappedValue },
+        set: { value.wrappedValue = !$0 }
+    )
 }
 
 struct ContentView_Previews: PreviewProvider {

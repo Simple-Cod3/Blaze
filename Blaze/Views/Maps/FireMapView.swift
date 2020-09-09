@@ -18,9 +18,6 @@ struct FireMapView: View {
     var fireData: ForestFire
     
     init(fireData: ForestFire) {
-        MKMapView.appearance().mapType = .hybrid
-        MKMapView.appearance().showsScale = true
-        
         self.fireData = fireData
     }
     
@@ -43,15 +40,17 @@ struct FireMapView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-                Map(coordinateRegion: $coordinateRegion,
-                annotationItems: [fireData]) { fire in
-                MapAnnotation(coordinate: fire.coordinate) {
-                    Image("fire").resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(.white)
-                        .shadow(radius: 20, y: -10)
+                Map(
+                    coordinateRegion: $coordinateRegion,
+                    annotationItems: [fireData]
+                )
+                { fire in
+                    MapAnnotation(coordinate: fire.coordinate) {
+                        Image("fire").resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(.white)
+                    }
                 }
-            }
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
 
