@@ -15,17 +15,17 @@ struct NewsCard: View {
         VStack(spacing: 0) {
             if let url = URL(string: news.coverImage) {
                 ZStack(alignment: .topLeading) {
-                    URLImage(url,
-                             placeholder: {_ in Color.blaze.aspectRatio(contentMode: .fill)},
-                             failure: {_ in Color.blaze.aspectRatio(contentMode: .fill)}
-                    ) { proxy in
-                        proxy.image.renderingMode(.original)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }
-                        .animation(.easeOut)
-                        .frame(width: UIScreen.main.bounds.maxX-40, height: 220)
-                        .clipped()
+//                    URLImage(url,
+//                             placeholder: {_ in Color.blaze.aspectRatio(contentMode: .fill)},
+//                             failure: {_ in Color.blaze.aspectRatio(contentMode: .fill)}
+//                    ) { proxy in
+//                        proxy.image.renderingMode(.original)
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fill)
+//                    }
+//                        .animation(.easeOut)
+//                        .frame(width: UIScreen.main.bounds.maxX-40, height: 220)
+//                        .clipped()
                     
                     Text(news.getTimeAgo().uppercased())
                         .fontWeight(.bold)

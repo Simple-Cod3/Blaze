@@ -47,7 +47,7 @@ class NewsBackend: ObservableObject {
         /// Load news content
         var newNews = [News]()
         let asyncTasks = DispatchGroup()
-        let feedURL = URL(string: "https://www.firerescue1.com/firefighting-rss-feeds/news.xml")!
+        let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/articles/")!
         
         let parser = FeedParser(URL: feedURL)
         
@@ -58,18 +58,23 @@ class NewsBackend: ObservableObject {
                 case .success(let feed):
                     if let items = feed.rssFeed?.items {
                         for item in items {
-                            let news = News(
-                                id: item.title ?? "Forest Fire",
-                                author: "Inciweb",
-                                authorBio: "Latest incident updates nationally",
-                                content: item.description ?? "<p style='text-align: center'>No Description</p>",
-                                coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
-                                publisher: "InciWeb National Incidents",
-                                sourceURL: item.link ?? "",
-                                date: item.pubDate ?? Date())
-                            
-                            /// Push to temp
-                            newNews.append(news)
+                            /// Check if the date exists and its a day ago
+                            if let date = item.pubDate {
+                                if date.timeIntervalSinceNow > -86400 {
+                                    let news = News(
+                                        id: item.title ?? "Forest Fire",
+                                        author: "Inciweb",
+                                        authorBio: "Latest incident updates nationally",
+                                        content: item.description ?? "<p style='text-align: center'>No Description</p>",
+                                        coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
+                                        publisher: "InciWeb National Incidents",
+                                        sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
+                                        date: date)
+                                    
+                                    /// Push to temp
+                                    newNews.append(news)
+                                }
+                            }
                         }
                     }
                         
