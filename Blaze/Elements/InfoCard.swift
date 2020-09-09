@@ -29,7 +29,7 @@ struct InfoCard: View {
         self.name = fire.name
         self.locations = fire.getLocation()
         self.acres = fire.getAreaString()
-        self.containment = "\(fire.contained)% Contained"
+        self.containment = "\(fire.getContained()) Contained"
         self.updated = "\(fire.updated.getDateTime())"
         self.started = "\(fire.start.getDateTime())"
     }
