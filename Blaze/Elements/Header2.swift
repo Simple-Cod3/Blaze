@@ -13,7 +13,7 @@ struct Header2: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(title)
                     .font(.title)
                     .fontWeight(.semibold)

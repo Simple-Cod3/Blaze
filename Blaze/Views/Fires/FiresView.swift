@@ -31,7 +31,7 @@ struct FiresView: View {
                         Spacer()
                     }
                     
-                    Spacer().frame(height: 50)
+                    Spacer().frame(height: 25)
                     
                     Header2(title: "Largest Fires", description: "Largest fires (acres) will be shown.")
                     
@@ -60,7 +60,7 @@ struct FiresView: View {
                     }
                         .edgesIgnoringSafeArea(.horizontal)
 
-                    Divider().padding(.horizontal, 20)
+                    Divider().padding(20)
                     
                     
                     Header2(title: "Latest Fires", description: "Fires with more updated information will be listed first.")
