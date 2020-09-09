@@ -49,8 +49,8 @@ struct CreditsView: View {
             Spacer()
             
             ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
-            ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Designer")
-            ProfileCircle(img: "b0kch01", name: "Max Kerns", role: "Developer")
+            ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer")
+            ProfileCircle(img: "b0kch01", name: "Max Kerns", role: "Junior Developer")
             
             Spacer()
         }.navigationBarTitle("", displayMode: .inline)
