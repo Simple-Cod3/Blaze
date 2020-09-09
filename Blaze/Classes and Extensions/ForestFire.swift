@@ -69,12 +69,12 @@ struct ForestFire: Codable, Comparable, Identifiable {
     
     /// Returns a formatted string of the percent contained
     func getContained() -> String {
-        return "\(contained)%"
+        return contained != 0 ? "\(contained)%" : "Unknown"
     }
     
     /// Returns a formatted string (with commas) of acres
     func getAreaString() -> String {
-        return "\(acres.inCommas() ?? String(acres)) Acres"
+        return acres != 0 ? "\(acres.inCommas() ?? String(acres)) Acres" : "Unknown Area"
     }
     
     /// Returns a formatted string (with proper responses) for the location
