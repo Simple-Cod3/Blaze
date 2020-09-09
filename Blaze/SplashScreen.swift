@@ -10,6 +10,8 @@ import SwiftUI
 struct SplashScreen: View {
     @Binding var show: Bool
     
+    // MARK: - SplashScreen Section View
+    
     /// Splashsceen specifc struct
     private struct Section: View {
         var icon: String
@@ -37,6 +39,8 @@ struct SplashScreen: View {
             }
         }
     }
+    
+    // MARK: - Main SplashScreen View
     
     var body: some View {
         /// First Section
@@ -90,6 +94,8 @@ struct SplashScreen: View {
         
     }
 }
+
+// MARK: - Previews
 
 struct SplashScreen_Previews: PreviewProvider {
     static var previews: some View {

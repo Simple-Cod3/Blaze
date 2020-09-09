@@ -104,8 +104,8 @@ struct SearchView: View {
                         )
                     }
                     Section {
-                        NavigationLink(destination: CreditsView()) {
-                            Text("Credits").font(.headline)
+                        NavigationLink(destination: Settings()) {
+                            Text("Settings").font(.headline)
                         }
                     }
                 }

@@ -8,6 +8,8 @@
 import SwiftUI
 import WebKit
 
+// MARK: - SwiftUI Modal View
+
 /// Loading website modal
 struct WebModal: View {
     var dismiss: () -> ()
@@ -28,6 +30,8 @@ struct WebModal: View {
         }
     }
 }
+
+// MARK: - SwiftUI Wrapper
 
 /// Loading Websites
 struct WebView: UIViewRepresentable {

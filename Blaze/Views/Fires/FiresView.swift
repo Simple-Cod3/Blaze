@@ -41,7 +41,7 @@ struct FiresView: View {
                                 fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
                                 id: \.self
                             ) { i in
-                                NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
+                                NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i])) {
                                     MiniFireCard(
                                         selected: i == selectLargest,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]

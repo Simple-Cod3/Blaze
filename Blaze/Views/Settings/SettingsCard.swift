@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-import SwiftUI
-
+// TODO: Accept Content for versatility
 struct SettingsCard: View {
     var title: String
     var desc: String
