@@ -12,30 +12,16 @@ struct NewsCard: View {
     var news: News
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             if let url = URL(string: news.coverImage) {
-                ZStack(alignment: .topLeading) {
-//                    URLImage(url,
-//                             placeholder: {_ in Color.blaze.aspectRatio(contentMode: .fill)},
-//                             failure: {_ in Color.blaze.aspectRatio(contentMode: .fill)}
-//                    ) { proxy in
-//                        proxy.image.renderingMode(.original)
-//                            .resizable()
-//                            .aspectRatio(contentMode: .fill)
-//                    }
-//                        .animation(.easeOut)
-//                        .frame(width: UIScreen.main.bounds.maxX-40, height: 220)
-//                        .clipped()
-                    
-                    Text(news.getTimeAgo().uppercased())
-                        .fontWeight(.bold)
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .padding(5)
-                        .background(Color.blaze)
-                        .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                        .padding(10)
-                }
+                Text(news.getTimeAgo().uppercased())
+                    .fontWeight(.bold)
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.blaze)
+                    .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+                    .padding([.horizontal, .top], 20)
             }
             
             HStack {
@@ -50,7 +36,7 @@ struct NewsCard: View {
                     + Text(" • " + news.author)
                         .foregroundColor(.secondary)
                     )
-                        .font(.subheadline)
+                        .font(.body)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()

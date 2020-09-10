@@ -18,13 +18,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            NewsView().tabItem {
-                ItemLabel(icon: "newspaper.fill",
-                          title: "News")
-            }
             FiresView().tabItem {
                 ItemLabel(icon: "flame.fill",
                           title: "Fires")
+            }
+            AQView().tabItem {
+                ItemLabel(icon: "sun.haze.fill",
+                          title: "Air Quality")
+            }
+            NewsView().tabItem {
+                ItemLabel(icon: "newspaper.fill",
+                          title: "News")
             }
             SearchView().tabItem {
                 ItemLabel(icon: "magnifyingglass",

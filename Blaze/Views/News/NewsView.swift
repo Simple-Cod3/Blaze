@@ -20,9 +20,8 @@ struct NewsView: View {
                             Header(title: "News", desc: "Latest news about forest fires. This page may become obsolete so that is a huge F in the chat am I right? Any truers in the chat?")
                             Spacer()
                         }
-                            .padding(.top, 20)
+                            .padding(.vertical, 20)
                         
-                        Divider().padding(20)
 
                         ForEach(news.newsList) { news in
                             ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
