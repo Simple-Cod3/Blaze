@@ -46,7 +46,7 @@ class FireBackend: ObservableObject {
     func refreshFireList(with: URL? = nil) {
         let group = DispatchGroup()
         
-        let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false")!
+        let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/Api/IncidentApi/GetIncidents")!
         print("==== [ Grabbing new fires ] ====")
         
         group.enter()
@@ -65,14 +65,17 @@ class FireBackend: ObservableObject {
             ]
             
             do {
-                let newFires = try jsonDecoder.decode([ForestFire].self, from: data)
-                self.fires = newFires.sorted(by: >)
+                let newFires = try jsonDecoder.decode(Incidents.self, from: data)
+                self.fires = newFires.incidents.sorted(by: ForestFire.dateUpdated)
             } catch {
                 print("* JSON Decoding failed: \(error)")
             }
             
             group.leave()
         }.resume()
+        
+        // TODO: Create secondary data source from inicweb
+        let url2 = URL(string: "https://inciweb.nwcg.gov/feeds/json/esri/")!
         
         group.notify(queue: .main) {
             print("Done!")

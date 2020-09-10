@@ -31,7 +31,7 @@ struct InfoCard: View {
         self.acres = fire.getAreaString()
         self.containment = "\(fire.getContained()) Contained"
         self.updated = "\(fire.updated.getDateTime())"
-        self.started = "\(fire.start.getDateTime())"
+        self.started = "\(fire.started.getDateTime())"
     }
     
     var body: some View {

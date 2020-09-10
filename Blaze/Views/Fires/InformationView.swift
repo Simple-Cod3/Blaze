@@ -76,7 +76,7 @@ struct InformationViewInner: View {
                 title: "Times",
                 data: [
                     ["arrow.counterclockwise.icloud", "Information Updated", fireData.updated.getElapsedInterval(true)],
-                    ["calendar.badge.clock", "Fire Started", fireData.start.getElapsedInterval(true)],
+                    ["calendar.badge.clock", "Fire Started", fireData.started.getElapsedInterval(true)],
                 ]
             )
             

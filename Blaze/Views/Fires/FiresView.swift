@@ -72,7 +72,7 @@ struct FiresView: View {
                                     MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
                                 }
                             }
-                            
+                            Spacer()
                             NavigationLink(destination: FullFireMapView()) {
                                 HStack {
                                     Image(systemName: "plus.circle")
