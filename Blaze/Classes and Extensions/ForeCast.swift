@@ -13,7 +13,6 @@ import MapKit
 struct ForeCast: Codable, Identifiable {
     // Comparable Protocol Functions
     
-    
     var id = UUID()
     var dateIssue: Date /// date of the request
     var dateForecast: Date /// `Date` of when the data was last updated
@@ -22,9 +21,10 @@ struct ForeCast: Codable, Identifiable {
     var latitude: Double /// estimated starting location (latitude)
     var longitude: Double /// estimated starting location (longitude)
     var pollutant: String /// the pollutant idk
-    var AQI: Int /// ¯\_(ツ)_/¯
+    var AQI: Int /// air quality index
     var actionDay: Bool /// weather you should take action
-    //  Init
+    
+    /// Everything is optional!
     init(dateIssue: Date? = Date(), dateForecast: Date? = Date(), place: String? = "place", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "PULLUTENIT", AQI: Int? = -1, actionDay: Bool? = false) {
         self.dateIssue = dateIssue!
         self.dateForecast = dateForecast!
@@ -35,7 +35,6 @@ struct ForeCast: Codable, Identifiable {
         self.pollutant = pollutant!
         self.AQI = AQI!
         self.actionDay = actionDay!
-        
     }
     
     // CodingKeys

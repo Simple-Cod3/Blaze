@@ -224,10 +224,10 @@
 			children = (
 				E9E769EC25031681006038FD /* ButtonStyles.swift */,
 				E9F222E72500886800EC5A06 /* DateExtension.swift */,
+				27BB5F9125098DFD0071F3FF /* ForeCast.swift */,
 				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 				E9AF017324FDBC870058C184 /* News.swift */,
 				E9CE22A42502F48700929D13 /* NumberExtension.swift */,
-				27BB5F9125098DFD0071F3FF /* ForeCast.swift */,
 			);
 			path = "Classes and Extensions";
 			sourceTree = "<group>";
@@ -256,7 +256,6 @@
 			children = (
 				E9AF018324FDC3800058C184 /* NewsCard.swift */,
 				E9AF016D24FDBC090058C184 /* NewsView.swift */,
-				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -264,6 +263,8 @@
 		E9AF019024FDE5DF0058C184 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
+				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E985F5352503752000A3BA83 /* FormButton.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
@@ -271,9 +272,8 @@
 				E941692A250495F100DEFCB2 /* InfoButton.swift */,
 				6DF73D7A2502A3A90051E4A2 /* InfoCard.swift */,
 				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
+				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
-				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
-				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
