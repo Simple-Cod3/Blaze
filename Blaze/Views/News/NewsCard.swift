@@ -28,7 +28,7 @@ struct NewsCard: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(news.id)
                         .foregroundColor(.primary)
-                        .font(.title)
+                        .font(.title2)
                         .fontWeight(.semibold)
                         .fixedSize(horizontal: false, vertical: true)
                     (Text(news.publisher)
@@ -44,7 +44,7 @@ struct NewsCard: View {
         }
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding([.bottom, .horizontal], 20)
+            .padding(.horizontal, 20)
     }
 }
 

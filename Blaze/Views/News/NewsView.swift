@@ -17,11 +17,10 @@ struct NewsView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         HStack {
-                            Header(title: "News", desc: "Latest news about forest fires. This page may become obsolete so that is a huge F in the chat am I right? Any truers in the chat?")
+                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                             Spacer()
                         }
                             .padding(.vertical, 20)
-                        
 
                         ForEach(news.newsList) { news in
                             ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
