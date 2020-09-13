@@ -19,7 +19,7 @@ struct AQCard: View {
     init (forecast: Forecast){
         self.forecastData = forecast
         self.date = forecast.dateForecast
-        self.ozone = forecast.stateCode
+        self.ozone = forecast.category.Name //not actual ozone just place holder
         self.ozoneCaption = forecast.place
         self.primaryPollutant = forecast.pollutant
         self.primaryPollutantCaption = forecast.pollutant

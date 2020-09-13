@@ -1,5 +1,5 @@
 //
-//  ForeCast.swift
+//  Forecast.swift
 //  Blaze
 //
 //  Created by Max on 9/9/20.
@@ -7,6 +7,11 @@
 
 import Foundation
 import MapKit
+
+struct Category : Codable {
+    let Number: Int
+    let Name: String
+}
 
 
 /// A data structure that represents a forest fire
@@ -23,6 +28,7 @@ struct Forecast: Codable, Identifiable {
     var pollutant: String /// the pollutant idk
     var AQI: Int /// air quality index
     var actionDay: Bool /// weather you should take action
+    var category: Category
     
     /// Everything is optional!
     init(dateIssue: String? = "09/04/20", dateForecast: String? = "09/04/20", place: String? = "place", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "PULLUTENIT", AQI: Int? = -1, actionDay: Bool? = false) {
@@ -35,6 +41,7 @@ struct Forecast: Codable, Identifiable {
         self.pollutant = pollutant!
         self.AQI = AQI!
         self.actionDay = actionDay!
+        self.category = Category(Number: 2, Name: "hi")
     }
     
     // CodingKeys
@@ -49,6 +56,7 @@ struct Forecast: Codable, Identifiable {
         case pollutant = "ParameterName"
         case AQI = "AQI"
         case actionDay = "ActionDay"
+        case category = "Category"
     }
     
     
@@ -57,3 +65,5 @@ struct Forecast: Codable, Identifiable {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
+
+
