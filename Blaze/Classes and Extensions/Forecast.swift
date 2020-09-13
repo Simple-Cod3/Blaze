@@ -9,12 +9,13 @@ import Foundation
 import MapKit
 
 
-struct Forecast: Codable, Identifiable {
+/// A data structure that represents a forest fire
+struct ForeCast: Codable, Identifiable {
     // Comparable Protocol Functions
     
     var id = UUID()
-    var dateIssue: String /// date of the request
-    var dateForecast: String /// `Date` of when the data was last updated
+    var dateIssue: Date /// date of the request
+    var dateForecast: Date /// `Date` of when the data was last updated
     var place: String /// the place where it occured(ie San Francisco)
     var stateCode: String ///  state code of the fire(ie CA)
     var latitude: Double /// estimated starting location (latitude)
@@ -22,8 +23,9 @@ struct Forecast: Codable, Identifiable {
     var pollutant: String /// the pollutant idk
     var AQI: Int /// air quality index
     var actionDay: Bool /// weather you should take action
-    //  Init
-    init(dateIssue: String? = "12/3/4123", dateForecast: String? = "12/3/4123", place: String? = "place", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "PULLUTENIT", AQI: Int? = -1, actionDay: Bool? = false) {
+    
+    /// Everything is optional!
+    init(dateIssue: Date? = Date(), dateForecast: Date? = Date(), place: String? = "place", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "PULLUTENIT", AQI: Int? = -1, actionDay: Bool? = false) {
         self.dateIssue = dateIssue!
         self.dateForecast = dateForecast!
         self.place = place!
@@ -40,13 +42,13 @@ struct Forecast: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case dateIssue = "DateIssue"
         case dateForecast = "DateForecast"
-        case place = "ReportingArea"
-        case stateCode = "StateCode"
-        case latitude = "Latitude"
-        case longitude = "Longitude"
-        case pollutant = "ParameterName"
-        case AQI = "AQI"
-        case actionDay = "ActionDay"
+        case place = "Started"
+        case stateCode = "County"
+        case latitude = "Location"
+        case longitude = "AcresBurned"
+        case pollutant = "PercentContained"
+        case AQI = "Longitude"
+        case actionDay = "Latitude"
     }
     
     
