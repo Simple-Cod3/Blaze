@@ -61,7 +61,7 @@ struct AirQuality: Codable, Identifiable {
         
         let dformatter = DateFormatter()
         dformatter.locale = Locale(identifier: "en_US_POSIX")
-        dformatter.dateFormat = "yyyy-mm-dd"
+        dformatter.dateFormat = "yyyy-MM-dd"
         
         let date = dformatter.date(from: dateObserved.replacingOccurrences(of: " ", with: ""))
         dformatter.dateFormat = "MMMM d"

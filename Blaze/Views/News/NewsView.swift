@@ -39,6 +39,10 @@ struct NewsView: View {
                     text: "News"
                 )
             }
+        }.onAppear {
+            if news.loaded {
+                done = true
+            }
         }
     }
 }
