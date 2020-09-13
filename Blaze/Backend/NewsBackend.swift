@@ -14,8 +14,6 @@ class NewsBackend: ObservableObject {
     @Published var newsList = [News]()
     @Published var loaded = false
     
-    var progress = Progress()
-    
     func createTestCases() {
         loaded = true
         let news1 = News(id: "Shasta-Trinity NF Elkhorn and Hopkins Fire Closure (Elkhorn Fire Wildfire).",
@@ -48,12 +46,12 @@ class NewsBackend: ObservableObject {
         
         /// Load news content
         var newNews = [News]()
-        let group = DispatchGroup()
+        let asyncTasks = DispatchGroup()
         let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/articles/")!
         
         let parser = FeedParser(URL: feedURL)
         
-        group.enter()
+        asyncTasks.enter()
         parser.parseAsync(queue: .global(qos: .userInitiated)) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -83,11 +81,11 @@ class NewsBackend: ObservableObject {
                 case .failure(let error):
                     print("* Couldn't get news: \(error)")
                 }
-                group.leave()
+                asyncTasks.leave()
             }
         }
         
-        group.notify(queue: .main) {
+        asyncTasks.notify(queue: .main) {
             self.newsList = newNews.sorted(by: >)
             self.loaded = true
         }

@@ -13,20 +13,22 @@ struct NewsCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(news.getTimeAgo().uppercased())
-                .fontWeight(.bold)
-                .font(.caption)
-                .foregroundColor(.white)
-                .padding(5)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                .padding([.horizontal, .top], 20)
+            if let url = URL(string: news.coverImage) {
+                Text(news.getTimeAgo().uppercased())
+                    .fontWeight(.bold)
+                    .font(.caption)
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.blaze)
+                    .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+                    .padding([.horizontal, .top], 20)
+            }
             
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(news.id)
                         .foregroundColor(.primary)
-                        .font(.title3)
+                        .font(.title)
                         .fontWeight(.semibold)
                         .fixedSize(horizontal: false, vertical: true)
                     (Text(news.publisher)
