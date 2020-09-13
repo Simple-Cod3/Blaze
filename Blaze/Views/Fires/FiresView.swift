@@ -12,9 +12,6 @@ struct FiresView: View {
     @State var selectAll = 0
     @State var selectLargest = 0
     
-    @State var timer = Timer.publish(
-        every: 0.1,
-        on: .main, in: .common).autoconnect()
     @State var progress = 0.0
     @State var done = false
     
@@ -119,28 +116,12 @@ struct FiresView: View {
                 }
             }
         } else {
-            VStack(alignment: .leading) {
-                Spacer()
-                HStack(spacing: 10) {
-                    ProgressView()
-                    Text("Loading Fires...")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                }
-                ProgressBar(progress: $progress)
-                    .onReceive(timer) { _ in
-                        withAnimation {
-                            self.progress = fireB.progress.fractionCompleted
-                        }
-                        if fireB.progress.isFinished {
-                            timer.upstream.connect().cancel()
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                self.done = true
-                            }
-                        }
-                    }
-                Spacer()
-            }.padding(50)
+            ProgressBarView(
+                progressObj: $fireB.progress,
+                progress: $progress,
+                done: $done,
+                text: "Fires"
+            )
         }
     }
 }

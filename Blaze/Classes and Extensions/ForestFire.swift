@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 // MARK: - JSON Wrapper Object
 
@@ -23,7 +24,6 @@ struct Incidents: Codable {
 // MARK: - Incident Struct
 
 struct ForestFire: Codable, Identifiable {
-
     static func name(lhs: ForestFire, rhs: ForestFire) -> Bool {
         return lhs.name > rhs.name
     }
@@ -169,8 +169,22 @@ struct ForestFire: Codable, Identifiable {
     }
 
     /// Returns a formatted string (with commas) of acres
-    func getAreaString() -> String {
-        return acres != -1 ? "\(acres.inCommas() ?? String(acres)) Acres" : "Unknown Area"
+    func getAreaString(_ unit: String? = nil) -> String {
+        let unit = unit ?? UserDefaults.standard.string(forKey: "areaUnits") ?? "Acres"
+        var conversionRate = 1
+        
+        switch unit {
+        case "mi2":
+            conversionRate = 640
+        case "km2":
+            conversionRate = 247
+        default: /// acres
+            conversionRate = 1
+        }
+        
+        let num = acres / conversionRate
+        
+        return acres != -1 ? "\(num.inCommas() ?? String(num)) \(unit)" : "Unknown Area"
     }
 
     /// Returns a formatted string (with proper responses) for the location

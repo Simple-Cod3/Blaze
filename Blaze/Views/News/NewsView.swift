@@ -10,10 +10,12 @@ import ModalView
 
 struct NewsView: View {
     @EnvironmentObject var news: NewsBackend
+    @State var progress = 0.0
+    @State var done = false
     
     var body: some View {
         ModalPresenter {
-            if news.loaded {
+            if done {
                 ScrollView {
                     VStack(spacing: 20) {
                         HStack {
@@ -30,7 +32,12 @@ struct NewsView: View {
                     }
                 }
             } else {
-                ProgressView("Loading Stories...")
+                ProgressBarView(
+                    progressObj: $news.progress,
+                    progress: $progress,
+                    done: $done,
+                    text: "News"
+                )
             }
         }
     }

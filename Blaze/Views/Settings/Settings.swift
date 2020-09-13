@@ -10,6 +10,7 @@ import ModalView
 
 struct Settings: View {
     @AppStorage("welcomed") var welcomed = true
+    @State var selection = 0
     
     var body: some View {
         ScrollView {
@@ -18,16 +19,21 @@ struct Settings: View {
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                UnitsCard(title: "Units", desc: "Change the units of the fire spread area.")
-                SettingsCard(title: "FAQ", desc: "Provides information about Blaze.")
-                NavigationLink(destination: CreditsView()) {
-                    SettingsCard(title: "Credits", desc: "See people who have contributed in this project.")
+                UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
+                
+                SettingsCardCustom(title: "Splash Screen", desc: "View splash screen again.") {
+                    Toggle("Show Splash Screen", isOn: !$welcomed)
+                        .foregroundColor(.secondary)
                 }
                 
-                // TODO: Create the UI
-                Toggle("Show Splash Screen", isOn: !$welcomed)
-                    .padding(20)
+                SettingsCardLink(title: "FAQ", desc: "Provides information about Blaze.") {
+                    Header(title: "FAQ", desc: "Frequenty asked questions and their answers.")
+                }
+                SettingsCardLink(title: "Credits", desc: "See people who have contributed in this project.") {
+                    CreditsView()
+                }
             }
+            .padding(.bottom, 20)
         }.navigationBarTitle("", displayMode: .inline)
     }
 }

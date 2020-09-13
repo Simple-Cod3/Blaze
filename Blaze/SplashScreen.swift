@@ -46,10 +46,10 @@ struct SplashScreen: View {
         /// First Section
         LazyVStack(alignment: .leading) {
             Text("Welcome to ")
-                .font(.title)
+                .font(.largeTitle)
                 .fontWeight(.bold)
             Text("Blaze: CA Wildfires")
-                .font(.title)
+                .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.blaze)
             

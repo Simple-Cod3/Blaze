@@ -83,7 +83,7 @@ struct InformationViewInner: View {
             InformationSection(
                 title: "Fire Statistics",
                 data: [
-                    ["greetingcard", "Acres", fireData.getAreaString()],
+                    ["skew", "Area Burned", fireData.getAreaString()],
                     ["lasso", "Contained", fireData.getContained()],
                 ]
             )

@@ -10,6 +10,10 @@ import SwiftUI
 struct UnitsCard: View {
     var title: String
     var desc: String
+    var units = ["Acres", "km2", "mi2"]
+    
+    @State var selection = ["Acres", "km2", "mi2"]
+        .firstIndex(of: UserDefaults.standard.string(forKey: "areaUnits"))!
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -24,19 +28,15 @@ struct UnitsCard: View {
             
             Divider().padding(.bottom, 5)
             
-            HStack {
-                Text("Acres")
-                    .font(.body)
-                    .fontWeight(.medium)
-                    .foregroundColor(.blaze)
-
-                Spacer()
+            Picker("", selection: $selection) {
+                ForEach(units.indices) { i in
+                    Text(units[i]).tag(i)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+            .onChange(of: selection, perform: { i in
+                UserDefaults.standard.setValue(units[i], forKey: "areaUnits")
+            })
                 
-                Text("Square Miles")
-                    .font(.body)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-            }
         }
         .padding(20)
         .background(Color(.secondarySystemBackground))

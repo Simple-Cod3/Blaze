@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MiniFireCard: View {
+    @AppStorage("areaUnits") var areaUnits: String = UserDefaults.standard.string(forKey: "areaUnits")!
+    
     var selected: Bool
     var fireData: ForestFire
     
@@ -26,7 +28,7 @@ struct MiniFireCard: View {
             
             Spacer()
             HStack {
-                Text(fireData.getAreaString())
+                Text(fireData.getAreaString(areaUnits))
                     .font(.callout)
                     .fontWeight(.semibold)
                     .foregroundColor(selected ? .white : .blaze)

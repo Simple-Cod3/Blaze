@@ -14,6 +14,10 @@ struct ContentView: View {
     init() {
         /// Preload the webview for faster initial loading times
         let _ = WebView(url: URL(string: "https://127.0.0.1")!)
+        
+        if UserDefaults.standard.string(forKey: "areaUnits") != nil {
+            UserDefaults.standard.setValue("mi2", forKey: "areaUnits")
+        }
     }
     
     var body: some View {
