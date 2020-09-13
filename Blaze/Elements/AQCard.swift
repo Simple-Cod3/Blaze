@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct AQCard: View {
+    
+    var forecastData: Forecast
     var date: String
     var ozone: String
     var ozoneCaption: String
     var primaryPollutant: String
     var primaryPollutantCaption: String
+    
+    init (forecast: Forecast){
+        self.forecastData = forecast
+        self.date = forecast.dateForecast
+        self.ozone = forecast.stateCode
+        self.ozoneCaption = forecast.place
+        self.primaryPollutant = forecast.pollutant
+        self.primaryPollutantCaption = forecast.pollutant
+    }
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -67,9 +79,14 @@ struct AQCard: View {
         .padding(.horizontal, 20)
     }
 }
-
+/*
 struct AQCard_Previews: PreviewProvider {
     static var previews: some View {
-        AQCard(date: "Today", ozone: "21", ozoneCaption: "Good. Enjoy your outdoor activities.", primaryPollutant: "2.5", primaryPollutantCaption: "Restrain from going outdoors.")
+        Forecast forecast = Forecast()
+        
+        AQCard(date: "Today", ozone: "22", ozoneCaption: "Good. Enjoy your outdoor activities.", primaryPollutant: "2.5", primaryPollutantCaption: "Restrain from going outdoors.")
+ 
     }
+ 
 }
+*/

@@ -20,14 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let fireDatabase = FireBackend()
         let newsBack = NewsBackend()
+        let forecastBack = ForecastBackend()
         
         newsBack.refreshNewsList()
         fireDatabase.refreshFireList()
+        forecastBack.refreshForecastList()
         
         let contentView = ContentView()
             .environmentObject(newsBack)
             .environmentObject(fireDatabase)
-
+            .environmentObject(forecastBack)
+        
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

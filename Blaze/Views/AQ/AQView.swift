@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AQView: View {
+    @EnvironmentObject var forecast: ForecastBackend
     var body: some View {
         VStack {
             AQMeter(level: "Moderate", aqi: "100")
@@ -17,7 +18,7 @@ struct AQView: View {
             Header(title: "Air Quality", desc: "Today’s air quality level is high. The US Forest Service is in unified command with CAL FIRE onthe Elkhorn Fire.")
                 .padding(.bottom, 20)
             
-            AQCard(date: "Today", ozone: "21", ozoneCaption: "Good. Enjoy your outdoor activities.", primaryPollutant: "2.5", primaryPollutantCaption: "Restrain from going outdoors.")
+            AQCard(forecast: forecast.forecasts[0])
         }
     }
 }
