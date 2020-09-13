@@ -10,31 +10,54 @@ import SwiftUI
 
 /// Manages the fires behinds the scenes and updates UI accordingly
 class FireBackend: ObservableObject {
-    @Published var loading = true
+    // MARK: - Published States
+    
     @Published var fires = [ForestFire]()
     
-    var progress = Progress()
-
+    // MARK: - Init Function
+    /**
+     You actually don't need any parameters to initialize this object
+     
+     - Parameters:
+        - fires: Optional argument to initialize fires list on initilization of the object
+     
+     - Returns:
+        - A fast, amazing, and clean `FireBackend`
+     */
     init(fires: [ForestFire]? = nil) {
         if let fires = fires {
             self.fires = fires
         }
     }
-
+    // MARK: - Functions
+    
+    /**
+     Update the fire database from the `https://fire.ca.gov API`
+     
+     - Important:
+        Try not to spam the function. For example:
+     
+            let fireBackend = FireBackend()
+            while true {
+                fireBackend.refreshList()
+            }
+     
+     */
     func refreshFireList(with: URL? = nil) {
-        self.loading = true
         let group = DispatchGroup()
         
         let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/Api/IncidentApi/GetIncidents")!
         print("==== [ Grabbing new fires ] ====")
         
-        let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
+        group.enter()
+        URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
                 print("* No data found")
                 return
             }
             
             let jsonDecoder = JSONDecoder()
+            
             jsonDecoder.dateDecodingStrategyFormatters = [
                 DateFormatter.iso8601Full,
                 DateFormatter.iso8601,
@@ -49,17 +72,13 @@ class FireBackend: ObservableObject {
             }
             
             group.leave()
-        }
+        }.resume()
         
-        self.progress = task.progress
+        // TODO: Create secondary data source from inicweb
+        let url2 = URL(string: "https://inciweb.nwcg.gov/feeds/json/esri/")!
         
-        group.enter()
-        task.resume()
-        
-        /// When all tasks are finished
         group.notify(queue: .main) {
-            self.loading = false
-            print(" ** Done!")
+            print("Done!")
         }
     }
 }

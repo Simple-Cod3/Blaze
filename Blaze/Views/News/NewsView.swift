@@ -32,12 +32,11 @@ struct NewsView: View {
                 }
             } else {
                 VStack(spacing: 10) {
-                    ProgressView(value: 0.8)
-                        .progressViewStyle(LinearProgressViewStyle())
+                    ProgressView()
                     Text("Loading Stories...")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                }.padding(70)
+                }
             }
         }
     }
