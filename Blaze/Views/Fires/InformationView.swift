@@ -89,7 +89,9 @@ struct InformationViewInner: View {
             )
             
             if let html = fireData.conditionStatement {
-                NativeWebView(html: html)
+                Section(header: Text("Info")) {
+                    NativeWebView(html: html)
+                }
             }
             
             if let url = URL(string: fireData.url) {

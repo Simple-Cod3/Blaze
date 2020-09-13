@@ -50,11 +50,12 @@ struct InfoCard: View {
                 }
                     .buttonStyle(PlainButtonStyle())
                 
-            }.padding(.bottom, 10)
+            }
             
             if hide {
-                Spacer()
+                
             } else {
+                Spacer().frame(height: 10)
                 Text(name)
                     .font(.title)
                     .fontWeight(.bold)
@@ -81,7 +82,7 @@ struct InfoCard: View {
                 }
             }
         }
-            .frame(minHeight: 200)
+            .frame(minHeight: hide ? 0 : 200)
             .padding(20)
             .background(Color(UIColor.secondarySystemBackground))
             .cornerRadius(15)

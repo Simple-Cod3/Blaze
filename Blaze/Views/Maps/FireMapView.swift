@@ -40,19 +40,19 @@ struct FireMapView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-                Map(
-                    coordinateRegion: $coordinateRegion,
-                    annotationItems: [fireData]
-                )
-                { fire in
-                    MapAnnotation(coordinate: fire.coordinate) {
-                        Image("fire").resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.white)
-                    }
+            Map(
+                coordinateRegion: $coordinateRegion,
+                annotationItems: [fireData]
+            )
+            { fire in
+                MapAnnotation(coordinate: fire.coordinate) {
+                    Image("fire").resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(.white)
                 }
-                .offset(y: 30)
-                .edgesIgnoringSafeArea(.all)
+            }
+            .offset(y: 30)
+            .edgesIgnoringSafeArea(.all)
 
             Button(action: { hide.toggle() }) {
                 InfoCard(fire: fireData, hide: $hide, show: $show)
@@ -60,7 +60,6 @@ struct FireMapView: View {
                     .buttonStyle(InfoCardButtonStyle())
             }
                 .buttonStyle(InfoCardButtonStyle())
-                .offset(y: hide ? 570 : 0)
                 .animation(.spring(), value: hide)
             
         }

@@ -88,13 +88,13 @@ struct WebViewNativeHeight : UIViewRepresentable {
     
     func makeUIView(context: Context) -> WKWebView  {
         /// Modifiers
+        webview.scrollView.isScrollEnabled = false
         webview.isOpaque = false
         webview.backgroundColor = .clear
         webview.scrollView.backgroundColor = .clear
-        webview.scrollView.bounces = false
         webview.navigationDelegate = context.coordinator
         
-        // Custom CSS
+        /// Custom CSS
         let htmlStart = ("""
 <HTML>
     <HEAD>
@@ -106,7 +106,7 @@ struct WebViewNativeHeight : UIViewRepresentable {
 
             body {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-                padding: 0;
+                padding: 5px;
                 margin: 0;
                 line-height: 150%;
                 font-size: 1.125rem;
@@ -126,26 +126,6 @@ struct WebViewNativeHeight : UIViewRepresentable {
             h3 {
                 color: #000;
                 font-size: 1.25rem;
-            }
-
-            code {
-                font-family: "SFMono-Regular", Consolas, Menlo, monospace;
-                color: #EB5757;
-                padding: 0.2em 0.4em;
-                background: rgba(135, 131, 120, 0.15);
-            }
-
-            ul {
-                list-style: none;
-            }
-
-            ul li::before {
-                content: "\\2022";
-                color: #F85E2A;
-                font-weight: bold;
-                display: inline-block;
-                width: 1em;
-                margin-left: -1em;
             }
 
             img {
@@ -191,6 +171,7 @@ struct WebViewNativeHeight : UIViewRepresentable {
     <BODY>
 """)
         let htmlEnd = "</BODY></HTML>"
+        print(html)
         
         webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL:  nil)
         return webview
