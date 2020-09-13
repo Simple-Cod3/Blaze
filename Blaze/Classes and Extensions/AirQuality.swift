@@ -55,13 +55,17 @@ struct AirQuality: Codable, Identifiable {
     
     // MARK: - Functions
     func getDate() -> String {
+        if dateObserved == "-/-/-" {
+            return dateObserved
+        }
+        
         let dformatter = DateFormatter()
         dformatter.locale = Locale(identifier: "en_US_POSIX")
         dformatter.dateFormat = "yyyy-mm-dd"
         
-        let date = dformatter.date(from: dateObserved.replacingOccurrences(of: " ", with: ""))!
+        let date = dformatter.date(from: dateObserved.replacingOccurrences(of: " ", with: ""))
         dformatter.dateFormat = "MMMM d"
-        return dformatter.string(from: date)
+        return dformatter.string(from: date!)
     }
     
     

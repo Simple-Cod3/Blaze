@@ -11,7 +11,9 @@ import CoreLocation
 
 /// Manages the fires behinds the scenes and updates UI accordingly
 class AirQualityBackend: ObservableObject {
-    @Published var forecasts = [AirQuality(),]
+    @Published var forecasts = [AirQuality(), AirQuality()]
+    
+    var progress = Progress()
 
     init(forecasts: [AirQuality]? = nil) {
         if let forecasts = forecasts {
@@ -32,8 +34,7 @@ class AirQualityBackend: ObservableObject {
         
         print("==== [ Grabbing new forecasts ] ====")
         
-        group.enter()
-        URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
+        let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
                 print("* No data found")
                 return
@@ -47,15 +48,21 @@ class AirQualityBackend: ObservableObject {
                 DateFormatter.iso8601NoExtention,
             ]
             
-            do {
-                let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
-                self.forecasts = newForecast
-            } catch {
-                print("* JSON Decoding failed: \(error)")
+            DispatchQueue.main.async {
+                do {
+                    let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
+                    if newForecast.count > 1 { self.forecasts = newForecast }
+                } catch {
+                    print("* JSON Decoding failed: \(error)")
+                }
+                group.leave()
             }
-            
-            group.leave()
-        }.resume()
+        }
+        
+        self.progress = task.progress
+        
+        group.enter()
+        task.resume()
         
         group.notify(queue: .main) {
             print("Done grabbing forecast!")

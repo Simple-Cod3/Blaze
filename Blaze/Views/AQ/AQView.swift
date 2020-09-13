@@ -29,13 +29,8 @@ struct AQView: View {
                     .padding(.bottom, 20)
                 
                 AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
+                    .animation(.spring())
             }
         }
-    }
-}
-
-struct AQView_Previews: PreviewProvider {
-    static var previews: some View {
-        AQView()
     }
 }

@@ -13,21 +13,23 @@ struct AQMeter: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            Text(level)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            (
-                Text(aqi) + Text(" AQI")
-            )
-            .font(.system(size: 20))
-            .fontWeight(.bold)
-            .opacity(0.5)
-                
+            if aqi == "-1" {
+                ProgressView().foregroundColor(.white)
+            } else {
+                Text(level)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                (Text(aqi) + Text(" AQI"))
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .opacity(0.5)
+            }
         }
-        .foregroundColor(.white)
-        .padding(75)
-        .background(Color.blaze)
-        .clipShape(Circle())
+            .foregroundColor(.white)
+            .padding(75)
+            .animation(.spring())
+            .background(Color.blaze)
+            .clipShape(Circle())
     }
 }
 

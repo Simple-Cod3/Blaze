@@ -13,6 +13,7 @@ class NewsBackend: ObservableObject {
     /// Stores `News` objects
     @Published var newsList = [News]()
     @Published var loaded = false
+    @Published var progress = Progress()
     
     func createTestCases() {
         loaded = true
@@ -43,49 +44,60 @@ class NewsBackend: ObservableObject {
     /// self-explanatory
     func refreshNewsList() {
         self.loaded = false
+        print("==== [ Grabbing News ] ====")
         
         /// Load news content
         var newNews = [News]()
-        let asyncTasks = DispatchGroup()
+        let group = DispatchGroup()
         let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/articles/")!
         
-        let parser = FeedParser(URL: feedURL)
-        
-        asyncTasks.enter()
-        parser.parseAsync(queue: .global(qos: .userInitiated)) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let feed):
-                    if let items = feed.rssFeed?.items {
-                        for item in items {
-                            /// Check if the date exists and its a day ago
-                            if let date = item.pubDate {
-                                if date.timeIntervalSinceNow > -86400 {
-                                    let news = News(
-                                        id: item.title ?? "Forest Fire",
-                                        author: "Inciweb",
-                                        authorBio: "Latest incident updates nationally",
-                                        content: item.description ?? "<p style='text-align: center'>No Description</p>",
-                                        coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
-                                        publisher: "InciWeb National Incidents",
-                                        sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
-                                        date: date)
-                                    
-                                    /// Push to temp
-                                    newNews.append(news)
+        let task = URLSession.shared.dataTask(with: feedURL) { data, response, error in
+            guard let data: Data = data else {
+                print("* No news data found")
+                return
+            }
+            
+            let parser = FeedParser(data: data)
+            parser.parseAsync(queue: .global(qos: .userInitiated)) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let feed):
+                        if let items = feed.rssFeed?.items {
+                            for item in items {
+                                /// Check if the date exists and its a day ago
+                                if let date = item.pubDate {
+                                    if date.timeIntervalSinceNow > -86400 {
+                                        let news = News(
+                                            id: item.title ?? "Forest Fire",
+                                            author: "Inciweb",
+                                            authorBio: "Latest incident updates nationally",
+                                            content: item.description ?? "<p style='text-align: center'>No Description</p>",
+                                            coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
+                                            publisher: "InciWeb National Incidents",
+                                            sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
+                                            date: date)
+                                        
+                                        /// Push to temp
+                                        newNews.append(news)
+                                    }
                                 }
                             }
                         }
+                            
+                    case .failure(let error):
+                        print("* Couldn't get news: \(error)")
                     }
-                        
-                case .failure(let error):
-                    print("* Couldn't get news: \(error)")
+                    group.leave()
                 }
-                asyncTasks.leave()
             }
         }
         
-        asyncTasks.notify(queue: .main) {
+        self.progress = task.progress
+        
+        group.enter()
+        task.resume()
+        
+        group.notify(queue: .main) {
             self.newsList = newNews.sorted(by: >)
             self.loaded = true
         }
