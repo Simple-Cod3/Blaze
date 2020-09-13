@@ -42,13 +42,13 @@ struct ForeCast: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case dateIssue = "DateIssue"
         case dateForecast = "DateForecast"
-        case place = "Started"
-        case stateCode = "County"
-        case latitude = "Location"
-        case longitude = "AcresBurned"
-        case pollutant = "PercentContained"
-        case AQI = "Longitude"
-        case actionDay = "Latitude"
+        case place = "ReportingArea"
+        case stateCode = "StateCode"
+        case latitude = "Latitude"
+        case longitude = "Longitude"
+        case pollutant = "ParameterName"
+        case AQI = "AQI"
+        case actionDay = "ActionDay"
     }
     
     
