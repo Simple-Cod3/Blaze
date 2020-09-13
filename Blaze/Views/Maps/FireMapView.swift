@@ -95,6 +95,7 @@ struct MapView_Previews: PreviewProvider {
 //            latitude: 34.679402,
 //            url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/"
         )
+        let forecast = Forecast()
         
         FireMapView(fireData: fire)
             .environmentObject(FireBackend())
