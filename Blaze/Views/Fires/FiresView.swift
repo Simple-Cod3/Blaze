@@ -31,7 +31,33 @@ struct FiresView: View {
                         Spacer()
                     }
                     
-                    Spacer().frame(height: 25)
+                    HStack(spacing: 20) {
+                        NavigationLink(destination: FullFireMapView()) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "map")) All Fires")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
+                        }
+                            .padding(12)
+                            .background(Color.blaze)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        NavigationLink(destination: Text("Hello")) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "tray.2")) Data")
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.blaze)
+                                Spacer()
+                            }
+                        }
+                            .padding(12)
+                            .background(Color(.secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    }.padding(20)
+                    
                     
                     Header2(title: "Largest Fires", description: "Largest fires (acres) will be shown.")
                     

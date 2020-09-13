@@ -17,7 +17,9 @@ struct FullInformationView: View {
             List(fireBackend.fires.filter {
                 searchBar.text == "" ||
                 $0.name.lowercased().contains(searchBar.text.lowercased()) ||
-                $0.location.lowercased().contains(searchBar.text.lowercased())
+                $0.location.lowercased().contains(searchBar.text.lowercased()) ||
+                $0.searchKeywords?.lowercased().contains(searchBar.text.lowercased()) == true ||
+                $0.searchDescription?.lowercased().contains(searchBar.text.lowercased()) == true
             }) { fire in
                 NavigationLink(destination: InformationViewInner(show: $show, fireData: fire)) {
                     HStack {

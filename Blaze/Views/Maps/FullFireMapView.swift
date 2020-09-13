@@ -17,7 +17,7 @@ struct FullFireMapView: View {
         span: .init(latitudeDelta: 7, longitudeDelta: 7)
     )
     
-    @State var showLabels = true
+    @State var showLabels = false
     @State var show = false
     
     private func dismiss() {

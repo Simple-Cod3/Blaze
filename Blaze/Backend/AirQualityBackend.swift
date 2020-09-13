@@ -57,8 +57,6 @@ class AirQualityBackend: ObservableObject {
             group.leave()
         }.resume()
         
-        
-        
         group.notify(queue: .main) {
             print("Done grabbing forecast!")
         }
@@ -66,22 +64,29 @@ class AirQualityBackend: ObservableObject {
     
     // MARK: - Computed Properties
     
-    var aqiNow: String {
+    var aqiOzone: String {
         get { String(forecasts[0].AQI) }
     }
     
-    var pollutantNow: String {
+    var aqiPollutant: String {
+        get { String(forecasts[1].AQI) }
+    }
+    
+    var pollutantOzone: String {
         get { forecasts[0].pollutant }
     }
     
-    var ozoneHealthNow: String {
+    var pollutant: String {
+        get { String(forecasts[1].pollutant) }
+    }
+    
+    var ozoneHealth: String {
         get { forecasts[0].category.Name }
     }
     
     var currentLocation: String {
         get { forecasts[0].place }
     }
-    
 }
 
 

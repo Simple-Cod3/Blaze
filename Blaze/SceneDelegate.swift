@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let fireDatabase = FireBackend()
         let newsBack = NewsBackend()
-        let forecastBack = ForecastBackend()
+        let forecastBack = AirQualityBackend()
         
         newsBack.refreshNewsList()
         fireDatabase.refreshFireList()

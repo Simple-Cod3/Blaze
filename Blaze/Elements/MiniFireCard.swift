@@ -59,7 +59,7 @@ struct MiniFireCard_Previews: PreviewProvider {
             longitude: -118.451917,
             acres: 45340,
             contained: 58,
-            url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/"
+            relURL: "/incidents/2020/8/12/lake-fire/"
         )
 
         NavigationView {

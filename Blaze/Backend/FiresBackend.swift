@@ -74,11 +74,8 @@ class FireBackend: ObservableObject {
             group.leave()
         }.resume()
         
-        // TODO: Create secondary data source from inicweb
-        let url2 = URL(string: "https://inciweb.nwcg.gov/feeds/json/esri/")!
-        
         group.notify(queue: .main) {
-            print("Done!")
+            print("Done grabbing fires!")
         }
     }
 }

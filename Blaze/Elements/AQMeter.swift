@@ -16,14 +16,11 @@ struct AQMeter: View {
             Text(level)
                 .font(.largeTitle)
                 .fontWeight(.bold)
-            HStack(spacing: 0) {
-                Text(aqi)
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                Text(" AQI")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-            }
+            (
+                Text(aqi) + Text(" AQI")
+            )
+            .font(.system(size: 20))
+            .fontWeight(.bold)
             .opacity(0.5)
                 
         }

@@ -57,7 +57,7 @@ struct ForestFire: Codable, Identifiable {
     let majorIncident: Bool
     let incidentFinal: Bool
     let status: String
-    let url: String
+    let relURL: String
     let structuresDestroyed: Int?
     let structuresDamaged: Int?
     let structuresThreatened: Int?
@@ -95,7 +95,7 @@ struct ForestFire: Codable, Identifiable {
         case majorIncident = "MajorIncident"
         case incidentFinal = "Final"
         case status = "Status"
-        case url = "CanonicalUrl"
+        case relURL = "CanonicalUrl"
         case structuresDestroyed = "StructuresDestroyed"
         case structuresDamaged = "StructuresDamaged"
         case structuresThreatened = "StructuresThreatened"
@@ -120,7 +120,7 @@ struct ForestFire: Codable, Identifiable {
         longitude: Double?=nil,
         acres: Int?=nil,
         contained: Int?=nil,
-        url: String?=nil
+        relURL: String?=nil
     ) {
         self.name = name ?? "Wildfire"
         self.location = location ?? "California"
@@ -146,7 +146,7 @@ struct ForestFire: Codable, Identifiable {
         self.majorIncident = true
         self.incidentFinal = false
         self.status = "Active"
-        self.url = url ?? "/incidents"
+        self.relURL = relURL ?? "/incidents"
         self.structuresDestroyed = -1
         self.structuresDamaged = -1
         self.structuresThreatened = -1
@@ -190,6 +190,10 @@ struct ForestFire: Codable, Identifiable {
     
     var contained: Int {
         get { self.containedO ?? -1 }
+    }
+    
+    var url: String {
+        get { "https://www.fire.ca.gov" + self.relURL }
     }
     
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute

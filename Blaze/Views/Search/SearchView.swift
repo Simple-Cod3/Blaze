@@ -27,7 +27,9 @@ struct SearchView: View {
             self.firesList = self.fireback.fires.filter {
                 query.isEmpty ||
                 $0.name.lowercased().contains(query) ||
-                $0.location.lowercased().contains(query)
+                $0.location.lowercased().contains(query) ||
+                $0.searchKeywords?.lowercased().contains(query) == true ||
+                $0.searchDescription?.lowercased().contains(query) == true
             }.sorted(by: {$0.name < $1.name})
         }
     }

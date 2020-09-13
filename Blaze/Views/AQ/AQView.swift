@@ -8,18 +8,27 @@
 import SwiftUI
 
 struct AQView: View {
-    @EnvironmentObject var forecast: ForecastBackend
+    @EnvironmentObject var forecast: AirQualityBackend
+    @State var show = false
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
-                AQMeter(level: "Moderate", aqi: "100")
+                AQMeter(level: forecast.forecasts[1].category.Name, aqi: forecast.aqiPollutant)
                     .padding(.vertical, 45)
+                    .scaleEffect(show ? 1 : 0)
+                    .onAppear {
+                        show = false
+                        withAnimation(.spring()) {
+                            show = true
+                        }
+                    }
                 
                 
                 Header(title: "Air Quality", desc: "Today’s air quality level is high. The US Forest Service is in unified command with CAL FIRE onthe Elkhorn Fire.")
                     .padding(.bottom, 20)
                 
-                AQCard(forecast: forecast.forecasts[0])
+                AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
             }
         }
     }

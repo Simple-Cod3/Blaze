@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct AQCard: View {
-    
-    var forecastData: Forecast
     var date: String
     var ozone: String
     var ozoneCaption: String
     var primaryPollutant: String
     var primaryPollutantCaption: String
     
-    init (forecast: Forecast){
-        self.forecastData = forecast
-        self.date = forecast.dateForecast
-        self.ozone = forecast.category.Name //not actual ozone just place holder
-        self.ozoneCaption = forecast.place
-        self.primaryPollutant = forecast.pollutant
-        self.primaryPollutantCaption = forecast.pollutant
+    init (ozone: AirQuality, primary: AirQuality){
+        self.date = ozone.getDate()
+        self.ozone = ozone.category.Name
+        self.ozoneCaption = ozone.pollutant
+        self.primaryPollutant = primary.category.Name
+        self.primaryPollutantCaption = primary.pollutant
     }
     
     
@@ -76,7 +73,7 @@ struct AQCard: View {
         .foregroundColor(.white)
         .background(Color.blaze)
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
+        .padding([.bottom, .horizontal], 20)
     }
 }
 /*
