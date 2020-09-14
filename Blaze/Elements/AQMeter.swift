@@ -12,7 +12,9 @@ struct AQMeter: View {
     var aqi: String
     
     var body: some View {
-        VStack(spacing: 10) {
+        print(aqi)
+        
+        return VStack(spacing: 10) {
             if aqi == "-1" {
                 ProgressView().foregroundColor(.white)
             } else {
