@@ -57,6 +57,19 @@
 		E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* FireMapView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E9E31AC7250EDF19007FF855 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		27313E4B250ACD0F009876FA /* AirQualityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityBackend.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
@@ -99,6 +112,8 @@
 		E9CE22A42502F48700929D13 /* NumberExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtension.swift; sourceTree = "<group>"; };
 		E9CE22A6250308F900929D13 /* MiniFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCard.swift; sourceTree = "<group>"; };
 		E9E31A89250E958B007FF855 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		E9E31A93250EDD41007FF855 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E9E31A95250EDD41007FF855 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E9E769EC25031681006038FD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		E9E769EE250319F4006038FD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
@@ -158,6 +173,7 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
+				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
 				E9AF015324FDB8DD0058C184 /* Blaze */,
 			);
@@ -284,6 +300,15 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		E9E31A92250EDD41007FF855 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9E31A93250EDD41007FF855 /* WidgetKit.framework */,
+				E9E31A95250EDD41007FF855 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E9F222E92500C49E00EC5A06 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +330,7 @@
 				E9AF014E24FDB8DD0058C184 /* Frameworks */,
 				E9AF014F24FDB8DD0058C184 /* Resources */,
 				E90CB5AD2508AD3D008EC502 /* ShellScript */,
+				E9E31AC7250EDF19007FF855 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -577,7 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
@@ -603,7 +629,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;

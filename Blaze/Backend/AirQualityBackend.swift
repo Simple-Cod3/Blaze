@@ -51,7 +51,13 @@ class AirQualityBackend: ObservableObject {
             DispatchQueue.main.async {
                 do {
                     let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
-                    if newForecast.count > 1 { self.forecasts = newForecast }
+                    for report in newForecast {
+                        if report.pollutant == "O3" {
+                            self.forecasts[0] = report
+                        } else if report.pollutant == "PM2.5" {
+                            self.forecasts[1] = report
+                        }
+                    }
                 } catch {
                     print("* JSON Decoding failed: \(error)")
                 }

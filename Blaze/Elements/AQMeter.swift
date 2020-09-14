@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct AQMeter: View {
-    var level: String
-    var aqi: String
+    var airQ: AirQuality
     
     var body: some View {
-        print(aqi)
-        
-        return VStack(spacing: 10) {
-            if aqi == "-1" {
+        VStack(spacing: 10) {
+            if String(airQ.AQI) == "-1" {
                 ProgressView().foregroundColor(.white)
             } else {
-                Text(level)
+                Text(airQ.category.Name)
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                (Text(aqi) + Text(" AQI"))
+                (Text(String(airQ.AQI)) + Text(" AQI"))
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .opacity(0.5)
@@ -30,29 +27,29 @@ struct AQMeter: View {
             .foregroundColor(.white)
             .padding(75)
             .animation(.spring())
-            .background(determineColor(aqi: aqi))
+            .background(determineColor(cat: airQ.category.Number))
             .clipShape(Circle())
     }
 }
 
 
-func determineColor(aqi: String? = "0") -> Color{
-    switch (aqi) {
-    case "1":
+func determineColor(cat: Int) -> Color {
+    switch (cat) {
+    case 1:
         return Color.green
-    case "2":
+    case 2:
         return Color.yellow
-    case "3":
+    case 3:
         return Color.red
-    case "4":
+    case 4:
         return Color.purple
     default:
-        return Color.pink
+        return Color.blaze
     }
 }
 
 struct AQMeter_Previews: PreviewProvider {
     static var previews: some View {
-        AQMeter(level: "Moderate", aqi: "100")
+        AQMeter(airQ: AirQuality())
     }
 }
