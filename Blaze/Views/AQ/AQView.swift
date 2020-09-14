@@ -23,7 +23,8 @@ struct AQView: View {
                             show = true
                         }
                     }
-                
+               
+               
                 
                 Header(title: "Air Quality", desc: "Today’s air quality level is high. The US Forest Service is in unified command with CAL FIRE onthe Elkhorn Fire.")
                     .padding(.bottom, 20)
