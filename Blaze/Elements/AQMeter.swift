@@ -30,8 +30,24 @@ struct AQMeter: View {
             .foregroundColor(.white)
             .padding(75)
             .animation(.spring())
-            .background(Color.blaze)
+            .background(determineColor(aqi: aqi))
             .clipShape(Circle())
+    }
+}
+
+
+func determineColor(aqi: String? = "0") -> Color{
+    switch (aqi) {
+    case "1":
+        return Color.green
+    case "2":
+        return Color.yellow
+    case "3":
+        return Color.red
+    case "4":
+        return Color.purple
+    default:
+        return Color.pink
     }
 }
 
