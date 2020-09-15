@@ -36,12 +36,12 @@ struct FiresView: View {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.blaze)
                                     Spacer()
                                 }
                             }
                                 .padding(12)
-                                .background(Color.blaze)
+                                .background(Color(.secondarySystemBackground))
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             NavigationLink(destination: DataView()) {
                                 HStack {
