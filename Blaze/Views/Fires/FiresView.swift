@@ -34,7 +34,7 @@ struct FiresView: View {
                             NavigationLink(destination: FullFireMapView()) {
                                 HStack {
                                     Spacer()
-                                    Text("\(Image(systemName: "map")) All Fires")
+                                    Text("\(Image(systemName: "map")) Fire Map")
                                         .fontWeight(.semibold)
                                         .foregroundColor(.white)
                                     Spacer()
@@ -43,7 +43,7 @@ struct FiresView: View {
                                 .padding(12)
                                 .background(Color.blaze)
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            NavigationLink(destination: Text("Hello")) {
+                            NavigationLink(destination: DataView()) {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "tray.2")) Data")

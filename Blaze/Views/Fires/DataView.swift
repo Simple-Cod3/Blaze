@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DataView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Header(title: "Data", desc: "Data analysis is crucial for wildfire awareness. In Blaze, to have the most current fire status, online sources and databases are used.")
+        
     }
 }
 
