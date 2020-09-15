@@ -43,7 +43,7 @@ struct FullFireMapView: View {
                 MapAnnotation(coordinate: fire.coordinate) {
                     VStack {
                         Image("fire").resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 30, height: 30)
                             .foregroundColor(.white)
                         
                         Text(fire.name)
@@ -64,22 +64,20 @@ struct FullFireMapView: View {
             LazyVStack(alignment: .leading, spacing: 10) {
                 Button(action: { showLabels.toggle() }) {
                     Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
-                        .font(.headline)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 12)
+                        .font(.body)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 15)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(Capsule())
-                        .shadow(radius: 10)
                 }
                 
                 Button(action: { show = true }) {
                     Text("\(Image(systemName: "list.bullet")) Fire Information")
-                        .font(.headline)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 12)
+                        .font(.body)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 15)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(Capsule())
-                        .shadow(radius: 10)
                 }
             }.padding(20)
         }

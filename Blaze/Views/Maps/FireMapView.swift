@@ -47,7 +47,7 @@ struct FireMapView: View {
             { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
                     Image("fire").resizable()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 30, height: 30)
                         .foregroundColor(.white)
                 }
             }

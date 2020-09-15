@@ -19,7 +19,7 @@ struct Settings: View {
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
+//                UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 
                 SettingsCardCustom(title: "Splash Screen", desc: "View splash screen again.") {
                     Toggle("Show Splash Screen", isOn: !$welcomed)

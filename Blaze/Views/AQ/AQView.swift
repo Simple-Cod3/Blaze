@@ -16,8 +16,8 @@ struct AQView: View {
         
         return ScrollView(showsIndicators: false) {
             VStack {
-                Spacer()
                 AQMeter(airQ: forecast.forecasts[1])
+                    .padding(.vertical, 50)
                     .scaleEffect(show ? 1 : 0)
                     .onAppear {
                         show = false
@@ -25,7 +25,6 @@ struct AQView: View {
                             show = true
                         }
                     }
-                Spacer()
                 
                 Header(title: "Air Quality", desc: "Today’s air quality level is high. The US Forest Service is in unified command with CAL FIRE onthe Elkhorn Fire.")
                     .padding(.bottom, 20)
