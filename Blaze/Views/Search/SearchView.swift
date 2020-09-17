@@ -57,19 +57,27 @@ struct SearchView: View {
                                 ForEach(firesList) { fire in
                                     NavigationLink(destination: FireMapView(fireData: fire)) {
                                         Text(fire.name)
-                                            .font(.headline)
-                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
+                                            .fontWeight(.medium)
                                     }
                                 }},
                             label: { HStack {
-                                Image(systemName: "flame")
+                                Image(systemName: "flame.fill")
                                     .foregroundColor(.blaze)
                                     .font(.system(size: 17, weight: .semibold))
-                                Text("Forest Fires").font(.headline)
+                                Text("Forest Fires")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
                                 Spacer()
                                 if !showFires {
                                     Text("\(firesList.count)")
+                                        .font(.caption)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color(.secondarySystemBackground))
+                                        .padding(.vertical, 2)
+                                        .padding(.horizontal, 5)
+                                        .background(Color.secondary)
+                                        .clipShape(Capsule())
                                         .scaleEffect(showFires ? 0 : 1)
                                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
                                         .animation(.spring())
@@ -80,24 +88,33 @@ struct SearchView: View {
                             isExpanded: $showWords,
                             content: {
                                 ForEach(wordsList) { word in
-                                    NavigationLink(destination: Header(title: word.id, desc: word.definition)
+                                    NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition)}
                                             .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)
                                             .font(.headline)
-                                            .fontWeight(.regular)
+                                            .fontWeight(.medium)
                                             .foregroundColor(.secondary)
                                     }
                                 }
                             },
                             label: { HStack {
-                                Image(systemName: "a.book.closed")
+                                Image(systemName: "a.book.closed.fill")
                                     .foregroundColor(.blaze)
                                     .font(.system(size: 17, weight: .semibold))
-                                Text("Terms and Definitions").font(.headline)
+                                Text("Terms and Definitions")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
                                 Spacer()
                                 if !showWords {
                                     Text("\(wordsList.count)")
+                                        .font(.caption)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(Color(.secondarySystemBackground))
+                                        .padding(.vertical, 2)
+                                        .padding(.horizontal, 5)
+                                        .background(Color.secondary)
+                                        .clipShape(Capsule())
                                         .scaleEffect(showWords ? 0 : 1)
                                         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
                                         .animation(.spring())
@@ -105,12 +122,12 @@ struct SearchView: View {
                             }}
                         )
                     }
-                    Section {
-                        NavigationLink(destination: Settings()) {
-                            Text("Settings").font(.headline)
-                        }
-                    }
                 }
+                .navigationBarItems(
+                    trailing: NavigationLink(destination: Settings()) {
+                        Image(systemName: "gear")
+                            .font(.system(size: 25))
+                    })
                     .navigationBarTitle("Search")
                     .add(self.searchBar)
             }

@@ -13,7 +13,7 @@ struct UnitsCard: View {
     var units = ["Acres", "km2", "mi2"]
     
     @State var selection = ["Acres", "km2", "mi2"]
-        .firstIndex(of: UserDefaults.standard.string(forKey: "areaUnits"))!
+        .firstIndex(of: UserDefaults.standard.string(forKey: "areaUnits") ?? "Acres")!
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
