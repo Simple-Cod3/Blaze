@@ -32,6 +32,7 @@ struct AQView: View {
                 AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                 
                 Text("Air quality data is provided by the AirNow API. See more at airnow.gov.")
+                    .font(.caption)
                     .fontWeight(.medium)
                     .foregroundColor(.secondary)
                     .padding([.horizontal, .bottom], 20)
