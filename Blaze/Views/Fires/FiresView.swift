@@ -109,7 +109,11 @@ struct FiresView: View {
                         }
                             .edgesIgnoringSafeArea(.horizontal)
                         
-                        Spacer().frame(height: 50)
+                        Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in this app only as a reference. Blaze is not meant to provide up to the minute evacuation or fire behavior information.")
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                            .padding([.horizontal, .bottom], 20)
+                        
                     }
                         .navigationBarTitle("Big Fires", displayMode: .inline)
                         .navigationBarHidden(true)

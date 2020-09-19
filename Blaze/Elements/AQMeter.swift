@@ -25,7 +25,7 @@ struct AQMeter: View {
             }
         }
             .foregroundColor(.white)
-            .padding(75)
+            .padding(85)
             .animation(.spring())
             .background(determineColor(cat: airQ.category.Number))
             .clipShape(Circle())
