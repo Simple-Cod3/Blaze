@@ -22,8 +22,8 @@ struct FiresView: View {
                     VStack {
                         Image("hydrant").resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 200)
-                            .padding(25)
+                            .frame(height: 250)
+                            .padding(35)
                         
                         HStack {
                             Header(title: "Wild Fires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
