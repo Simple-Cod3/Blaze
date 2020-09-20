@@ -16,7 +16,7 @@ struct ContentView: View {
         let _ = WebView(url: URL(string: "https://127.0.0.1")!)
         
         if UserDefaults.standard.string(forKey: "areaUnits") == nil {
-            UserDefaults.standard.setValue("mi2", forKey: "areaUnits")
+            UserDefaults.standard.setValue("Acres", forKey: "areaUnits")
         }
     }
     

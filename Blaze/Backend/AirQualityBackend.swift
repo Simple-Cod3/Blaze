@@ -14,7 +14,7 @@ class AirQualityBackend: ObservableObject {
     @Published var forecasts = [AirQuality(), AirQuality()]
     @Published var lost = false
     
-    var locationProvider = LocationProvider()
+    @ObservedObject var locationProvider = LocationProvider()
     var progress = Progress()
 
     init(forecasts: [AirQuality]? = nil) {
@@ -48,9 +48,9 @@ class AirQualityBackend: ObservableObject {
             self.lost = true
         }
         
-        let url = with ?? URL(string: "https://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=\(lat!)&longitude=\(long!)&distance=25&API_KEY=66FFCDB4-8501-45B5-B56F-60A2CAF8BA63")!
-        
         print("☁️ [ Grabbing new forecasts at (\(lat!), \(long!)) ]")
+        
+        let url = with ?? URL(string: "https://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=\(lat!)&longitude=\(long!)&distance=25&API_KEY=66FFCDB4-8501-45B5-B56F-60A2CAF8BA63")!
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
@@ -69,12 +69,16 @@ class AirQualityBackend: ObservableObject {
             DispatchQueue.main.async {
                 do {
                     let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
-                    for report in newForecast {
-                        if report.pollutant == "O3" {
-                            self.forecasts[0] = report
-                        } else if report.pollutant == "PM2.5" {
-                            self.forecasts[1] = report
+                    if newForecast.count > 0 {
+                        for report in newForecast {
+                            if report.pollutant == "O3" {
+                                self.forecasts[0] = report
+                            } else if report.pollutant == "PM2.5" {
+                                self.forecasts[1] = report
+                            }
                         }
+                    } else {
+                        print("📭 Forecast Empty")
                     }
                 } catch {
                     print("🚫 JSON Decoding failed: \(error)")
