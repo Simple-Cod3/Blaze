@@ -174,9 +174,9 @@ struct ForestFire: Codable, Identifiable {
         var conversionRate = 1
         
         switch unit {
-        case "mi2":
+        case "Sq mi":
             conversionRate = 640
-        case "km2":
+        case "Sq km":
             conversionRate = 247
         default: /// acres
             conversionRate = 1

@@ -32,7 +32,7 @@ struct AQView: View {
                 AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                 
                 HStack {
-                    Text("Air quality data is provided by the AirNow.gov. See more at airnow.gov.")
+                    Text("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at airnow.gov.")
                         .font(.caption)
                         .fontWeight(.medium)
                         .foregroundColor(.secondary)

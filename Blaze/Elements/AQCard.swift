@@ -52,7 +52,7 @@ struct AQCard: View {
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
-                    Text("Primary Pollutant")
+                    Text("Particulate Matter")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                     
@@ -76,14 +76,3 @@ struct AQCard: View {
         .padding([.bottom, .horizontal], 20)
     }
 }
-/*
-struct AQCard_Previews: PreviewProvider {
-    static var previews: some View {
-        Forecast forecast = Forecast()
-        
-        AQCard(date: "Today", ozone: "22", ozoneCaption: "Good. Enjoy your outdoor activities.", primaryPollutant: "2.5", primaryPollutantCaption: "Restrain from going outdoors.")
- 
-    }
- 
-}
-*/
