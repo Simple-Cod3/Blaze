@@ -29,7 +29,7 @@ struct Settings: View {
                 SettingsCardLink(title: "FAQ", desc: "Provides information about Blaze.") {
                     Header(title: "FAQ", desc: "Frequenty asked questions and their answers.")
                 }
-                SettingsCardLink(title: "Credits", desc: "See people who have contributed in this project.") {
+                SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                     CreditsView()
                 }
             }

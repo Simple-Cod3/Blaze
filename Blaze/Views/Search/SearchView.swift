@@ -88,7 +88,7 @@ struct SearchView: View {
                             isExpanded: $showWords,
                             content: {
                                 ForEach(wordsList) { word in
-                                    NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition)}
+                                    NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition).padding(.vertical, 50)}
                                             .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)

@@ -35,6 +35,7 @@ struct UnitsCard: View {
             }.pickerStyle(SegmentedPickerStyle())
             .onChange(of: selection, perform: { i in
                 UserDefaults.standard.setValue(units[i], forKey: "areaUnits")
+                print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
             })
                 
         }

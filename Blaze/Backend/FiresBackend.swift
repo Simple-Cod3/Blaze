@@ -25,14 +25,15 @@ class FireBackend: ObservableObject {
     // MARK: - Functions
     
     func refreshFireList(with: URL? = nil) {
+        let start = Date()
         let group = DispatchGroup()
         
         let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/Api/IncidentApi/GetIncidents")!
-        print("==== [ Grabbing new fires ] ====")
+        print("🔥 [ Grabbing new fires ]")
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
-                print("* No data found")
+                print("🚫 No data found")
                 return
             }
             
@@ -49,7 +50,7 @@ class FireBackend: ObservableObject {
                     let newFires = try jsonDecoder.decode(Incidents.self, from: data)
                     self.fires = newFires.incidents.sorted(by: ForestFire.dateUpdated)
                 } catch {
-                    print("* JSON Decoding failed: \(error)")
+                    print("🚫 JSON Decoding failed: \(error)")
                 }
                 group.leave()
             }
@@ -62,7 +63,7 @@ class FireBackend: ObservableObject {
         task.resume()
         
         group.notify(queue: .main) {
-            print("Done grabbing fires!")
+            print("✅ Done grabbing fires! (\(round(1000.0 * Date().timeIntervalSince(start)) / 1000.0))")
         }
     }
 }

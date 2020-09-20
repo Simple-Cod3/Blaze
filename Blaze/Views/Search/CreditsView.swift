@@ -44,7 +44,7 @@ struct ProfileCircle: View {
 struct CreditsView: View {
     var body: some View {
         VStack(spacing: 20) {
-            Header(title: "Credits", desc: "Submission for the Congressional App Competition, 2020.").padding(.top, 20)
+            Header(title: "Credits", desc: "Three curious students with a passion for code and design.").padding(.top, 20)
             
             Spacer()
             

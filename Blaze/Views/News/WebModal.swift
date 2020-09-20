@@ -171,8 +171,6 @@ struct WebViewNativeHeight : UIViewRepresentable {
     <BODY>
 """)
         let htmlEnd = "</BODY></HTML>"
-        print(html)
-        
         webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL:  nil)
         return webview
     }

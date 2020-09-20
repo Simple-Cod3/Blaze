@@ -12,10 +12,21 @@ import CoreLocation
 /// Manages the fires behinds the scenes and updates UI accordingly
 class AirQualityBackend: ObservableObject {
     @Published var forecasts = [AirQuality(), AirQuality()]
+    @Published var lost = false
     
+    var locationProvider = LocationProvider()
     var progress = Progress()
 
     init(forecasts: [AirQuality]? = nil) {
+        do {
+            locationProvider.lm.allowsBackgroundLocationUpdates = false
+            try locationProvider.start()
+        }
+        catch {
+            print("!!! 🚫 Failed to get access to location 🚫 !!!")
+            locationProvider.requestAuthorization()
+        }
+        
         if let forecasts = forecasts {
             self.forecasts = forecasts
         }
@@ -24,19 +35,26 @@ class AirQualityBackend: ObservableObject {
     // MARK: - Functions
     
     func refreshForecastList(with: URL? = nil) {
+        let start = Date()
+        self.lost = false
         let group = DispatchGroup()
         
-        let lat = CLLocationManager().location?.coordinate.latitude ?? 37.7749
-        let long = CLLocationManager().location?.coordinate.longitude ?? -122.4194
+        var lat = locationProvider.location?.coordinate.latitude
+        var long = locationProvider.location?.coordinate.longitude
         
-        let url = with ?? URL(string: "https://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=\(lat)&longitude=\(long)&distance=25&API_KEY=66FFCDB4-8501-45B5-B56F-60A2CAF8BA63")!
-        print(url.absoluteString)
+        if lat == nil || long == nil {
+            lat = 37.7749
+            long = -122.4194
+            self.lost = true
+        }
         
-        print("==== [ Grabbing new forecasts ] ====")
+        let url = with ?? URL(string: "https://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=\(lat!)&longitude=\(long!)&distance=25&API_KEY=66FFCDB4-8501-45B5-B56F-60A2CAF8BA63")!
+        
+        print("☁️ [ Grabbing new forecasts at (\(lat!), \(long!)) ]")
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
-                print("* No data found")
+                print("🚫 No data found")
                 return
             }
             
@@ -59,7 +77,7 @@ class AirQualityBackend: ObservableObject {
                         }
                     }
                 } catch {
-                    print("* JSON Decoding failed: \(error)")
+                    print("🚫 JSON Decoding failed: \(error)")
                 }
                 group.leave()
             }
@@ -71,7 +89,7 @@ class AirQualityBackend: ObservableObject {
         task.resume()
         
         group.notify(queue: .main) {
-            print("Done grabbing forecast!")
+            print("✅ Done grabbing forecast! (\(round(1000.0 * Date().timeIntervalSince(start)) / 1000.0))")
         }
     }
     

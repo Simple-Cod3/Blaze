@@ -22,6 +22,7 @@
 		E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */; };
 		E941692B250495F100DEFCB2 /* InfoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692A250495F100DEFCB2 /* InfoButton.swift */; };
 		E941692D2504B2D800DEFCB2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692C2504B2D800DEFCB2 /* CreditsView.swift */; };
+		E949CFA82517016F00AD467B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		E94C30C025075FF20019E1E4 /* Header2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* Header2.swift */; };
 		E97E26D9250813B300B939F3 /* FullFireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26D8250813B300B939F3 /* FullFireMapView.swift */; };
 		E97E26DB25082B3800B939F3 /* FullInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DA25082B3800B939F3 /* FullInformationView.swift */; };
@@ -87,6 +88,7 @@
 		E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryTerms.swift; sourceTree = "<group>"; };
 		E941692A250495F100DEFCB2 /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		E941692C2504B2D800DEFCB2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		E949CFA72517016F00AD467B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E94C30BF25075FF20019E1E4 /* Header2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header2.swift; sourceTree = "<group>"; };
 		E97E26D8250813B300B939F3 /* FullFireMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFireMapView.swift; sourceTree = "<group>"; };
 		E97E26DA25082B3800B939F3 /* FullInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInformationView.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */,
 				E9AF017024FDBC290058C184 /* NewsBackend.swift */,
 				27313E4B250ACD0F009876FA /* AirQualityBackend.swift */,
+				E949CFA72517016F00AD467B /* LocationManager.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */,
 				E9E769EF250319F4006038FD /* InformationView.swift in Sources */,
 				E9E31A8A250E958B007FF855 /* Progress.swift in Sources */,
+				E949CFA82517016F00AD467B /* LocationManager.swift in Sources */,
 				E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */,
 				E97E26DE250837FD00B939F3 /* SearchUIKit.swift in Sources */,
 				E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */,
@@ -607,7 +611,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
@@ -633,7 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;

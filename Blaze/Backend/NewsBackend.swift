@@ -43,8 +43,10 @@ class NewsBackend: ObservableObject {
     
     /// self-explanatory
     func refreshNewsList() {
+        let start = Date()
+        
         self.loaded = false
-        print("==== [ Grabbing News ] ====")
+        print("📰 [ Grabbing News ]")
         
         /// Load news content
         var newNews = [News]()
@@ -53,7 +55,7 @@ class NewsBackend: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: feedURL) { data, response, error in
             guard let data: Data = data else {
-                print("* No news data found")
+                print("🚫 No news data found")
                 return
             }
             
@@ -85,7 +87,7 @@ class NewsBackend: ObservableObject {
                         }
                             
                     case .failure(let error):
-                        print("* Couldn't get news: \(error)")
+                        print("🚫 Couldn't get news: \(error)")
                     }
                     group.leave()
                 }
@@ -100,6 +102,7 @@ class NewsBackend: ObservableObject {
         group.notify(queue: .main) {
             self.newsList = newNews.sorted(by: >)
             self.loaded = true
+            print("✅ Done grabbing news! (\(round(1000.0 * Date().timeIntervalSince(start)) / 1000.0))")
         }
     }
 }
