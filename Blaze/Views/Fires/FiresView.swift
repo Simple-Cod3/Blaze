@@ -116,7 +116,7 @@ struct FiresView: View {
                             .padding([.horizontal, .bottom], 20)
                         
                     }
-                        .navigationBarTitle("Big Fires", displayMode: .inline)
+                        .navigationBarTitle("Wild Fires", displayMode: .inline)
                         .navigationBarHidden(true)
                 }
             }
