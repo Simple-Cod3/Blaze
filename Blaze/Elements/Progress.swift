@@ -34,7 +34,9 @@ struct ProgressBarView: View {
                     if progressObj.isFinished {
                         timer.upstream.connect().cancel()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            self.done = true
+                            withAnimation {
+                                self.done = true
+                            }
                         }
                     }
                 }

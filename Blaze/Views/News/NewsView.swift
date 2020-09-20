@@ -31,11 +31,25 @@ struct NewsView: View {
                         }
                     }
                 }
-            } else {
+            }
+            else if news.failed {
+                VStack(spacing: 20) {
+                    Image(systemName: "wifi.exclamationmark")
+                        .font(.system(size: 30))
+                        .foregroundColor(.blaze)
+                    
+                    Text("No Connection")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    Button("Click to Retry", action: { news.refreshNewsList() })
+                }
+            }
+            else {
                 ProgressBarView(
                     progressObj: $news.progress,
                     progress: $progress,
-                    done: $done,
+                    done: $done.animation(.easeInOut),
                     text: "News"
                 )
             }

@@ -13,6 +13,7 @@ class NewsBackend: ObservableObject {
     /// Stores `News` objects
     @Published var newsList = [News]()
     @Published var loaded = false
+    @Published var failed = false
     @Published var progress = Progress()
     
     func createTestCases() {
@@ -46,6 +47,7 @@ class NewsBackend: ObservableObject {
         let start = Date()
         
         self.loaded = false
+        self.failed = false
         print("📰 [ Grabbing News ]")
         
         /// Load news content
@@ -55,7 +57,8 @@ class NewsBackend: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: feedURL) { data, response, error in
             guard let data: Data = data else {
-                print("🚫 No news data found")
+                self.failed = true
+                print("🚫 No news found")
                 return
             }
             
@@ -87,6 +90,7 @@ class NewsBackend: ObservableObject {
                         }
                             
                     case .failure(let error):
+                        self.failed = true
                         print("🚫 Couldn't get news: \(error)")
                     }
                     group.leave()

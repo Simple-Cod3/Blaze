@@ -13,6 +13,7 @@ class FireBackend: ObservableObject {
     // MARK: - Attributes
 
     @Published var fires = [ForestFire]()
+    @Published var failed = false
     @Published var progress = Progress()
     
     // MARK: - Init Function
@@ -25,6 +26,7 @@ class FireBackend: ObservableObject {
     // MARK: - Functions
     
     func refreshFireList(with: URL? = nil) {
+        self.failed = false
         let start = Date()
         let group = DispatchGroup()
         
@@ -33,6 +35,7 @@ class FireBackend: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
+                self.failed = true
                 print("🚫 No data found")
                 return
             }
@@ -50,6 +53,7 @@ class FireBackend: ObservableObject {
                     let newFires = try jsonDecoder.decode(Incidents.self, from: data)
                     self.fires = newFires.incidents.sorted(by: ForestFire.dateUpdated)
                 } catch {
+                    self.failed = true
                     print("🚫 JSON Decoding failed: \(error)")
                 }
                 group.leave()

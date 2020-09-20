@@ -120,7 +120,21 @@ struct FiresView: View {
                         .navigationBarHidden(true)
                 }
             }
-        } else {
+        }
+        else if fireB.failed {
+            VStack(spacing: 20) {
+                Image(systemName: "wifi.exclamationmark")
+                    .font(.system(size: 30))
+                    .foregroundColor(.blaze)
+                
+                Text("No Connection")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                Button("Click to Retry", action: { fireB.refreshFireList() })
+            }
+        }
+        else {
             ProgressBarView(
                 progressObj: $fireB.progress,
                 progress: $progress,
