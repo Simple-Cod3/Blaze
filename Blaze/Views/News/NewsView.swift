@@ -16,20 +16,23 @@ struct NewsView: View {
     var body: some View {
         ModalPresenter {
             if done {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        HStack {
-                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
-                            Spacer()
-                        }
-                            .padding(.vertical, 20)
+                ZStack(alignment: .top) {
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            HStack {
+                                Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
+                                Spacer()
+                            }
+                                .padding(.vertical, 20)
 
-                        ForEach(news.newsList) { news in
-                            ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
-                                NewsCard(news: news)
+                            ForEach(news.newsList) { news in
+                                ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
+                                    NewsCard(news: news)
+                                }.buttonStyle(CardButtonStyle())
                             }
                         }
                     }
+                    StatusBg()
                 }
             }
             else if news.failed {

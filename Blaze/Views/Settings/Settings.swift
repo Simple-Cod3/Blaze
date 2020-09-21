@@ -15,15 +15,15 @@ struct Settings: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Header(title: "Settings", desc: "The US Forest Service is in unified command with CAL FIRE on the Elkhorn Fire.")
+                Header(title: "Settings", desc: "Customize the app and learn more about it!")
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 
                 SettingsCardCustom(title: "Splash Screen", desc: "View splash screen again.") {
-                    Toggle("Show Splash Screen", isOn: !$welcomed)
-                        .foregroundColor(.secondary)
+                    Toggle("", isOn: !$welcomed)
+                        .toggleStyle(SwitchToggleStyle(tint: .blaze))
                 }
                 
                 SettingsCardLink(title: "FAQ", desc: "Provides information about Blaze.") {
@@ -33,8 +33,9 @@ struct Settings: View {
                     CreditsView()
                 }
             }
-            .padding(.bottom, 20)
-        }.navigationBarTitle("", displayMode: .inline)
+                .padding(.bottom, 20)
+        }
+            .navigationBarTitle("", displayMode: .inline)
     }
 }
 

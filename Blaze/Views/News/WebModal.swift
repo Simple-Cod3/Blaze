@@ -15,14 +15,19 @@ struct WebModal: View {
     var dismiss: () -> ()
     var url: URL
     
+    func actionSheet() {
+        let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
+    }
+    
     var body: some View {
         NavigationView {
             WebView(url: url)
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationBarTitle("News Update", displayMode: .inline)
                 .navigationBarItems(
-                    leading: Button(action: { UIApplication.shared.open(url) }) {
-                        Image(systemName: "safari")
+                    leading: Button(action: actionSheet) {
+                        Image(systemName: "square.and.arrow.up")
                             .font(.system(size: 20))
                     }, trailing: Button(action: dismiss) {
                         CloseModalButton()

@@ -10,10 +10,8 @@ import SwiftUI
 struct UnitsCard: View {
     var title: String
     var desc: String
-    var units = ["Acres", "Sq km", "Sq mi"]
     
-    @State var selection = ["Acres", "Sq km", "Sq mi"]
-        .firstIndex(of: UserDefaults.standard.string(forKey: "areaUnits") ?? "Acres")!
+    @State var selection: Int = units.firstIndex(of: currentUnit ?? units[0])!
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -32,17 +30,18 @@ struct UnitsCard: View {
                 ForEach(units.indices) { i in
                     Text(units[i]).tag(i)
                 }
-            }.pickerStyle(SegmentedPickerStyle())
-            .onChange(of: selection, perform: { i in
-                UserDefaults.standard.setValue(units[i], forKey: "areaUnits")
-                print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
-            })
+            }
+                .pickerStyle(SegmentedPickerStyle())
+                .onChange(of: selection, perform: { i in
+                    setUnit(unit: units[i])
+                    print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
+                })
                 
         }
-        .padding(20)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
+            .padding(20)
+            .background(Color(.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+            .padding(.horizontal, 20)
     }
 }
 

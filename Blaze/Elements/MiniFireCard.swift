@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MiniFireCard: View {
-    @AppStorage("areaUnits") var areaUnits: String = (UserDefaults.standard.string(forKey: "areaUnits") ?? "Acres")
+    @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     
     var selected: Bool
     var fireData: ForestFire

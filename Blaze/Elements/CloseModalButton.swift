@@ -9,9 +9,12 @@ import SwiftUI
 
 struct CloseModalButton: View {
     var body: some View {
-        Image(systemName: "xmark.circle.fill")
-            .font(.system(size: 25, weight: .semibold))
-            .foregroundColor(Color(.systemFill))
+        Image(systemName: "xmark")
+            .font(.system(size: 15, weight: .bold))
+            .foregroundColor(Color.secondary)
+            .padding(8)
+            .background(Color(.tertiarySystemFill))
+            .clipShape(Circle())
     }
 }
 

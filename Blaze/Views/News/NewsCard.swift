@@ -9,6 +9,7 @@ import SwiftUI
 import URLImage
 
 struct NewsCard: View {
+    @State var show = false
     var news: News
     
     var body: some View {
@@ -43,6 +44,12 @@ struct NewsCard: View {
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             .padding(.horizontal, 20)
+            .opacity(show ? 1 : 0)
+            .onAppear {
+                withAnimation(Animation.easeInOut.delay(0.5)) {
+                    show = true
+                }
+            }
     }
 }
 

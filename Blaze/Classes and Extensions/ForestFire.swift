@@ -210,6 +210,10 @@ struct ForestFire: Codable, Identifiable {
         get { "https://www.fire.ca.gov" + self.relURL }
     }
     
+    var km: Double {
+        get { (Double(self.acres) / 247).squareRoot() }
+    }
+    
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

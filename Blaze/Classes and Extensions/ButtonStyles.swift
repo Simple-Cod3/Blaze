@@ -15,3 +15,21 @@ struct InfoCardButtonStyle: ButtonStyle {
             .animation(.spring(), value: configuration.isPressed)
     }
 }
+
+struct CardButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
+            .animation(.spring(), value: configuration.isPressed)
+    }
+}
+
+struct CreditsButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, configuration.isPressed ? 40 : 0)
+            .animation(.spring())
+    }
+}
+
+

@@ -18,7 +18,7 @@ struct SearchView: View {
     @State var wordsList = [Term]()
     
     @State var showFires = true
-    @State var showWords = true
+    @State var showWords = false
     
     private func getFires() {
         DispatchQueue.main.async {
