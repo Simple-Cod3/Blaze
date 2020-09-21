@@ -28,102 +28,95 @@ struct FiresView: View {
                                 .padding(35)
                             
                             HStack {
-                                Header(title: "Wild Fires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                                Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                                 Spacer()
+                            }
+                        }
+                        
+                        HStack(spacing: 20) {
+                            NavigationLink(destination: FullFireMapView()) {
+                                HStack {
+                                    Spacer()
+                                    Text("\(Image(systemName: "map")) Fire Map")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.blaze)
+                                    Spacer()
+                                }
                             }
                                 .padding(12)
                                 .background(Color(.secondarySystemBackground))
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        }.padding(20)
-                        
+                            NavigationLink(destination: DataView()) {
+                                HStack {
+                                    Spacer()
+                                    Text("\(Image(systemName: "tray.2")) Data")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.blaze)
+                                    Spacer()
+                                }
+                            }
+                                .padding(12)
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        }
+                            .padding(20)
                         
                         Header2(title: "Largest Fires", description: "Largest fires will be shown.")
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
+                                ForEach(
+                                    fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
+                                    id: \.self
+                                ) { i in
+                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i])) {
+                                        MiniFireCard(
+                                            selected: i == selectLargest,
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]
+                                        )
+                                    }
+                                }
+                                Spacer()
                                 NavigationLink(destination: FullFireMapView()) {
                                     HStack {
-                                        Spacer()
-                                        Text("\(Image(systemName: "map")) Fire Map")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.blaze)
-                                        Spacer()
+                                        Image(systemName: "plus.circle")
+                                        Text("View All")
                                     }
                                 }
-                                    .padding(12)
-                                    .background(Color(.secondarySystemBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                NavigationLink(destination: DataView()) {
-                                    HStack {
-                                        Spacer()
-                                        Text("\(Image(systemName: "tray.2")) Data")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.blaze)
-                                        Spacer()
-                                    }
-                                }
-                                    .padding(12)
-                                    .background(Color(.secondarySystemBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
                                 .padding(20)
-                            
-                            Header2(title: "Largest Fires", description: "Largest fires (measured in acres) will be shown.")
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
-                                    ForEach(
-                                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
-                                        id: \.self
-                                    ) { i in
-                                        NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i])) {
-                                            MiniFireCard(
-                                                selected: i == selectLargest,
-                                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]
-                                            )
-                                        }
-                                    }
-                                    Spacer()
-                                    NavigationLink(destination: FullFireMapView()) {
-                                        HStack {
-                                            Image(systemName: "plus.circle")
-                                            Text("View All")
-                                        }
-                                    }
-                                }
-                                    .padding(20)
-                            }
-                                .edgesIgnoringSafeArea(.horizontal)
+                        }
+                            .edgesIgnoringSafeArea(.horizontal)
 
-                            Divider().padding(20)
-                            
-                            Header2(title: "Latest Fires", description: "Recently updated fires will be shown first.")
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
-                                    ForEach(fireB.fires.prefix(5).indices, id: \.self) { i in
-                                        NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
-                                            MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
-                                        }
-                                    }
-                                    Spacer()
-                                    NavigationLink(destination: FullFireMapView()) {
-                                        HStack {
-                                            Image(systemName: "plus.circle")
-                                            Text("View All")
-                                        }
+                        Divider().padding(20)
+                        
+                        Header2(title: "Latest Fires", description: "Recently updated fires will be shown first.")
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(fireB.fires.prefix(5).indices, id: \.self) { i in
+                                    NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
+                                        MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
                                     }
                                 }
-                                    .padding(20)
-                            }
-                                .edgesIgnoringSafeArea(.horizontal)
-                            
-                            HStack {
-                                Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in this app only as a reference. Blaze is not meant to provide up to the minute evacuation or fire behavior information.")
-                                    .font(.caption)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.secondary)
-                                    .padding([.horizontal, .bottom], 20)
                                 Spacer()
+                                NavigationLink(destination: FullFireMapView()) {
+                                    HStack {
+                                        Image(systemName: "plus.circle")
+                                        Text("View All")
+                                    }
+                                }
                             }
+                                .padding(20)
+                        }
+                            .edgesIgnoringSafeArea(.horizontal)
+                            
+                        HStack {
+                            Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in this app only as a reference. Blaze is not meant to provide up to the minute evacuation or fire behavior information.")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                                .padding([.horizontal, .bottom], 20)
+                            Spacer()
                         }
                             .navigationBarTitle("Wildfires", displayMode: .inline)
                             .navigationBarHidden(true)
