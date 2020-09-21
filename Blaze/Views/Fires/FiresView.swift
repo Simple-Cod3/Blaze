@@ -31,6 +31,15 @@ struct FiresView: View {
                                 Header(title: "Wild Fires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                                 Spacer()
                             }
+                                .padding(12)
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        }.padding(20)
+                        
+                        
+                        Header2(title: "Largest Fires", description: "Largest fires will be shown.")
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 NavigationLink(destination: FullFireMapView()) {
                                     HStack {
