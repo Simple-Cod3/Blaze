@@ -58,7 +58,7 @@ struct FiresView: View {
                         }.padding(20)
                         
                         
-                        Header2(title: "Largest Fires", description: "Largest fires (measured in acres) will be shown.")
+                        Header2(title: "Largest Fires", description: "Largest fires will be shown.")
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
