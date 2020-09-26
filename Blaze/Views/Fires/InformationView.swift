@@ -60,6 +60,26 @@ struct InformationView: View {
 struct InformationViewInner: View {
     @Binding var show: Bool
     var fireData: ForestFire
+
+    private func actionSheet() {
+        var items = [
+            "🔥 " + fireData.name,
+            "_______",
+            " · Location: \(fireData.getLocation())",
+            " · Area Burned: \(fireData.getAreaString())",
+            " · Contained: \(fireData.getContained())",
+            " · Size: \(fireData.getAreaString())",
+        ] as [Any]
+        
+        if let url = URL(string: fireData.url) {
+            items.append("\n🔎 Learn more about it here: \n\(url)")
+        }
+        
+        items = items.map { "\n\($0)" }
+        
+        let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
+    }
     
     var body: some View {
         Form {
@@ -103,6 +123,10 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
+            leading: Button(action: actionSheet) {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 20))
+            },
             trailing: Button(action: { show.toggle() }){
                 CloseModalButton()
             }

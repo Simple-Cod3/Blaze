@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import WebKit
 
 // MARK: - SwiftUI Modal View
@@ -15,7 +16,7 @@ struct WebModal: View {
     var dismiss: () -> ()
     var url: URL
     
-    func actionSheet() {
+    private func actionSheet() {
         let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
     }
