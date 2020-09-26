@@ -21,7 +21,7 @@ struct ContentView: View {
     
     init() {
         /// Preload the webview for faster initial loading times
-        let _ = WebView(url: URL(string: "https://127.0.0.1")!)
+        let _ = URLWebView(url: URL(string: "https://127.0.0.1")!)
         
         if !units.contains(currentUnit ?? "nil") {
             setUnit(unit: units[0])
