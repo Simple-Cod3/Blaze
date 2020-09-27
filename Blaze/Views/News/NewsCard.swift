@@ -22,6 +22,7 @@ struct NewsCard: View {
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                 .padding([.horizontal, .top], 20)
+                .padding(.bottom, 10)
             
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
@@ -39,17 +40,17 @@ struct NewsCard: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
-            }.padding(20)
+            }.padding([.horizontal, .bottom], 20)
         }
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-            .padding(.horizontal, 20)
-            .opacity(show ? 1 : 0)
-            .onAppear {
-                withAnimation(Animation.easeInOut.delay(0.5)) {
-                    show = true
-                }
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .padding(.horizontal, 20)
+        .opacity(show ? 1 : 0)
+        .onAppear {
+            withAnimation(Animation.easeInOut.delay(0.5)) {
+                show = true
             }
+        }
     }
 }
 
