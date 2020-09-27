@@ -48,8 +48,7 @@ struct InfoCard: View {
                 }) {
                     InfoButton()
                 }
-                    .buttonStyle(PlainButtonStyle())
-                
+                .buttonStyle(PlainButtonStyle())
             }
             
             if hide {
@@ -84,7 +83,7 @@ struct InfoCard: View {
         }
             .frame(minHeight: hide ? 0 : 200)
             .padding(20)
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(Color(UIColor.systemBackground))
             .cornerRadius(15)
             .padding(.horizontal, 20)
     }
