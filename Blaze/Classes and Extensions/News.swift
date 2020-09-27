@@ -7,8 +7,7 @@
 
 import Foundation
 
-/// News data structure
-struct News: Comparable, Identifiable {
+struct News: Comparable, Identifiable, Codable {
     // MARK: - Comparable Protocol Functions
     
     static func < (lhs: News, rhs: News) -> Bool {
@@ -30,6 +29,7 @@ struct News: Comparable, Identifiable {
     var publisher: String /// News site
     var sourceURL: String /// Direct link to article
     var date: Date
+    
     
     // MARK: - String Functions
     

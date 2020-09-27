@@ -303,8 +303,8 @@
 				6DF73D7A2502A3A90051E4A2 /* InfoCard.swift */,
 				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
 				E9E31A89250E958B007FF855 /* Progress.swift */,
-				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 				E903803C2518749C0043DC53 /* StatusBg.swift */,
+				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
@@ -626,7 +626,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -641,7 +641,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
@@ -652,7 +652,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";

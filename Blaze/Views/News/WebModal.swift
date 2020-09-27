@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import WebKit
 
 // MARK: - SwiftUI Modal View
@@ -15,14 +16,14 @@ struct WebModal: View {
     var dismiss: () -> ()
     var url: URL
     
-    func actionSheet() {
+    private func actionSheet() {
         let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
     }
     
     var body: some View {
         NavigationView {
-            WebView(url: url)
+            URLWebView(url: url)
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationBarTitle("News Update", displayMode: .inline)
                 .navigationBarItems(
@@ -40,17 +41,51 @@ struct WebModal: View {
 // MARK: - SwiftUI Wrapper
 
 /// Loading Websites
-struct WebView: UIViewRepresentable {
+struct URLWebView: UIViewRepresentable {
     let url: URL
+    var webview = WKWebView()
     
-    func makeUIView(context: Context) -> WKWebView  {
-        let webkitview = WKWebView()
-        webkitview.load(URLRequest(url: url))
-        return webkitview
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+    
+    func makeUIView(context: Context) -> WKWebView {
+        webview.navigationDelegate = context.coordinator
+        webview.load(URLRequest(url: url))
+        
+        return webview
     }
     
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.load(URLRequest(url: url))
+    // Get height and send to binding variable
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: URLWebView
+
+        init(_ parent: URLWebView) {
+            self.parent = parent
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+                if navigationAction.navigationType == .linkActivated {
+                    guard let url = navigationAction.request.url else {
+                        decisionHandler(.allow)
+                        return
+                    }
+                    
+                    let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                    if components?.scheme == "http" || components?.scheme == "https"
+                    {
+                        UIApplication.shared.open(url)
+                        decisionHandler(.cancel)
+                    } else {
+                        decisionHandler(.allow)
+                    }
+                } else {
+                    decisionHandler(.allow)
+                }
+            }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
     }
 }
 
@@ -61,30 +96,54 @@ struct NativeWebView: View {
     var html: String
     
     var body: some View {
-        WebViewNativeHeight(height: $height, html: html)
+        HTMLWebView(height: $height, html: html)
             .frame(height: height)
     }
 }
 
-struct WebViewNativeHeight : UIViewRepresentable {
+struct HTMLWebView : UIViewRepresentable {
     @Binding var height: CGFloat
     var html: String
-    var webview: WKWebView = WKWebView()
+    var webview = WKWebView()
     
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+    
+    // Get height and send to binding variable
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: WebViewNativeHeight
-        
-        init(_ parent: WebViewNativeHeight) {
+        var parent: HTMLWebView
+
+        init(_ parent: HTMLWebView) {
             self.parent = parent
         }
-        
+
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { (height, error) in
+            webView.evaluateJavaScript("document.body.scrollHeight",
+            completionHandler: { (height, error) in
                 DispatchQueue.main.async {
                     self.parent.height = height as! CGFloat
                 }
             })
         }
+        
+        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+                if navigationAction.navigationType == .linkActivated {
+                    guard let url = navigationAction.request.url else {
+                        decisionHandler(.allow)
+                        return
+                    }
+                    
+                    let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                    if components?.scheme == "http" || components?.scheme == "https"
+                    {
+                        UIApplication.shared.open(url)
+                        decisionHandler(.cancel)
+                    } else {
+                        decisionHandler(.allow)
+                    }
+                } else {
+                    decisionHandler(.allow)
+                }
+            }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -178,8 +237,5 @@ struct WebViewNativeHeight : UIViewRepresentable {
         let htmlEnd = "</BODY></HTML>"
         webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL:  nil)
         return webview
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) {
     }
 }

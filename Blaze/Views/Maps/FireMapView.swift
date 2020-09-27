@@ -61,9 +61,6 @@ struct FireMapView: View {
             }
                 .buttonStyle(InfoCardButtonStyle())
                 .animation(.spring(), value: hide)
-                .onChange(of: coordinateRegion.span, perform: { _ in
-                    print(coordinateRegion.span)
-                })
             
         }
             .sheet(isPresented: $show) {
@@ -80,14 +77,6 @@ struct FireMapView: View {
             .navigationBarItems(trailing: Button(action: moveBack) {
                 Image(systemName: "location.fill")
             })
-    }
-}
-
-
-// Allow us to see span of map in console
-extension MKCoordinateSpan: Equatable {
-    public static func == (lhs: MKCoordinateSpan, rhs: MKCoordinateSpan) -> Bool {
-        return lhs.latitudeDelta == rhs.latitudeDelta && lhs.longitudeDelta == rhs.longitudeDelta
     }
 }
 
