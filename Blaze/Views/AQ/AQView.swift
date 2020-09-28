@@ -16,17 +16,30 @@ struct AQView: View {
         ZStack(alignment: .top) {
             ScrollView(showsIndicators: false) {
                 VStack {
-                    AQMeter(airQ: forecast.forecasts[1])
-                        .padding(.vertical, 50)
-                        .scaleEffect(showCircle ? 1.0 : 0)
-                        .onAppear {
-                            forecast.refreshForecastList()
-                            withAnimation(nil) { showCircle = false }
-                            withAnimation(.spring(dampingFraction: 0.8)) {
-                                showCircle = true
-                                show = true
-                            }
+                    ZStack {
+                        if let color = forecast.forecasts[1].category.Number,
+                           color != -1
+                        {
+                            determineColor(cat: color)
+                                .frame(width: 280, height: 280)
+                                .clipShape(Circle())
+                                .scaleEffect(showCircle ? 1.0 : 0.5)
+                                .animation(Animation.easeInOut(duration: 0.7         ), value: showCircle)
+                                .opacity(0.7)
                         }
+                        
+                        AQMeter(airQ: forecast.forecasts[1])
+                            .padding(.vertical, 50)
+                            .scaleEffect(showCircle ? 1.0 : 0)
+                            .onAppear {
+                                forecast.refreshForecastList()
+                                withAnimation(nil) { showCircle = false }
+                                withAnimation(.spring(dampingFraction: 0.8)) {
+                                    showCircle = true
+                                    show = true
+                                }
+                            }
+                    }
                     
                     Header(
                         title: "Air Quality",

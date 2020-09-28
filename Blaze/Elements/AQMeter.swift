@@ -13,7 +13,7 @@ struct AQMeter: View {
     var body: some View {
         VStack(spacing: 10) {
             if String(airQ.AQI) == "-1" {
-                ProgressView().foregroundColor(.white)
+                ProgressView()
             } else {
                 Text(airQ.category.Name)
                     .font(.largeTitle)
@@ -25,7 +25,7 @@ struct AQMeter: View {
             }
         }
             .foregroundColor(.white)
-            .padding(85)
+            .padding(75)
             .animation(.spring())
             .background(determineColor(cat: airQ.category.Number))
             .clipShape(Circle())
