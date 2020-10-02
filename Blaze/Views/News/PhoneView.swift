@@ -11,8 +11,8 @@ struct PhoneView: View {
     @EnvironmentObject var numbers: PhoneBackend
     
     var body: some View {
-        ForEach(numbers.numbers){ number in
-            Text(number.phoneNumber)
+        ForEach(numbers.numbers[0].features){ number in
+            Text(number.attributes.phoneNumber ?? "unknown")
         }
     }
 }

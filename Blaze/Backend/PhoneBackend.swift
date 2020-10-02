@@ -11,15 +11,41 @@ import CoreLocation
 
 struct PhoneNumber : Codable, Identifiable {
     var id = UUID()
-    var phoneNumber : String
-    
-    init(phoneNumber: String? = "xxx-xxx-xxxx"){
-        self.phoneNumber = phoneNumber!
-    }
+    var features : [Features]
     
     enum CodingKeys: String, CodingKey {
-        case phoneNumber = "PHONE_NUM"
+        case features
     }
+    struct Features : Codable, Identifiable {
+        var id = UUID()
+        var attributes : Attributes
+        
+        enum CodingKeys: String, CodingKey {
+            case attributes
+        }
+    }
+    struct Attributes : Codable, Identifiable {
+        
+        var id = UUID()
+        var name : String?
+        var address : String?
+        var city : String?
+        var lat : Double?
+        var long : Double?
+        var phoneNumber : String?
+        var county : String?
+        
+        enum CodingKeys: String, CodingKey {
+            case name = "NAME"
+            case address = "ADDRESS"
+            case city = "CITY"
+            case lat = "LAT"
+            case long = "LON"
+            case phoneNumber = "PHONE_NUM"
+            case county = "COUNTY"
+        }
+    }
+
 }
 
 class PhoneBackend: ObservableObject {
@@ -58,7 +84,7 @@ class PhoneBackend: ObservableObject {
             self.lost = true
         }
         
-        print("☁️ [ Grabbing new numbers at (\(lat!), \(long!)) ]")
+        print("[ Grabbing new numbers at (\(lat!), \(long!)) ]")
         
         // TODO: make this a function kinda gross
         let url = with ?? URL(string: "https://egis.fire.ca.gov/arcgis/rest/services/FRAP/Facilities/MapServer/0/query?where=1%3D1&outFields=*&geometry=\(lat!-50)%2C\(lat!+50)%2C\(long!-50)%2C\(long!+50)&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outSR=4326&f=json")!
@@ -79,8 +105,8 @@ class PhoneBackend: ObservableObject {
             
             DispatchQueue.main.async {
                 do {
-                    let newNumbers = try jsonDecoder.decode([PhoneNumber].self, from: data)
-                    self.numbers = newNumbers
+                    let newNumbers = try jsonDecoder.decode(PhoneNumber.self, from: data)
+                    self.numbers.append(newNumbers)
                 } catch {
                     print("🚫 JSON Decoding failed: \(error)")
                 }
