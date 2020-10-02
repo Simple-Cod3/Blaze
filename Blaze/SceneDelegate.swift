@@ -21,15 +21,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let fireDatabase = FireBackend()
         let newsBack = NewsBackend()
         let forecastBack = AirQualityBackend()
+        let phoneBack = PhoneBackend()
         
         newsBack.refreshNewsList()
         fireDatabase.refreshFireList()
         forecastBack.refreshForecastList()
+        phoneBack.refreshPhoneList()
         
         let contentView = ContentView()
             .environmentObject(newsBack)
             .environmentObject(fireDatabase)
             .environmentObject(forecastBack)
+            .environmentObject(phoneBack)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

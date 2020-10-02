@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		27313E4C250ACD0F009876FA /* AirQualityBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27313E4B250ACD0F009876FA /* AirQualityBackend.swift */; };
+		279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
+		279FE6FA2521438F004AC147 /* StringCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F92521438F004AC147 /* StringCard.swift */; };
+		279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
 		27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB5F9125098DFD0071F3FF /* AirQuality.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
@@ -75,6 +78,9 @@
 
 /* Begin PBXFileReference section */
 		27313E4B250ACD0F009876FA /* AirQualityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityBackend.swift; sourceTree = "<group>"; };
+		279FE6F725213216004AC147 /* PhoneBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBackend.swift; sourceTree = "<group>"; };
+		279FE6F92521438F004AC147 /* StringCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCard.swift; sourceTree = "<group>"; };
+		279FE6FD25214AAE004AC147 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 				6DA2FF2F2506AF6400C86F0C /* Settings.swift */,
 				6DA2FF352506B55E00C86F0C /* SettingsCard.swift */,
 				6DA2FF312506B00400C86F0C /* UnitsCard.swift */,
+				279FE6F92521438F004AC147 /* StringCard.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				E9AF017024FDBC290058C184 /* NewsBackend.swift */,
 				27313E4B250ACD0F009876FA /* AirQualityBackend.swift */,
 				E949CFA72517016F00AD467B /* LocationManager.swift */,
+				279FE6F725213216004AC147 /* PhoneBackend.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -286,6 +294,7 @@
 				E9AF018324FDC3800058C184 /* NewsCard.swift */,
 				E9AF016D24FDBC090058C184 /* NewsView.swift */,
 				E97E26DF2508444B00B939F3 /* WebModal.swift */,
+				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -454,13 +463,16 @@
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E985F5362503752000A3BA83 /* FormButton.swift in Sources */,
+				279FE6FA2521438F004AC147 /* StringCard.swift in Sources */,
 				E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */,
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
 				6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */,
 				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
 				E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */,
 				E97E26E02508444B00B939F3 /* WebModal.swift in Sources */,
+				279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */,
 				6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */,
+				279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */,
 				E9AF016A24FDBBEB0058C184 /* FiresView.swift in Sources */,
 				6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */,
 				E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */,

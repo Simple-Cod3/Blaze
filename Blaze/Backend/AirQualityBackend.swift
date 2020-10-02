@@ -1,5 +1,5 @@
 //
-//  ForecastBackend.swift
+//  AirQualityBackend.swift
 //  Blaze
 //
 //  Created by Max on 9/10/20.
