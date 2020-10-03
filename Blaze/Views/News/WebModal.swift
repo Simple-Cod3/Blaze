@@ -170,11 +170,15 @@ struct HTMLWebView : UIViewRepresentable {
 
             body {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-                padding: 5px;
+                padding: 0px;
                 margin: 0;
                 line-height: 150%;
                 font-size: 1.125rem;
                 overflow-wrap: break-word;
+            }
+
+            li {
+                padding-left: 0.5em;
             }
             
             h1 {

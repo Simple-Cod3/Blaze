@@ -113,7 +113,7 @@ class PhoneBackend: ObservableObject {
                     self.numbers.append(
                         contentsOf: newNumbers.features
                             .map { $0.attributes }
-                            .sorted(by: { $0.name! < $1.name! })
+                            .sorted(by: { $0.county ?? "???" < $1.county ?? "???" })
                     )
                 } catch {
                     print("🚫 JSON Decoding failed: \(error)")

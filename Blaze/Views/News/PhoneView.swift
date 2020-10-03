@@ -10,6 +10,7 @@ import SwiftUI
 struct PhoneView: View {
     @EnvironmentObject var numbers: PhoneBackend
     
+    @State var text = ""
     @State var showNum = 20
     var dismiss: () -> ()
     
@@ -17,7 +18,38 @@ struct PhoneView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    Spacer().frame(height: 200)
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                        Text("Departments")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.blaze)
+                            .padding(10)
+                            .background(Color(.systemBackground))
+                        
+                        Text("Lorem ipsum dolar. Hello World this is something to be reading.")
+                            .font(.headline)
+                            .padding(10)
+                            .background(Color.blaze)
+                        
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Search", text: $text)
+                                .foregroundColor(.primary)
+                                .keyboardType(.alphabet)
+                            Button(action: {self.text = ""}) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .opacity(text == "" ? 0 : 1)
+                            }
+                        }
+                            .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                            .foregroundColor(.secondary)
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(10)
+                            .padding(.horizontal, 15)
+                        
+                    }
+                        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                        .padding([.horizontal, .top], 20)
                     
                     Group {
                         VStack(spacing: 20) {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ModalView
 
 struct InformationSection: View {
     var title: String
@@ -58,8 +59,8 @@ struct InformationView: View {
 }
 
 struct InformationViewInner: View {
-    @State var showInfo = false
     @Binding var show: Bool
+    @State var shrink = false
     var fireData: ForestFire
     
     private var isNotAccesible: Bool {
@@ -86,11 +87,28 @@ struct InformationViewInner: View {
     }
     
     private var header: some View {
-        HStack {
-            Text("INFO")
-            Spacer()
-            Button("Fullscreen", action: { showInfo = true })
-                .foregroundColor(.blaze)
+        ModalPresenter {
+            HStack {
+                Text("INFO")
+                Spacer()
+                ModalLink(destination: { dismiss in
+                    ZStack(alignment: .topTrailing) {
+                        ScrollView {
+                            Header(title: "Info", desc: fireData.name)
+                                .padding(.top, 50)
+                            NativeWebView(html: fireData.conditionStatement ?? "")
+                                .padding(20)
+                        }
+                        Button(action: dismiss) {
+                            CloseModalButton()
+                                .background(Color(.secondarySystemBackground))
+                                .clipShape(Circle())
+                        }.padding([.top, .trailing], 20)
+                    }
+                }) {
+                    Text("Fullscreen").foregroundColor(.blaze)
+                }
+            }
         }
     }
     
@@ -136,6 +154,7 @@ struct InformationViewInner: View {
             if let html = fireData.conditionStatement {
                 Section(header: header) {
                     NativeWebView(html: html)
+                        .padding(.vertical, 5)
                 }
             }
             
@@ -150,25 +169,6 @@ struct InformationViewInner: View {
                     .disabled(true)
             }
         }
-        .sheet(isPresented: $showInfo, content: {
-            ZStack(alignment: .topTrailing) {
-                ScrollView {
-                    VStack {
-                        Header(title: "Info", desc: fireData.name)
-                            .padding(.top, 50)
-                        NativeWebView(html: fireData.conditionStatement ?? "")
-                            .padding(20)
-                    }
-                }
-                Button(action: {
-                    show = true
-                    show = false
-                }) {
-                    CloseModalButton()
-                        .background(Color.white)
-                }.padding([.top, .trailing], 20)
-            }
-        })
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
             leading: Button(action: actionSheet) {

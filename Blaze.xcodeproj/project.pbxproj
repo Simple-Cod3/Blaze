@@ -247,11 +247,11 @@
 		E9AF016F24FDBC120058C184 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				27313E4B250ACD0F009876FA /* AirQualityBackend.swift */,
 				E9F222E325005A5700EC5A06 /* FiresBackend.swift */,
 				E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */,
-				E9AF017024FDBC290058C184 /* NewsBackend.swift */,
-				27313E4B250ACD0F009876FA /* AirQualityBackend.swift */,
 				E949CFA72517016F00AD467B /* LocationManager.swift */,
+				E9AF017024FDBC290058C184 /* NewsBackend.swift */,
 				279FE6F725213216004AC147 /* PhoneBackend.swift */,
 			);
 			path = Backend;
@@ -260,12 +260,12 @@
 		E9AF017224FDBC7B0058C184 /* Classes and Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				27BB5F9125098DFD0071F3FF /* AirQuality.swift */,
 				E9E769EC25031681006038FD /* ButtonStyles.swift */,
 				E9F222E72500886800EC5A06 /* DateExtension.swift */,
 				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 				E9AF017324FDBC870058C184 /* News.swift */,
 				E9CE22A42502F48700929D13 /* NumberExtension.swift */,
-				27BB5F9125098DFD0071F3FF /* AirQuality.swift */,
 			);
 			path = "Classes and Extensions";
 			sourceTree = "<group>";
@@ -273,9 +273,9 @@
 		E9AF017824FDC0BF0058C184 /* Fires */ = {
 			isa = PBXGroup;
 			children = (
+				6DF6590B2510684100D47118 /* DataView.swift */,
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
 				E9E769EE250319F4006038FD /* InformationView.swift */,
-				6DF6590B2510684100D47118 /* DataView.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
@@ -293,11 +293,11 @@
 		E9AF017B24FDC0E20058C184 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				E9073CA425214AB200FE43C2 /* HorizontalCard.swift */,
 				E9AF018324FDC3800058C184 /* NewsCard.swift */,
 				E9AF016D24FDBC090058C184 /* NewsView.swift */,
-				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
-				E9073CA425214AB200FE43C2 /* HorizontalCard.swift */,
+				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
