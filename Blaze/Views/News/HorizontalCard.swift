@@ -44,10 +44,6 @@ struct HorizontalCard: View {
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             .padding(.leading, show ? 0 : UIScreen.main.bounds.maxX)
-            .onAppear {
-                withAnimation(.spring()) {
-                    show = true
-                }
-            }
+            .onAppear { withAnimation(.spring()) { show = true } }
     }
 }

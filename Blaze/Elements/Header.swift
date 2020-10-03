@@ -10,13 +10,20 @@ import SwiftUI
 struct Header: View {
     var title: String
     var desc: String?
+    var hColor: Color
+    
+    init(title: String, desc: String? = nil, headerColor: Color = .blaze) {
+        self.title = title
+        self.desc = desc
+        self.hColor = headerColor
+    }
     
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 15) {
             Text(title)
                 .font(.system(size: 60))
                 .fontWeight(.bold)
-                .foregroundColor(.blaze)
+                .foregroundColor(hColor)
             
             if let desc = desc {
                 Text(desc)

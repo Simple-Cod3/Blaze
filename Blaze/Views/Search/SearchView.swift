@@ -51,7 +51,6 @@ struct SearchView: View {
             NavigationView {
                 Form {
                     Section {
-                        PhoneView()
                         DisclosureGroup(
                             isExpanded: $showFires,
                             content: {

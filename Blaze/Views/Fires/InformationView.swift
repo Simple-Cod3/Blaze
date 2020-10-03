@@ -58,9 +58,13 @@ struct InformationView: View {
 }
 
 struct InformationViewInner: View {
+    @State var showInfo = false
     @Binding var show: Bool
     var fireData: ForestFire
-
+    
+    private var isNotAccesible: Bool {
+        get { fireData.acres == -1 && fireData.contained == -1 }
+    }
     private func actionSheet() {
         var items = [
             "🔥 " + fireData.name,
@@ -81,8 +85,29 @@ struct InformationViewInner: View {
         UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
     }
     
+    private var header: some View {
+        HStack {
+            Text("INFO")
+            Spacer()
+            Button("Fullscreen", action: { showInfo = true })
+                .foregroundColor(.blaze)
+        }
+    }
+    
     var body: some View {
         Form {
+            if isNotAccesible {
+                Section {
+                    VStack {
+                        Text("\(Image(systemName: "exclamationmark.triangle.fill")) Warning")
+                            .font(.headline)
+                            .foregroundColor(.yellow)
+                        Text("This incident is not accessible on this app yet. For more information, click on \"More Info\" below.")
+                            .foregroundColor(.secondary)
+                    }.padding(.vertical, 10)
+                }
+            }
+            
             InformationSection(
                 title: "Basic Information",
                 data: [
@@ -109,18 +134,41 @@ struct InformationViewInner: View {
             )
             
             if let html = fireData.conditionStatement {
-                Section(header: Text("Info")) {
+                Section(header: header) {
                     NativeWebView(html: html)
                 }
             }
             
             if let url = URL(string: fireData.url) {
-                FormButton(text: "More Info", url: url)
+                if isNotAccesible {
+                    FormButtonDirect(text: "More Info", url: url)
+                } else {
+                    FormButton(text: "More Info", url: url)
+                }
             } else {
                 FormButton(text: "More Info", url: URL(string: "https://google.com")!)
                     .disabled(true)
             }
         }
+        .sheet(isPresented: $showInfo, content: {
+            ZStack(alignment: .topTrailing) {
+                ScrollView {
+                    VStack {
+                        Header(title: "Info", desc: fireData.name)
+                            .padding(.top, 50)
+                        NativeWebView(html: fireData.conditionStatement ?? "")
+                            .padding(20)
+                    }
+                }
+                Button(action: {
+                    show = true
+                    show = false
+                }) {
+                    CloseModalButton()
+                        .background(Color.white)
+                }.padding([.top, .trailing], 20)
+            }
+        })
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
             leading: Button(action: actionSheet) {

@@ -9,10 +9,33 @@ import SwiftUI
 import ModalView
 
 struct NewsView: View {
+    @EnvironmentObject var phone: PhoneBackend
     @EnvironmentObject var news: NewsBackend
-    @State var progress = 0.0
-    @State var done = false
-    @State var newsShown = 10
+    @State private var progress = 0.0
+    @State private var done = false
+    @State private var newsShown = 10
+    
+    private enum NewsModals: String, Identifiable {
+        var id: String { rawValue }
+        
+        case phone, glossary
+    }
+    
+    @State private var shown: NewsModals? = nil
+    
+    var failed: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "wifi.exclamationmark")
+                .font(.system(size: 30))
+                .foregroundColor(.blaze)
+            
+            Text("No Connection")
+                .font(.title)
+                .fontWeight(.bold)
+            
+            Button("Click to Retry", action: { news.refreshNewsList() })
+        }
+    }
     
     var body: some View {
         ModalPresenter {
@@ -35,9 +58,15 @@ struct NewsView: View {
                             }
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
-                                    HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "This is a subtitle")
                                     
-                                    HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Understand wildire terms")
+                                    ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
+                                        HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "This is a subtitle")
+                                    }.buttonStyle(CardButtonStyle())
+
+                                    ModalLink(destination: {_ in Text("glossary") }) {
+                                        HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Understand wildire terms")
+                                    }.buttonStyle(CardButtonStyle())
+                                    
                                 }.padding(.horizontal, 20)
                             }
                             
@@ -68,24 +97,14 @@ struct NewsView: View {
                                         .padding(.horizontal, 20)
                                 }
                             }
-                        } // VStack
+                        }// VStack
                             .padding(.bottom, 20)
-                    }
+                    }// ScrollView
                     StatusBg()
                 }
             }
             else if news.failed {
-                VStack(spacing: 20) {
-                    Image(systemName: "wifi.exclamationmark")
-                        .font(.system(size: 30))
-                        .foregroundColor(.blaze)
-                    
-                    Text("No Connection")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    
-                    Button("Click to Retry", action: { news.refreshNewsList() })
-                }
+                //failed
             }
             else {
                 ProgressBarView(
@@ -95,11 +114,12 @@ struct NewsView: View {
                     text: "News"
                 )
             }
-        }.onAppear {
-            if news.loaded {
-                done = true
-            }
         }
+            .onAppear {
+                if news.loaded {
+                    done = true
+                }
+            }
     }
 }
 

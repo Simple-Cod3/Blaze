@@ -24,7 +24,7 @@ struct AQView: View {
                                 .frame(width: 280, height: 280)
                                 .clipShape(Circle())
                                 .scaleEffect(showCircle ? 1.0 : 0.5)
-                                .animation(Animation.easeInOut(duration: 0.7         ), value: showCircle)
+                                .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
                                 .opacity(0.7)
                         }
                         
@@ -43,7 +43,8 @@ struct AQView: View {
                     
                     Header(
                         title: "Air Quality",
-                        desc: !forecast.lost ? "Currently displaying air quaility in \(forecast.forecasts.first!.place)" : "Cannot get the location of your device. Showing air quality in San Francisco."
+                        desc: !forecast.lost ? "Currently displaying air quaility in \(forecast.forecasts.first!.place)" : "Cannot get the location of your device. Showing air quality in San Francisco.",
+                        headerColor: determineColor(cat: forecast.forecasts[1].category.Number)
                     )
                         .padding(.bottom, 20)
                     

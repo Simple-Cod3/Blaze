@@ -70,8 +70,8 @@ struct AQCard: View {
             }
         }
         .padding(15)
-        .foregroundColor(.white)
-        .background(Color.blaze)
+        .foregroundColor(.primary)
+        .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
         .padding([.bottom, .horizontal], 20)
     }

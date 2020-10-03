@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct PhoneNumber : Codable, Identifiable {
+struct PhoneNumbers : Codable, Identifiable {
     var id = UUID()
     var features : [Features]
     
@@ -18,34 +18,33 @@ struct PhoneNumber : Codable, Identifiable {
     }
     struct Features : Codable, Identifiable {
         var id = UUID()
-        var attributes : Attributes
+        var attributes : PhoneNumber
         
         enum CodingKeys: String, CodingKey {
             case attributes
         }
     }
-    struct Attributes : Codable, Identifiable {
-        
-        var id = UUID()
-        var name : String?
-        var address : String?
-        var city : String?
-        var lat : Double?
-        var long : Double?
-        var phoneNumber : String?
-        var county : String?
-        
-        enum CodingKeys: String, CodingKey {
-            case name = "NAME"
-            case address = "ADDRESS"
-            case city = "CITY"
-            case lat = "LAT"
-            case long = "LON"
-            case phoneNumber = "PHONE_NUM"
-            case county = "COUNTY"
-        }
-    }
+}
 
+struct PhoneNumber : Codable, Identifiable {
+    var id = UUID()
+    var name : String?
+    var address : String?
+    var city : String?
+    var lat : Double?
+    var long : Double?
+    var phoneNumber : String?
+    var county : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "NAME"
+        case address = "ADDRESS"
+        case city = "CITY"
+        case lat = "LAT"
+        case long = "LON"
+        case phoneNumber = "PHONE_NUM"
+        case county = "COUNTY"
+    }
 }
 
 class PhoneBackend: ObservableObject {
@@ -105,8 +104,17 @@ class PhoneBackend: ObservableObject {
             
             DispatchQueue.main.async {
                 do {
-                    let newNumbers = try jsonDecoder.decode(PhoneNumber.self, from: data)
-                    self.numbers.append(newNumbers)
+                    var newNumbers = try jsonDecoder.decode(PhoneNumbers.self, from: data)
+                    newNumbers.features = newNumbers.features.filter {
+                        $0.attributes.phoneNumber != nil &&
+                        $0.attributes.phoneNumber!.count > 2
+                    }
+                    
+                    self.numbers.append(
+                        contentsOf: newNumbers.features
+                            .map { $0.attributes }
+                            .sorted(by: { $0.name! < $1.name! })
+                    )
                 } catch {
                     print("🚫 JSON Decoding failed: \(error)")
                 }
