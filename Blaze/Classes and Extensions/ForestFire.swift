@@ -38,8 +38,8 @@ struct ForestFire: Codable, Identifiable {
     let location: String
     let latitude: Double
     let longitude: Double
-    let acresO: Int?
-    let containedO: Int?
+    var acresO: Int?
+    var containedO: Int?
     let controlStatement: String?
     let conditionStatement: String?
     let counties: [String]
@@ -217,5 +217,40 @@ struct ForestFire: Codable, Identifiable {
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+}
+
+// MARK: - InciWeb Codable
+struct InciWebIncidents: Codable {
+    var markers: [Incident]
+    
+    init() {
+        markers = [Incident]()
+    }
+    
+    struct Incident: Codable, Identifiable {
+        var id = UUID()
+        var name: String
+        var type: String
+        var state: String
+        var size: String
+        var contained: String
+        var lat: String
+        var lng: String
+        
+        enum CodingKeys: String, CodingKey {
+            case name
+            case type
+            case state
+            case size
+            case contained
+            case lat
+            case lng
+        }
+        
+        /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
+        var coordinate: CLLocationCoordinate2D {
+            CLLocationCoordinate2D(latitude: Double(lat) ?? -1, longitude: Double(lng) ?? -1)
+        }
     }
 }

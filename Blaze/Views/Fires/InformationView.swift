@@ -68,12 +68,11 @@ struct InformationViewInner: View {
     }
     private func actionSheet() {
         var items = [
-            "🔥 " + fireData.name,
-            "_______",
-            " · Location: \(fireData.getLocation())",
-            " · Area Burned: \(fireData.getAreaString())",
-            " · Contained: \(fireData.getContained())",
-            " · Size: \(fireData.getAreaString())",
+            fireData.name,
+            ": : : : : : : : : : : :",
+            " • Location: \(fireData.getLocation())",
+            " • Area Burned: \(fireData.getAreaString())",
+            " • Contained: \(fireData.getContained())",
         ] as [Any]
         
         if let url = URL(string: fireData.url) {
@@ -120,6 +119,7 @@ struct InformationViewInner: View {
                         Text("\(Image(systemName: "exclamationmark.triangle.fill")) Warning")
                             .font(.headline)
                             .foregroundColor(.yellow)
+                            .padding(.bottom, 5)
                         Text("This incident is not accessible on this app yet. For more information, click on \"More Info\" below.")
                             .foregroundColor(.secondary)
                     }.padding(.vertical, 10)

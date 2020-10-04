@@ -24,6 +24,7 @@ class FireBackend: ObservableObject {
         }
     }
     // MARK: - Functions
+    // TODO: add https://inciweb.nwcg.gov/js/markers.json
     
     func refreshFireList(with: URL? = nil) {
         self.failed = false
@@ -32,11 +33,13 @@ class FireBackend: ObservableObject {
         
         let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/Api/IncidentApi/GetIncidents")!
         print("🔥 [ Grabbing new fires ]")
+        let url2 = with ?? URL(string: "https://inciweb.nwcg.gov/js/markers.json")!
+        print("🔥 [ Grabbing secondary fire data ]")
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
                 self.failed = true
-                print("🚫 No data found")
+                print("🚫 No fire data found")
                 return
             }
             

@@ -27,7 +27,7 @@ struct HorizontalCard: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             Image(imageString)
                 .renderingMode(.original)
                 .resizable()

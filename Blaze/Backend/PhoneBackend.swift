@@ -26,7 +26,11 @@ struct PhoneNumbers : Codable, Identifiable {
     }
 }
 
-struct PhoneNumber : Codable, Identifiable {
+struct PhoneNumber : Codable, Identifiable, Equatable {
+    static func == (lhs: PhoneNumber, rhs: PhoneNumber) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
     var id = UUID()
     var name : String?
     var address : String?
@@ -44,6 +48,10 @@ struct PhoneNumber : Codable, Identifiable {
         case long = "LON"
         case phoneNumber = "PHONE_NUM"
         case county = "COUNTY"
+    }
+    
+    func distanceFromUser(x: Double, y: Double) -> Double {
+        return sqrt( pow(x - (lat ?? 999), 2) + pow(y - (long ?? 999), 2) )
     }
 }
 
@@ -90,7 +98,7 @@ class PhoneBackend: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
-                print("🚫 No data found")
+                print("🚫 No phone data found")
                 return
             }
             

@@ -23,6 +23,7 @@ struct AQMeter: View {
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .opacity(0.5)
+                    .transition(.opacity)
                     .animation(.easeInOut)
             }
         }

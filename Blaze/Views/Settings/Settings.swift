@@ -11,10 +11,11 @@ import ModalView
 struct Settings: View {
     @AppStorage("welcomed") var welcomed = true
     @State var selection = 0
+    @State var show = false
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 20) {
+            VStack(spacing: show ? 20 : 200) {
                 Header(title: "Settings", desc: "Customize the app and learn more about it!")
                     .padding(.top, 20)
                     .padding(.bottom, 10)
@@ -36,6 +37,11 @@ struct Settings: View {
                 .padding(.bottom, 20)
         }
             .navigationBarTitle("", displayMode: .inline)
+            .onAppear {
+                withAnimation(Animation.spring().delay(0.2)) {
+                    show = true
+                }
+            }
     }
 }
 

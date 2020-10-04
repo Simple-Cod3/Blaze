@@ -5,6 +5,7 @@
 //  Created by Nathan Choi on 9/4/20.
 //
 
+import MapKit
 import Foundation
 
 extension Int {
@@ -25,3 +26,8 @@ extension Double {
     }
 }
 
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}

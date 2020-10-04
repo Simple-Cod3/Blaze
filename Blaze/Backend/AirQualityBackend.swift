@@ -54,7 +54,7 @@ class AirQualityBackend: ObservableObject {
         
         let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
             guard let data: Data = unsafeData else {
-                print("🚫 No data found")
+                print("🚫 No AQ data found")
                 return
             }
             

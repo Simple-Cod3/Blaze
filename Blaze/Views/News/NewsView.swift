@@ -60,11 +60,11 @@ struct NewsView: View {
                                 HStack(spacing: 20) {
                                     
                                     ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                                        HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "This is a subtitle")
+                                        HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "Find the nearest fire stations")
                                     }.buttonStyle(CardButtonStyle())
 
-                                    ModalLink(destination: {_ in Text("glossary") }) {
-                                        HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Understand wildire terms")
+                                    ModalLink(destination: Text("Comming Soon...").font(.headline)) {
+                                        HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Learn wildire terms")
                                     }.buttonStyle(CardButtonStyle())
                                     
                                 }.padding(.horizontal, 20)
