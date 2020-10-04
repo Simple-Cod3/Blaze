@@ -45,19 +45,21 @@ struct ProfileCircle: View {
 
 struct CreditsView: View {
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
-            
-            Header(title: "Credits", desc: "Three curious students with a passion for code and design.").padding(.top, 20)
-                .animation(.spring())
-            
-            ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
-            ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer")
-            ProfileCircle(img: "b0kch01", name: "Max Kerns", role: "Junior Developer")
-            
-            Spacer()
+        ScrollView{
+            VStack(spacing: 20) {
+                Spacer()
+                
+                Header(title: "Credits", desc: "Three curious students with a passion for code and design.").padding(.top, 20)
+                    .animation(.spring())
+                
+                ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
+                ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer")
+                ProfileCircle(img: "sakend", name: "Max Kerns", role: "Junior Developer")
+                
+                Spacer()
+            }
+            .navigationBarTitle("", displayMode: .inline)
         }
-        .navigationBarTitle("", displayMode: .inline)
     }
 }
 
