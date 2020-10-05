@@ -29,7 +29,7 @@ struct AQView: View {
                         }
                         
                         AQMeter(airQ: forecast.forecasts[1])
-                            .padding(.vertical, 50)
+                            .padding(.vertical, 70)
                             .scaleEffect(showCircle ? 1.0 : 0)
                             .onAppear {
                                 forecast.refreshForecastList()

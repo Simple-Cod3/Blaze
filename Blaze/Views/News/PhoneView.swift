@@ -149,9 +149,8 @@ struct PhoneView: View {
                         }
                         .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
                         .foregroundColor(.secondary)
-                        .background(Color(.tertiarySystemBackground))
+                        .background(Color(.tertiarySystemGroupedBackground))
                         .cornerRadius(10)
-                        .shadow(color: Color.black.opacity(0.1), radius: 15, y: 10)
                     }.padding(.vertical, 40)
                 }
                 .onChange(of: text) { _ in
@@ -193,8 +192,8 @@ struct PhoneView: View {
                 }
 
             }
-            .listStyle(GroupedListStyle())
-            .background(Color(.tertiarySystemGroupedBackground).edgesIgnoringSafeArea(.bottom))
+//            .listStyle(GroupedListStyle())
+//            .background(Color(.tertiarySystemGroupedBackground).edgesIgnoringSafeArea(.bottom))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: dismiss) {

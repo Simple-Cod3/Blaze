@@ -56,14 +56,14 @@ struct AQCard: View {
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
                     
-                    Text(primaryPollutant)
+                    Text(primaryPollutantCaption)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 }
                 
                 Spacer()
                 
-                Text(primaryPollutantCaption)
+                Text(primaryPollutant)
                     .font(.body)
                     .fontWeight(.semibold)
                     .opacity(0.5)
