@@ -58,6 +58,27 @@ struct InformationView: View {
     }
 }
 
+struct FullScreenInfoView: View {
+    var dismiss: () -> ()
+    var fireData: ForestFire
+    
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            ScrollView {
+                Header(title: "Info", desc: fireData.name)
+                    .padding(.top, 50)
+                NativeWebView(html: fireData.conditionStatement ?? "")
+                    .padding(20)
+            }
+            Button(action: dismiss) {
+                CloseModalButton()
+                    .background(Color(.secondarySystemBackground))
+                    .clipShape(Circle())
+            }.padding([.top, .trailing], 20)
+        }
+    }
+}
+
 struct InformationViewInner: View {
     @Binding var show: Bool
     @State var shrink = false
@@ -90,20 +111,8 @@ struct InformationViewInner: View {
             HStack {
                 Text("INFO")
                 Spacer()
-                ModalLink(destination: { dismiss in
-                    ZStack(alignment: .topTrailing) {
-                        ScrollView {
-                            Header(title: "Info", desc: fireData.name)
-                                .padding(.top, 50)
-                            NativeWebView(html: fireData.conditionStatement ?? "")
-                                .padding(20)
-                        }
-                        Button(action: dismiss) {
-                            CloseModalButton()
-                                .background(Color(.secondarySystemBackground))
-                                .clipShape(Circle())
-                        }.padding([.top, .trailing], 20)
-                    }
+                ModalLink(destination: {
+                    FullScreenInfoView(dismiss: $0, fireData: fireData)
                 }) {
                     Text("Fullscreen").foregroundColor(.blaze)
                 }

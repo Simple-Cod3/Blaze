@@ -157,7 +157,6 @@ extension LocationProvider: CLLocationManagerDelegate {
         #if DEBUG
         print(#function, status.name)
         #endif
-        //print()
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

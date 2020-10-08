@@ -53,6 +53,13 @@ struct FireMapView: View {
             }
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
+                .onChange(of: coordinateRegion) { region in
+                    if region.span.longitudeDelta > 16 &&
+                       region.span.latitudeDelta > 16 {
+                        coordinateRegion.span.latitudeDelta = 15
+                        coordinateRegion.span.longitudeDelta = 15
+                    }
+                }
 
             Button(action: { hide.toggle() }) {
                 InfoCard(fire: fireData, hide: $hide, show: $show)
@@ -68,7 +75,7 @@ struct FireMapView: View {
             }
             .onAppear {
                 moveBack()
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     hide = false
                 }
@@ -77,6 +84,13 @@ struct FireMapView: View {
             .navigationBarItems(trailing: Button(action: moveBack) {
                 Image(systemName: "location.fill")
             })
+    }
+}
+
+extension MKCoordinateRegion: Equatable {
+    public static func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
+        return lhs.span.latitudeDelta == rhs.span.latitudeDelta &&
+               lhs.span.longitudeDelta == rhs.span.longitudeDelta
     }
 }
 

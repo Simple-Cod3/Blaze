@@ -11,7 +11,7 @@ struct WordCard: View {
     var term: Term
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        LazyVStack(alignment: .leading, spacing: 10) {
             Text(term.id)
                 .font(.title)
                 .fontWeight(.semibold)

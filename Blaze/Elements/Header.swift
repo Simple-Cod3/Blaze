@@ -11,11 +11,13 @@ struct Header: View {
     var title: String
     var desc: String?
     var hColor: Color
+    var padding: CGFloat
     
-    init(title: String, desc: String? = nil, headerColor: Color = .blaze) {
+    init(title: String, desc: String? = nil, headerColor: Color = .blaze, padding: CGFloat = 20) {
         self.title = title
         self.desc = desc
         self.hColor = headerColor
+        self.padding = padding
     }
     
     var body: some View {
@@ -29,9 +31,10 @@ struct Header: View {
                 Text(desc)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .foregroundColor(.secondary)            }
+                    .foregroundColor(.secondary)
+            }
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, padding)
     }
 }
 

@@ -22,7 +22,6 @@ struct PhoneView: View {
             }
         }
         
-        print(pinned)
         self.pinned = pinObjects
     }
     

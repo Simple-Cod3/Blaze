@@ -63,7 +63,7 @@ struct NewsView: View {
                                         HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "Find the nearest fire stations")
                                     }.buttonStyle(CardButtonStyle())
 
-                                    ModalLink(destination: Text("Comming Soon...").font(.headline)) {
+                                    ModalLink(destination: GlossaryView()) {
                                         HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Learn wildire terms")
                                     }.buttonStyle(CardButtonStyle())
                                     
@@ -104,7 +104,7 @@ struct NewsView: View {
                 }
             }
             else if news.failed {
-                //failed
+                failed
             }
             else {
                 ProgressBarView(

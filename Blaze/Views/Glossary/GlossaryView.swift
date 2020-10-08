@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ModalView
+import SwiftUIListSeparator
 
 struct GlossaryView: View {
     @State var title = "Glossary"
@@ -25,43 +26,48 @@ struct GlossaryView: View {
         self._on = State(initialValue: termsToBool)
     }
     
+    func getStuff(_ key: String) -> Bool {
+        return on[key]!
+    }
+    
     var body: some View {
         ModalPresenter {
             List {
-                Image("hydrant").resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 200)
-                    .padding(20)
-                
-                Header(title: title, desc: description)
+                Header(title: title, desc: description, padding: 10)
                 Spacer()
                 
-                VStack(alignment: .leading, spacing: 20) {
-                    ForEach(Array(on.keys).sorted(), id: \.self) { key in
-                        HStack(alignment: .bottom) {
-                            Header(title: key.capitalized)
-                            Spacer()
-                            Button(
-                                on[key] == true ? "Hide" : "Show",
-                                action: {
-                                    withAnimation(.spring()) {
-                                        on[key]?.toggle()
-                                    }
-                                })
-                                .padding(.trailing, 20)
-                                .foregroundColor(.secondary)
-                        }
-                        if on[key] != false {
-                            ForEach(glossary[key]!) { term in
-                                WordCard(term: term)
-                                    .padding(.horizontal, 20)
-                                    .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .scale))
-                            }
-                        }
-                    }.animation(.spring(), value: on)
+                ForEach(Array(on.keys).sorted(), id: \.self) { key in
+                    ExpandAlphabetView(key: key)
+                }
+                .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20))
+            }
+                .listSeparatorStyle(.none)
+        }
+    }
+}
+
+struct ExpandAlphabetView: View {
+    @State var expand = false
+    var key: String
+    
+    var glossary = GlossaryDatabase.terms
+    
+    var body: some View {
+        DisclosureGroup(
+            isExpanded: $expand,
+            content: {
+                ForEach(glossary[key]!) { term in
+                    WordCard(term: term)
+                        .padding(.horizontal, 20)
+                }
+            },
+            label: {
+                HStack(alignment: .bottom) {
+                    Header(title: key.capitalized + key)
+                    Spacer()
                 }
             }
-        }
+        )
     }
 }
 

@@ -24,7 +24,6 @@ class FireBackend: ObservableObject {
         }
     }
     // MARK: - Functions
-    // TODO: add https://inciweb.nwcg.gov/js/markers.json
     
     func refreshFireList(with: URL? = nil) {
         self.failed = false

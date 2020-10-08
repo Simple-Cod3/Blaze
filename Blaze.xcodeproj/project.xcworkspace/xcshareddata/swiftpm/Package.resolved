@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "SwiftUIListSeparator",
+        "repositoryURL": "https://github.com/SchmidtyApps/SwiftUIListSeparator.git",
+        "state": {
+          "branch": "master",
+          "revision": "0f42224e4f32e5372a435068a908fb132723fae7",
+          "version": null
+        }
+      },
+      {
         "package": "URLImage",
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
         "state": {
