@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct Header: View {
-    var title: String
-    var desc: String?
-    var hColor: Color
-    var padding: CGFloat
+    private var title: String
+    private var desc: String?
+    private var hColor: Color
+    private var padding: CGFloat
     
     init(title: String, desc: String? = nil, headerColor: Color = .blaze, padding: CGFloat = 20) {
         self.title = title

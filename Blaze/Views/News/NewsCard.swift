@@ -9,7 +9,7 @@ import SwiftUI
 import URLImage
 
 struct NewsCard: View {
-    @State var show = false
+    @State private var show = false
     var news: News
     
     var body: some View {
@@ -33,11 +33,11 @@ struct NewsCard: View {
                         .fixedSize(horizontal: false, vertical: true)
                     (Text(news.publisher)
                         .foregroundColor(.blaze)
-                    + Text(" • " + news.author)
+                        + Text(" • " + news.author)
                         .foregroundColor(.secondary)
                     )
-                        .font(.body)
-                        .fixedSize(horizontal: false, vertical: true)
+                    .font(.body)
+                    .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
             }.padding([.horizontal, .bottom], 20)

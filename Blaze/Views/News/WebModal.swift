@@ -57,31 +57,31 @@ struct URLWebView: UIViewRepresentable {
     // Get height and send to binding variable
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: URLWebView
-
+        
         init(_ parent: URLWebView) {
             self.parent = parent
         }
-
+        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-                if navigationAction.navigationType == .linkActivated {
-                    guard let url = navigationAction.request.url else {
-                        decisionHandler(.allow)
-                        return
-                    }
-                    
-                    let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                    if components?.scheme == "http" || components?.scheme == "https"
-                    {
-                        UIApplication.shared.open(url)
-                        decisionHandler(.cancel)
-                    } else {
-                        decisionHandler(.allow)
-                    }
+            if navigationAction.navigationType == .linkActivated {
+                guard let url = navigationAction.request.url else {
+                    decisionHandler(.allow)
+                    return
+                }
+                
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                if components?.scheme == "http" || components?.scheme == "https"
+                {
+                    UIApplication.shared.open(url)
+                    decisionHandler(.cancel)
                 } else {
                     decisionHandler(.allow)
                 }
+            } else {
+                decisionHandler(.allow)
             }
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -110,40 +110,40 @@ struct HTMLWebView : UIViewRepresentable {
     
     // Get height and send to binding variable
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: HTMLWebView
-
+        private var parent: HTMLWebView
+        
         init(_ parent: HTMLWebView) {
             self.parent = parent
         }
-
+        
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             webView.evaluateJavaScript("document.body.scrollHeight",
-            completionHandler: { (height, error) in
-                DispatchQueue.main.async {
-                    self.parent.height = height as! CGFloat
-                }
-            })
+                                       completionHandler: { (height, error) in
+                                        DispatchQueue.main.async {
+                                            self.parent.height = height as! CGFloat
+                                        }
+                                       })
         }
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-                if navigationAction.navigationType == .linkActivated {
-                    guard let url = navigationAction.request.url else {
-                        decisionHandler(.allow)
-                        return
-                    }
-                    
-                    let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                    if components?.scheme == "http" || components?.scheme == "https"
-                    {
-                        UIApplication.shared.open(url)
-                        decisionHandler(.cancel)
-                    } else {
-                        decisionHandler(.allow)
-                    }
+            if navigationAction.navigationType == .linkActivated {
+                guard let url = navigationAction.request.url else {
+                    decisionHandler(.allow)
+                    return
+                }
+                
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                if components?.scheme == "http" || components?.scheme == "https"
+                {
+                    UIApplication.shared.open(url)
+                    decisionHandler(.cancel)
                 } else {
                     decisionHandler(.allow)
                 }
+            } else {
+                decisionHandler(.allow)
             }
+        }
     }
     
     func makeCoordinator() -> Coordinator {

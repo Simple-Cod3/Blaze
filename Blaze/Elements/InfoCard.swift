@@ -11,15 +11,15 @@ import ModalView
 struct InfoCard: View {
     @Binding var hide: Bool
     @Binding var show: Bool
-    @State var random = false
+    @State private var random = false
     
-    var fireData: ForestFire
-    var name: String
-    var locations: String
-    var acres: String
-    var containment: String
-    var updated: String
-    var started: String
+    private var fireData: ForestFire
+    private var name: String
+    private var locations: String
+    private var acres: String
+    private var containment: String
+    private var updated: String
+    private var started: String
     
     init(fire: ForestFire, hide: Binding<Bool>, show: Binding<Bool>) {
         self._hide = hide
@@ -81,11 +81,11 @@ struct InfoCard: View {
                 }
             }
         }
-            .frame(minHeight: hide ? 0 : 200)
-            .padding(20)
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(15)
-            .padding(.horizontal, 20)
+        .frame(minHeight: hide ? 0 : 200)
+        .padding(20)
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(15)
+        .padding(.horizontal, 20)
     }
 }
 

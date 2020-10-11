@@ -88,7 +88,7 @@ class NewsBackend: ObservableObject {
                                 }
                             }
                         }
-                            
+                        
                     case .failure(let error):
                         self.failed = true
                         print("🚫 Couldn't get news: \(error)")

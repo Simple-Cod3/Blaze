@@ -8,22 +8,24 @@
 import Foundation
 import SwiftUI
 import MapKit
-import ModalView
 
 struct FullFireMapView: View {
+    @EnvironmentObject private var fireBackend: FireBackend
     
-    @EnvironmentObject var fireBackend: FireBackend
-    @State var coordinateRegion = MKCoordinateRegion(
+    @State private var coordinateRegion = MKCoordinateRegion(
         center: .init(latitude: 36.7783, longitude: -119.4),
         span: .init(latitudeDelta: 7, longitudeDelta: 7)
     )
     
-    @State var showLabels = false
-    @State var show = false
-    @State var centerLat = 36.7783
-    @State var centerLong = -119.4
-    @State var free = true
-    let radius = 7.0
+    // Map States
+    @State private var showLabels = false
+    @State private var show = false
+    @State private var centerLat = 36.7783
+    @State private var centerLong = -119.4
+    @State private var free = true
+    
+    private let RADIUS = 11.0
+    
     private func dismiss() {
         show = false
     }
@@ -38,11 +40,7 @@ struct FullFireMapView: View {
     }
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Map(
-                coordinateRegion: $coordinateRegion,
-                annotationItems: fireBackend.fires
-            )
-            { fire in
+            Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
                     VStack {
                         Image("fire").resizable()
@@ -62,35 +60,31 @@ struct FullFireMapView: View {
                     }
                 }
             }
-                .offset(y: 30)
-                .edgesIgnoringSafeArea(.all)
-                .onChange(of: coordinateRegion) { region in
-                    if free {
-                        if region.span.longitudeDelta > 16 &&
-                           region.span.latitudeDelta > 16 {
-                            coordinateRegion.span.latitudeDelta = 15
-                            coordinateRegion.span.longitudeDelta = 15
-                        }
-                      //  print(coordinateRegion.center.latitude)
-                      //  print(coordinateRegion.center.longitude)
-                        
-                        if region.center.latitude > centerLat + radius{
-                            setCenter(option : OPTIONS.TOP)
-                        }
-                        else if region.center.latitude < centerLat - radius{
-                            setCenter(option : OPTIONS.DOWN)
-                        }
-                        
-                        if region.center.longitude > centerLong + radius{
-                            setCenter(option : OPTIONS.RIGHT)
-                        }
-                        else if region.center.longitude < centerLong - radius{
-                            setCenter(option : OPTIONS.LEFT)
-                        }
-                        
+            .offset(y: 30)
+            .edgesIgnoringSafeArea(.all)
+            .onChange(of: coordinateRegion) { region in
+                if free {
+                    if region.span.longitudeDelta > 16 &&
+                        region.span.latitudeDelta > 16 {
+                        coordinateRegion.span.latitudeDelta = 15
+                        coordinateRegion.span.longitudeDelta = 15
                     }
-                       
+                    if region.center.latitude > centerLat + RADIUS{
+                        setCenter(option : OPTIONS.TOP)
+                    }
+                    else if region.center.latitude < centerLat - RADIUS{
+                        setCenter(option : OPTIONS.DOWN)
+                    }
+                    
+                    if region.center.longitude > centerLong + RADIUS{
+                        setCenter(option : OPTIONS.RIGHT)
+                    }
+                    else if region.center.longitude < centerLong - RADIUS{
+                        setCenter(option : OPTIONS.LEFT)
+                    }
+                    
                 }
+            }
             
             LazyVStack(alignment: .leading, spacing: 10) {
                 Button(action: { showLabels.toggle() }) {
@@ -112,46 +106,46 @@ struct FullFireMapView: View {
                 }
             }.padding(20)
         }
-            .sheet(isPresented: $show) {
-                FullInformationView(show: $show)
-                    .environmentObject(fireBackend)
-            }
-            .onAppear {
-                moveBack()
-            }
-            .navigationBarTitle("All Wildfires", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: moveBack) {
-                Image(systemName: "location.fill")
-            })
+        .sheet(isPresented: $show) {
+            FullInformationView(show: $show)
+                .environmentObject(fireBackend)
+        }
+        .onAppear {
+            moveBack()
+        }
+        .navigationBarTitle("All Wildfires", displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: moveBack) {
+            Image(systemName: "location.fill")
+        })
     }
     
-    func setCenter(option : OPTIONS){
+    private func setCenter(option : OPTIONS) {
         var tempLat = coordinateRegion.center.latitude
         var tempLong = coordinateRegion.center.longitude
+        
         switch option{
-            case OPTIONS.TOP: tempLat = centerLat + (radius - 1)
-            case OPTIONS.DOWN: tempLat = centerLat - (radius - 1)
-            case OPTIONS.RIGHT: tempLong = centerLong + (radius - 1)
-            case OPTIONS.LEFT: tempLong = centerLong - (radius - 1)
-            default: break
+            case OPTIONS.TOP: tempLat = centerLat + (RADIUS - 0.01)
+            case OPTIONS.DOWN: tempLat = centerLat - (RADIUS - 0.01)
+            case OPTIONS.RIGHT: tempLong = centerLong + (RADIUS - 0.01)
+            case OPTIONS.LEFT: tempLong = centerLong - (RADIUS - 0.01)
         }
         
-        withAnimation{
-            self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: tempLat, longitude: tempLong),
-            span: .init(latitudeDelta: 7.0, longitudeDelta: 7.0))
-        }
-        
-        free = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-            free = true
-        }
+        self.coordinateRegion = MKCoordinateRegion(
+            center: .init(
+                latitude: tempLat,
+                longitude: tempLong
+            ),
+            span: .init(
+                latitudeDelta: Double(coordinateRegion.span.latitudeDelta - 1) + 1,
+                longitudeDelta: 10
+            )
+        )
     }
-    enum OPTIONS : Int {
-         case TOP = 1
+    
+    private enum OPTIONS : Int {
+        case TOP = 1
         case DOWN = 2
         case RIGHT = 3
         case LEFT = 4
-        
     }
 }

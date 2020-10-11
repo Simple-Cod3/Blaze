@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AQView: View {
     @EnvironmentObject var forecast: AirQualityBackend
-    @State var showCircle = false
-    @State var show = false
+    @State private var showCircle = false
+    @State private var show = false
     
     var body: some View {
         ZStack(alignment: .top) {

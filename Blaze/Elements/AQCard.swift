@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AQCard: View {
-    var date: String
-    var ozone: String
-    var ozoneCaption: String
-    var primaryPollutant: String
-    var primaryPollutantCaption: String
+    private var date: String
+    private var ozone: String
+    private var ozoneCaption: String
+    private var primaryPollutant: String
+    private var primaryPollutantCaption: String
     
     init (ozone: AirQuality, primary: AirQuality){
         self.date = ozone.getDate()

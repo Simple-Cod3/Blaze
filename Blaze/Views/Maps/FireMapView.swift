@@ -11,11 +11,17 @@ import MapKit
 import ModalView
 
 struct FireMapView: View {
-    @State var coordinateRegion = MKCoordinateRegion()
-    @State var hide = true
-    @State var show = false
+    @State private var coordinateRegion = MKCoordinateRegion()
+    @State private var hide = true
+    @State private var show = false
     
-    var fireData: ForestFire
+    // Map States
+    private let RADIUS = 11.0
+    @State private var centerLat = 36.7783
+    @State private var centerLong = -119.4
+    @State private var free = true
+    
+    private var fireData: ForestFire
     
     init(fireData: ForestFire) {
         self.fireData = fireData
@@ -40,11 +46,7 @@ struct FireMapView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            Map(
-                coordinateRegion: $coordinateRegion,
-                annotationItems: [fireData]
-            )
-            { fire in
+            Map(coordinateRegion: $coordinateRegion, annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
                     Image("fire").resizable()
                         .frame(width: 30, height: 30)
@@ -54,10 +56,26 @@ struct FireMapView: View {
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
                 .onChange(of: coordinateRegion) { region in
-                    if region.span.longitudeDelta > 16 &&
-                       region.span.latitudeDelta > 16 {
-                        coordinateRegion.span.latitudeDelta = 15
-                        coordinateRegion.span.longitudeDelta = 15
+                    if free {
+                        if region.span.longitudeDelta > 16 &&
+                            region.span.latitudeDelta > 16 {
+                            coordinateRegion.span.latitudeDelta = 15
+                            coordinateRegion.span.longitudeDelta = 15
+                        }
+                        if region.center.latitude > centerLat + RADIUS{
+                            setCenter(option : OPTIONS.TOP)
+                        }
+                        else if region.center.latitude < centerLat - RADIUS{
+                            setCenter(option : OPTIONS.DOWN)
+                        }
+                        
+                        if region.center.longitude > centerLong + RADIUS{
+                            setCenter(option : OPTIONS.RIGHT)
+                        }
+                        else if region.center.longitude < centerLong - RADIUS{
+                            setCenter(option : OPTIONS.LEFT)
+                        }
+                        
                     }
                 }
 
@@ -85,31 +103,41 @@ struct FireMapView: View {
                 Image(systemName: "location.fill")
             })
     }
+    
+    private func setCenter(option : OPTIONS) {
+        var tempLat = coordinateRegion.center.latitude
+        var tempLong = coordinateRegion.center.longitude
+        
+        switch option{
+            case OPTIONS.TOP: tempLat = centerLat + (RADIUS - 0.01)
+            case OPTIONS.DOWN: tempLat = centerLat - (RADIUS - 0.01)
+            case OPTIONS.RIGHT: tempLong = centerLong + (RADIUS - 0.01)
+            case OPTIONS.LEFT: tempLong = centerLong - (RADIUS - 0.01)
+        }
+        
+        self.coordinateRegion = MKCoordinateRegion(
+            center: .init(
+                latitude: tempLat,
+                longitude: tempLong
+            ),
+            span: .init(
+                latitudeDelta: Double(coordinateRegion.span.latitudeDelta - 1) + 1,
+                longitudeDelta: 10
+            )
+        )
+    }
+    
+    private enum OPTIONS : Int {
+        case TOP = 1
+        case DOWN = 2
+        case RIGHT = 3
+        case LEFT = 4
+    }
 }
 
 extension MKCoordinateRegion: Equatable {
     public static func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
         return lhs.span.latitudeDelta == rhs.span.latitudeDelta &&
                lhs.span.longitudeDelta == rhs.span.longitudeDelta
-    }
-}
-
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        let fire = ForestFire(
-            name: "Elkhorn Fire"
-//            updated: Date(),
-//            started: Date(),
-//            //counties: ["Los Angeles"],
-//            location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes",
-//            acres: 45340,
-//            contained: 58,
-//            longitude: -118.451917,
-//            latitude: 34.679402,
-//            url: "https://www.fire.ca.gov/incidents/2020/8/12/lake-fire/"
-        )
-        
-        FireMapView(fireData: fire)
-            .environmentObject(FireBackend())
     }
 }

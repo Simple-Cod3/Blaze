@@ -11,13 +11,13 @@ import SwiftUI
 /// Manages the fires behinds the scenes and updates UI accordingly
 class FireBackend: ObservableObject {
     // MARK: - Attributes
-
+    
     @Published var fires = [ForestFire]()
     @Published var failed = false
     @Published var progress = Progress()
     
     // MARK: - Init Function
-
+    
     init(fires: [ForestFire]? = nil) {
         if let fires = fires {
             self.fires = fires

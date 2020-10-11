@@ -11,9 +11,7 @@ struct ProgressBarView: View {
     @Binding var progressObj: Progress
     @Binding var progress: Double
     @Binding var done: Bool
-    @State var timer = Timer
-        .publish(every: 0.1, on: .main, in: .common)
-        .autoconnect()
+    @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var text: String
     
