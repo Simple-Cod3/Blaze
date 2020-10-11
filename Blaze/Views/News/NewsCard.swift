@@ -51,6 +51,12 @@ struct NewsCard: View {
                 show = true
             }
         }
+<<<<<<< Updated upstream
+=======
+            .background(Color(.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+            .padding(.horizontal, 20)
+>>>>>>> Stashed changes
     }
 }
 

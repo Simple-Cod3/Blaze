@@ -39,6 +39,7 @@ struct NewsView: View {
     
     var body: some View {
         ModalPresenter {
+<<<<<<< Updated upstream
             if done {
                 ZStack(alignment: .top) {
                     ScrollView {
@@ -62,6 +63,16 @@ struct NewsView: View {
                                     ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
                                         HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "Find the nearest fire stations")
                                     }.buttonStyle(CardButtonStyle())
+=======
+            if news.loaded {
+                ScrollView {
+                    VStack(spacing: 20) {
+                        HStack {
+                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
+                            Spacer()
+                        }
+                            .padding(.vertical, 20)
+>>>>>>> Stashed changes
 
                                     ModalLink(destination: GlossaryView()) {
                                         HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Learn wildire terms")
