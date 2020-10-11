@@ -28,14 +28,14 @@ struct AQCard: View {
             Text(date)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-                .opacity(0.5)
-                
-            
+                .foregroundColor(.secondary)
+
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("Ozone")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
                     
                     Text(ozone)
                         .font(.largeTitle)
@@ -47,7 +47,7 @@ struct AQCard: View {
                 Text(ozoneCaption)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .opacity(0.5)
+                    .foregroundColor(.secondary)
             }
             
             HStack(alignment: .top) {
@@ -55,18 +55,19 @@ struct AQCard: View {
                     Text("Particulate Matter")
                         .font(.system(size: 20))
                         .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
                     
-                    Text(primaryPollutantCaption)
+                    Text(primaryPollutant)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 }
                 
                 Spacer()
                 
-                Text(primaryPollutant)
+                Text(primaryPollutantCaption)
                     .font(.body)
                     .fontWeight(.semibold)
-                    .opacity(0.5)
+                    .foregroundColor(.secondary)
             }
         }
         .padding(15)
