@@ -124,8 +124,8 @@ struct FullFireMapView: View {
                 Image(systemName: "location.fill")
             })
     }
+    
     func setCenter(option : OPTIONS){
-        var center : MKCoordinateRegion
         var tempLat = coordinateRegion.center.latitude
         var tempLong = coordinateRegion.center.longitude
         switch option{
@@ -134,15 +134,14 @@ struct FullFireMapView: View {
             case OPTIONS.RIGHT: tempLong = centerLong + (radius - 1)
             case OPTIONS.LEFT: tempLong = centerLong - (radius - 1)
             default: break
-                
         }
-        center = MKCoordinateRegion(
+        
+        withAnimation{
+            self.coordinateRegion = MKCoordinateRegion(
                 center: .init(latitude: tempLat, longitude: tempLong),
             span: .init(latitudeDelta: 7.0, longitudeDelta: 7.0))
-
-        withAnimation{
-            self.coordinateRegion = center
         }
+        
         free = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             free = true
