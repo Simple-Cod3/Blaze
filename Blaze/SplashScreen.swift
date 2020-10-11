@@ -89,7 +89,7 @@ struct SplashScreen: View {
                 }
             }
         }
-        .padding(.horizontal, 40)
+        .padding(.horizontal, 20)
         .edgesIgnoringSafeArea(.bottom)
         
     }

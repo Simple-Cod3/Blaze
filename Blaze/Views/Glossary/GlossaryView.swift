@@ -10,63 +10,95 @@ import ModalView
 import SwiftUIListSeparator
 
 struct GlossaryView: View {
-    @State var title = "Glossary"
-    @State var description = "Tap on any word below to view it's definition."
-    @State var on: [String : Bool]
-    
-    var glossary = GlossaryDatabase.terms
-    
-    init() {
-        var termsToBool: [String : Bool] = [:]
+    @ObservedObject var bar = SearchBar()
+    @State var wordsList = [Term]()
         
-        for key in Array(GlossaryDatabase.terms.keys) {
-            termsToBool[key] = false
+    private var terms = GlossaryDatabase.getAllWords().sorted()
+    
+    private func getWords() {
+        DispatchQueue.main.async {
+            let query = bar.text.lowercased()
+            
+            self.wordsList = self.terms.filter {
+                query.isEmpty ||
+                $0.id.lowercased().contains(query)
+            }.sorted()
         }
-        
-        self._on = State(initialValue: termsToBool)
-    }
-    
-    func getStuff(_ key: String) -> Bool {
-        return on[key]!
     }
     
     var body: some View {
         ModalPresenter {
-            List {
-                Header(title: title, desc: description, padding: 10)
-                Spacer()
-                
-                ForEach(Array(on.keys).sorted(), id: \.self) { key in
-                    ExpandAlphabetView(key: key)
+            NavigationView {
+                List {
+                    if bar.text != "" {
+                        ForEach(terms) { term in
+                            ExpandAlphabetView(key: term.id)
+                        }
+                        .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20))
+                    } else {
+                        ForEach(wordsList) { word in
+                            NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition).padding(.vertical, 50)}
+                                    .navigationBarTitle("Term", displayMode: .inline)
+                            ) {
+                                Text(word.id)
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
                 }
-                .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20))
+                    .listSeparatorStyle(.none)
+                    .navigationBarTitle(Text("Glossary").font(.system(size: 80)), displayMode: .large)
+                    .add(bar)
             }
-            .listSeparatorStyle(.none)
         }
     }
 }
 
 struct ExpandAlphabetView: View {
     @State var expand = false
+    @State var show = false
     var key: String
     
     var glossary = GlossaryDatabase.terms
     
     var body: some View {
-        DisclosureGroup(
-            isExpanded: $expand,
-            content: {
-                ForEach(glossary[key]!) { term in
-                    WordCard(term: term)
+        NavigationLink(
+            destination:
+                ScrollView {
+                    VStack(spacing: 20) {
+                        (Text(key.uppercased()).foregroundColor(.blaze) +
+                            Text(key.lowercased()).foregroundColor(Color.blaze.opacity(0.3)))
+                            .font(.system(size: 80))
+                            .bold()
+                            .fixedSize()
+                            .padding(.bottom, 40)
+                        
+                        ForEach(glossary[key]!) { term in
+                            WordCard(term: term)
+                                .padding(.horizontal, 20)
+                        }
+                    }
+                }.navigationBarTitle("", displayMode: .large)
+        ) {
+            HStack {
+                (Text(key.uppercased()).foregroundColor(.blaze) +
+                    Text(key.lowercased()).foregroundColor(Color.blaze.opacity(0.3)))
+                    .font(.system(size: 50))
+                    .bold()
+                    .fixedSize()
+                    .padding(.trailing, 40)
+                Spacer()
+                ForEach(glossary[key]!.prefix(2)) { term in
+                    Text(term.id)
+                        .font(.callout)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
                 }
-            },
-            label: {
-                HStack(alignment: .bottom) {
-                    Header(title: key.capitalized + key)
-                    Spacer()
-                }
-            }
-        )
+            }.padding(.leading, 20)
+        }
     }
 }
 
