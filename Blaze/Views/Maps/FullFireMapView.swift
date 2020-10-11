@@ -11,6 +11,7 @@ import MapKit
 import ModalView
 
 struct FullFireMapView: View {
+    
     @EnvironmentObject var fireBackend: FireBackend
     @State var coordinateRegion = MKCoordinateRegion(
         center: .init(latitude: 36.7783, longitude: -119.4),
@@ -19,7 +20,10 @@ struct FullFireMapView: View {
     
     @State var showLabels = false
     @State var show = false
-    
+    @State var centerLat = 36.7783
+    @State var centerLong = -119.4
+    @State var free = true
+    let radius = 7.0
     private func dismiss() {
         show = false
     }
@@ -27,12 +31,11 @@ struct FullFireMapView: View {
     private func moveBack() {
         withAnimation {
             self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: 36.7783, longitude: -119.4),
+                center: .init(latitude: centerLat, longitude: centerLong),
                 span: .init(latitudeDelta: 7, longitudeDelta: 7)
             )
         }
     }
-
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Map(
@@ -61,6 +64,34 @@ struct FullFireMapView: View {
             }
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
+                .onChange(of: coordinateRegion) { region in
+                    if free {
+                        if region.span.longitudeDelta > 16 &&
+                           region.span.latitudeDelta > 16 {
+                            coordinateRegion.span.latitudeDelta = 15
+                            coordinateRegion.span.longitudeDelta = 15
+                        }
+                      //  print(coordinateRegion.center.latitude)
+                      //  print(coordinateRegion.center.longitude)
+                        
+                        if region.center.latitude > centerLat + radius{
+                            setCenter(option : OPTIONS.TOP)
+                        }
+                        else if region.center.latitude < centerLat - radius{
+                            setCenter(option : OPTIONS.DOWN)
+                        }
+                        
+                        if region.center.longitude > centerLong + radius{
+                            setCenter(option : OPTIONS.RIGHT)
+                        }
+                        else if region.center.longitude < centerLong - radius{
+                            setCenter(option : OPTIONS.LEFT)
+                        }
+                        
+                    }
+                       
+                }
+            
             LazyVStack(alignment: .leading, spacing: 10) {
                 Button(action: { showLabels.toggle() }) {
                     Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
@@ -92,5 +123,36 @@ struct FullFireMapView: View {
             .navigationBarItems(trailing: Button(action: moveBack) {
                 Image(systemName: "location.fill")
             })
+    }
+    func setCenter(option : OPTIONS){
+        var center : MKCoordinateRegion
+        var tempLat = coordinateRegion.center.latitude
+        var tempLong = coordinateRegion.center.longitude
+        switch option{
+            case OPTIONS.TOP: tempLat = centerLat + (radius - 1)
+            case OPTIONS.DOWN: tempLat = centerLat - (radius - 1)
+            case OPTIONS.RIGHT: tempLong = centerLong + (radius - 1)
+            case OPTIONS.LEFT: tempLong = centerLong - (radius - 1)
+            default: break
+                
+        }
+        center = MKCoordinateRegion(
+                center: .init(latitude: tempLat, longitude: tempLong),
+            span: .init(latitudeDelta: 7.0, longitudeDelta: 7.0))
+
+        withAnimation{
+            self.coordinateRegion = center
+        }
+        free = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            free = true
+        }
+    }
+    enum OPTIONS : Int {
+         case TOP = 1
+        case DOWN = 2
+        case RIGHT = 3
+        case LEFT = 4
+        
     }
 }
