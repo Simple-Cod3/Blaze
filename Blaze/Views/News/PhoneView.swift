@@ -113,30 +113,32 @@ struct PhoneView: View {
             List {
                 Section {
                     LazyVStack(alignment: .leading, spacing: 20) {
-                        HStack {
+                        VStack(alignment: .leading) {
                             Text("Facilities")
-                                .font(.largeTitle)
+                                .font(.system(size: 60))
                                 .fontWeight(.bold)
                                 .foregroundColor(.blaze)
                             Spacer()
 
-                            ForEach(choices.indices) { i in
-                                Button(action: {
-                                    if i != mode {
-                                        mode = i
-                                        sortNums()
+                            HStack {
+                                ForEach(choices.indices) { i in
+                                    Button(action: {
+                                        if i != mode {
+                                            mode = i
+                                            sortNums()
+                                        }
+                                    }) {
+                                        Image(systemName: choices[i])
+                                            .font(.system(size: 30))
+                                            .foregroundColor(i == mode ? choiceColors[i] : Color(.tertiaryLabel))
+                                            .scaleEffect(show ? 1 : 0)
+                                            .animation(
+                                                Animation.spring(response: 0.5 + Double(i)*0.1, dampingFraction: 0.5)
+                                                    .delay(0.8)
+                                            )
                                     }
-                                }) {
-                                    Image(systemName: choices[i])
-                                        .font(.system(size: 30))
-                                        .foregroundColor(i == mode ? choiceColors[i] : Color(.tertiaryLabel))
-                                        .scaleEffect(show ? 1 : 0)
-                                        .animation(
-                                            Animation.spring(response: 0.5 + Double(i)*0.1, dampingFraction: 0.5)
-                                                .delay(0.8)
-                                        )
-                                }
                                     .buttonStyle(PlainButtonStyle())
+                                }
                             }
                         }
 
@@ -191,8 +193,6 @@ struct PhoneView: View {
                 }
 
             }
-//            .listStyle(GroupedListStyle())
-//            .background(Color(.tertiarySystemGroupedBackground).edgesIgnoringSafeArea(.bottom))
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: dismiss) {
@@ -237,16 +237,16 @@ struct PhoneView: View {
                 }
                 .padding(.vertical, 10)
             }
-                .contextMenu {
-                    Button(action: { addPin(number) }) {
-                        HStack {
-                            Text("Pin Facility")
-                            Image(systemName: "pin.circle.fill")
-                                .foregroundColor(.yellow)
-                                .font(.system(size: 25))
-                        }
+            .contextMenu {
+                Button(action: { addPin(number) }) {
+                    HStack {
+                        Text("Pin Facility")
+                        Image(systemName: "pin.circle.fill")
+                            .foregroundColor(.yellow)
+                            .font(.system(size: 25))
                     }
                 }
+            }
         }
     }
 }

@@ -43,11 +43,15 @@ struct NewsView: View {
                 ZStack(alignment: .top) {
                     ScrollView {
                         VStack(spacing: 20) {
+                            Image("speaker").resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 250)
+                                .padding(35)
+                            
                             HStack {
                                 Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                                 Spacer()
                             }
-                                .padding(.vertical, 20)
 
                             HStack {
                                 Text("Resources")
@@ -56,17 +60,17 @@ struct NewsView: View {
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     
                                     ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                                        HorizontalCard(imageString: "phone", title: "Emergency Numbers", subtitle: "Find the nearest fire stations")
+                                        HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
                                     }.buttonStyle(CardButtonStyle())
 
                                     ModalLink(destination: GlossaryView()) {
-                                        HorizontalCard(imageString: "glossary", title: "Glossary", subtitle: "Learn wildire terms")
+                                        HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
                                     }.buttonStyle(CardButtonStyle())
-                                    
                                 }.padding(.horizontal, 20)
                             }
                             
@@ -77,6 +81,7 @@ struct NewsView: View {
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }
+                            
                             ForEach(news.newsList.prefix(newsShown)) { news in
                                 ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
                                     NewsCard(news: news)
@@ -115,11 +120,11 @@ struct NewsView: View {
                 )
             }
         }
-            .onAppear {
-                if news.loaded {
-                    done = true
-                }
+        .onAppear {
+            if news.loaded {
+                done = true
             }
+        }
     }
 }
 

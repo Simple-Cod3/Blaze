@@ -41,7 +41,7 @@ struct GlossaryView: View {
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20))
             }
-                .listSeparatorStyle(.none)
+            .listSeparatorStyle(.none)
         }
     }
 }
@@ -58,7 +58,6 @@ struct ExpandAlphabetView: View {
             content: {
                 ForEach(glossary[key]!) { term in
                     WordCard(term: term)
-                        .padding(.horizontal, 20)
                 }
             },
             label: {
