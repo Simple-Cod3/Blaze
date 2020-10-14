@@ -238,12 +238,12 @@ struct SplashScreen: View {
                 Circle().fill(Color.blaze.opacity(0.7))
                     .frame(width: 120, height: 120)
                     .scaleEffect(areaScale(areaUnits))
-                    .animation(.spring())
+                    .animation(.spring(response: 1), value: areaUnits)
                 
                 Circle().fill(Color.blaze)
                     .frame(width: 100, height: 100)
                     .scaleEffect(areaScale(areaUnits))
-                    .animation(.spring(response: 1))
+                    .animation(.spring(response: 1.5), value: areaUnits)
             }.opacity(page == 4 ? 1 : 0)
             
             Spacer()
