@@ -188,13 +188,6 @@
 			path = Glossary;
 			sourceTree = "<group>";
 		};
-		E9ABC4362532C3C500E2DE49 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		E9ABC4372532C3D100E2DE49 /* Phone */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +249,6 @@
 				E9AF017824FDC0BF0058C184 /* Fires */,
 				E985F5372503781300A3BA83 /* Glossary */,
 				E9F222E92500C49E00EC5A06 /* Maps */,
-				E9ABC4362532C3C500E2DE49 /* New Group */,
 				E9AF017B24FDC0E20058C184 /* News */,
 				E9ABC4372532C3D100E2DE49 /* Phone */,
 				E9AF017A24FDC0DC0058C184 /* Search */,
