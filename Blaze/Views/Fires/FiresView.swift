@@ -38,7 +38,7 @@ struct FiresView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
-                                        .fontWeight(.semibold)
+                                        .fontWeight(.medium)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
@@ -50,7 +50,7 @@ struct FiresView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "tray.2")) Data")
-                                        .fontWeight(.semibold)
+                                        .fontWeight(.medium)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
@@ -113,7 +113,7 @@ struct FiresView: View {
                         HStack {
                             Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in this app only as a reference. Blaze is not meant to provide up to the minute evacuation or fire behavior information.")
                                 .font(.caption)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .padding([.horizontal, .bottom], 20)
                             Spacer()

@@ -24,13 +24,13 @@ struct Header: View {
         LazyVStack(alignment: .leading, spacing: 15) {
             Text(title)
                 .font(.system(size: 60))
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
                 .foregroundColor(hColor)
             
             if let desc = desc {
                 Text(desc)
                     .font(.body)
-                    .fontWeight(.semibold)
+                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
             }
         }

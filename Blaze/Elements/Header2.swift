@@ -13,14 +13,14 @@ struct Header2: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(title)
                     .font(.title)
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                 
                 if let description = description {
                     Text(description)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                 }
             }

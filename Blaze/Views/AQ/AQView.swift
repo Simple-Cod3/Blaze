@@ -21,7 +21,7 @@ struct AQView: View {
                            color != -1
                         {
                             determineColor(cat: color)
-                                .frame(width: 280, height: 280)
+                                .frame(width: 270, height: 270)
                                 .clipShape(Circle())
                                 .scaleEffect(showCircle ? 1.0 : 0.5)
                                 .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
@@ -29,7 +29,7 @@ struct AQView: View {
                         }
                         
                         AQMeter(airQ: forecast.forecasts[1])
-                            .padding(.vertical, 70)
+                            .padding(.vertical, 75)
                             .scaleEffect(showCircle ? 1.0 : 0)
                             .onAppear {
                                 forecast.refreshForecastList()
