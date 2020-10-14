@@ -31,17 +31,17 @@ struct UnitsCard: View {
                     Text(units[i]).tag(i)
                 }
             }
-                .pickerStyle(SegmentedPickerStyle())
-                .onChange(of: selection, perform: { i in
-                    setUnit(unit: units[i])
-                    print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
-                })
-                
+            .pickerStyle(SegmentedPickerStyle())
+            .onChange(of: selection, perform: { i in
+                setUnit(unit: units[i])
+                print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
+            })
+            
         }
-            .padding(20)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-            .padding(.horizontal, 20)
+        .padding(20)
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .padding(.horizontal, 20)
     }
 }
 

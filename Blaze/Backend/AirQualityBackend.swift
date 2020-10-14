@@ -16,7 +16,7 @@ class AirQualityBackend: ObservableObject {
     
     @ObservedObject var locationProvider = LocationProvider()
     var progress = Progress()
-
+    
     init(forecasts: [AirQuality]? = nil) {
         do {
             locationProvider.lm.allowsBackgroundLocationUpdates = false

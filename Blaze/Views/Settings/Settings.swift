@@ -34,14 +34,14 @@ struct Settings: View {
                     CreditsView()
                 }
             }
-                .padding(.bottom, 20)
+            .padding(.bottom, 20)
         }
-            .navigationBarTitle("", displayMode: .inline)
-            .onAppear {
-                withAnimation(Animation.spring().delay(0.2)) {
-                    show = true
-                }
+        .navigationBarTitle("", displayMode: .inline)
+        .onAppear {
+            withAnimation(Animation.spring().delay(0.2)) {
+                show = true
             }
+        }
     }
 }
 

@@ -11,9 +11,16 @@ import SwiftUIListSeparator
 
 struct GlossaryView: View {
     @ObservedObject var bar = SearchBar()
-    @State var wordsList = [Term]()
-        
+    @State private var wordsList = [Term]()
+    
+    private var letters = Array(GlossaryDatabase.terms.keys).sorted()
     private var terms = GlossaryDatabase.getAllWords().sorted()
+    
+    var dismiss: () -> ()
+    
+    init(dismiss: @escaping () -> ()) {
+        self.dismiss = dismiss
+    }
     
     private func getWords() {
         DispatchQueue.main.async {
@@ -30,15 +37,20 @@ struct GlossaryView: View {
         ModalPresenter {
             NavigationView {
                 List {
-                    if bar.text != "" {
-                        ForEach(terms) { term in
-                            ExpandAlphabetView(key: term.id)
+                    if bar.text == "" {
+                        ForEach(letters, id: \.self) { letter in
+                            ExpandAlphabetView(key: letter, dismiss: dismiss)
                         }
-                        .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20))
+                        .listRowInsets(
+                            EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 20)
+                        )
                     } else {
                         ForEach(wordsList) { word in
-                            NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition).padding(.vertical, 50)}
-                                    .navigationBarTitle("Term", displayMode: .inline)
+                            NavigationLink(
+                                destination: ScrollView {
+                                    Header(title: word.id, desc: word.definition)
+                                        .padding(.vertical, 50)
+                                }.navigationBarTitle("Term", displayMode: .inline)
                             ) {
                                 Text(word.id)
                                     .font(.headline)
@@ -46,12 +58,20 @@ struct GlossaryView: View {
                                     .foregroundColor(.secondary)
                             }
                         }
+                        .onChange(of: bar.text) { _ in
+                            self.getWords()
+                        }
                     }
                 }
                     .listSeparatorStyle(.none)
                     .navigationBarTitle(Text("Glossary").font(.system(size: 80)), displayMode: .large)
+                    .navigationBarItems(trailing: Button(action: dismiss) {
+                        CloseModalButton()
+                    })
                     .add(bar)
             }
+        }.onAppear {
+            self.getWords()
         }
     }
 }
@@ -59,7 +79,9 @@ struct GlossaryView: View {
 struct ExpandAlphabetView: View {
     @State var expand = false
     @State var show = false
+    
     var key: String
+    var dismiss: () -> ()
     
     var glossary = GlossaryDatabase.terms
     
@@ -80,7 +102,11 @@ struct ExpandAlphabetView: View {
                                 .padding(.horizontal, 20)
                         }
                     }
-                }.navigationBarTitle("", displayMode: .large)
+                }
+                .navigationBarTitle("", displayMode: .large)
+                .navigationBarItems(trailing: Button(action: dismiss) {
+                    CloseModalButton()
+                })
         ) {
             HStack {
                 (Text(key.uppercased()).foregroundColor(.blaze) +
@@ -90,20 +116,17 @@ struct ExpandAlphabetView: View {
                     .fixedSize()
                     .padding(.trailing, 40)
                 Spacer()
-                ForEach(glossary[key]!.prefix(2)) { term in
-                    Text(term.id)
-                        .font(.callout)
-                        .fontWeight(.medium)
-                        .foregroundColor(.secondary)
-                        .lineLimit(1)
-                }
+                
+                (Text(glossary[key]![0].id)
+                    .font(.callout)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                + Text(" • " + glossary[key]![1].id)
+                    .font(.callout)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                ).lineLimit(1)
             }.padding(.leading, 20)
         }
-    }
-}
-
-struct GlossaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        GlossaryView()
     }
 }

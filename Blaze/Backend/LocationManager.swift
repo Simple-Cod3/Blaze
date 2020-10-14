@@ -53,7 +53,7 @@ public class LocationProvider: NSObject, ObservableObject {
     /// The authorization status for CoreLocation.
     @Published public var authorizationStatus: CLAuthorizationStatus?
     
-
+    
     /// A function that is executed when the `CLAuthorizationStatus` changes to `Denied`.
     public var onAuthorizationStatusDenied : ()->Void = {presentLocationSettingsAlert()}
     

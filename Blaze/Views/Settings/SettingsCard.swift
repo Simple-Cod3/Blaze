@@ -16,7 +16,7 @@ struct SettingsCardLink<Content: View>: View {
                 .font(.body)
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
-
+            
             Divider()
                 .padding(.bottom, 5)
             
@@ -56,9 +56,9 @@ struct SettingsCardCustom<Content: View>: View {
             
             content()
         }
-            .padding(20)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-            .padding(.horizontal, 20)
+        .padding(20)
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .padding(.horizontal, 20)
     }
 }

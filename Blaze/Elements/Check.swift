@@ -8,32 +8,40 @@
 import SwiftUI
 
 struct Check: View {
-    @State var show = false
+    @State private var show = false
     @State var yes: Bool
     @State var interval: Double
+    
+    var size: CGFloat
+    
+    init(yes: Bool, interval: Double, size: CGFloat = 25) {
+        self._yes = State(initialValue: yes)
+        self._interval = State(initialValue: interval)
+        self.size = size
+    }
     
     var body: some View {
         Group {
             if yes {
                 ZStack {
-                    Color.red.opacity(0.2).frame(width: 25)
+                    Color.red.opacity(0.2).frame(width: size)
                         .clipShape(Circle())
                         .scaleEffect(show ? 1 : 0)
                         .animation(.spring())
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 20))
+                        .font(.system(size: size*4/5))
                         .foregroundColor(Color.red.opacity(0.7))
                         .scaleEffect(show ? 1 : 0)
                         .animation(.spring(response: 1))
                 }
             } else {
                 ZStack {
-                    Color.green.opacity(0.2).frame(width: 25)
+                    Color.green.opacity(0.2).frame(width: size)
                         .clipShape(Circle())
                         .scaleEffect(show ? 1 : 0)
                         .animation(.spring())
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 20))
+                        .font(.system(size: size*4/5))
                         .foregroundColor(Color.green.opacity(0.7))
                         .scaleEffect(show ? 1 : 0)
                         .animation(.spring(response: 1))

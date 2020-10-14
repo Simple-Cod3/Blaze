@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		27313E4C250ACD0F009876FA /* AirQualityBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27313E4B250ACD0F009876FA /* AirQualityBackend.swift */; };
 		279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
-		279FE6FA2521438F004AC147 /* StringCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F92521438F004AC147 /* StringCard.swift */; };
 		279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
 		27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB5F9125098DFD0071F3FF /* AirQuality.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
@@ -39,6 +38,7 @@
 		E97E26E42508535200B939F3 /* SplashScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E32508535200B939F3 /* SplashScreenConstants.swift */; };
 		E985F5362503752000A3BA83 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5352503752000A3BA83 /* FormButton.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
+		E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
 		E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015424FDB8DD0058C184 /* AppDelegate.swift */; };
 		E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */; };
 		E9AF015924FDB8DD0058C184 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015824FDB8DD0058C184 /* ContentView.swift */; };
@@ -55,7 +55,7 @@
 		E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF018324FDC3800058C184 /* NewsCard.swift */; };
 		E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
 		E9AF019524FDEC700058C184 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF019424FDEC700058C184 /* FeedKit */; };
-		E9CE22A52502F48700929D13 /* NumberExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A42502F48700929D13 /* NumberExtension.swift */; };
+		E9CE22A52502F48700929D13 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A42502F48700929D13 /* Extensions.swift */; };
 		E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* MiniFireCard.swift */; };
 		E9E31A8A250E958B007FF855 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E31A89250E958B007FF855 /* Progress.swift */; };
 		E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EC25031681006038FD /* ButtonStyles.swift */; };
@@ -82,7 +82,6 @@
 /* Begin PBXFileReference section */
 		27313E4B250ACD0F009876FA /* AirQualityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityBackend.swift; sourceTree = "<group>"; };
 		279FE6F725213216004AC147 /* PhoneBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBackend.swift; sourceTree = "<group>"; };
-		279FE6F92521438F004AC147 /* StringCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCard.swift; sourceTree = "<group>"; };
 		279FE6FD25214AAE004AC147 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		E97E26E32508535200B939F3 /* SplashScreenConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenConstants.swift; sourceTree = "<group>"; };
 		E985F5352503752000A3BA83 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
+		E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInfoView.swift; sourceTree = "<group>"; };
 		E9AF015124FDB8DD0058C184 /* Blaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AF015424FDB8DD0058C184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		E9AF017324FDBC870058C184 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E9AF018324FDC3800058C184 /* NewsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCard.swift; sourceTree = "<group>"; };
 		E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseModalButton.swift; sourceTree = "<group>"; };
-		E9CE22A42502F48700929D13 /* NumberExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberExtension.swift; sourceTree = "<group>"; };
+		E9CE22A42502F48700929D13 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E9CE22A6250308F900929D13 /* MiniFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCard.swift; sourceTree = "<group>"; };
 		E9E31A89250E958B007FF855 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		E9E31A93250EDD41007FF855 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -167,7 +167,6 @@
 			children = (
 				6DA2FF2F2506AF6400C86F0C /* Settings.swift */,
 				6DA2FF352506B55E00C86F0C /* SettingsCard.swift */,
-				279FE6F92521438F004AC147 /* StringCard.swift */,
 				6DA2FF312506B00400C86F0C /* UnitsCard.swift */,
 			);
 			path = Settings;
@@ -187,6 +186,22 @@
 				E985F5382503781E00A3BA83 /* GlossaryView.swift */,
 			);
 			path = Glossary;
+			sourceTree = "<group>";
+		};
+		E9ABC4362532C3C500E2DE49 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E9ABC4372532C3D100E2DE49 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
+				E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */,
+			);
+			path = Phone;
 			sourceTree = "<group>";
 		};
 		E9AF014824FDB8DD0058C184 = {
@@ -209,19 +224,19 @@
 		E9AF015324FDB8DD0058C184 /* Blaze */ = {
 			isa = PBXGroup;
 			children = (
-				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
-				E9AF016224FDB8DE0058C184 /* Info.plist */,
 				E9AF016F24FDBC120058C184 /* Backend */,
 				E9AF017224FDBC7B0058C184 /* Classes and Extensions */,
 				E9AF019024FDE5DF0058C184 /* Elements */,
 				E9AF015C24FDB8DE0058C184 /* Preview Content */,
 				E9AF016824FDBBDA0058C184 /* Views */,
+				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
+				E9AF016224FDB8DE0058C184 /* Info.plist */,
+				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
 				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
 				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
 				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
 				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
 				E97E26E32508535200B939F3 /* SplashScreenConstants.swift */,
-				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
 			);
 			path = Blaze;
 			sourceTree = "<group>";
@@ -241,7 +256,9 @@
 				E9AF017824FDC0BF0058C184 /* Fires */,
 				E985F5372503781300A3BA83 /* Glossary */,
 				E9F222E92500C49E00EC5A06 /* Maps */,
+				E9ABC4362532C3C500E2DE49 /* New Group */,
 				E9AF017B24FDC0E20058C184 /* News */,
+				E9ABC4372532C3D100E2DE49 /* Phone */,
 				E9AF017A24FDC0DC0058C184 /* Search */,
 				6DA2FF2E2506AF5400C86F0C /* Settings */,
 			);
@@ -269,7 +286,7 @@
 				E9F222E72500886800EC5A06 /* DateExtension.swift */,
 				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 				E9AF017324FDBC870058C184 /* News.swift */,
-				E9CE22A42502F48700929D13 /* NumberExtension.swift */,
+				E9CE22A42502F48700929D13 /* Extensions.swift */,
 			);
 			path = "Classes and Extensions";
 			sourceTree = "<group>";
@@ -300,7 +317,6 @@
 				E9073CA425214AB200FE43C2 /* HorizontalCard.swift */,
 				E9AF018324FDC3800058C184 /* NewsCard.swift */,
 				E9AF016D24FDBC090058C184 /* NewsView.swift */,
-				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
 				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 			);
 			path = News;
@@ -311,6 +327,7 @@
 			children = (
 				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
 				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
+				E9073CAB2529096600FE43C2 /* Check.swift */,
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E985F5352503752000A3BA83 /* FormButton.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
@@ -321,7 +338,6 @@
 				E9E31A89250E958B007FF855 /* Progress.swift */,
 				E903803C2518749C0043DC53 /* StatusBg.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
-				E9073CAB2529096600FE43C2 /* Check.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -456,6 +472,7 @@
 				E97E26DB25082B3800B939F3 /* FullInformationView.swift in Sources */,
 				6DF73D7F2502AEAD0051E4A2 /* Header.swift in Sources */,
 				E941692D2504B2D800DEFCB2 /* CreditsView.swift in Sources */,
+				E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */,
 				E94C30C025075FF20019E1E4 /* Header2.swift in Sources */,
 				E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */,
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
@@ -466,7 +483,7 @@
 				E9AF016C24FDBBF80058C184 /* SearchView.swift in Sources */,
 				6DF6590C2510684100D47118 /* DataView.swift in Sources */,
 				E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */,
-				E9CE22A52502F48700929D13 /* NumberExtension.swift in Sources */,
+				E9CE22A52502F48700929D13 /* Extensions.swift in Sources */,
 				E941692B250495F100DEFCB2 /* InfoButton.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
@@ -474,7 +491,6 @@
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E985F5362503752000A3BA83 /* FormButton.swift in Sources */,
-				279FE6FA2521438F004AC147 /* StringCard.swift in Sources */,
 				E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */,
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
 				6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */,
@@ -650,7 +666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ygg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -676,7 +692,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = ygg;
 				PRODUCT_NAME = "$(TARGET_NAME)";

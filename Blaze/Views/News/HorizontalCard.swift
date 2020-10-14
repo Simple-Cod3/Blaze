@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HorizontalCard: View {
-    @State var show = false
+    @State private var show = false
     
-    var title: String
-    var subtitle: String
+    private var title: String
+    private var subtitle: String
     
     init(newsObject: News, subtitle: String) {
         self.title = newsObject.id
@@ -37,6 +37,6 @@ struct HorizontalCard: View {
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
         .padding(.leading, show ? 0 : UIScreen.main.bounds.maxX)
-        .onAppear { withAnimation(.spring()) { show = true } }
+        .onAppear {withAnimation(.spring()) { show = true }}
     }
 }

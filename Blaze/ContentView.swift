@@ -17,7 +17,7 @@ public func setUnit(unit: String) {
 }
 
 struct ContentView: View {
-    @AppStorage("welcomed") var welcomed = false
+    @AppStorage("welcomed") private var welcomed = false
     
     init() {
         /// Preload the webview for faster initial loading times

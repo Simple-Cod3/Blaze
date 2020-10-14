@@ -35,10 +35,10 @@ struct ProfileCircle: View {
                 }
                 Spacer()
             }
-                .padding(.vertical, 20)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                .padding(.horizontal, 20)
+            .padding(.vertical, 20)
+            .background(Color.blaze)
+            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+            .padding(.horizontal, 20)
         }.buttonStyle(CreditsButtonStyle())
     }
 }

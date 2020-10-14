@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PhoneView: View {
-
     // Run first when appear (sets the state)
     private func decodePin() {
         let pinned = UserDefaults.standard.stringArray(forKey: "pinnedFacilities") ?? [String]()
@@ -38,21 +37,21 @@ struct PhoneView: View {
     }
     
     // When envoke remove
-    func removePin(indexSet: IndexSet) {
+    private func removePin(indexSet: IndexSet) {
         pinned.remove(atOffsets: indexSet)
         syncStates()
     }
     
     // Updates UserDefaults
-    func syncStates() {
+    private func syncStates() {
         UserDefaults.standard.setValue(pinned.map{$0.name}, forKey: "pinnedFacilities")
     }
     
-    @State var pinned = [PhoneNumber]()
+    @State private var pinned = [PhoneNumber]()
     
     @EnvironmentObject var numbers: PhoneBackend
     @ObservedObject var loc = LocationProvider()
-    @State var text = ""
+    @State private var text = ""
     
     var dismiss: () -> ()
     
@@ -61,6 +60,7 @@ struct PhoneView: View {
     private var labels = ["Nearest to you", "Alphabetically", "By Pinned Facilities"]
     
     @State var sortedPhones = [PhoneNumber]()
+    
     private func sortNums() {
         DispatchQueue.main.async {
             sortedPhones = Array(
@@ -84,17 +84,17 @@ struct PhoneView: View {
                     })
                     .filter({
                         text == "" ||
-                        ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                        ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                        ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                            ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
+                            ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
+                            ($0.name?.lowercased() ?? "???").contains(text.lowercased())
                     })
                     .prefix(text == "" ? 5 : numbers.numbers.count)
             )
         }
     }
     
-    @State var mode = 0
-    @State var show = false
+    @State private var mode = 0
+    @State private var show = false
     
     init(dismiss: @escaping () -> ()) {
         self.dismiss = dismiss
@@ -107,7 +107,7 @@ struct PhoneView: View {
             loc.requestAuthorization()
         }
     }
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -119,7 +119,7 @@ struct PhoneView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(.blaze)
                             Spacer()
-
+                            
                             HStack {
                                 ForEach(choices.indices) { i in
                                     Button(action: {
@@ -141,7 +141,7 @@ struct PhoneView: View {
                                 }
                             }
                         }
-
+                        
                         HStack {
                             Image(systemName: "magnifyingglass")
                             TextField("Search", text: $text)
@@ -175,23 +175,23 @@ struct PhoneView: View {
                             ForEach(
                                 pinned.filter({
                                     text == "" ||
-                                    ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                    ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                    ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                                        ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                        ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                        ($0.name?.lowercased() ?? "???").contains(text.lowercased())
                                 })
                             ) { number in
-                                PhoneNumberCell(addPin: addPin, number: number)
+                                PhoneNumberCell(dismiss: dismiss, addPin: addPin, number: number)
                             }.onDelete(perform: removePin)
                         }
                     }
                 } else {
                     Section(header: Text("Sorted \(labels[mode])")) {
                         ForEach(sortedPhones) { number in
-                            PhoneNumberCell(addPin: addPin, number: number)
+                            PhoneNumberCell(dismiss: dismiss, addPin: addPin, number: number)
                         }
                     }
                 }
-
+                
             }
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(
@@ -208,11 +208,13 @@ struct PhoneView: View {
     }
     
     private struct PhoneNumberCell: View {
+        var dismiss: () -> ()
+        
         var addPin: (PhoneNumber) -> ()
         var number: PhoneNumber
         
         var body: some View {
-            NavigationLink (destination: Text("Comming Soon...").font(.headline)) {
+            NavigationLink (destination: PhoneInfoView(dismiss: dismiss, phoneData: number)) {
                 HStack {
                     VStack(alignment: .leading, spacing: 5) {
                         Text(number.name?.replacingOccurrences(of: " CLOSED", with: "") ?? "Unknown Name")
@@ -224,11 +226,11 @@ struct PhoneView: View {
                                     .fontWeight(.medium)
                                     .font(.caption)
                             }
-
+                            
                             Text(number.phoneNumber!)
                                 .fontWeight(.medium)
                                 .font(.caption)
-
+                            
                             Spacer()
                         }.foregroundColor(.secondary)
                     }

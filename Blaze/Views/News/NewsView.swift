@@ -17,7 +17,6 @@ struct NewsView: View {
     
     private enum NewsModals: String, Identifiable {
         var id: String { rawValue }
-        
         case phone, glossary
     }
     
@@ -45,14 +44,14 @@ struct NewsView: View {
                         VStack(spacing: 20) {
                             Image("speaker").resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(height: 250)
+                                .frame(maxWidth: 200)
                                 .padding(35)
                             
                             HStack {
                                 Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                                 Spacer()
                             }
-
+                            
                             HStack {
                                 Text("Resources")
                                     .font(.title)
@@ -63,12 +62,11 @@ struct NewsView: View {
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
-                                    
                                     ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
                                         HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
                                     }.buttonStyle(CardButtonStyle())
-
-                                    ModalLink(destination: GlossaryView()) {
+                                    
+                                    ModalLink(destination: { GlossaryView(dismiss: $0) }) {
                                         HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
                                     }.buttonStyle(CardButtonStyle())
                                 }.padding(.horizontal, 20)
@@ -103,7 +101,7 @@ struct NewsView: View {
                                 }
                             }
                         }// VStack
-                            .padding(.bottom, 20)
+                        .padding(.bottom, 20)
                     }// ScrollView
                     StatusBg()
                 }

@@ -61,7 +61,7 @@ class PhoneBackend: ObservableObject {
     
     @ObservedObject var locationProvider = LocationProvider()
     var progress = Progress()
-
+    
     init(numbers: [PhoneNumber]? = nil) {
         do {
             locationProvider.lm.allowsBackgroundLocationUpdates = false
@@ -115,7 +115,7 @@ class PhoneBackend: ObservableObject {
                     var newNumbers = try jsonDecoder.decode(PhoneNumbers.self, from: data)
                     newNumbers.features = newNumbers.features.filter {
                         $0.attributes.phoneNumber != nil &&
-                        $0.attributes.phoneNumber!.count > 2
+                            $0.attributes.phoneNumber!.count > 2
                     }
                     
                     self.numbers.append(

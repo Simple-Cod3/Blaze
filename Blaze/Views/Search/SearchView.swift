@@ -12,13 +12,13 @@ struct SearchView: View {
     @EnvironmentObject var fireback: FireBackend
     @ObservedObject var searchBar = SearchBar()
     
-    var terms = GlossaryDatabase.getAllWords().sorted()
+    private var terms = GlossaryDatabase.getAllWords().sorted()
     
-    @State var firesList = [ForestFire]()
-    @State var wordsList = [Term]()
+    @State private var firesList = [ForestFire]()
+    @State private var wordsList = [Term]()
     
-    @State var showFires = true
-    @State var showWords = false
+    @State private var showFires = true
+    @State private var showWords = false
     
     private func getFires() {
         DispatchQueue.main.async {
@@ -26,10 +26,10 @@ struct SearchView: View {
             
             self.firesList = self.fireback.fires.filter {
                 query.isEmpty ||
-                $0.name.lowercased().contains(query) ||
-                $0.location.lowercased().contains(query) ||
-                $0.searchKeywords?.lowercased().contains(query) == true ||
-                $0.searchDescription?.lowercased().contains(query) == true
+                    $0.name.lowercased().contains(query) ||
+                    $0.location.lowercased().contains(query) ||
+                    $0.searchKeywords?.lowercased().contains(query) == true ||
+                    $0.searchDescription?.lowercased().contains(query) == true
             }.sorted(by: {$0.name < $1.name})
         }
     }
@@ -40,7 +40,7 @@ struct SearchView: View {
             
             self.wordsList = self.terms.filter {
                 query.isEmpty ||
-                $0.id.lowercased().contains(query)
+                    $0.id.lowercased().contains(query)
             }.sorted()
         }
     }
@@ -89,7 +89,7 @@ struct SearchView: View {
                             content: {
                                 ForEach(wordsList) { word in
                                     NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition).padding(.vertical, 50)}
-                                            .navigationBarTitle("Term", displayMode: .inline)
+                                                    .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)
                                             .font(.headline)
@@ -128,17 +128,17 @@ struct SearchView: View {
                         Image(systemName: "gear")
                             .font(.system(size: 25))
                     })
-                    .navigationBarTitle("Search")
-                    .add(self.searchBar)
+                .navigationBarTitle("Search")
+                .add(self.searchBar)
             }
-                .onChange(of: searchBar.text, perform: { value in
-                    getFires()
-                    getWords()
-                })
-                .onAppear {
-                    getFires()
-                    getWords()
-                }
+            .onChange(of: searchBar.text, perform: { value in
+                getFires()
+                getWords()
+            })
+            .onAppear {
+                getFires()
+                getWords()
+            }
         }
     }
 }
