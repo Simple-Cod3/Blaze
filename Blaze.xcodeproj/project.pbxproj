@@ -332,11 +332,11 @@
 				E985F5352503752000A3BA83 /* FormButton.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
 				E94C30BF25075FF20019E1E4 /* Header2.swift */,
-				E941692A250495F100DEFCB2 /* InfoButton.swift */,
 				6DF73D7A2502A3A90051E4A2 /* InfoCard.swift */,
 				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
 				E9E31A89250E958B007FF855 /* Progress.swift */,
 				E903803C2518749C0043DC53 /* StatusBg.swift */,
+				E941692A250495F100DEFCB2 /* InfoButton.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 			);
 			path = Elements;

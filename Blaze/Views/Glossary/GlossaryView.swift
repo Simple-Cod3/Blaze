@@ -53,7 +53,7 @@ struct GlossaryView: View {
                                 }.navigationBarTitle("Term", displayMode: .inline)
                             ) {
                                 Text(word.id)
-                                    .font(.headline)
+                                    .font(.body)
                                     .fontWeight(.medium)
                                     .foregroundColor(.secondary)
                             }
@@ -64,7 +64,7 @@ struct GlossaryView: View {
                     }
                 }
                     .listSeparatorStyle(.none)
-                    .navigationBarTitle(Text("Glossary").font(.system(size: 80)), displayMode: .large)
+                    .navigationBarTitle(Text("Glossary"), displayMode: .large)
                     .navigationBarItems(trailing: Button(action: dismiss) {
                         CloseModalButton()
                     })

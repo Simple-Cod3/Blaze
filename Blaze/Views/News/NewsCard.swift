@@ -15,7 +15,7 @@ struct NewsCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(news.getTimeAgo().uppercased())
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
                 .font(.caption)
                 .foregroundColor(.white)
                 .padding(5)

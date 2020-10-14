@@ -21,7 +21,7 @@ struct AQMeter: View {
                     .multilineTextAlignment(.center)
                 (Text(String(airQ.AQI)) + Text(" AQI"))
                     .font(.system(size: 20))
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .opacity(0.5)
                     .transition(.opacity)
                     .animation(.easeInOut)

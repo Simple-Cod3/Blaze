@@ -57,26 +57,25 @@ struct InfoCard: View {
                 Spacer().frame(height: 10)
                 Text(name)
                     .font(.title)
-                    .fontWeight(.bold)
-                    .opacity(0.75)
+                    .fontWeight(.semibold)
                     .padding(.bottom, 5)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(locations)
                         .font(.body)
-                        .fontWeight(.semibold)
-                        .opacity(0.25)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
                         .padding(.bottom, 30)
                         .fixedSize(horizontal: false, vertical: true)
                     
                     Text(acres)
                         .font(.body)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .foregroundColor(.blaze)
                     
                     Text(containment)
                         .font(.body)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .foregroundColor(.blaze)
                 }
             }

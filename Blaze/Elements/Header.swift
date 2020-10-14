@@ -30,7 +30,7 @@ struct Header: View {
             if let desc = desc {
                 Text(desc)
                     .font(.body)
-                    .fontWeight(.regular)
+                    .fontWeight(.medium)
                     .foregroundColor(.secondary)
             }
         }

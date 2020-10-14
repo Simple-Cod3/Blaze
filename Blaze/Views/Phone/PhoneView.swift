@@ -116,7 +116,7 @@ struct PhoneView: View {
                         VStack(alignment: .leading) {
                             Text("Facilities")
                                 .font(.system(size: 60))
-                                .fontWeight(.bold)
+                                .fontWeight(.semibold)
                                 .foregroundColor(.blaze)
                             Spacer()
                             

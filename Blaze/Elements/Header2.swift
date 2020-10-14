@@ -16,11 +16,11 @@ struct Header2: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
                     .font(.title)
-                    .fontWeight(.medium)
+                    .fontWeight(.semibold)
                 
                 if let description = description {
                     Text(description)
-                        .fontWeight(.regular)
+                        .fontWeight(.medium)
                         .foregroundColor(.secondary)
                 }
             }
