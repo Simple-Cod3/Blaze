@@ -66,7 +66,7 @@ struct AQCard: View {
                 
                 Text(primaryPollutantCaption)
                     .font(.body)
-                    .fontWeight(.regular)
+                    .fontWeight(.medium)
                     .foregroundColor(.secondary)
             }
         }

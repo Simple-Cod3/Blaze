@@ -10,22 +10,22 @@ import MapKit
 
 struct PhoneInfoView: View {
     @State private var coordinateRegion = MKCoordinateRegion()
+    @State private var pastedState = false
     
     var dismiss: () -> ()
     var phoneData: PhoneNumber
     
     var phoneCircle: some View {
         ZStack {
-            Color(.secondarySystemGroupedBackground)
-            Color.blaze.opacity(0.3)
+            Color(.secondarySystemBackground)
             
-            Image(systemName: "phone.fill")
+            Image(systemName: "building.2.fill")
                 .font(.system(size: 55))
-                .foregroundColor(.blaze)
+                .foregroundColor(closed ? .red : .green)
         }
         .frame(width: 120, height: 120)
         .clipShape(Circle())
-        .shadow(color: Color.black.opacity(0.12), radius: 5, y: 2)
+        .shadow(color: Color.black.opacity(0.12), radius: 10, y: 5)
     }
     
     var body: some View {
@@ -39,7 +39,7 @@ struct PhoneInfoView: View {
                         Spacer()
                         phoneCircle
                             .overlay(
-                                Check(yes: true, interval: 0, size: 40).offset(x: 45, y:-45)
+                                Check(yes: closed, interval: 0, size: 40).offset(x: 45, y:-45)
                             )
                         
                         VStack {
@@ -60,24 +60,32 @@ struct PhoneInfoView: View {
                     
                     TabView {
                         LazyVStack {
-                            Text(phoneData.phoneNumber ?? "### ###-####")
+                            Text(phoneData.phoneNumber ?? "Unknown Number")
                                 .font(.system(.largeTitle, design: .rounded))
                                 .fontWeight(.bold)
-                                .foregroundColor(.blaze)
                             HStack(spacing: 20) {
-                                Image(systemName: "phone.fill.arrow.up.right")
-                                    .font(.system(size: 35))
-                                    .foregroundColor(.green)
-                                    .padding(20)
-                                    .background(Color(.secondarySystemGroupedBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                
-                                Image(systemName: "person.crop.circle.badge.plus")
-                                    .font(.system(size: 35))
-                                    .foregroundColor(.blue)
-                                    .padding(20)
-                                    .background(Color(.secondarySystemGroupedBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                Button(action: {
+                                    let url = URL(string: "tel://" + cleanNum)!
+                                    UIApplication.shared.open(url)
+                                }) {
+                                    Image(systemName: "phone.fill.arrow.up.right")
+                                        .font(.system(size: 35))
+                                        .foregroundColor(.green)
+                                        .padding(20)
+                                        .background(Color(.secondarySystemGroupedBackground))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                }
+                                Button(action: {
+                                    UIPasteboard.general.string = cleanNum
+                                    pastedState = true
+                                }) {
+                                    Image(systemName: "doc.on.clipboard")
+                                        .font(.system(size: 30))
+                                        .foregroundColor(pastedState ? .blue : .secondary)
+                                        .padding(18)
+                                        .background(Color(.secondarySystemGroupedBackground))
+                                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                }
                             }.padding(20)
                             Spacer()
                         }
@@ -110,8 +118,13 @@ struct PhoneInfoView: View {
         .navigationBarItems(trailing: Button(action: dismiss) {
             CloseModalButton()
         })
+        .onAppear {
+            pastedState = pasted
+        }
     }
     
     var closed: Bool { phoneData.name!.contains(" CLOSED") }
     var cleanTitle: String { phoneData.name!.replacingOccurrences(of: " CLOSED", with: "")}
+    var cleanNum: String { phoneData.phoneNumber ?? "".replacingOccurrences(of: "-", with: "")}
+    var pasted: Bool { UIPasteboard.general.string == cleanNum }
 }

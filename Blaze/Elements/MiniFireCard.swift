@@ -21,7 +21,7 @@ struct MiniFireCard: View {
                 .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
-                .font(.system(size: 26))
+                .font(.system(size: fireData.name.count > 15 ? 20 : 26))
                 .fontWeight(.semibold)
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 15)

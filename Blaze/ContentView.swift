@@ -46,7 +46,8 @@ struct ContentView: View {
                 ItemLabel(icon: "magnifyingglass",
                           title: "Search")
             }
-        }.fullScreenCover(isPresented: !$welcomed) {
+        }
+        .fullScreenCover(isPresented: !$welcomed) {
             SplashScreen(show: self.$welcomed)
         }
     }
