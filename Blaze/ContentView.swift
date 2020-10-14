@@ -47,7 +47,7 @@ struct ContentView: View {
                           title: "Search")
             }
         }.fullScreenCover(isPresented: !$welcomed) {
-            SplashScreen(show: $welcomed)
+            SplashScreen(show: self.$welcomed)
         }
     }
 }

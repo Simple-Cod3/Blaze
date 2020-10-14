@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SplashScreen: View {
+    @Environment(\.presentationMode) var presentationMode
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @Binding var show: Bool
     @State var page = 0
@@ -252,10 +253,10 @@ struct SplashScreen: View {
                 .offset(y: page == 4 ? 0 : UIScreen.main.bounds.maxY)
                 .opacity(page == 4 ? 1 : 0)
             
-            Button(action: { show = false }) {
+            Button(action: { presentationMode.wrappedValue.dismiss() }) {
                 HStack {
                     Spacer()
-                    Text("Next")
+                    Text("Close")
                         .foregroundColor(.white)
                         .font(.headline)
                     Spacer()
