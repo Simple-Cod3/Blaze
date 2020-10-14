@@ -21,11 +21,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Blaze will use your location for determining the air quality around you.</string>
+	<string>blaze will use your location to Blaze will use your location to determining the air quality around you and search for nearby fire stations.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Blaze will use your location for determining the air quality around you.</string>
+	<string>blaze will use your location to Blaze will use your location to determining the air quality around you and search for nearby fire stations.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Blaze will use your location for determining the air quality around you.</string>
+	<string>blaze will use your location to Blaze will use your location to determining the air quality around you and search for nearby fire stations.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
