@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BetterSafariView",
+        "repositoryURL": "https://github.com/stleamist/BetterSafariView.git",
+        "state": {
+          "branch": "main",
+          "revision": "bc3468e7003803cf6dda47bc2a9a8a5045b2f679",
+          "version": null
+        }
+      },
+      {
         "package": "FeedKit",
         "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {

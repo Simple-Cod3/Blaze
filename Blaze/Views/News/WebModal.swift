@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import WebKit
+import SafariServices
 
 // MARK: - SwiftUI Modal View
 
@@ -241,5 +242,18 @@ struct HTMLWebView : UIViewRepresentable {
         let htmlEnd = "</BODY></HTML>"
         webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL:  nil)
         return webview
+    }
+}
+
+// MARK: - SFSafari View Wrapper
+struct SafariViewBootleg: UIViewControllerRepresentable {
+    let url: URL
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariViewBootleg>) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariViewBootleg>) {
+
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ModalView
+import BetterSafariView
 
 struct NewsView: View {
     @EnvironmentObject var phone: PhoneBackend
@@ -81,9 +82,7 @@ struct NewsView: View {
                             }
                             
                             ForEach(news.newsList.prefix(newsShown)) { news in
-                                ModalLink(destination: { WebModal(dismiss: $0, url: news.url) }) {
-                                    NewsCard(news: news)
-                                }.buttonStyle(CardButtonStyle())
+                                NewsCardButton(news: news)
                             }
                             
                             if news.newsList.count > newsShown {
@@ -123,6 +122,21 @@ struct NewsView: View {
                 done = true
             }
         }
+    }
+}
+
+struct NewsCardButton: View {
+    @State var on = false
+    var news: News
+    
+    var body: some View {
+        Button(action: { on = true }) {
+            NewsCard(news: news)
+                .safariView(isPresented: $on) {
+                    SafariView(url: news.url)
+                }
+        }
+        .buttonStyle(CardButtonStyle())
     }
 }
 

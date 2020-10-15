@@ -5,8 +5,20 @@
 //  Created by Nathan Choi on 9/4/20.
 //
 
+import SwiftUI
 import MapKit
 import Foundation
+
+struct Blur: UIViewRepresentable {
+    var style: UIBlurEffect.Style = .systemMaterial
+    
+    func makeUIView(context: Context) -> UIVisualEffectView {
+        return UIVisualEffectView(effect: UIBlurEffect(style: style))
+    }
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+        uiView.effect = UIBlurEffect(style: style)
+    }
+}
 
 extension Int {
     func inCommas() -> String? {

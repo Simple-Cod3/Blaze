@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import BetterSafariView
 
 struct FormButton: View {
-    @State var on = false
+    @State private var on = false
     var text: String
     var url: URL
     
-    private func toggle() { on.toggle() }
+    private func toggle() { self.on.toggle() }
     
     var body: some View {
         HStack {
@@ -21,11 +22,12 @@ struct FormButton: View {
                 Text(text)
                     .font(.headline)
                     .fontWeight(.bold)
-                    .sheet(isPresented: $on) {
-                        WebModal(dismiss: toggle, url: url)
-                    }
             }
             Spacer()
+        }
+        .sheet(isPresented: $on) {
+            SafariViewBootleg(url: url)
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }
