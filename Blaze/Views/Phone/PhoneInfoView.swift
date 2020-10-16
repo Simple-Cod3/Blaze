@@ -43,7 +43,7 @@ struct PhoneInfoView: View {
                                 Check(yes: closed, interval: 0, size: 40).offset(x: 45, y:-45)
                             )
                         
-                        VStack {
+                        VStack(spacing: 15) {
                             Text(cleanTitle)
                                 .font(cleanTitle.count > 20 ? .title : .largeTitle)
                                 .fontWeight(.bold)
@@ -60,8 +60,8 @@ struct PhoneInfoView: View {
                     Spacer()
                     
                     Picker("", selection: $viewMode) {
-                        Image(systemName: "number").tag(0)
-                        Image(systemName: "map.fill").tag(1)
+                        Text("Contact").tag(0)
+                        Text("Map").tag(1)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding([.top, .horizontal], 20)
