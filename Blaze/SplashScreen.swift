@@ -79,9 +79,10 @@ struct SplashScreen: View {
         VStack(alignment: .leading) {
             Spacer()
             
-            Image("fire").resizable()
+            Image("appicon").resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: 80)
+                .frame(maxWidth: 75)
+                .cornerRadius(20)
             Text("Welcome to ")
                 .font(.largeTitle)
                 .fontWeight(.bold)
@@ -160,14 +161,22 @@ struct SplashScreen: View {
     var pageThree: some View {
         VStack(alignment: .leading) {
             Spacer()
-            InfoBubble(text: "Real-time local air quality.")
+            HStack {
+                Spacer()
+                InfoBubble(text: "Real-time local air quality.")
+            }
             
             LazyVStack {
                 ZStack {
                     Circle()
                         .fill(Color.green)
-                        .frame(width: 100, height: 100)
-                    Text("Good").redacted(reason: .placeholder)
+                        .frame(width: 150, height: 150)
+                    VStack(alignment: .center) {
+                        Text("Good").redacted(reason: .placeholder)
+                            .font(.largeTitle)
+                        Text("Good").redacted(reason: .placeholder)
+                            .font(.body)
+                    }
                 }
             }
             
@@ -207,8 +216,8 @@ struct SplashScreen: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 20) {
-                    HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                    HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
+                    HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations").redacted(reason: .placeholder)
+                    HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms").redacted(reason: .placeholder)
                 }
                 .padding(.horizontal, 20)
             }

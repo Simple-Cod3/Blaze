@@ -47,9 +47,8 @@ struct CreditsView: View {
     var body: some View {
         ScrollView{
             VStack(spacing: 20) {
-                Spacer()
-                
-                Header(title: "Credits", desc: "Three curious students with a passion for code and design.").padding(.top, 20)
+                Header(title: "Credits", desc: "Three curious students with a passion for code and design.")
+                    .padding(.vertical, 20)
                     .animation(.spring())
                 
                 ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
