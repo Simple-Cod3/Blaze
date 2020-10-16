@@ -11,6 +11,7 @@ struct ProfileCircle: View {
     var img: String
     var name: String
     var role: String
+    var link: String
     
     var body: some View {
         Button(action: {}) {
@@ -22,13 +23,17 @@ struct ProfileCircle: View {
                     .shadow(radius: 10)
                     .padding(.leading, 20)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(role)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.secondary)
                     Text(name)
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    Text(role)
-                        .font(.title3)
+                        .foregroundColor(.primary)
+                    Text(link)
+                        .font(.body)
                         .fontWeight(.semibold)
                         .foregroundColor(.secondary)
                     
@@ -36,10 +41,11 @@ struct ProfileCircle: View {
                 Spacer()
             }
             .padding(.vertical, 20)
-            .background(Color.blaze)
+            .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             .padding(.horizontal, 20)
-        }.buttonStyle(CreditsButtonStyle())
+        }
+        .buttonStyle(CreditsButtonStyle())
     }
 }
 
@@ -51,10 +57,17 @@ struct CreditsView: View {
                     .padding(.vertical, 20)
                     .animation(.spring())
                 
-                ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
-                ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer")
-                ProfileCircle(img: "sakend", name: "Max Kerns", role: "Developer")
+                Link(destination: URL(string: "https://github.com/b0kch01")!) {
+                    ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
+                }
                 
+                Link(destination: URL(string: "https://dribbble.com/polarizz")!) {
+                    ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer", link: "dribbble.com/polarizz")
+                }
+                
+                Link(destination: URL(string: "https://github.com/Sakend")!) {
+                    ProfileCircle(img: "sakend", name: "Max Kerns", role: "Developer", link: "github.com/Sakend")
+                }
                 Spacer()
             }
             .navigationBarTitle("", displayMode: .inline)
@@ -64,6 +77,6 @@ struct CreditsView: View {
 
 struct CreditsView_Previews: PreviewProvider {
     static var previews: some View {
-        CreditsView()
+        ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
     }
 }
