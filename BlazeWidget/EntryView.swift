@@ -2,7 +2,7 @@
 //  EntryView.swift
 //  BlazeWidgetExtension
 //
-//  Created by Mike on 10/15/20.
+//  Created by Max on 10/15/20.
 //
 
 import SwiftUI

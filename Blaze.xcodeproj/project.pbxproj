@@ -16,9 +16,8 @@
 		27C431D9253935F100AC374C /* BlazeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431D8253935F100AC374C /* BlazeWidget.swift */; };
 		27C431DB253935F400AC374C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C431DA253935F400AC374C /* Assets.xcassets */; };
 		27C431DF253935F400AC374C /* BlazeWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 27C431D4253935F100AC374C /* BlazeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		27C431E42539363E00AC374C /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E32539363E00AC374C /* EntryView.swift */; };
-		27C431E62539364B00AC374C /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E52539364A00AC374C /* WidgetContent.swift */; };
-		27C431E72539364B00AC374C /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E52539364A00AC374C /* WidgetContent.swift */; };
+		27C431EF2539394B00AC374C /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431EE2539394B00AC374C /* EntryView.swift */; };
+		27C431F12539395400AC374C /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431F02539395400AC374C /* WidgetContent.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
 		6DA2FF302506AF6400C86F0C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF2F2506AF6400C86F0C /* Settings.swift */; };
@@ -108,8 +107,8 @@
 		27C431D8253935F100AC374C /* BlazeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlazeWidget.swift; sourceTree = "<group>"; };
 		27C431DA253935F400AC374C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27C431DC253935F400AC374C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27C431E32539363E00AC374C /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryView.swift; path = ../../Downloads/Guessing/EntryView.swift; sourceTree = "<group>"; };
-		27C431E52539364A00AC374C /* WidgetContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WidgetContent.swift; path = ../../Downloads/Guessing/WidgetContent.swift; sourceTree = "<group>"; };
+		27C431EE2539394B00AC374C /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		27C431F02539395400AC374C /* WidgetContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidgetContent.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		6DA2FF2F2506AF6400C86F0C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -193,8 +192,8 @@
 		27C431D7253935F100AC374C /* BlazeWidget */ = {
 			isa = PBXGroup;
 			children = (
-				27C431E52539364A00AC374C /* WidgetContent.swift */,
-				27C431E32539363E00AC374C /* EntryView.swift */,
+				27C431F02539395400AC374C /* WidgetContent.swift */,
+				27C431EE2539394B00AC374C /* EntryView.swift */,
 				27C431D8253935F100AC374C /* BlazeWidget.swift */,
 				27C431DA253935F400AC374C /* Assets.xcassets */,
 				27C431DC253935F400AC374C /* Info.plist */,
@@ -539,9 +538,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27C431E72539364B00AC374C /* WidgetContent.swift in Sources */,
+				27C431F12539395400AC374C /* WidgetContent.swift in Sources */,
 				27C431D9253935F100AC374C /* BlazeWidget.swift in Sources */,
-				27C431E42539363E00AC374C /* EntryView.swift in Sources */,
+				27C431EF2539394B00AC374C /* EntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +569,6 @@
 				E9CE22A52502F48700929D13 /* Extensions.swift in Sources */,
 				E941692B250495F100DEFCB2 /* InfoButton.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
-				27C431E62539364B00AC374C /* WidgetContent.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
 				E97E26E42508535200B939F3 /* SplashScreenConstants.swift in Sources */,
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
