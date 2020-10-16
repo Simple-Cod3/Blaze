@@ -11,6 +11,14 @@
 		279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
 		279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
 		27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB5F9125098DFD0071F3FF /* AirQuality.swift */; };
+		27C431D5253935F100AC374C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E31A93250EDD41007FF855 /* WidgetKit.framework */; };
+		27C431D6253935F100AC374C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E31A95250EDD41007FF855 /* SwiftUI.framework */; };
+		27C431D9253935F100AC374C /* BlazeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431D8253935F100AC374C /* BlazeWidget.swift */; };
+		27C431DB253935F400AC374C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27C431DA253935F400AC374C /* Assets.xcassets */; };
+		27C431DF253935F400AC374C /* BlazeWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 27C431D4253935F100AC374C /* BlazeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		27C431E42539363E00AC374C /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E32539363E00AC374C /* EntryView.swift */; };
+		27C431E62539364B00AC374C /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E52539364A00AC374C /* WidgetContent.swift */; };
+		27C431E72539364B00AC374C /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C431E52539364A00AC374C /* WidgetContent.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
 		6DA2FF302506AF6400C86F0C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF2F2506AF6400C86F0C /* Settings.swift */; };
@@ -67,6 +75,16 @@
 		E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* FireMapView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		27C431DD253935F400AC374C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9AF014924FDB8DD0058C184 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27C431D3253935F100AC374C;
+			remoteInfo = BlazeWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		E9E31AC7250EDF19007FF855 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -74,6 +92,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				27C431DF253935F400AC374C /* BlazeWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +104,12 @@
 		279FE6F725213216004AC147 /* PhoneBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBackend.swift; sourceTree = "<group>"; };
 		279FE6FD25214AAE004AC147 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
+		27C431D4253935F100AC374C /* BlazeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BlazeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		27C431D8253935F100AC374C /* BlazeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlazeWidget.swift; sourceTree = "<group>"; };
+		27C431DA253935F400AC374C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27C431DC253935F400AC374C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27C431E32539363E00AC374C /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryView.swift; path = ../../Downloads/Guessing/EntryView.swift; sourceTree = "<group>"; };
+		27C431E52539364A00AC374C /* WidgetContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WidgetContent.swift; path = ../../Downloads/Guessing/WidgetContent.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		6DA2FF2F2506AF6400C86F0C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -141,6 +166,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		27C431D1253935F100AC374C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C431D6253935F100AC374C /* SwiftUI.framework in Frameworks */,
+				27C431D5253935F100AC374C /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9AF014E24FDB8DD0058C184 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,6 +190,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27C431D7253935F100AC374C /* BlazeWidget */ = {
+			isa = PBXGroup;
+			children = (
+				27C431E52539364A00AC374C /* WidgetContent.swift */,
+				27C431E32539363E00AC374C /* EntryView.swift */,
+				27C431D8253935F100AC374C /* BlazeWidget.swift */,
+				27C431DA253935F400AC374C /* Assets.xcassets */,
+				27C431DC253935F400AC374C /* Info.plist */,
+			);
+			path = BlazeWidget;
+			sourceTree = "<group>";
+		};
 		6D7405D42509CA0300F45BB2 /* AQ */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +248,7 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
+				27C431D7253935F100AC374C /* BlazeWidget */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
 				E9AF015324FDB8DD0058C184 /* Blaze */,
@@ -212,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				E9AF015124FDB8DD0058C184 /* Blaze.app */,
+				27C431D4253935F100AC374C /* BlazeWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +406,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		27C431D3253935F100AC374C /* BlazeWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27C431E2253935F400AC374C /* Build configuration list for PBXNativeTarget "BlazeWidgetExtension" */;
+			buildPhases = (
+				27C431D0253935F100AC374C /* Sources */,
+				27C431D1253935F100AC374C /* Frameworks */,
+				27C431D2253935F100AC374C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlazeWidgetExtension;
+			productName = BlazeWidgetExtension;
+			productReference = 27C431D4253935F100AC374C /* BlazeWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E9AF015024FDB8DD0058C184 /* Blaze */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9AF016524FDB8DE0058C184 /* Build configuration list for PBXNativeTarget "Blaze" */;
@@ -371,6 +436,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27C431DE253935F400AC374C /* PBXTargetDependency */,
 			);
 			name = Blaze;
 			packageProductDependencies = (
@@ -393,6 +459,9 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					27C431D3253935F100AC374C = {
+						CreatedOnToolsVersion = 12.0;
+					};
 					E9AF015024FDB8DD0058C184 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -419,11 +488,20 @@
 			projectRoot = "";
 			targets = (
 				E9AF015024FDB8DD0058C184 /* Blaze */,
+				27C431D3253935F100AC374C /* BlazeWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		27C431D2253935F100AC374C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C431DB253935F400AC374C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9AF014F24FDB8DD0058C184 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,6 +535,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		27C431D0253935F100AC374C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C431E72539364B00AC374C /* WidgetContent.swift in Sources */,
+				27C431D9253935F100AC374C /* BlazeWidget.swift in Sources */,
+				27C431E42539363E00AC374C /* EntryView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9AF014D24FDB8DD0058C184 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,6 +570,7 @@
 				E9CE22A52502F48700929D13 /* Extensions.swift in Sources */,
 				E941692B250495F100DEFCB2 /* InfoButton.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
+				27C431E62539364B00AC374C /* WidgetContent.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
 				E97E26E42508535200B939F3 /* SplashScreenConstants.swift in Sources */,
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
@@ -516,6 +605,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		27C431DE253935F400AC374C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27C431D3253935F100AC374C /* BlazeWidgetExtension */;
+			targetProxy = 27C431DD253935F400AC374C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -528,6 +625,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		27C431E0253935F400AC374C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
+				INFOPLIST_FILE = BlazeWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.BlazeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27C431E1253935F400AC374C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
+				INFOPLIST_FILE = BlazeWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.BlazeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E9AF016324FDB8DE0058C184 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -648,6 +787,7 @@
 		E9AF016624FDB8DE0058C184 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -674,6 +814,7 @@
 		E9AF016724FDB8DE0058C184 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -700,6 +841,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27C431E2253935F400AC374C /* Build configuration list for PBXNativeTarget "BlazeWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27C431E0253935F400AC374C /* Debug */,
+				27C431E1253935F400AC374C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E9AF014C24FDB8DD0058C184 /* Build configuration list for PBXProject "Blaze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
