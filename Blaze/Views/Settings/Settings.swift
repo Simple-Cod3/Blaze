@@ -16,7 +16,7 @@ struct Settings: View {
     var body: some View {
         ScrollView {
             VStack(spacing: show ? 20 : 200) {
-                Header(title: "Settings", desc: "Customize the app and learn more about it!")
+                Header(title: "Settings", desc: "Customize the app and learn more about it.")
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
