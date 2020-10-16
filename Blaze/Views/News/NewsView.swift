@@ -133,7 +133,14 @@ struct NewsCardButton: View {
         Button(action: { on = true }) {
             NewsCard(news: news)
                 .safariView(isPresented: $on) {
-                    SafariView(url: news.url)
+                    SafariView(
+                        url: news.url,
+                        configuration: SafariView.Configuration(
+                            entersReaderIfAvailable: true,
+                            barCollapsingEnabled: true
+                        )
+                    )
+                    .preferredControlAccentColor(Color.blaze)
                 }
         }
         .buttonStyle(CardButtonStyle())

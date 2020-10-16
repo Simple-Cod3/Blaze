@@ -11,6 +11,7 @@ import MapKit
 struct PhoneInfoView: View {
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var pastedState = false
+    @State private var viewMode = 0
     
     var dismiss: () -> ()
     var phoneData: PhoneNumber
@@ -58,7 +59,14 @@ struct PhoneInfoView: View {
                     
                     Spacer()
                     
-                    TabView {
+                    Picker("", selection: $viewMode) {
+                        Image(systemName: "number").tag(0)
+                        Image(systemName: "map.fill").tag(1)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding([.top, .horizontal], 20)
+                    
+                    ZStack {
                         LazyVStack {
                             Text(phoneData.phoneNumber ?? "Unknown Number")
                                 .font(.system(.largeTitle, design: .rounded))
@@ -92,21 +100,48 @@ struct PhoneInfoView: View {
                         .frame(height: 300)
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                         .padding(20)
+                        .offset(x: -UIScreen.main.bounds.maxX*CGFloat(viewMode))
                         
                         if let lat = phoneData.lat, let long = phoneData.long {
-                            Map(coordinateRegion: $coordinateRegion)
-                                .frame(width: UIScreen.main.bounds.maxX-40, height: 230)
-                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                                .padding([.horizontal, .bottom], 20)
-                                .allowsHitTesting(false)
-                                .onAppear {
+                            Map(
+                                coordinateRegion: $coordinateRegion,
+                                annotationItems: [phoneData]
+                            )
+                            { phone in
+                                MapPin(
+                                    coordinate: CLLocationCoordinate2D(
+                                        latitude: lat,
+                                        longitude: long
+                                    )
+                                )
+                            }
+                            .frame(width: UIScreen.main.bounds.maxX-40, height: 230)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                            .padding([.horizontal, .bottom], 20)
+                            //.allowsHitTesting(false)
+                            .offset(x: -UIScreen.main.bounds.maxX*CGFloat((viewMode - 1)))
+                            .onAppear {
+                                self.coordinateRegion = MKCoordinateRegion(
+                                    center: .init(latitude: lat, longitude: long),
+                                    span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)
+                                )
+                            }
+                            .onChange(of: viewMode) { value in
+                                if value == 1 {
                                     self.coordinateRegion = MKCoordinateRegion(
                                         center: .init(latitude: lat, longitude: long),
-                                        span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                                        span: .init(latitudeDelta: 0.08, longitudeDelta: 0.08)
                                     )
                                 }
+                            }
+                        }
+                        else {
+                            Text("\(Image(systemName: "exclamationmark.triangle")) Location Unavailble")
+                                .font(.headline)
+                                .foregroundColor(.yellow)
                         }
                     }
+                    .animation(.spring(), value: viewMode)
                     .frame(height: 300)
                     .tabViewStyle(PageTabViewStyle())
                     

@@ -109,7 +109,7 @@ struct InformationViewInner: View {
     private var header: some View {
         ModalPresenter {
             HStack {
-                Text("INFO")
+                Text("INFORMATION")
                 Spacer()
                 ModalLink(destination: {
                     FullScreenInfoView(dismiss: $0, fireData: fireData)
@@ -136,7 +136,7 @@ struct InformationViewInner: View {
             }
             
             InformationSection(
-                title: "Basic Information",
+                title: "Basics",
                 data: [
                     ["flame", "Name", fireData.name],
                     ["mappin.and.ellipse", "Location", fireData.getLocation(),
@@ -153,7 +153,7 @@ struct InformationViewInner: View {
             )
             
             InformationSection(
-                title: "Fire Statistics",
+                title: "Statistics",
                 data: [
                     ["skew", "Area Burned", fireData.getAreaString()],
                     ["lasso", "Contained", fireData.getContained()],

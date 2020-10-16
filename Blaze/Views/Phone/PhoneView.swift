@@ -147,6 +147,7 @@ struct PhoneView: View {
                             TextField("Search", text: $text)
                                 .foregroundColor(.primary)
                                 .keyboardType(.alphabet)
+                            
                         }
                         .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
                         .foregroundColor(.secondary)
