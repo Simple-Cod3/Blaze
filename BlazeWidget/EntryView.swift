@@ -17,7 +17,6 @@ struct EntryView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .padding([.trailing], 15)
                 .foregroundColor(Color.black)
-            
         }
         .background(Color.orange)
         .padding()

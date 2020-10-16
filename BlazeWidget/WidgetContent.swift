@@ -8,7 +8,6 @@
 import WidgetKit
 
 struct WidgetContent: TimelineEntry {
-  var date = Date()
-  let number: String
-  
+    var date = Date()
+    let number: String
 }
