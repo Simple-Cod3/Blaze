@@ -53,7 +53,7 @@ struct CreditsView: View {
                 
                 ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer")
                 ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer")
-                ProfileCircle(img: "sakend", name: "Max Kerns", role: "Junior Developer")
+                ProfileCircle(img: "sakend", name: "Max Kerns", role: "Developer")
                 
                 Spacer()
             }
