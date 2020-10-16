@@ -122,6 +122,8 @@
 		E903803C2518749C0043DC53 /* StatusBg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBg.swift; sourceTree = "<group>"; };
 		E9073CA425214AB200FE43C2 /* HorizontalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCard.swift; sourceTree = "<group>"; };
 		E9073CAB2529096600FE43C2 /* Check.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check.swift; sourceTree = "<group>"; };
+		E91EB47B25393E63006F03C2 /* Blaze.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Blaze.entitlements; sourceTree = "<group>"; };
+		E91EB47E25393EC5006F03C2 /* BlazeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BlazeWidgetExtension.entitlements; sourceTree = "<group>"; };
 		E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryTerms.swift; sourceTree = "<group>"; };
 		E941692A250495F100DEFCB2 /* InfoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButton.swift; sourceTree = "<group>"; };
 		E941692C2504B2D800DEFCB2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
+				E91EB47E25393EC5006F03C2 /* BlazeWidgetExtension.entitlements */,
 				27C431D7253935F100AC374C /* BlazeWidget */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
@@ -266,6 +269,7 @@
 		E9AF015324FDB8DD0058C184 /* Blaze */ = {
 			isa = PBXGroup;
 			children = (
+				E91EB47B25393E63006F03C2 /* Blaze.entitlements */,
 				E9AF016F24FDBC120058C184 /* Backend */,
 				E9AF017224FDBC7B0058C184 /* Classes and Extensions */,
 				E9AF019024FDE5DF0058C184 /* Elements */,
@@ -628,6 +632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BlazeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				INFOPLIST_FILE = BlazeWidget/Info.plist;
@@ -636,7 +641,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.BlazeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -649,6 +654,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = BlazeWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				INFOPLIST_FILE = BlazeWidget/Info.plist;
@@ -657,7 +663,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.BlazeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -788,6 +794,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Blaze/Blaze.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
@@ -815,6 +822,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Blaze/Blaze.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
