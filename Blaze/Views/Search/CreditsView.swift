@@ -14,7 +14,7 @@ struct ProfileCircle: View {
     var link: String
     
     var body: some View {
-        Button(action: {}) {
+        VStack {
             HStack(spacing: 15) {
                 Image(img).resizable()
                     .aspectRatio(contentMode: .fill)
@@ -26,15 +26,15 @@ struct ProfileCircle: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(role)
                         .font(.body)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .foregroundColor(.secondary)
                     Text(name)
                         .font(.title)
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                         .foregroundColor(.primary)
                     Text(link)
                         .font(.body)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .foregroundColor(.secondary)
                     
                 }
@@ -45,7 +45,6 @@ struct ProfileCircle: View {
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             .padding(.horizontal, 20)
         }
-        .buttonStyle(CreditsButtonStyle())
     }
 }
 

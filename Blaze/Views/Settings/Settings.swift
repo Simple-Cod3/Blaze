@@ -22,14 +22,14 @@ struct Settings: View {
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 
+                SettingsCardLink(title: "Updates", desc: "See the latest changes to Blaze.") {
+                    UpdateLog()
+                }
+                
                 SettingsCardCustom(title: "Splash Screen", desc: "View Splash Screen again.") {
                     Toggle("", isOn: !$welcomed)
                         .toggleStyle(SwitchToggleStyle(tint: .blaze))
                 }
-                
-//                SettingsCardLink(title: "FAQ", desc: "Provides information about Blaze.") {
-//                    Header(title: "FAQ", desc: "Frequenty asked questions and their answers.")
-//                }
                 
                 SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                     CreditsView()

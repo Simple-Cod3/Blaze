@@ -116,6 +116,7 @@ struct FullFireMapView: View {
         .navigationBarTitle("All Wildfires", displayMode: .inline)
         .navigationBarItems(trailing: Button(action: moveBack) {
             Image(systemName: "rotate.3d")
+                .font(.title3)
         })
     }
     

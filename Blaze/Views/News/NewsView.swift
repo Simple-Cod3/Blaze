@@ -56,7 +56,7 @@ struct NewsView: View {
                             HStack {
                                 Text("Resources")
                                     .font(.title)
-                                    .fontWeight(.medium)
+                                    .fontWeight(.semibold)
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }
@@ -76,7 +76,7 @@ struct NewsView: View {
                             HStack {
                                 Text("Alerts")
                                     .font(.title)
-                                    .fontWeight(.medium)
+                                    .fontWeight(.semibold)
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }
@@ -90,10 +90,11 @@ struct NewsView: View {
                                     newsShown += 10
                                 }) {
                                     Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
-                                        .font(.headline)
+                                        .font(.body)
+                                        .fontWeight(.medium)
                                         .foregroundColor(.white)
-                                        .padding(.vertical, 9)
-                                        .padding(.horizontal, 13)
+                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, 15)
                                         .background(Color.blaze)
                                         .clipShape(Capsule())
                                         .padding(.horizontal, 20)

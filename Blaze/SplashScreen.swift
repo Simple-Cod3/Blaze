@@ -54,22 +54,17 @@ struct SplashScreen: View {
         var text: String
         
         var body: some View {
-            Text(text)
-                .font(.title3)
-                .fontWeight(.medium)
-                .foregroundColor(.white)
-                .padding(20)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                .overlay(
-                    Circle()
-                        .fill(Color.blaze.opacity(0.3))
-                        .frame(width: 20, height: 20)
-                        .offset(x: 17, y: 17)
-                    ,
-                    alignment: .bottomTrailing)
-                .padding(.vertical, 40)
-                .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .trailing) {
+                Text(text)
+                    .font(.title3)
+                    .fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .padding(20)
+                    .background(Color.blaze)
+                    .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                    .padding(.vertical, 40)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
         }
     }
     
@@ -85,10 +80,10 @@ struct SplashScreen: View {
                 .cornerRadius(20)
             Text("Welcome to ")
                 .font(.largeTitle)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
             Text("Blaze: CA Wildfires")
                 .font(.largeTitle)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
                 .foregroundColor(.blaze)
             
             Spacer()

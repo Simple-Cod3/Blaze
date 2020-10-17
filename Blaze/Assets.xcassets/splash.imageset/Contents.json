@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "splash2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "splash3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
