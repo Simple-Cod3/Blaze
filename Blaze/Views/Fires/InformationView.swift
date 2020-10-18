@@ -111,11 +111,12 @@ struct InformationViewInner: View {
             HStack {
                 Text("INFORMATION")
                 Spacer()
-                ModalLink(destination: {
-                    FullScreenInfoView(dismiss: $0, fireData: fireData)
-                }) {
-                    Text("Fullscreen").foregroundColor(.blaze)
-                }
+                // MARK: - Too buggy for production
+//                ModalLink(destination: {
+//                    FullScreenInfoView(dismiss: $0, fireData: fireData)
+//                }) {
+//                    Text("Fullscreen").foregroundColor(.blaze)
+//                }
             }
         }
     }
