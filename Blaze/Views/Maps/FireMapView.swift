@@ -88,20 +88,21 @@ struct FireMapView: View {
                 .animation(.spring(), value: hide)
             
         }
-            .sheet(isPresented: $show) {
-                InformationView(show: $show, fireData: fireData)
-            }
-            .onAppear {
-                moveBack()
+        .sheet(isPresented: $show) {
+            InformationView(show: $show, fireData: fireData)
+        }
+        .onAppear {
+            moveBack()
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                    hide = false
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                hide = false
             }
-            .navigationBarTitle(fireData.name, displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: moveBack) {
-                Image(systemName: "location.fill")
-            })
+        }
+        .navigationBarTitle(fireData.name, displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: moveBack) {
+            Image(systemName: "rotate.3d")
+                .font(.title3)
+        })
     }
     
     private func setCenter(option : OPTIONS) {
