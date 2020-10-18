@@ -153,7 +153,9 @@ struct PhoneView: View {
                         .foregroundColor(.secondary)
                         .background(Color(.tertiarySystemGroupedBackground))
                         .cornerRadius(10)
-                    }.padding(.vertical, 40)
+                    }
+                    .padding(.top, 20)
+                    .padding(.bottom, 30)
                 }
                 .onChange(of: text) { _ in
                     sortNums()
@@ -161,16 +163,17 @@ struct PhoneView: View {
                 
                 if mode == 2 {
                     if pinned.count == 0 {
-                        VStack(spacing: 10) {
-                            Image("pin").resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 200)
-                            Text("Save Facilities").font(.title).bold()
-                            Text("Press and hold on a table to cell to pin it here")
-                                .multilineTextAlignment(.center)
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Save Facilities")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                        
+                            Text("Press and hold on a facility to pin it.")
+                                .font(.body)
+                                .fontWeight(.medium)
                                 .foregroundColor(.secondary)
-                                .font(.headline)
-                        }.padding(40)
+                        }
+                        .padding(.bottom, 20)
                     } else {
                         Section(header: Text("Sorted \(labels[mode])")) {
                             ForEach(

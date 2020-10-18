@@ -34,6 +34,12 @@ struct Settings: View {
                 SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                     CreditsView()
                 }
+                
+                Text("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
+                    .font(.caption)
+                    .fontWeight(.regular)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 16)
             }
             .padding(.bottom, 20)
         }

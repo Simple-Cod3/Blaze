@@ -124,12 +124,12 @@ struct InformationViewInner: View {
         Form {
             if isNotAccesible {
                 Section {
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text("\(Image(systemName: "exclamationmark.triangle.fill")) Warning")
                             .font(.headline)
                             .foregroundColor(.yellow)
                             .padding(.bottom, 5)
-                        Text("This incident is not accessible on this app yet. For more information, click on \"More Info\" below.")
+                        Text("This incident is not accessible on this app at the moment. For more information, click on \"More Info\" below.")
                             .foregroundColor(.secondary)
                     }.padding(.vertical, 10)
                 }
@@ -180,10 +180,6 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
-            leading: Button(action: actionSheet) {
-                Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 20))
-            },
             trailing: Button(action: { show.toggle() }){
                 CloseModalButton()
             }

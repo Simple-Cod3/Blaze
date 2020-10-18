@@ -37,7 +37,7 @@ struct InfoCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: "flame.fill")
+                Image(systemName: "flame")
                     .foregroundColor(.blaze)
                     .font(.system(size: 30))
                 

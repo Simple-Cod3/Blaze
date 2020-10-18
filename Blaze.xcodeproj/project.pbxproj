@@ -230,10 +230,10 @@
 				E9AF016824FDBBDA0058C184 /* Views */,
 				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
 				E9AF016224FDB8DE0058C184 /* Info.plist */,
-				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
-				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
 				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
+				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
 				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
+				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
 				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
 				E97E26E32508535200B939F3 /* SplashScreenConstants.swift */,
 			);
