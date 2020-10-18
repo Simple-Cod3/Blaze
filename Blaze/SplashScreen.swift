@@ -99,8 +99,9 @@ struct SplashScreen: View {
                 .padding(15)
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            }.padding(.vertical, 40)
-        }.padding(.horizontal, 20)
+            }
+        }
+        .padding([.horizontal, .bottom], 20)
     }
     var pageTwo: some View {
         VStack(alignment: .leading) {
@@ -149,9 +150,8 @@ struct SplashScreen: View {
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
-            .padding(.vertical, 40)
         }
-        .padding(.horizontal, 20)
+        .padding([.horizontal, .bottom], 20)
     }
     var pageThree: some View {
         VStack(alignment: .leading) {
@@ -192,9 +192,9 @@ struct SplashScreen: View {
                 .padding(15)
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            }.padding(.vertical, 40)
+            }
         }
-        .padding(.horizontal, 20)
+        .padding([.horizontal, .bottom], 20)
     }
     var pageFour: some View {
         VStack(alignment: .leading) {
@@ -231,8 +231,7 @@ struct SplashScreen: View {
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
-            .padding(.vertical, 40)
-            .padding(.horizontal, 20)
+            .padding([.horizontal, .bottom], 20)
         }
     }
     var pageFive: some View {
@@ -269,8 +268,7 @@ struct SplashScreen: View {
                 .background(Color.blaze)
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             }
-            .padding(.vertical, 40)
-            .padding(.horizontal, 20)
+            .padding(20)
             .zIndex(5)
         }
     }
