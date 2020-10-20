@@ -27,10 +27,10 @@ struct HorizontalCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(.title2)
-                .fontWeight(.semibold)
-            Text(subtitle)
-                .font(.callout)
                 .fontWeight(.medium)
+            Text(subtitle)
+                .font(.body)
+                .fontWeight(.regular)
                 .foregroundColor(.secondary)
         }
         .padding(20)

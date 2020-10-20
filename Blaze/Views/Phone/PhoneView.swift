@@ -118,6 +118,7 @@ struct PhoneView: View {
                                 .font(.system(size: 60))
                                 .fontWeight(.semibold)
                                 .foregroundColor(.blaze)
+                            
                             Spacer()
                             
                             HStack {
@@ -222,21 +223,23 @@ struct PhoneView: View {
                 HStack {
                     VStack(alignment: .leading, spacing: 5) {
                         Text(number.name?.replacingOccurrences(of: " CLOSED", with: "") ?? "Unknown Name")
-                            .font(.headline)
+                            .font(.title3)
+                            .fontWeight(.medium)
                             .foregroundColor(.primary)
                         HStack(spacing: 10) {
                             if let county = number.county {
                                 Text(county)
-                                    .fontWeight(.medium)
-                                    .font(.caption)
+                                    .font(.body)
+                                    .fontWeight(.regular)
                             }
                             
                             Text(number.phoneNumber!)
-                                .fontWeight(.medium)
-                                .font(.caption)
-                            
+                                .font(.body)
+                                .fontWeight(.regular)
+
                             Spacer()
-                        }.foregroundColor(.secondary)
+                        }
+                        .foregroundColor(.secondary)
                     }
                     Spacer()
                     Check(yes: number.name!.contains(" CLOSED"), interval: 0)
@@ -247,6 +250,7 @@ struct PhoneView: View {
                 Button(action: { addPin(number) }) {
                     HStack {
                         Text("Pin Facility")
+                        
                         Image(systemName: "pin.circle.fill")
                             .foregroundColor(.yellow)
                             .font(.system(size: 25))

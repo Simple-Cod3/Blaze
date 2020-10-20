@@ -53,12 +53,12 @@ struct AQView: View {
                     HStack {
                         Text("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at ")
                             .font(.caption)
-                            .fontWeight(.medium)
+                            .fontWeight(.regular)
                             .foregroundColor(.secondary)
                         + Text("AirNow.gov")
-                                .font(.caption)
-                                .fontWeight(.medium)
-                                .foregroundColor(.primary)
+                            .font(.caption)
+                            .fontWeight(.regular)
+                            .foregroundColor(.primary)
                         Spacer()
                     }
                     .padding([.horizontal, .bottom], 20)

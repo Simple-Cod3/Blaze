@@ -8,7 +8,7 @@
 import SwiftUI
 import ModalView
 
-struct InfoCard: View {
+struct MapFireCard: View {
     @Binding var hide: Bool
     @Binding var show: Bool
     @State private var random = false
@@ -54,28 +54,28 @@ struct InfoCard: View {
             if hide {
                 
             } else {
-                Spacer().frame(height: 10)
+                Spacer().frame(height: 15)
                 Text(name)
                     .font(.title)
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                     .padding(.bottom, 5)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(locations)
                         .font(.body)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 30)
                         .fixedSize(horizontal: false, vertical: true)
                     
                     Text(acres)
                         .font(.body)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
                     
                     Text(containment)
                         .font(.body)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
                 }
             }

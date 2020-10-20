@@ -38,7 +38,8 @@ struct FiresView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
-                                        .fontWeight(.medium)
+                                        .fontWeight(.regular)
+                                        .font(.body)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
@@ -50,7 +51,8 @@ struct FiresView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "tray.2")) Data")
-                                        .fontWeight(.medium)
+                                        .fontWeight(.regular)
+                                        .font(.body)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
