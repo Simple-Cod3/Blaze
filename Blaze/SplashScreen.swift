@@ -56,10 +56,10 @@ struct SplashScreen: View {
         var body: some View {
             VStack(alignment: .trailing) {
                 Text(text)
-                    .font(.title3)
-                    .fontWeight(.medium)
+                    .font(.body)
+                    .fontWeight(.regular)
                     .foregroundColor(.white)
-                    .padding(20)
+                    .padding(15)
                     .background(Color.blaze)
                     .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     .padding(.vertical, 40)
@@ -80,10 +80,10 @@ struct SplashScreen: View {
                 .cornerRadius(20)
             Text("Welcome to ")
                 .font(.largeTitle)
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
             Text("Blaze: CA Wildfires")
                 .font(.largeTitle)
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
                 .foregroundColor(.blaze)
             
             Spacer()
@@ -106,9 +106,11 @@ struct SplashScreen: View {
     var pageTwo: some View {
         VStack(alignment: .leading) {
             Spacer()
-            
-            InfoBubble(text: "Latest fire information prepared for you.")
-            
+            HStack {
+                Spacer()
+                InfoBubble(text: "Latest fire information prepared for you.")
+            }
+                        
             Header(title: "Wildfires", padding: 0)
             Text("Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                 .redacted(reason: .placeholder)
@@ -199,9 +201,11 @@ struct SplashScreen: View {
     var pageFour: some View {
         VStack(alignment: .leading) {
             Spacer()
-            
-            InfoBubble(text: "News and updates at your fingertips.")
-                .padding(.horizontal, 20)
+            HStack {
+                Spacer()
+                InfoBubble(text: "News and updates at your fingertips.")
+                    .padding(.trailing, 20)
+            }
             
             Header(title: "News", padding: 0)
                 .padding(.horizontal, 20)

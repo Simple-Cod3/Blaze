@@ -8,13 +8,13 @@ struct SettingsCardLink<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text(title)
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
                 .font(.title)
                 .foregroundColor(.primary)
             
             Text(desc)
                 .font(.body)
-                .fontWeight(.medium)
+                .fontWeight(.regular)
                 .foregroundColor(.secondary)
             
             Divider()
@@ -44,12 +44,12 @@ struct SettingsCardCustom<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
                 .font(.title)
                 .foregroundColor(.primary)
             Text(desc)
                 .font(.body)
-                .fontWeight(.medium)
+                .fontWeight(.regular)
                 .foregroundColor(.secondary)
             
             Divider().padding(.bottom, 5)
