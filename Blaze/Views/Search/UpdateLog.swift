@@ -79,6 +79,7 @@ struct UpdateLog: View {
                 )
             }.padding(.bottom, 50)
         }
+        .navigationBarTitle("Updates", displayMode: .inline)
         .onAppear {
             show = false
             withAnimation(Animation.spring(response: 0.5).delay(0.1)) {
