@@ -19,7 +19,7 @@ struct AirQuality: Codable, Identifiable {
     var stateCode: String ///  state code of the fire(ie CA)
     var latitude: Double /// estimated starting location (latitude)
     var longitude: Double /// estimated starting location (longitude)
-    var pollutant: String /// the pollutant idk
+    var pollutant: String /// the pollutant
     var AQI: Int /// air quality index
     var category: Category
     

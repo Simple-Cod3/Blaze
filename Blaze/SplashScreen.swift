@@ -93,7 +93,7 @@ struct SplashScreen: View {
                     Spacer()
                     Text("Next")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                 }
                 .padding(15)
@@ -145,7 +145,7 @@ struct SplashScreen: View {
                     Spacer()
                     Text("Next")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                 }
                 .padding(15)
@@ -188,7 +188,7 @@ struct SplashScreen: View {
                     Spacer()
                     Text("Next")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                 }
                 .padding(15)
@@ -228,7 +228,7 @@ struct SplashScreen: View {
                     Spacer()
                     Text("Next")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                 }
                 .padding(15)
@@ -265,7 +265,7 @@ struct SplashScreen: View {
                     Spacer()
                     Text("Close")
                         .foregroundColor(.white)
-                        .font(.headline)
+                        .font(.body)
                     Spacer()
                 }
                 .padding(15)

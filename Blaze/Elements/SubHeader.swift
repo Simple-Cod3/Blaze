@@ -7,25 +7,27 @@
 
 import SwiftUI
 
-struct Header2: View {
+struct SubHeader: View {
     var title: String
     var description: String?
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text(title)
                     .font(.title)
                     .fontWeight(.medium)
                 
                 if let description = description {
                     Text(description)
-                        .fontWeight(.regular)
                         .font(.body)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             Spacer()
-        }.padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
     }
 }

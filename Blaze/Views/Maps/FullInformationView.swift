@@ -33,7 +33,7 @@ struct FullInformationView: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         Spacer()
-                        InfoButton()
+                        RoundedButton("INFO")
                     }
                     .padding(.vertical, 10)
                 }

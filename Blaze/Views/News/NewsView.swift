@@ -103,7 +103,7 @@ struct NewsView: View {
                         }// VStack
                         .padding(.bottom, 20)
                     }// ScrollView
-                    StatusBg()
+                    StatusBarBackground()
                 }
             }
             else if news.failed {

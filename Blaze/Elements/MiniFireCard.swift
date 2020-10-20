@@ -23,7 +23,7 @@ struct MiniFireCard: View {
             Text(fireData.name)
                 .font(.system(size: fireData.name.count > 15 ? 20 : 26))
                 .fontWeight(.medium)
-                .foregroundColor(.secondary)
+                .foregroundColor(.primary)
             
             Spacer()
             HStack {
@@ -33,14 +33,7 @@ struct MiniFireCard: View {
                     .foregroundColor(.blaze)
                 Spacer()
                 NavigationLink(destination: FireMapView(fireData: fireData)) {
-                    Text("MAP")
-                        .font(.subheadline)
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 5)
-                        .background(Color.blaze)
-                        .clipShape(Capsule())
+                    RoundedButton("MAP")
                 }
             }
         }

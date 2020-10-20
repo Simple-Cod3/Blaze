@@ -65,7 +65,7 @@ struct AQView: View {
                 }
             }
             .opacity(show ? 1 : 0)
-            StatusBg()
+            StatusBarBackground()
         }
     }
 }

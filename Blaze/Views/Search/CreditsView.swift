@@ -51,10 +51,12 @@ struct ProfileCircle: View {
 struct CreditsView: View {
     var body: some View {
         ScrollView{
-            VStack(spacing: 20) {
-                Header(title: "Credits", desc: "Three curious students with a passion for code and design.")
-                    .padding(.vertical, 20)
-                    .animation(.spring())
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Three curious students with a passion for code and design.")
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 20)
                 
                 Link(destination: URL(string: "https://github.com/b0kch01")!) {
                     ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
@@ -69,8 +71,8 @@ struct CreditsView: View {
                 }
                 Spacer()
             }
-            .navigationBarTitle("", displayMode: .inline)
         }
+        .navigationBarTitle("Credits", displayMode: .large)
     }
 }
 

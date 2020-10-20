@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StatusBg: View {
+struct StatusBarBackground: View {
     var body: some View {
         GeometryReader { g in
             VStack {

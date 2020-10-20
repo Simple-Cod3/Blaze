@@ -15,10 +15,12 @@ struct Settings: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: show ? 20 : 200) {
-                Header(title: "Settings", desc: "Customize the app and learn more about it.")
-                    .padding(.top, 20)
-                    .padding(.bottom, 10)
+            VStack(alignment: .leading, spacing: show ? 20 : 200) {
+                Text("Customize the app and learn more about it.")
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 20)
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 
@@ -39,11 +41,11 @@ struct Settings: View {
                     .font(.caption)
                     .fontWeight(.regular)
                     .foregroundColor(.secondary)
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 20)
             }
             .padding(.bottom, 20)
         }
-        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarTitle("Settings", displayMode: .large)
         .onAppear {
             withAnimation(Animation.spring().delay(0.2)) {
                 show = true

@@ -44,9 +44,10 @@ struct FiresView: View {
                                     Spacer()
                                 }
                             }
-                                .padding(12)
-                                .background(Color(.secondarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .padding(12)
+                            .background(Color(.secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            
                             NavigationLink(destination: DataView()) {
                                 HStack {
                                     Spacer()
@@ -57,13 +58,13 @@ struct FiresView: View {
                                     Spacer()
                                 }
                             }
-                                .padding(12)
-                                .background(Color(.secondarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .padding(12)
+                            .background(Color(.secondarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
-                            .padding(20)
+                        .padding(20)
                         
-                        Header2(title: "Largest Fires", description: "Largest fires will be shown.")
+                        SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
                         
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
@@ -87,13 +88,13 @@ struct FiresView: View {
                                     }
                                 }
                             }
-                                .padding(20)
+                            .padding(20)
                         }
-                            .edgesIgnoringSafeArea(.horizontal)
+                        .edgesIgnoringSafeArea(.horizontal)
 
                         Divider().padding(20)
                         
-                        Header2(title: "Latest Fires", description: "Recently updated fires will be shown first.")
+                        SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
                                 ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices, id: \.self) { i in
@@ -109,9 +110,9 @@ struct FiresView: View {
                                     }
                                 }
                             }
-                                .padding(20)
+                            .padding(20)
                         }
-                            .edgesIgnoringSafeArea(.horizontal)
+                        .edgesIgnoringSafeArea(.horizontal)
                             
                         HStack {
                             Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
@@ -121,16 +122,16 @@ struct FiresView: View {
                                 .padding([.horizontal, .bottom], 20)
                             Spacer()
                         }
-                            .navigationBarTitle("Wildfires", displayMode: .inline)
-                            .navigationBarHidden(true)
+                        .navigationBarTitle("Wildfires", displayMode: .inline)
+                        .navigationBarHidden(true)
                     }
-                        .opacity(show ? 1 : 0)
-                        .onAppear {
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                self.show = true
-                            }
+                    .opacity(show ? 1 : 0)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            self.show = true
                         }
-                    StatusBg()
+                    }
+                    StatusBarBackground()
                 }
             }
         }
