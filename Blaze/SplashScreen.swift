@@ -295,7 +295,7 @@ struct SplashScreen: View {
                     VStack {
                         Button(action: { if page > 0 {page -= 1} }) {
                             Image(systemName: "arrow.backward.circle.fill")
-                                .font(.system(size: 30))
+                                .font(.title)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()

@@ -15,35 +15,45 @@ struct UpdateLog: View {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 HStack {
                     VStack(alignment: .leading, spacing: 0){
-                        Text("What's new in")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                        
-                        Text("Blaze 1.0.1")
-                            .font(.title)
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.blaze)
-                        
-                        Divider().padding(.vertical, 20)
-                        
+                        HStack {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.title)
+                                .foregroundColor(Color.blaze)
+                                .padding(.trailing, 10)
+                            
+                            VStack(alignment: .leading) {
+                                Text("What's new in")
+                                    .font(.title)
+                                    .fontWeight(.medium)
+                                
+                                Text("Blaze 1.0.1")
+                                    .font(.title)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.blaze)
+                            }
+                        }
+                        .padding(.bottom, 15)
+                                                
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Fixed a bug where sorting by latest fires will not work")
-                                .font(.body)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                            Text("Adjusted the label for latest fire section")
+                            Text("• Fixed a bug where sorting by latest fires will not work")
                                 .font(.body)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                             
-                            Text("Improved typography and spacing")
+                            Text("• Adjusted the label for latest fire section")
+                                .font(.body)
+                                .fontWeight(.regular)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            
+                            Text("• Improved typography and padding")
                                 .font(.body)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
+                        .padding(.leading, 45)
                     }
                     Spacer()
                 }
@@ -51,33 +61,14 @@ struct UpdateLog: View {
                 .background(Color(.secondarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 .padding(20)
-                                
-                //Replace this with VersionContent() after first update.
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Future Updates")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                
-                    Text("This area will expand as we accept user feedback and make changes accordingly to improve Blaze.")
-                        .font(.body)
-                        .fontWeight(.regular)
-                        .foregroundColor(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding(40)
                 
                 VersionDot(
-                    color: .green,
                     version: "1.0",
-                    changes: ["Initial release"]
+                    date: "10.17.20",
+                    changes: ["• Initial release"]
                 )
-                
-                VersionDot(
-                    color: .green,
-                    version: "1.0.1",
-                    changes: ["Fixed a bug where sorting by latest fires will not work", "Adjusted the label for latest fire section", "Improved typography and spacing"]
-                )
-            }.padding(.bottom, 50)
+            }
+            .padding(.bottom, 50)
         }
         .navigationBarTitle("Updates", displayMode: .inline)
         .onAppear {
@@ -89,92 +80,49 @@ struct UpdateLog: View {
     }
 }
 
-struct VersionContent: View {
-    var PreviousVersion: String
-    var PreviousVersionContent: String
-    
-    init(_ PreviousVersion: String, _ PreviousVersionContent: String) {
-        self.PreviousVersion = PreviousVersion
-        self.PreviousVersionContent = PreviousVersionContent
-    }
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Image(systemName: "checkmark.circle.fill")
-                .font(.title)
-                .foregroundColor(Color.blaze)
-                .padding(.trailing, 5)
-            
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Blaze 1.0")
-                    .font(.headline)
-                    .padding(.bottom, 5)
-                    .fixedSize(horizontal: false, vertical: true)
-            
-                Text("Bug fixes and improvements \nBig bug fix")
-                    .font(.body)
-                    .fontWeight(.medium)
-                    .foregroundColor(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .padding(.horizontal, 20)
-    }
-}
-
 struct VersionDot: View {
-    var color: Color
     var version: String
-    var time: String
+    var date: String
     var changes: [String]
     
-    init(color: Color = .blaze, version: String = "1.0", time: String = "10.19.20", changes: [String] = ["Bug Fixes", "Memory leak fix"]) {
-        self.color = color
+    init(version: String = "1.0", date: String = "10.19.20", changes: [String] = ["Bug Fixes", "Memory leak fix"]) {
         self.version = version
-        self.time = time
+        self.date = date
         self.changes = changes
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
                 Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 25))
+                    .font(.title)
                     .foregroundColor(.blaze)
                     .padding(5)
                     .padding(.trailing, 7)
                 Text("Blaze \(version)")
                     .font(.title3)
-                    .fontWeight(.bold)
+                    .fontWeight(.medium)
                 Spacer()
-                Text(time)
+                Text(date)
+                    .font(.callout)
+                    .fontWeight(.regular)
                     .foregroundColor(Color(.tertiaryLabel))
-                    .font(.caption)
-                    .fontWeight(.semibold)
             }
-            
-            HStack(alignment: .top) {
-                LazyHStack {}
-                    .frame(width: 3)
-                    .background(Color(.tertiaryLabel))
-                    .clipShape(Capsule())
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 3)
+            .padding(.horizontal, 15)
                     
-                    
-                VStack(alignment: .leading, spacing: 15) {
-                    ForEach(changes, id: \.self) { change in
-                        Text(change)
-                            .fontWeight(.medium)
-                    }
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(changes, id: \.self) { change in
+                    Text(change)
+                        .font(.body)
+                        .fontWeight(.regular)
                 }
-                    .fixedSize(horizontal: false, vertical: true)
-                    .foregroundColor(Color.secondary)
-                    .padding(.bottom, 15)
-                
-                Spacer()
             }
-        }.padding(.horizontal, 30)
+            .padding(.leading, 63)
+            .fixedSize(horizontal: false, vertical: true)
+            .foregroundColor(Color.secondary)
+            .padding(.bottom, 15)
+        }
+        .padding(.horizontal, 20)
     }
 }
 

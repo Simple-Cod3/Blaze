@@ -42,11 +42,12 @@ struct MiniFireCard: View {
                         .background(Color.blaze)
                         .clipShape(Capsule())
                 }
-            }.padding(15)
+            }
         }
-            .frame(width: 230, height: 190)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .padding(15)
+        .frame(width: 230, height: 190)
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }
 

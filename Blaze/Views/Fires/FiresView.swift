@@ -114,7 +114,7 @@ struct FiresView: View {
                             .edgesIgnoringSafeArea(.horizontal)
                             
                         HStack {
-                            Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in this app only as a reference. Blaze is not meant to provide up to the minute evacuation or fire behavior information.")
+                            Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
                                 .font(.caption)
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
