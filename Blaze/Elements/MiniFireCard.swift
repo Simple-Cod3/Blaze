@@ -18,35 +18,33 @@ struct MiniFireCard: View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
                 .font(.system(size: 26))
-                .padding([.top, .leading], 15)
                 .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
                 .font(.system(size: fireData.name.count > 15 ? 20 : 26))
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
                 .foregroundColor(.secondary)
-                .padding(.horizontal, 15)
             
             Spacer()
             HStack {
                 Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                    .font(.callout)
-                    .fontWeight(.medium)
+                    .font(.body)
+                    .fontWeight(.regular)
                     .foregroundColor(.blaze)
                 Spacer()
                 NavigationLink(destination: FireMapView(fireData: fireData)) {
                     Text("MAP")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
                         .foregroundColor(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 7)
                         .background(Color.blaze)
                         .clipShape(Capsule())
                 }
             }.padding(15)
         }
-            .frame(width: 210, height: 190)
+            .frame(width: 230, height: 190)
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
@@ -68,5 +66,9 @@ struct MiniFireCard_Previews: PreviewProvider {
         NavigationView {
             MiniFireCard(selected: true, fireData: fire, area: true)
         }
+        .padding(15)
+        .frame(width: 230, height: 190)
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }

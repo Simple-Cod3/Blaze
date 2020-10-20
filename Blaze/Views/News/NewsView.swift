@@ -56,7 +56,7 @@ struct NewsView: View {
                             HStack {
                                 Text("Resources")
                                     .font(.title)
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.medium)
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }
@@ -76,7 +76,7 @@ struct NewsView: View {
                             HStack {
                                 Text("Alerts")
                                     .font(.title)
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.medium)
                                     .padding(.horizontal, 20)
                                 Spacer()
                             }

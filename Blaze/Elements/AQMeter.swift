@@ -17,21 +17,21 @@ struct AQMeter: View {
             } else {
                 Text(airQ.category.Name)
                     .font(airQ.category.Name.count > 10 ? .callout : .largeTitle)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                 (Text(String(airQ.AQI)) + Text(" AQI"))
                     .font(.system(size: 20))
-                    .fontWeight(.semibold)
+                    .fontWeight(.medium)
                     .opacity(0.5)
                     .transition(.opacity)
                     .animation(.easeInOut)
             }
         }
-            .foregroundColor(.white)
-            .padding(85)
-            .animation(.spring())
-            .background(determineColor(cat: airQ.category.Number))
-            .clipShape(Circle())
+        .foregroundColor(.white)
+        .padding(85)
+        .animation(.spring())
+        .background(determineColor(cat: airQ.category.Number))
+        .clipShape(Circle())
     }
 }
 

@@ -27,20 +27,25 @@ struct NewsCard: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(news.id)
-                        .foregroundColor(.primary)
                         .font(.title2)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
                         .fixedSize(horizontal: false, vertical: true)
+                    
                     (Text(news.publisher)
+                        .fontWeight(.medium)
                         .foregroundColor(.blaze)
+
                         + Text(" • " + news.author)
+                        .fontWeight(.medium)
                         .foregroundColor(.secondary)
                     )
                     .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
-            }.padding([.horizontal, .bottom], 20)
+            }
+            .padding([.horizontal, .bottom], 20)
         }
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))

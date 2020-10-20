@@ -15,16 +15,19 @@ struct InformationSection: View {
     var body: some View {
         Section(header: Text(title)) {
             ForEach(data, id: \.self) { row in
-                HStack {
+                HStack(alignment: .top) {
                     Text("\(Image(systemName: row[0])) \(row[1])")
                         .font(.headline)
                         .padding(.trailing, 10)
                     Spacer()
                     Text(row[2])
-                        .font(.callout)
+                        .font(.body)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
-                }.contextMenu {
+                }
+                .padding(.vertical, 10)
+                .contextMenu {
                     if row[1] == "Location" {
                         Text("Lat: \(row[3])")
                         Text("Long: \(row[4])")
@@ -111,12 +114,6 @@ struct InformationViewInner: View {
             HStack {
                 Text("INFORMATION")
                 Spacer()
-                // MARK: - Too buggy for production
-//                ModalLink(destination: {
-//                    FullScreenInfoView(dismiss: $0, fireData: fireData)
-//                }) {
-//                    Text("Fullscreen").foregroundColor(.blaze)
-//                }
             }
         }
     }

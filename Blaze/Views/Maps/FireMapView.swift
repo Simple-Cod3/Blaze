@@ -80,7 +80,7 @@ struct FireMapView: View {
                 }
 
             Button(action: { hide.toggle() }) {
-                InfoCard(fire: fireData, hide: $hide, show: $show)
+                MapFireCard(fire: fireData, hide: $hide, show: $show)
                     .padding(.bottom, 20)
                     .buttonStyle(InfoCardButtonStyle())
             }

@@ -21,7 +21,7 @@ struct UpdateLog: View {
                         
                         Text("Blaze 1.0.1")
                             .font(.title)
-                            .fontWeight(.semibold)
+                            .fontWeight(.medium)
                             .foregroundColor(Color.blaze)
                         
                         Divider().padding(.vertical, 20)
@@ -29,18 +29,18 @@ struct UpdateLog: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Fixed a bug where sorting by latest fires will not work")
                                 .font(.body)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                             Text("Adjusted the label for latest fire section")
                                 .font(.body)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                             
                             Text("Improved typography and spacing")
                                 .font(.body)
-                                .fontWeight(.medium)
+                                .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
@@ -56,11 +56,11 @@ struct UpdateLog: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Future Updates")
                         .font(.title3)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                 
                     Text("This area will expand as we accept user feedback and make changes accordingly to improve Blaze.")
                         .font(.body)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }

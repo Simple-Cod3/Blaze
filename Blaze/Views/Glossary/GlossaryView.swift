@@ -54,7 +54,7 @@ struct GlossaryView: View {
                             ) {
                                 Text(word.id)
                                     .font(.body)
-                                    .fontWeight(.medium)
+                                    .fontWeight(.regular)
                                     .foregroundColor(.secondary)
                             }
                         }

@@ -66,13 +66,13 @@ struct SearchView: View {
                                     .foregroundColor(.blaze)
                                     .font(.system(size: 17, weight: .semibold))
                                 Text("Forest Fires")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                                    .fontWeight(.medium)
                                 Spacer()
                                 if !showFires {
                                     Text("\(firesList.count)")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                                        .font(.body)
+                                        .fontWeight(.regular)
                                         .foregroundColor(Color(.secondarySystemBackground))
                                         .padding(.vertical, 2)
                                         .padding(.horizontal, 5)
@@ -93,7 +93,7 @@ struct SearchView: View {
                                     ) {
                                         Text(word.id)
                                             .font(.headline)
-                                            .fontWeight(.medium)
+                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
                                     }
                                 }
@@ -103,16 +103,16 @@ struct SearchView: View {
                                     .foregroundColor(.blaze)
                                     .font(.system(size: 17, weight: .semibold))
                                 Text("Terms and Definitions")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                                    .fontWeight(.medium)
                                 Spacer()
                                 if !showWords {
                                     Text("\(wordsList.count)")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+                                        .font(.body)
+                                        .fontWeight(.regular)
                                         .foregroundColor(Color(.secondarySystemBackground))
-                                        .padding(.vertical, 2)
-                                        .padding(.horizontal, 5)
+                                        .padding(.vertical, 3)
+                                        .padding(.horizontal, 8)
                                         .background(Color.secondary)
                                         .clipShape(Capsule())
                                         .scaleEffect(showWords ? 0 : 1)
@@ -126,7 +126,7 @@ struct SearchView: View {
                 .navigationBarItems(
                     trailing: NavigationLink(destination: Settings()) {
                         Image(systemName: "gear")
-                            .font(.system(size: 25))
+                            .font(.title)
                     })
                 .navigationBarTitle("Search")
                 .add(self.searchBar)

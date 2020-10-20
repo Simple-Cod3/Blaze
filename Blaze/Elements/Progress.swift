@@ -21,7 +21,8 @@ struct ProgressBarView: View {
             HStack(spacing: 10) {
                 ProgressView()
                 Text("Loading \(text)...")
-                    .font(.headline)
+                    .font(.body)
+                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
             }
             ProgressBar(progress: $progress)

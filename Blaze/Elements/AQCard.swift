@@ -26,47 +26,47 @@ struct AQCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(date)
-                .font(.system(size: 30))
+                .font(.largeTitle)
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
 
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("Ozone")
-                        .font(.system(size: 20))
-                        .fontWeight(.medium)
+                        .font(.title3)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     
                     Text(ozone)
                         .font(.largeTitle)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                 }
                 
                 Spacer()
                 
                 Text(ozoneCaption)
-                    .font(.body)
-                    .fontWeight(.medium)
+                    .font(.title3)
+                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
             }
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("Particulate Matter")
-                        .font(.system(size: 20))
-                        .fontWeight(.medium)
+                        .font(.title3)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     
                     Text(primaryPollutant)
                         .font(.largeTitle)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                 }
                 
                 Spacer()
                 
                 Text(primaryPollutantCaption)
-                    .font(.body)
-                    .fontWeight(.medium)
+                    .font(.title3)
+                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
             }
         }
