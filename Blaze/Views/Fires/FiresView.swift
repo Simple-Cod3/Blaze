@@ -72,7 +72,8 @@ struct FiresView: View {
                                     NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i])) {
                                         MiniFireCard(
                                             selected: i == selectLargest,
-                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i]
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i],
+                                            area: true
                                         )
                                     }
                                 }
@@ -93,9 +94,9 @@ struct FiresView: View {
                         Header2(title: "Latest Fires", description: "Recently updated fires will be shown first.")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
-                                ForEach(fireB.fires.prefix(5).indices, id: \.self) { i in
-                                    NavigationLink(destination: FireMapView(fireData: fireB.fires[i])) {
-                                        MiniFireCard(selected: i == selectAll, fireData: fireB.fires[i])
+                                ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices, id: \.self) { i in
+                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[i])) {
+                                        MiniFireCard(selected: i == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[i], area: false)
                                     }
                                 }
                                 Spacer()

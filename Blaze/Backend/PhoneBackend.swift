@@ -65,6 +65,7 @@ class PhoneBackend: ObservableObject {
     init(numbers: [PhoneNumber]? = nil) {
         do {
             locationProvider.lm.allowsBackgroundLocationUpdates = false
+            locationProvider.lm.allowsBackgroundLocationUpdates = false
             try locationProvider.start()
         }
         catch {

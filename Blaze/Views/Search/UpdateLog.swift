@@ -8,28 +8,42 @@
 import SwiftUI
 
 struct UpdateLog: View {
+    @State var show = false
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 25) {
+            VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 HStack {
                     VStack(alignment: .leading, spacing: 0){
                         Text("What's new in")
                             .font(.title)
                             .fontWeight(.semibold)
-                            .fixedSize(horizontal: true, vertical: true)
                         
-                        Text("Blaze 1.0")
+                        Text("Blaze 1.0.1")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundColor(Color.blaze)
-                            .padding(.bottom, 10)
-                            .fixedSize(horizontal: true, vertical: true)
                         
-                        Text("Initial release")
-                            .font(.body)
-                            .fontWeight(.medium)
-                            .foregroundColor(.secondary)
-                            .fixedSize(horizontal: true, vertical: true)
+                        Divider().padding(.vertical, 20)
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Fixed a bug where sorting by latest fires will not work")
+                                .font(.body)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text("Adjusted the label for latest fire section")
+                                .font(.body)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                            
+                            Text("Improved typography and spacing")
+                                .font(.body)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                     }
                     Spacer()
                 }
@@ -43,7 +57,6 @@ struct UpdateLog: View {
                     Text("Future Updates")
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .fixedSize(horizontal: false, vertical: true)
                 
                     Text("This area will expand as we accept user feedback and make changes accordingly to improve Blaze.")
                         .font(.body)
@@ -51,7 +64,25 @@ struct UpdateLog: View {
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.horizontal, 20)
+                .padding(40)
+                
+                VersionDot(
+                    color: .green,
+                    version: "1.0",
+                    changes: ["Initial release"]
+                )
+                
+                VersionDot(
+                    color: .green,
+                    version: "1.0.1",
+                    changes: ["Fixed a bug where sorting by latest fires will not work", "Adjusted the label for latest fire section", "Improved typography and spacing"]
+                )
+            }.padding(.bottom, 50)
+        }
+        .onAppear {
+            show = false
+            withAnimation(Animation.spring(response: 0.5).delay(0.1)) {
+                show = true
             }
         }
     }
@@ -87,6 +118,62 @@ struct VersionContent: View {
             }
         }
         .padding(.horizontal, 20)
+    }
+}
+
+struct VersionDot: View {
+    var color: Color
+    var version: String
+    var time: String
+    var changes: [String]
+    
+    init(color: Color = .blaze, version: String = "1.0", time: String = "10.19.20", changes: [String] = ["Bug Fixes", "Memory leak fix"]) {
+        self.color = color
+        self.version = version
+        self.time = time
+        self.changes = changes
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 0) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 25))
+                    .foregroundColor(.blaze)
+                    .padding(5)
+                    .padding(.trailing, 7)
+                Text("Blaze \(version)")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                Spacer()
+                Text(time)
+                    .foregroundColor(Color(.tertiaryLabel))
+                    .font(.caption)
+                    .fontWeight(.semibold)
+            }
+            
+            HStack(alignment: .top) {
+                LazyHStack {}
+                    .frame(width: 3)
+                    .background(Color(.tertiaryLabel))
+                    .clipShape(Capsule())
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 3)
+                    
+                    
+                VStack(alignment: .leading, spacing: 15) {
+                    ForEach(changes, id: \.self) { change in
+                        Text(change)
+                            .fontWeight(.medium)
+                    }
+                }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundColor(Color.secondary)
+                    .padding(.bottom, 15)
+                
+                Spacer()
+            }
+        }.padding(.horizontal, 30)
     }
 }
 

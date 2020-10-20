@@ -68,7 +68,7 @@ public class LocationProvider: NSObject, ObservableObject {
         self.lm.desiredAccuracy = kCLLocationAccuracyBest
         self.lm.activityType = .fitness
         self.lm.distanceFilter = 10
-        self.lm.allowsBackgroundLocationUpdates = true
+        self.lm.allowsBackgroundLocationUpdates = false
         self.lm.pausesLocationUpdatesAutomatically = false
         #if os(iOS)
         self.lm.showsBackgroundLocationIndicator = true

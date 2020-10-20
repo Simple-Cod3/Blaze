@@ -12,6 +12,7 @@ struct MiniFireCard: View {
     
     var selected: Bool
     var fireData: ForestFire
+    var area: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,7 +29,7 @@ struct MiniFireCard: View {
             
             Spacer()
             HStack {
-                Text(fireData.getAreaString(areaUnits))
+                Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(.blaze)
@@ -65,7 +66,7 @@ struct MiniFireCard_Previews: PreviewProvider {
         )
 
         NavigationView {
-            MiniFireCard(selected: true, fireData: fire)
+            MiniFireCard(selected: true, fireData: fire, area: true)
         }
     }
 }
