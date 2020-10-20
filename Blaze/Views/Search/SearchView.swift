@@ -57,8 +57,9 @@ struct SearchView: View {
                                 ForEach(firesList) { fire in
                                     NavigationLink(destination: FireMapView(fireData: fire)) {
                                         Text(fire.name)
+                                            .font(.body)
+                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
-                                            .fontWeight(.medium)
                                     }
                                 }},
                             label: { HStack {
@@ -92,7 +93,7 @@ struct SearchView: View {
                                                     .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)
-                                            .font(.headline)
+                                            .font(.body)
                                             .fontWeight(.regular)
                                             .foregroundColor(.secondary)
                                     }
