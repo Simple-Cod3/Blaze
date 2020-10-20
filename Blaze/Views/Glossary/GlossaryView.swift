@@ -93,7 +93,7 @@ struct ExpandAlphabetView: View {
                         (Text(key.uppercased()).foregroundColor(.blaze) +
                             Text(key.lowercased()).foregroundColor(Color.blaze.opacity(0.3)))
                             .font(.system(size: 80))
-                            .bold()
+                            .fontWeight(.semibold)
                             .fixedSize()
                             .padding(.bottom, 40)
                         
@@ -112,7 +112,7 @@ struct ExpandAlphabetView: View {
                 (Text(key.uppercased()).foregroundColor(.blaze) +
                     Text(key.lowercased()).foregroundColor(Color.blaze.opacity(0.3)))
                     .font(.system(size: 50))
-                    .bold()
+                    .fontWeight(.semibold)
                     .fixedSize()
                     .padding(.trailing, 40)
                 Spacer()
