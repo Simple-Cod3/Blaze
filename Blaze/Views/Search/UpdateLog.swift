@@ -46,6 +46,12 @@ struct UpdateLog: View {
                             .fontWeight(.regular)
                             .foregroundColor(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
+                        
+                        Text("• Fixed grammar and wording in some views.")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
 
                         Text("• Improved typography and spacing")
                             .font(.body)
