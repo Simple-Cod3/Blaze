@@ -38,7 +38,7 @@ struct MiniFireCard: View {
                         .fontWeight(.medium)
                         .foregroundColor(.white)
                         .padding(.horizontal, 12)
-                        .padding(.vertical, 7)
+                        .padding(.vertical, 5)
                         .background(Color.blaze)
                         .clipShape(Capsule())
                 }

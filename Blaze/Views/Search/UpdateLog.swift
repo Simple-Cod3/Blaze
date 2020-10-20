@@ -106,7 +106,7 @@ struct VersionDot: View {
                 Spacer()
                 
                 Text(date)
-                    .font(.callout)
+                    .font(.body)
                     .fontWeight(.regular)
                     .foregroundColor(Color(.tertiaryLabel))
             }

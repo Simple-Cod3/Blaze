@@ -11,12 +11,12 @@ struct InfoButton: View {
     var body: some View {
         VStack {
             Text("INFO")
-                .font(.callout)
-                .fontWeight(.semibold)
+                .font(.subheadline)
+                .fontWeight(.medium)
                 .foregroundColor(.white)
         }
-        .padding(.horizontal, 15)
-        .padding(.vertical, 7)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 5)
         .background(Color.blaze)
         .cornerRadius(20)
     }
