@@ -18,14 +18,14 @@ struct UpdateLog: View {
                         Text("What's new in")
                             .font(.title)
                             .fontWeight(.semibold)
-                        
+
                         Text("Blaze 1.0.1")
                             .font(.title)
                             .fontWeight(.medium)
                             .foregroundColor(Color.blaze)
-                        
+
                         Divider().padding(.vertical, 20)
-                        
+
                         VStack(alignment: .leading, spacing: 10) {
                             Text("Fixed a bug where sorting by latest fires will not work")
                                 .font(.body)
@@ -37,7 +37,7 @@ struct UpdateLog: View {
                                 .fontWeight(.regular)
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
-                            
+
                             Text("Improved typography and spacing")
                                 .font(.body)
                                 .fontWeight(.regular)
@@ -154,26 +154,23 @@ struct VersionDot: View {
             }
             
             HStack(alignment: .top) {
-                LazyHStack {}
+                VStack { Spacer()}
                     .frame(width: 3)
                     .background(Color(.tertiaryLabel))
                     .clipShape(Capsule())
                     .padding(.horizontal, 16)
                     .padding(.vertical, 3)
                     
-                    
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(changes, id: \.self) { change in
                         Text(change)
-                            .fontWeight(.medium)
                     }
                 }
-                    .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(Color.secondary)
                     .padding(.bottom, 15)
                 
                 Spacer()
-            }
+            }.fixedSize(horizontal: false, vertical: true)
         }.padding(.horizontal, 30)
     }
 }
