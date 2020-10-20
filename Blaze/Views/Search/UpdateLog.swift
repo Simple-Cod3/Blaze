@@ -13,41 +13,48 @@ struct UpdateLog: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 0){
-                        Text("What's new in")
+                VStack {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
                             .font(.title)
-                            .fontWeight(.semibold)
+                            .foregroundColor(.blaze)
+                            .padding(.trailing, 10)
+                        
+                        VStack(alignment: .leading) {
+                            Text("What's new in")
+                                .font(.title)
+                                .fontWeight(.medium)
 
-                        Text("Blaze 1.0.1")
-                            .font(.title)
-                            .fontWeight(.medium)
-                            .foregroundColor(Color.blaze)
-
-                        Divider().padding(.vertical, 20)
-
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("• Fixed a bug where sorting by latest fires will not work")
-                                .font(.body)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-                            
-                            Text("• Adjusted the label for latest fire section")
-                                .font(.body)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
-
-                            Text("Improved typography and spacing")
-                                .font(.body)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
+                            Text("Blaze 1.0.1")
+                                .font(.title)
+                                .fontWeight(.medium)
+                                .foregroundColor(Color.blaze)
                         }
-                        .padding(.leading, 45)
+                        Spacer()
                     }
-                    Spacer()
+                    .padding(.bottom, 10)
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("• Fixed a bug where sorting by latest fires will not work")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        Text("• Adjusted the label for latest fire section")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+
+                        Text("• Improved typography and spacing")
+                            .font(.body)
+                            .fontWeight(.regular)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .padding(.leading, 40)
+
                 }
                 .padding(20)
                 .background(Color(.secondarySystemBackground))
@@ -91,10 +98,13 @@ struct VersionDot: View {
                     .foregroundColor(.blaze)
                     .padding(5)
                     .padding(.trailing, 7)
+                
                 Text("Blaze \(version)")
                     .font(.title3)
                     .fontWeight(.medium)
+                
                 Spacer()
+                
                 Text(date)
                     .font(.callout)
                     .fontWeight(.regular)
@@ -103,13 +113,13 @@ struct VersionDot: View {
             
             HStack(alignment: .top) {
                 VStack { Spacer()}
-                    .frame(width: 3)
+                    .frame(width: 2)
                     .background(Color(.tertiaryLabel))
                     .clipShape(Capsule())
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 17)
                     .padding(.vertical, 3)
                     
-                VStack(alignment: .leading, spacing: 15) {
+                VStack(alignment: .leading, spacing: 10) {
                     ForEach(changes, id: \.self) { change in
                         Text(change)
                     }
