@@ -8,6 +8,7 @@ https://apps.apple.com/us/app/blaze-wildfires/id1530692513
 
 ## Update
 1.0.1
+
 • Fixed a bug where sorting by latest fires will not work
 
 • Adjusted the label for latest fire section
