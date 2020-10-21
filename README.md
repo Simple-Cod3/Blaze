@@ -3,6 +3,7 @@ App to track forest fire location and news
 
 ## Usage
 Download Blaze: Wildfires on the AppStore
+
 https://apps.apple.com/us/app/blaze-wildfires/id1530692513
 
 ## Update
