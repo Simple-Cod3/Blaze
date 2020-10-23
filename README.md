@@ -1,5 +1,15 @@
+<div align="center">
+
+<img src="/Blaze/Assets.xcassets/AppIcon.appiconset/1024.png" width=100>
+
 # Blaze: Wildfires
+```
+📰 🔥 🎈 🔎
 App to track forest fire location and news
+```
+
+</div>
+
 
 ## Usage
 Download Blaze: Wildfires on the AppStore
