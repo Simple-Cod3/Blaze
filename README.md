@@ -5,6 +5,7 @@
 # Blaze: Wildfires
 ```
 📰 🔥 🎈 🔎
+
 App to track forest fire location and news
 ```
 
