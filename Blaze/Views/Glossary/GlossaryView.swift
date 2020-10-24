@@ -16,9 +16,9 @@ struct GlossaryView: View {
     private var letters = Array(GlossaryDatabase.terms.keys).sorted()
     private var terms = GlossaryDatabase.getAllWords().sorted()
     
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     
-    init(dismiss: @escaping () -> ()) {
+    init(dismiss: @escaping () -> Void) {
         self.dismiss = dismiss
     }
     
@@ -81,7 +81,7 @@ struct ExpandAlphabetView: View {
     @State var show = false
     
     var key: String
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     
     var glossary = GlossaryDatabase.terms
     

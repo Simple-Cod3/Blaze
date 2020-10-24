@@ -139,7 +139,6 @@ struct VersionDot: View {
     }
 }
 
-
 struct UpdateLog_Previews: PreviewProvider {
     static var previews: some View {
         UpdateLog()

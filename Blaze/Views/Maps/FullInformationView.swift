@@ -39,7 +39,11 @@ struct FullInformationView: View {
                 }
             }
             .navigationBarTitle("All Fires")
-            .navigationBarItems(trailing: Button(action: { show.toggle() }) { CloseModalButton() })
+            .navigationBarItems(
+                trailing: Button(action: { show.toggle() }) {
+                    CloseModalButton()
+                }
+            )
             .add(self.searchBar)
         }
     }

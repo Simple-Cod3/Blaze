@@ -71,11 +71,11 @@ struct FiresView: View {
                                 ForEach(
                                     fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
                                     id: \.self
-                                ) { i in
-                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i])) {
+                                ) { index in
+                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index])) {
                                         MiniFireCard(
-                                            selected: i == selectLargest,
-                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[i],
+                                            selected: index == selectLargest,
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                             area: true
                                         )
                                     }
@@ -97,9 +97,9 @@ struct FiresView: View {
                         SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
-                                ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices, id: \.self) { i in
-                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[i])) {
-                                        MiniFireCard(selected: i == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[i], area: false)
+                                ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices, id: \.self) { index in
+                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
+                                        MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                     }
                                 }
                                 Spacer()
@@ -134,8 +134,7 @@ struct FiresView: View {
                     StatusBarBackground()
                 }
             }
-        }
-        else if fireB.failed {
+        } else if fireB.failed {
             VStack(spacing: 20) {
                 Image(systemName: "wifi.exclamationmark")
                     .font(.system(size: 30))
@@ -147,8 +146,7 @@ struct FiresView: View {
                 
                 Button("Click to Retry", action: { fireB.refreshFireList() })
             }
-        }
-        else {
+        } else {
             ProgressBarView(
                 progressObj: $fireB.progress,
                 progress: $progress,

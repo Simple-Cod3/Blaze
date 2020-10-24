@@ -37,7 +37,6 @@
 		E97E26DE250837FD00B939F3 /* SearchUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DD250837FD00B939F3 /* SearchUIKit.swift */; };
 		E97E26E02508444B00B939F3 /* WebModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DF2508444B00B939F3 /* WebModal.swift */; };
 		E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E125084ABF00B939F3 /* SplashScreen.swift */; };
-		E97E26E42508535200B939F3 /* SplashScreenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E32508535200B939F3 /* SplashScreenConstants.swift */; };
 		E985F5362503752000A3BA83 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5352503752000A3BA83 /* FormButton.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
 		E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
@@ -111,7 +110,6 @@
 		E97E26DD250837FD00B939F3 /* SearchUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUIKit.swift; sourceTree = "<group>"; };
 		E97E26DF2508444B00B939F3 /* WebModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebModal.swift; sourceTree = "<group>"; };
 		E97E26E125084ABF00B939F3 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
-		E97E26E32508535200B939F3 /* SplashScreenConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenConstants.swift; sourceTree = "<group>"; };
 		E985F5352503752000A3BA83 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
 		E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInfoView.swift; sourceTree = "<group>"; };
@@ -205,9 +203,9 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
+				E9AF015324FDB8DD0058C184 /* Blaze */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
-				E9AF015324FDB8DD0058C184 /* Blaze */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,7 +233,6 @@
 				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
 				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
 				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
-				E97E26E32508535200B939F3 /* SplashScreenConstants.swift */,
 			);
 			path = Blaze;
 			sourceTree = "<group>";
@@ -372,6 +369,7 @@
 				E9AF014F24FDB8DD0058C184 /* Resources */,
 				E90CB5AD2508AD3D008EC502 /* ShellScript */,
 				E9E31AC7250EDF19007FF855 /* Embed App Extensions */,
+				E93B4E7C2543CFD800D811A7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -459,6 +457,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
 		};
+		E93B4E7C2543CFD800D811A7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -487,7 +502,6 @@
 				E9CE22A52502F48700929D13 /* Extensions.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
-				E97E26E42508535200B939F3 /* SplashScreenConstants.swift in Sources */,
 				6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */,
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
@@ -660,7 +674,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -671,7 +685,7 @@
 				);
 				MARKETING_VERSION = 2.0.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplecode.Blsdfsdfsdfsdf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -687,7 +701,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -698,7 +712,7 @@
 				);
 				MARKETING_VERSION = 2.0.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplecode.Blsdfsdfsdfsdf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -48,11 +48,11 @@ struct ProgressBar: View {
     @Binding var progress: Double
 
     var body: some View {
-        GeometryReader { g in
+        GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Color.blaze.opacity(0.3)
                 Color.blaze
-                    .frame(width: g.size.width*CGFloat(min(self.progress, 1.0)))
+                    .frame(width: geo.size.width*CGFloat(min(self.progress, 1.0)))
             }
                 .frame(height: 4)
                 .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))

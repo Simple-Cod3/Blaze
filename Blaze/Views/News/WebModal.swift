@@ -14,12 +14,12 @@ import SafariServices
 
 /// Loading website modal
 struct WebModal: View {
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     var url: URL
     
     private func actionSheet() {
-        let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
+        let activityView = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(activityView, animated: true, completion: nil)
     }
     
     var body: some View {
@@ -72,8 +72,7 @@ struct URLWebView: UIViewRepresentable {
                 }
                 
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                if components?.scheme == "http" || components?.scheme == "https"
-                {
+                if components?.scheme == "http" || components?.scheme == "https" {
                     UIApplication.shared.open(url)
                     decisionHandler(.cancel)
                 } else {
@@ -102,7 +101,7 @@ struct NativeWebView: View {
     }
 }
 
-struct HTMLWebView : UIViewRepresentable {
+struct HTMLWebView: UIViewRepresentable {
     @Binding var height: CGFloat
     var html: String
     var webview = WKWebView()
@@ -118,12 +117,13 @@ struct HTMLWebView : UIViewRepresentable {
         }
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            webView.evaluateJavaScript("document.body.scrollHeight",
-                                       completionHandler: { (height, error) in
-                                        DispatchQueue.main.async {
-                                            self.parent.height = height as! CGFloat
-                                        }
-                                       })
+            webView.evaluateJavaScript(
+                "document.body.scrollHeight",
+                completionHandler: { height, _ in
+                    DispatchQueue.main.async {
+                        self.parent.height = height as! CGFloat
+                    }
+                })
         }
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -134,8 +134,7 @@ struct HTMLWebView : UIViewRepresentable {
                 }
                 
                 let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                if components?.scheme == "http" || components?.scheme == "https"
-                {
+                if components?.scheme == "http" || components?.scheme == "https" {
                     UIApplication.shared.open(url)
                     decisionHandler(.cancel)
                 } else {
@@ -151,7 +150,7 @@ struct HTMLWebView : UIViewRepresentable {
         Coordinator(self)
     }
     
-    func makeUIView(context: Context) -> WKWebView  {
+    func makeUIView(context: Context) -> WKWebView {
         /// Modifiers
         webview.scrollView.isScrollEnabled = false
         webview.isOpaque = false
@@ -240,7 +239,7 @@ struct HTMLWebView : UIViewRepresentable {
     <BODY>
 """)
         let htmlEnd = "</BODY></HTML>"
-        webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL:  nil)
+        webview.loadHTMLString(htmlStart + html + htmlEnd, baseURL: nil)
         return webview
     }
 }
@@ -254,6 +253,5 @@ struct SafariViewBootleg: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariViewBootleg>) {
-
     }
 }

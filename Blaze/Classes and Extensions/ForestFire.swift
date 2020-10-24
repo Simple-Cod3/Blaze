@@ -198,21 +198,10 @@ struct ForestFire: Codable, Identifiable {
 
     // MARK: - Computed Properties
 
-    var acres: Int {
-        get { self.acresO ?? -1 }
-    }
-    
-    var contained: Int {
-        get { self.containedO ?? -1 }
-    }
-    
-    var url: String {
-        get { "https://www.fire.ca.gov" + self.relURL }
-    }
-    
-    var km: Double {
-        get { (Double(self.acres) / 247).squareRoot() }
-    }
+    var acres: Int { self.acresO ?? -1 }
+    var contained: Int { self.containedO ?? -1 }
+    var url: String { "https://www.fire.ca.gov" + self.relURL }
+    var km: Double { ( Double(self.acres) / 247 ).squareRoot() }
     
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
     var coordinate: CLLocationCoordinate2D {

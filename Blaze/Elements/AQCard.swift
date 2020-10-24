@@ -14,14 +14,13 @@ struct AQCard: View {
     private var primaryPollutant: String
     private var primaryPollutantCaption: String
     
-    init (ozone: AirQuality, primary: AirQuality){
+    init (ozone: AirQuality, primary: AirQuality) {
         self.date = ozone.getDate()
-        self.ozone = ozone.category.Name
+        self.ozone = ozone.category.name
         self.ozoneCaption = ozone.pollutant
-        self.primaryPollutant = primary.category.Name
+        self.primaryPollutant = primary.category.name
         self.primaryPollutantCaption = primary.pollutant
     }
-    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

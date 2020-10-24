@@ -9,11 +9,11 @@ import SwiftUI
 import BetterSafariView
 
 struct FormButton: View {
-    @State private var on = false
+    @State private var presenting = false
     var text: String
     var url: URL
     
-    private func toggle() { self.on.toggle() }
+    private func toggle() { self.presenting.toggle() }
     
     var body: some View {
         HStack {
@@ -25,7 +25,7 @@ struct FormButton: View {
             }
             Spacer()
         }
-        .sheet(isPresented: $on) {
+        .sheet(isPresented: $presenting) {
             SafariViewBootleg(url: url)
                 .edgesIgnoringSafeArea(.all)
         }

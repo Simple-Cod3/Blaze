@@ -9,16 +9,16 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct PhoneNumbers : Codable, Identifiable {
-    var id = UUID()
-    var features : [Features]
+struct PhoneNumbers: Codable, Identifiable {
+    var id = UUID() 
+    var features: [Features]
     
     enum CodingKeys: String, CodingKey {
         case features
     }
-    struct Features : Codable, Identifiable {
+    struct Features: Codable, Identifiable {
         var id = UUID()
-        var attributes : PhoneNumber
+        var attributes: PhoneNumber
         
         enum CodingKeys: String, CodingKey {
             case attributes
@@ -26,19 +26,19 @@ struct PhoneNumbers : Codable, Identifiable {
     }
 }
 
-struct PhoneNumber : Codable, Identifiable, Equatable {
+struct PhoneNumber: Codable, Identifiable, Equatable {
     static func == (lhs: PhoneNumber, rhs: PhoneNumber) -> Bool {
         return lhs.name == rhs.name
     }
     
     var id = UUID()
-    var name : String?
-    var address : String?
-    var city : String?
-    var lat : Double?
-    var long : Double?
-    var phoneNumber : String?
-    var county : String?
+    var name: String?
+    var address: String?
+    var city: String?
+    var lat: Double?
+    var long: Double?
+    var phoneNumber: String?
+    var county: String?
     
     enum CodingKeys: String, CodingKey {
         case name = "NAME"
@@ -67,8 +67,7 @@ class PhoneBackend: ObservableObject {
             locationProvider.lm.allowsBackgroundLocationUpdates = false
             locationProvider.lm.allowsBackgroundLocationUpdates = false
             try locationProvider.start()
-        }
-        catch {
+        } catch {
             print("!!! 🚫 Failed to get access to location 🚫 !!!")
             locationProvider.requestAuthorization()
         }
@@ -93,11 +92,12 @@ class PhoneBackend: ObservableObject {
         }
         
         print("[ Grabbing new numbers at (\(lat!), \(long!)) ]")
+
+        let url = with ?? URL(
+            string: "https://egis.fire.ca.gov/arcgis/rest/services/FRAP/Facilities/MapServer/0/query?where=1%3D1&outFields=*&geometry=\(lat!-50)%2C\(lat!+50)%2C\(long!-50)%2C\(long!+50)&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outSR=4326&f=json"
+        )!
         
-        // TODO: make this a function kinda gross
-        let url = with ?? URL(string: "https://egis.fire.ca.gov/arcgis/rest/services/FRAP/Facilities/MapServer/0/query?where=1%3D1&outFields=*&geometry=\(lat!-50)%2C\(lat!+50)%2C\(long!-50)%2C\(long!+50)&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outSR=4326&f=json")!
-        
-        let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
+        let task = URLSession.shared.dataTask(with: url) { unsafeData, _, error in
             guard let data: Data = unsafeData else {
                 print("🚫 No phone data found")
                 return
@@ -108,7 +108,7 @@ class PhoneBackend: ObservableObject {
             jsonDecoder.dateDecodingStrategyFormatters = [
                 DateFormatter.iso8601Full,
                 DateFormatter.iso8601,
-                DateFormatter.iso8601NoExtention,
+                DateFormatter.iso8601NoExtention
             ]
             
             DispatchQueue.main.async {

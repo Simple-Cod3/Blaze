@@ -27,13 +27,13 @@ struct UnitsCard: View {
             Divider().padding(.bottom, 5)
             
             Picker("", selection: $selection) {
-                ForEach(units.indices) { i in
-                    Text(units[i]).tag(i)
+                ForEach(units.indices) { index in
+                    Text(units[index]).tag(index)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            .onChange(of: selection, perform: { i in
-                setUnit(unit: units[i])
+            .onChange(of: selection, perform: { index in
+                setUnit(unit: units[index])
                 print("🔄 Changed Area Units to: \(UserDefaults.standard.string(forKey: "areaUnits")!)")
             })
             

@@ -19,9 +19,9 @@ public let defaultAuthorizationRequestType = CLAuthorizationStatus.authorizedAlw
 #endif
 
 #if os(iOS)
-public let allowedAuthorizationTypes : Set<CLAuthorizationStatus> = Set([.authorizedWhenInUse, .authorizedAlways])
+public let allowedAuthorizationTypes: Set<CLAuthorizationStatus> = Set([.authorizedWhenInUse, .authorizedAlways])
 #elseif os(macOS)
-public let allowedAuthorizationTypes : Set<CLAuthorizationStatus> = Set([.authorized, .authorizedAlways])
+public let allowedAuthorizationTypes: Set<CLAuthorizationStatus> = Set([.authorized, .authorizedAlways])
 #endif
 
 /**
@@ -53,10 +53,8 @@ public class LocationProvider: NSObject, ObservableObject {
     /// The authorization status for CoreLocation.
     @Published public var authorizationStatus: CLAuthorizationStatus?
     
-    
     /// A function that is executed when the `CLAuthorizationStatus` changes to `Denied`.
-    public var onAuthorizationStatusDenied : ()->Void = {presentLocationSettingsAlert()}
-    
+    public var onAuthorizationStatusDenied: () -> Void = {presentLocationSettingsAlert()}
     /// The LocationProvider intializer.
     ///
     /// Creates a CLLocationManager delegate and sets the CLLocationManager properties.
@@ -82,11 +80,10 @@ public class LocationProvider: NSObject, ObservableObject {
      In case, the access has already been denied, execute the `onAuthorizationDenied` closure.
      The default behavior is to present an alert that suggests going to the settings page.
      */
-    public func requestAuthorization(authorizationRequestType: CLAuthorizationStatus = defaultAuthorizationRequestType) -> Void {
+    public func requestAuthorization(authorizationRequestType: CLAuthorizationStatus = defaultAuthorizationRequestType) {
         if self.authorizationStatus == CLAuthorizationStatus.denied {
             onAuthorizationStatusDenied()
-        }
-        else {
+        } else {
             switch authorizationRequestType {
             case .authorizedWhenInUse:
                 self.lm.requestWhenInUseAuthorization()
@@ -97,17 +94,16 @@ public class LocationProvider: NSObject, ObservableObject {
             }
         }
     }
-    
+
     /// Start the Location Provider.
-    public func start() throws -> Void {
+    public func start() throws {
         self.requestAuthorization()
-        
+
         if let status = self.authorizationStatus {
             guard allowedAuthorizationTypes.contains(status) else {
                 throw LocationProviderError.noAuthorization
             }
-        }
-        else {
+        } else {
             /// no authorization set by delegate yet
             #if DEBUG
             print(#function, "WARNING: No location authorization status set by delegate yet. Try to start updates anyhow.")
@@ -120,20 +116,19 @@ public class LocationProvider: NSObject, ObservableObject {
         }
         self.lm.startUpdatingLocation()
     }
-    
+
     /// Stop the Location Provider.
-    public func stop() -> Void {
+    public func stop() {
         self.lm.stopUpdatingLocation()
     }
-    
 }
 
 /// Present an alert that suggests to go to the app settings screen.
-public func presentLocationSettingsAlert(alertText : String? = nil) -> Void {
+public func presentLocationSettingsAlert(alertText: String? = nil) {
     #if os(iOS)
-    let alertController = UIAlertController (title: "Enable Location Access", message: alertText ?? "The location access for this app is set to 'never'. Enable location access in the application settings. Go to Settings now?", preferredStyle: .alert)
+    let alertController = UIAlertController(title: "Enable Location Access", message: alertText ?? "The location access for this app is set to 'never'. Enable location access in the application settings. Go to Settings now?", preferredStyle: .alert)
     let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-        guard let settingsUrl = URL(string:UIApplication.openSettingsURLString) else {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
             return
         }
         UIApplication.shared.open(settingsUrl)
@@ -144,7 +139,6 @@ public func presentLocationSettingsAlert(alertText : String? = nil) -> Void {
     UIApplication.shared.windows[0].rootViewController?.present(alertController, animated: true, completion: nil)
     #endif
 }
-
 
 /// Error which is thrown for lacking localization authorization.
 public enum LocationProviderError: Error {
@@ -175,8 +169,7 @@ extension LocationProvider: CLLocationManagerDelegate {
             case CLError.locationUnknown : print(#function, "Location manager is unable to retrieve a location.")
             default: print(#function, "Location manager failed with unknown CoreLocation error.")
             }
-        }
-        else {
+        } else {
             print(#function, "Location manager failed with unknown error", error.localizedDescription)
         }
     }

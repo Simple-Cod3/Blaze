@@ -45,7 +45,6 @@ class NewsBackend: ObservableObject {
     /// self-explanatory
     func refreshNewsList() {
         let start = Date()
-        
         self.loaded = false
         self.failed = false
         print("📰 [ Grabbing News ]")
@@ -55,7 +54,7 @@ class NewsBackend: ObservableObject {
         let group = DispatchGroup()
         let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/articles/")!
         
-        let task = URLSession.shared.dataTask(with: feedURL) { data, response, error in
+        let task = URLSession.shared.dataTask(with: feedURL) { data, _, error in
             guard let data: Data = data else {
                 self.failed = true
                 print("🚫 No news found")
@@ -81,14 +80,12 @@ class NewsBackend: ObservableObject {
                                             publisher: "InciWeb National Incidents",
                                             sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
                                             date: date)
-                                        
                                         /// Push to temp
                                         newNews.append(news)
                                     }
                                 }
                             }
                         }
-                        
                     case .failure(let error):
                         self.failed = true
                         print("🚫 Couldn't get news: \(error)")

@@ -21,7 +21,7 @@ struct NewsView: View {
         case phone, glossary
     }
     
-    @State private var shown: NewsModals? = nil
+    @State private var shown: NewsModals?
     
     var failed: some View {
         VStack(spacing: 20) {
@@ -105,11 +105,9 @@ struct NewsView: View {
                     }// ScrollView
                     StatusBarBackground()
                 }
-            }
-            else if news.failed {
+            } else if news.failed {
                 failed
-            }
-            else {
+            } else {
                 ProgressBarView(
                     progressObj: $news.progress,
                     progress: $progress,
@@ -127,13 +125,13 @@ struct NewsView: View {
 }
 
 struct NewsCardButton: View {
-    @State var on = false
+    @State var presenting = false
     var news: News
     
     var body: some View {
-        Button(action: { on = true }) {
+        Button(action: { presenting = true }) {
             NewsCard(news: news)
-                .safariView(isPresented: $on) {
+                .safariView(isPresented: $presenting) {
                     SafariView(
                         url: news.url,
                         configuration: SafariView.Configuration(

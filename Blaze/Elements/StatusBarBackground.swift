@@ -9,10 +9,10 @@ import SwiftUI
 
 struct StatusBarBackground: View {
     var body: some View {
-        GeometryReader { g in
+        GeometryReader { geo in
             VStack {
                 Color(.systemBackground)
-                    .frame(height: g.safeAreaInsets.top)
+                    .frame(height: geo.safeAreaInsets.top)
                     .edgesIgnoringSafeArea(.top)
                 Spacer()
             }

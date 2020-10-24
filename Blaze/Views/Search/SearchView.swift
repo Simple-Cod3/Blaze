@@ -89,8 +89,12 @@ struct SearchView: View {
                             isExpanded: $showWords,
                             content: {
                                 ForEach(wordsList) { word in
-                                    NavigationLink(destination: ScrollView{Header(title: word.id, desc: word.definition).padding(.vertical, 50)}
-                                                    .navigationBarTitle("Term", displayMode: .inline)
+                                    NavigationLink(
+                                        destination: ScrollView {
+                                            Header(title: word.id, desc: word.definition)
+                                                .padding(.vertical, 50)
+                                        }
+                                        .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)
                                             .font(.body)
@@ -132,7 +136,7 @@ struct SearchView: View {
                 .navigationBarTitle("Search")
                 .add(self.searchBar)
             }
-            .onChange(of: searchBar.text, perform: { value in
+            .onChange(of: searchBar.text, perform: { _ in
                 getFires()
                 getWords()
             })

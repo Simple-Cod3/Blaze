@@ -13,7 +13,7 @@ struct PhoneInfoView: View {
     @State private var pastedState = false
     @State private var viewMode = 0
     
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     var phoneData: PhoneNumber
     
     var phoneCircle: some View {
@@ -40,7 +40,7 @@ struct PhoneInfoView: View {
                         Spacer()
                         phoneCircle
                             .overlay(
-                                Check(yes: closed, interval: 0, size: 40).offset(x: 45, y:-45)
+                                Check(yes: closed, interval: 0, size: 40).offset(x: 45, y: -45)
                             )
                         
                         VStack(spacing: 15) {
@@ -106,8 +106,7 @@ struct PhoneInfoView: View {
                             Map(
                                 coordinateRegion: $coordinateRegion,
                                 annotationItems: [phoneData]
-                            )
-                            { phone in
+                            ) { _ in
                                 MapPin(
                                     coordinate: CLLocationCoordinate2D(
                                         latitude: lat,
@@ -134,8 +133,7 @@ struct PhoneInfoView: View {
                                     )
                                 }
                             }
-                        }
-                        else {
+                        } else {
                             Text("\(Image(systemName: "exclamationmark.triangle")) Location Unavailble")
                                 .font(.headline)
                                 .foregroundColor(.yellow)

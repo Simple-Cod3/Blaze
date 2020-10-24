@@ -62,18 +62,16 @@ struct FireMapView: View {
                             coordinateRegion.span.latitudeDelta = 15
                             coordinateRegion.span.longitudeDelta = 15
                         }
-                        if region.center.latitude > centerLat + RADIUS{
-                            setCenter(option : OPTIONS.TOP)
-                        }
-                        else if region.center.latitude < centerLat - RADIUS{
-                            setCenter(option : OPTIONS.DOWN)
+                        if region.center.latitude > centerLat + RADIUS {
+                            setCenter(option: OPTIONS.TOP)
+                        } else if region.center.latitude < centerLat - RADIUS {
+                            setCenter(option: OPTIONS.DOWN)
                         }
                         
-                        if region.center.longitude > centerLong + RADIUS{
-                            setCenter(option : OPTIONS.RIGHT)
-                        }
-                        else if region.center.longitude < centerLong - RADIUS{
-                            setCenter(option : OPTIONS.LEFT)
+                        if region.center.longitude > centerLong + RADIUS {
+                            setCenter(option: OPTIONS.RIGHT)
+                        } else if region.center.longitude < centerLong - RADIUS {
+                            setCenter(option: OPTIONS.LEFT)
                         }
                         
                     }
@@ -105,15 +103,15 @@ struct FireMapView: View {
         })
     }
     
-    private func setCenter(option : OPTIONS) {
+    private func setCenter(option: OPTIONS) {
         var tempLat = coordinateRegion.center.latitude
         var tempLong = coordinateRegion.center.longitude
         
-        switch option{
-            case OPTIONS.TOP: tempLat = centerLat + (RADIUS - 0.01)
-            case OPTIONS.DOWN: tempLat = centerLat - (RADIUS - 0.01)
-            case OPTIONS.RIGHT: tempLong = centerLong + (RADIUS - 0.01)
-            case OPTIONS.LEFT: tempLong = centerLong - (RADIUS - 0.01)
+        switch option {
+        case OPTIONS.TOP: tempLat = centerLat + (RADIUS - 0.01)
+        case OPTIONS.DOWN: tempLat = centerLat - (RADIUS - 0.01)
+        case OPTIONS.RIGHT: tempLong = centerLong + (RADIUS - 0.01)
+        case OPTIONS.LEFT: tempLong = centerLong - (RADIUS - 0.01)
         }
         
         self.coordinateRegion = MKCoordinateRegion(
@@ -128,7 +126,7 @@ struct FireMapView: View {
         )
     }
     
-    private enum OPTIONS : Int {
+    private enum OPTIONS: Int {
         case TOP = 1
         case DOWN = 2
         case RIGHT = 3
@@ -137,7 +135,7 @@ struct FireMapView: View {
 }
 
 extension MKCoordinateRegion: Equatable {
-    public static func ==(lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
+    public static func == (lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
         return lhs.span.latitudeDelta == rhs.span.latitudeDelta &&
                lhs.span.longitudeDelta == rhs.span.longitudeDelta
     }

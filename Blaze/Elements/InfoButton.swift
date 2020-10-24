@@ -20,8 +20,6 @@ struct InfoButton: View {
         .background(Color.blaze)
         .cornerRadius(20)
     }
-
-
 }
 
 struct InfoButton_Previews: PreviewProvider {

@@ -31,5 +31,3 @@ struct CreditsButtonStyle: ButtonStyle {
             .animation(.spring())
     }
 }
-
-

@@ -43,9 +43,7 @@ struct MapFireCard: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    show.toggle()
-                }) {
+                Button(action: { show.toggle() }) {
                     RoundedButton("INFO")
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -87,4 +85,3 @@ struct MapFireCard: View {
         .padding(.horizontal, 20)
     }
 }
-

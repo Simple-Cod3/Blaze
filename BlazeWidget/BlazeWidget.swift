@@ -9,18 +9,17 @@ import WidgetKit
 import SwiftUI
 let snapshotEntry = WidgetContent(number: "415-999-9999")
 
-
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> WidgetContent {
         snapshotEntry
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (WidgetContent) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (WidgetContent) -> Void) {
         let entry = WidgetContent(date: Date(), number: "xx")
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         var entries: [WidgetContent] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.

@@ -52,7 +52,7 @@ struct FireMapView: View {
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
 
-            Button(action: {hide.toggle()}) {
+            Button(action: { hide.toggle() }) {
                 InfoCard(fire: fireData, hide: $hide, show: $show)
                     .padding(.bottom, 20)
                     .buttonStyle(InfoCardButtonStyle())

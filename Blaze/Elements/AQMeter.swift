@@ -15,8 +15,8 @@ struct AQMeter: View {
             if String(airQ.AQI) == "-1" {
                 ProgressView()
             } else {
-                Text(airQ.category.Name)
-                    .font(airQ.category.Name.count > 10 ? .callout : .largeTitle)
+                Text(airQ.category.name)
+                    .font(airQ.category.name.count > 10 ? .callout : .largeTitle)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                 (Text(String(airQ.AQI)) + Text(" AQI"))
@@ -30,14 +30,13 @@ struct AQMeter: View {
         .foregroundColor(.white)
         .padding(85)
         .animation(.spring())
-        .background(determineColor(cat: airQ.category.Number))
+        .background(determineColor(cat: airQ.category.number))
         .clipShape(Circle())
     }
 }
 
-
 func determineColor(cat: Int) -> Color {
-    switch (cat) {
+    switch cat {
     case 1:
         return Color.green
     case 2:

@@ -50,7 +50,7 @@ struct ProfileCircle: View {
 
 struct CreditsView: View {
     var body: some View {
-        ScrollView{
+        ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Three curious students with a passion for code and design.")
                     .font(.body)

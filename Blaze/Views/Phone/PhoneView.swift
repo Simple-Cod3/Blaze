@@ -14,10 +14,8 @@ struct PhoneView: View {
         
         var pinObjects = [PhoneNumber]()
         for pin in pinned {
-            for number in numbers.numbers {
-                if number.name == pin {
-                    pinObjects.append(number)
-                }
+            for number in numbers.numbers where number.name == pin {
+                pinObjects.append(number)
             }
         }
         
@@ -44,7 +42,7 @@ struct PhoneView: View {
     
     // Updates UserDefaults
     private func syncStates() {
-        UserDefaults.standard.setValue(pinned.map{$0.name}, forKey: "pinnedFacilities")
+        UserDefaults.standard.setValue(pinned.map { $0.name }, forKey: "pinnedFacilities")
     }
     
     @State private var pinned = [PhoneNumber]()
@@ -53,9 +51,9 @@ struct PhoneView: View {
     @ObservedObject var loc = LocationProvider()
     @State private var text = ""
     
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     
-    private var choices = ["location.circle.fill", "info.circle.fill", "pin.circle.fill", ]
+    private var choices = ["location.circle.fill", "info.circle.fill", "pin.circle.fill"]
     private var choiceColors = [Color.blue, Color.green, Color.yellow]
     private var labels = ["Nearest to you", "Alphabetically", "By Pinned Facilities"]
     
@@ -96,13 +94,12 @@ struct PhoneView: View {
     @State private var mode = 0
     @State private var show = false
     
-    init(dismiss: @escaping () -> ()) {
+    init(dismiss: @escaping () -> Void) {
         self.dismiss = dismiss
         do {
             loc.lm.allowsBackgroundLocationUpdates = false
             try loc.start()
-        }
-        catch {
+        } catch {
             print("!!! 🚫 Failed to get access to location 🚫 !!!")
             loc.requestAuthorization()
         }
@@ -122,19 +119,19 @@ struct PhoneView: View {
                             Spacer()
                             
                             HStack {
-                                ForEach(choices.indices) { i in
+                                ForEach(choices.indices) { index in
                                     Button(action: {
-                                        if i != mode {
-                                            mode = i
+                                        if index != mode {
+                                            mode = index
                                             sortNums()
                                         }
                                     }) {
-                                        Image(systemName: choices[i])
+                                        Image(systemName: choices[index])
                                             .font(.system(size: 30))
-                                            .foregroundColor(i == mode ? choiceColors[i] : Color(.tertiaryLabel))
+                                            .foregroundColor(index == mode ? choiceColors[index] : Color(.tertiaryLabel))
                                             .scaleEffect(show ? 1 : 0)
                                             .animation(
-                                                Animation.spring(response: 0.5 + Double(i)*0.1, dampingFraction: 0.5)
+                                                Animation.spring(response: 0.5 + Double(index)*0.1, dampingFraction: 0.5)
                                                     .delay(0.8)
                                             )
                                     }
@@ -213,13 +210,13 @@ struct PhoneView: View {
     }
     
     private struct PhoneNumberCell: View {
-        var dismiss: () -> ()
+        var dismiss: () -> Void
         
-        var addPin: (PhoneNumber) -> ()
+        var addPin: (PhoneNumber) -> Void
         var number: PhoneNumber
         
         var body: some View {
-            NavigationLink (destination: PhoneInfoView(dismiss: dismiss, phoneData: number)) {
+            NavigationLink(destination: PhoneInfoView(dismiss: dismiss, phoneData: number)) {
                 HStack {
                     VStack(alignment: .leading, spacing: 5) {
                         Text(number.name?.replacingOccurrences(of: " CLOSED", with: "") ?? "Unknown Name")

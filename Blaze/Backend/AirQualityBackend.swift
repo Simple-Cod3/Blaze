@@ -21,8 +21,7 @@ class AirQualityBackend: ObservableObject {
         do {
             locationProvider.lm.allowsBackgroundLocationUpdates = false
             try locationProvider.start()
-        }
-        catch {
+        } catch {
             print("!!! 🚫 Failed to get access to location 🚫 !!!")
             locationProvider.requestAuthorization()
         }
@@ -52,7 +51,7 @@ class AirQualityBackend: ObservableObject {
         
         let url = with ?? URL(string: "https://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=\(lat!)&longitude=\(long!)&distance=25&API_KEY=66FFCDB4-8501-45B5-B56F-60A2CAF8BA63")!
         
-        let task = URLSession.shared.dataTask(with: url) { unsafeData, reponse, error in
+        let task = URLSession.shared.dataTask(with: url) { unsafeData, _, error in
             guard let data: Data = unsafeData else {
                 print("🚫 No AQ data found")
                 return
@@ -63,7 +62,7 @@ class AirQualityBackend: ObservableObject {
             jsonDecoder.dateDecodingStrategyFormatters = [
                 DateFormatter.iso8601Full,
                 DateFormatter.iso8601,
-                DateFormatter.iso8601NoExtention,
+                DateFormatter.iso8601NoExtention
             ]
             
             DispatchQueue.main.async {
@@ -99,29 +98,10 @@ class AirQualityBackend: ObservableObject {
     
     // MARK: - Computed Properties
     
-    var aqiOzone: String {
-        get { String(forecasts[0].AQI) }
-    }
-    
-    var aqiPollutant: String {
-        get { String(forecasts[1].AQI) }
-    }
-    
-    var pollutantOzone: String {
-        get { forecasts[0].pollutant }
-    }
-    
-    var pollutant: String {
-        get { String(forecasts[1].pollutant) }
-    }
-    
-    var ozoneHealth: String {
-        get { forecasts[0].category.Name }
-    }
-    
-    var currentLocation: String {
-        get { forecasts[0].place }
-    }
+    var aqiOzone: String { String(forecasts[0].AQI) }
+    var aqiPollutant: String { String(forecasts[1].AQI) }
+    var pollutantOzone: String { forecasts[0].pollutant }
+    var pollutant: String { String(forecasts[1].pollutant) }
+    var ozoneHealth: String { forecasts[0].category.name }
+    var currentLocation: String { forecasts[0].place }
 }
-
-

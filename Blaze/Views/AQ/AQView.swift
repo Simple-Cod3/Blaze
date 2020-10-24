@@ -17,9 +17,7 @@ struct AQView: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     ZStack {
-                        if let color = forecast.forecasts[1].category.Number,
-                           color != -1
-                        {
+                        if let color = forecast.forecasts[1].category.number, color != -1 {
                             determineColor(cat: color)
                                 .frame(width: 270, height: 270)
                                 .clipShape(Circle())
@@ -44,7 +42,7 @@ struct AQView: View {
                     Header(
                         title: "Air Quality",
                         desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
-                        headerColor: determineColor(cat: forecast.forecasts[1].category.Number)
+                        headerColor: determineColor(cat: forecast.forecasts[1].category.number)
                     )
                         .padding(.bottom, 20)
                     

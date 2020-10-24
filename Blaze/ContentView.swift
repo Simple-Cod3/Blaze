@@ -9,20 +9,13 @@ import SwiftUI
 import MapKit
 
 public let units = ["Acres", "Sq km", "Sq mi"]
-public var currentUnit: String? {
-    get { UserDefaults.standard.string(forKey: "areaUnits") }
-}
-public func setUnit(unit: String) {
-    UserDefaults.standard.setValue(unit, forKey: "areaUnits")
-}
+public var currentUnit: String? { UserDefaults.standard.string(forKey: "areaUnits") }
+public func setUnit(unit: String) { UserDefaults.standard.setValue(unit, forKey: "areaUnits") }
 
 struct ContentView: View {
     @AppStorage("welcomed") private var welcomed = false
     
     init() {
-        /// Preload the webview for faster initial loading times
-        let _ = URLWebView(url: URL(string: "https://127.0.0.1")!)
-        
         if !units.contains(currentUnit ?? "nil") {
             setUnit(unit: units[0])
         }

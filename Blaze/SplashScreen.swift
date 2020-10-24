@@ -14,10 +14,10 @@ struct SplashScreen: View {
     @State var page = 0
     
     private func areaScale(_ areaUnits: String) -> CGFloat {
-        let i = units.firstIndex(of: areaUnits)
+        let index = units.firstIndex(of: areaUnits)
         
-        if i == 0 { return 0.1 }
-        if i == 1 { return 1 }
+        if index == 0 { return 0.1 }
+        if index == 1 { return 1 }
         return 2
     }
     
@@ -27,7 +27,7 @@ struct SplashScreen: View {
     private struct Section: View {
         var icon: String
         var title: String
-        var p: String
+        var paragraph: String
         
         var body: some View {
             HStack(alignment: .top, spacing: 20) {
@@ -44,12 +44,13 @@ struct SplashScreen: View {
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)
-                    Text(p)
+                    Text(paragraph)
                         .font(.subheadline)
                 }
             }
         }
     }
+    
     private struct InfoBubble: View {
         var text: String
         
@@ -293,7 +294,7 @@ struct SplashScreen: View {
             if page > 0 {
                 HStack {
                     VStack {
-                        Button(action: { if page > 0 {page -= 1} }) {
+                        Button(action: { if page > 0 { page -= 1 } }) {
                             Image(systemName: "arrow.backward.circle.fill")
                                 .font(.title)
                                 .foregroundColor(.secondary)
@@ -315,6 +316,5 @@ struct SplashScreen: View {
 struct SplashScreen_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreen(show: .constant(true))
-            
     }
 }

@@ -8,7 +8,6 @@
 import Foundation
 import MapKit
 
-
 /// A data structure that represents a forest fire
 struct AirQuality: Codable, Identifiable {
     // Comparable Protocol Functions
@@ -23,9 +22,14 @@ struct AirQuality: Codable, Identifiable {
     var AQI: Int /// air quality index
     var category: Category
     
-    struct Category : Codable {
-        let Number: Int
-        let Name: String
+    struct Category: Codable {
+        let number: Int
+        let name: String
+        
+        enum CodingKeys: String, CodingKey {
+            case number = "Number"
+            case name = "Name"
+        }
     }
     
     /// Everything is optional!
@@ -37,7 +41,7 @@ struct AirQuality: Codable, Identifiable {
         self.longitude = longitude!
         self.pollutant = pollutant!
         self.AQI = AQI!
-        self.category = Category(Number: -1, Name: "Unknown")
+        self.category = Category(number: -1, name: "Unknown")
     }
     
     // CodingKeys
@@ -68,7 +72,6 @@ struct AirQuality: Codable, Identifiable {
         return dformatter.string(from: date!)
     }
     
-    
     // MARK: - Computed Properties
     
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
@@ -76,5 +79,3 @@ struct AirQuality: Codable, Identifiable {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
-
-

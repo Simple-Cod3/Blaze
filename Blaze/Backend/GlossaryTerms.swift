@@ -17,7 +17,6 @@ struct Term: Identifiable, Comparable {
     var definition: String
 }
 
-
 /**
  Contains all of the words needed to understand wildfire reports
  
@@ -27,7 +26,7 @@ struct Term: Identifiable, Comparable {
      alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("")
      output = "[\n"
      for (const l of alphabet) {
-         output += `\t"${l.toLowerCase()}" : [`
+         output += `\t"${l.toLowerCase()}": [`
          $(`.tabbertab[title=${l}] > p:not([style])`).each(function() {
              let id = $(this).children().first().text();
              var def = $(this).clone().children().remove().end().text() + ""
@@ -43,16 +42,16 @@ struct Term: Identifiable, Comparable {
  */
 struct GlossaryDatabase {
     static var terms: [String: [Term]] = [
-        "a" : [
+        "a": [
             Term(id: "Aerial Fuels", definition: "All live and dead vegetation in the forest canopy or above surface fuels,including tree branches, twigs and cones, snags, moss, and high brush."),
             Term(id: "Aerial Ignition", definition: "Ignition of fuels by dropping incendiary devices or materials from aircraft."),
             Term(id: "Air Tanker", definition: "A fixed-wing aircraft equipped to drop fire retardants or suppressants."),
             Term(id: "Agency", definition: "Any federal, state, or county government organization participating with jurisdictionalresponsibilities."),
             Term(id: "Anchor Point", definition: "An advantageous location, usually a barrier to fire spread, from which tostart building a fire line. An anchor point is used to reduce the chance offirefighters being flanked by fire."),
             Term(id: "Aramid", definition: "The generic name for a high-strength, flame-resistant synthetic fabric usedin the shirts and jeans of firefighters. Nomex, a brand name for aramid fabric,is the term commonly used by firefighters."),
-            Term(id: "Aspect", definition: "Direction toward which a slope faces."),
+            Term(id: "Aspect", definition: "Direction toward which a slope faces.")
         ],
-        "b" : [
+        "b": [
             Term(id: "Backfire", definition: "A fire set along the inner edge of a fireline to consume the fuel in the pathof a wildfire and/or change the direction of force of the fire's convectioncolumn."),
             Term(id: "Backpack Pump", definition: "A portable sprayer with hand-pump, fed from a liquid-filled container fittedwith straps, used mainly in fire and pest control. (See also Bladder Bag.)"),
             Term(id: "Bambi Bucket", definition: "A collapsible bucket slung below a helicopter. Used to dip water from a varietyof sources for fire suppression."),
@@ -68,9 +67,9 @@ struct GlossaryDatabase {
             Term(id: "Burning Ban", definition: "A declared ban on open air burning within a specified area, usually due tosustained high fire danger."),
             Term(id: "Burning Conditions", definition: "The state of the combined factors of the environment that affect fire behaviorin a specified fuel type."),
             Term(id: "Burning Index", definition: "An estimate of the potential difficulty of fire containment as it relatesto the flame length at the most rapidly spreading portion of a fire's perimeter."),
-            Term(id: "Burning Period", definition: "That part of each 24-hour period when fires spread most rapidly, typicallyfrom 10:00 a.m. to sundown."),
+            Term(id: "Burning Period", definition: "That part of each 24-hour period when fires spread most rapidly, typicallyfrom 10:00 a.m. to sundown.")
         ],
-        "c" : [
+        "c": [
             Term(id: "Campfire", definition: "As used to classify the cause of a wildland fire, a fire that was startedfor cooking or warming that spreads sufficiently from its source to requireaction by a fire control agency."),
             Term(id: "Candle or Candling", definition: "A single tree or a very small clump of trees which is burning from the bottomup."),
             Term(id: "Chain", definition: "A unit of linear measurement equal to 66 feet."),
@@ -87,9 +86,9 @@ struct GlossaryDatabase {
             Term(id: "Creeping Fire", definition: "Fire burning with a low flame and spreading slowly."),
             Term(id: "Crew Boss", definition: "A person in supervisory charge of usually 16 to 21 firefighters and responsiblefor their performance, safety, and welfare."),
             Term(id: "Crown Fire (Crowning)", definition: "The movement of fire through the crowns of trees or shrubs more or less independentlyof the surface fire."),
-            Term(id: "Curing", definition: "Drying and browning of herbaceous vegetation or slash."),
+            Term(id: "Curing", definition: "Drying and browning of herbaceous vegetation or slash.")
         ],
-        "d" : [
+        "d": [
             Term(id: "Dead Fuels", definition: "Fuels with no living tissue in which moisture content is governed almost entirelyby atmospheric moisture (relative humidity and precipitation), dry-bulb temperature,and solar radiation."),
             Term(id: "Debris Burning", definition: "A fire spreading from any fire originally set for the purpose of clearingland or for rubbish, garbage, range, stubble, or meadow burning."),
             Term(id: "Defensible Space", definition: "An area either natural or manmade where material capable of causing a fireto spread has been treated, cleared, reduced, or changed to act as a barrierbetween an advancing wildland fire and the loss to life, property, or resources.In practice, \"defensible space\" is defined as an area a minimumof 30 feet around a structure that is cleared of flammable brush or vegetation."),
@@ -106,9 +105,9 @@ struct GlossaryDatabase {
             Term(id: "Drop Zone", definition: "Target area for air tankers, helitankers, and cargo dropping."),
             Term(id: "Drought Index", definition: "A number representing net effect of evaporation, transpiration, and precipitationin producing cumulative moisture depletion in deep duff or upper soil layers."),
             Term(id: "Dry Lightning Storm", definition: "Thunderstorm in which negligible precipitation reaches the ground. Also calleda dry storm."),
-            Term(id: "Duff", definition: "The layer of decomposing organic materials lying below the litter layer offreshly fallen twigs, needles, and leaves and immediately above the mineralsoil."),
+            Term(id: "Duff", definition: "The layer of decomposing organic materials lying below the litter layer offreshly fallen twigs, needles, and leaves and immediately above the mineralsoil.")
         ],
-        "e" : [
+        "e": [
             Term(id: "Energy Release Component (ERC)", definition: "The computed total heat released per unit area (British thermal units persquare foot) within the fire front at the head of a moving fire."),
             Term(id: "Engine", definition: "Any ground vehicle providing specified levels of pumping, water and hose capacity."),
             Term(id: "Engine Crew", definition: "Firefighters assigned to an engine. The Fireline Handbook defines the minimumcrew makeup by engine type."),
@@ -119,9 +118,9 @@ struct GlossaryDatabase {
             Term(id: "Escape Route:", definition: "A preplanned and understood route firefighterstake to move to a safety zone or other low-risk area, such as an already burnedarea, previously constructed safety area, a meadow that won't burn, naturalrocky area that is large enough to take refuge without being burned. Whenescape routes deviate from a defined physical path, they should be clearlymarked (flagged)."),
             Term(id: "Escaped Fire", definition: "A fire which has exceeded or is expected to exceed initial attack capabilitiesor prescription."),
             Term(id: "Extended Attack Incident", definition: "A wildland fire that has not been contained or controlled by initial attackforces and for which more firefighting resources are arriving, en route, orbeing ordered by the initial attack incident commander."),
-            Term(id: "Extreme Fire Behavior", definition: "\"Extreme\" implies a level of fire behavior characteristics thatordinarily precludes methods of direct control action. One of more of thefollowing is usually involved: high rate of spread, prolific crowning and/orspotting, presence of fire whirls, strong convection column. Predictabilityis difficult because such fires often exercise some degree of influence ontheir environment and behave erratically, sometimes dangerously."),
+            Term(id: "Extreme Fire Behavior", definition: "\"Extreme\" implies a level of fire behavior characteristics thatordinarily precludes methods of direct control action. One of more of thefollowing is usually involved: high rate of spread, prolific crowning and/orspotting, presence of fire whirls, strong convection column. Predictabilityis difficult because such fires often exercise some degree of influence ontheir environment and behave erratically, sometimes dangerously.")
         ],
-        "f" : [
+        "f": [
             Term(id: "Faller", definition: "A person who fells trees. Also called a sawyer or cutter."),
             Term(id: "Field Observer", definition: "Person responsible to the Situation Unit Leader for collecting and reportinginformation about an incident obtained from personal observations and interviews."),
             Term(id: "Fine (Light) Fuels", definition: "Fast-drying fuels, generally with a comparatively high surface area-to-volumeratio, which are less than 1/4-inch in diameter and have a timelag of onehour or less. These fuels readily ignite and are rapidly consumed by firewhen dry."),
@@ -162,14 +161,14 @@ struct GlossaryDatabase {
             Term(id: "Fuel Moisture (Fuel Moisture Content)", definition: "The quantity of moisture in fuel expressed as a percentage of the weight whenthoroughly dried at 212 degrees Fahrenheit."),
             Term(id: "Fuel Reduction:", definition: "Manipulation, including combustion, or removalof fuels to reduce the likelihood of ignition and/or to lessen potential damageand resistance to control."),
             Term(id: "Fuel Type", definition: "An identifiable association of fuel elements of a distinctive plant species,form, size, arrangement, or other characteristics that will cause a predictablerate of fire spread or difficulty of control under specified weather conditions."),
-            Term(id: "Fusee", definition: "A colored flare designed as a railway warning device and widely used to ignitesuppression and prescription fires."),
+            Term(id: "Fusee", definition: "A colored flare designed as a railway warning device and widely used to ignitesuppression and prescription fires.")
         ],
-        "g" : [
+        "g": [
             Term(id: "General Staff", definition: "The group of incident management personnel reporting to the incident commander.They may each have a deputy, as needed. Staff consists of operations sectionchief, planning section chief, logistics section chief, and finance/administrationsection chief."),
             Term(id: "Geographic Area", definition: "A political boundary designated by the wildland fire protection agencies,where these agencies work together in the coordination and effective utilization"),
-            Term(id: "Ground Fuel", definition: "All combustible materials below the surface litter, including duff, tree orshrub roots, punchy wood, peat, and sawdust, that normally support a glowingcombustion without flame."),
+            Term(id: "Ground Fuel", definition: "All combustible materials below the surface litter, including duff, tree orshrub roots, punchy wood, peat, and sawdust, that normally support a glowingcombustion without flame.")
         ],
-        "h" : [
+        "h": [
             Term(id: "Haines Index", definition: "An atmospheric index used to indicate the potential for wildfire growth bymeasuring the stability and dryness of the air over a fire."),
             Term(id: "Hand Line", definition: "A fireline built with hand tools."),
             Term(id: "Hazard Reduction", definition: "Any treatment of a hazard that reduces the threat of ignition and fire intensityor rate of spread."),
@@ -184,9 +183,9 @@ struct GlossaryDatabase {
             Term(id: "Hose Lay", definition: "Arrangement of connected lengths of fire hose and accessories on the ground,beginning at the first pumping unit and ending at the point of water delivery."),
             Term(id: "Hotshot Crew", definition: "A highly trained fire crew used mainly to build fireline by hand."),
             Term(id: "Hotspot", definition: "A particular active part of a fire."),
-            Term(id: "Hotspotting", definition: "Reducing or stopping the spread of fire at points of particularly rapid rateof spread or special threat, generally the first step in prompt control, withemphasis on first priorities."),
+            Term(id: "Hotspotting", definition: "Reducing or stopping the spread of fire at points of particularly rapid rateof spread or special threat, generally the first step in prompt control, withemphasis on first priorities.")
         ],
-        "i" : [
+        "i": [
             Term(id: "Incident", definition: "A human-caused or natural occurrence, such as wildland fire, that requiresemergency service action to prevent or reduce the loss of life or damage toproperty or natural resources."),
             Term(id: "Incident Action Plan (IAP)", definition: "Contains objectives reflecting the overall incident strategy and specifictactical actions and supporting information for the next operational period.The plan may be oral or written. When written, the plan may have a numberof attachments, including: incident objectives, organization assignment list,division assignment, incident radio communication plan, medical plan, trafficplan, safety plan, and incident map."),
             Term(id: "Incident Command Post (ICP)", definition: "Location at which primary command functions are executed. The ICP may be co-locatedwith the incident base or other incident facilities."),
@@ -195,18 +194,18 @@ struct GlossaryDatabase {
             Term(id: "Incident Management Team", definition: "The incident commander and appropriate general or command staff personnelassigned to manage an incident."),
             Term(id: "Incident Objectives", definition: "Statements of guidance and direction necessary for selection of appropriatestrategy(ies), and the tactical direction of resources. Incident objectivesare based on realistic expectations of what can be accomplished when all allocatedresources have been effectively deployed."),
             Term(id: "Infrared Detection", definition: "The use of heat sensing equipment, known as Infrared Scanners, for detectionof heat sources that are not visually detectable by the normal surveillancemethods of either ground or air patrols."),
-            Term(id: "Initial Attack", definition: "The actions taken by the first resources to arrive at a wildfire to protectlives and property, and prevent further extension of the fire."),
+            Term(id: "Initial Attack", definition: "The actions taken by the first resources to arrive at a wildfire to protectlives and property, and prevent further extension of the fire.")
         ],
-        "j" : [
+        "j": [
             Term(id: "Job Hazard Analysis", definition: "This analysis of a project is completed by staff to identify hazards to employeesand the public. It identifies hazards, corrective actions and the requiredsafety equipment to ensure public and employee safety."),
             Term(id: "Jump Spot", definition: "Selected landing area for smokejumpers."),
-            Term(id: "Jump Suit", definition: "Approved protection suite work by smokejumpers."),
+            Term(id: "Jump Suit", definition: "Approved protection suite work by smokejumpers.")
         ],
-        "k" : [
+        "k": [
             Term(id: "Keech Byram Drought Index (KBDI):", definition: "Commonly-used droughtindex adapted for fire management applications, with a numerical range from0 (no moisture deficiency) to 800 (maximum drought)."),
-            Term(id: "Knock Down", definition: "To reduce the flame or heat on the more vigorously burning parts of a fireedge."),
+            Term(id: "Knock Down", definition: "To reduce the flame or heat on the more vigorously burning parts of a fireedge.")
         ],
-        "l" : [
+        "l": [
             Term(id: "Ladder Fuels", definition: "Fuels which provide vertical continuity between strata, thereby allowing fireto carry from surface fuels into the crowns of trees or shrubs with relativeease. They help initiate and assure the continuation of crowning."),
             Term(id: "Large Fire", definition: "1) For statistical purposes, a fire burning more than a specified area ofland e.g., 300 acres. 2) A fire burning with a size and intensity such thatits behavior is determined by interaction between its own convection columnand weather conditions above the surface."),
             Term(id: "Lead Plane", definition: "Aircraft with pilot used to make dry runs over the target area to check wingand smoke conditions and topography and to lead air tankers to targets andsupervise their drops."),
@@ -214,30 +213,30 @@ struct GlossaryDatabase {
             Term(id: "Lightning Activity Level (LAL)", definition: "A number, on a scale of 1 to 6, that reflects frequency and character of cloud-to-groundlightning. The scale is exponential, based on powers of 2 (i.e., LAL 3 indicatestwice the lightning of LAL 2)."),
             Term(id: "Line Scout", definition: "A firefighter who determines the location of a fire line."),
             Term(id: "Litter", definition: "Top layer of the forest, scrubland, or grassland floor, directly above thefermentation layer, composed of loose debris of dead sticks, branches, twigs,and recently fallen leaves or needles, little altered in structure by decomposition."),
-            Term(id: "Live Fuels", definition: "Living plants, such as trees, grasses, and shrubs, in which the seasonal moisturecontent cycle is controlled largely by internal physiological mechanisms,rather than by external weather influences."),
+            Term(id: "Live Fuels", definition: "Living plants, such as trees, grasses, and shrubs, in which the seasonal moisturecontent cycle is controlled largely by internal physiological mechanisms,rather than by external weather influences.")
         ],
-        "m" : [
+        "m": [
             Term(id: "Micro-Remote Environmental Monitoring System (Micro-REMS)", definition: "Mobile weather monitoring station. A Micro-REMS usually accompanies an incidentmeteorologist and ATMU to an incident."),
             Term(id: "Mineral Soil", definition: "Soil layers below the predominantly organic horizons; soil with little combustiblematerial."),
             Term(id: "Mobilization", definition: "The process and procedures used by all organizations, federal, state and localfor activating, assembling, and transporting all resources that have beenrequested to respond to or support an incident."),
             Term(id: "Modular Airborne Firefighting System (MAFFS)", definition: "A manufactured unit consisting of five interconnecting tanks, a control pallet,and a nozzle pallet, with a capacity of 3,000 gallons, designed to be rapidlymounted inside an unmodified C-130 (Hercules) cargo aircraft for use in droppingretardant on wildland fires."),
             Term(id: "Mop-up", definition: "To make a fire safe or reduce residual smoke after the fire has been controlledby extinguishing or removing burning material along or near the control line,felling snags, or moving logs so they won't roll downhill."),
             Term(id: "Multi-Agency Coordination (MAC)", definition: "A generalized term which describes the functions and activities of representativesof involved agencies and/or jurisdictions who come together to make decisionsregarding the prioritizing of incidents, and the sharing and use of criticalresources. The MAC organization is not a part of the on-scene ICS and is notinvolved in developing incident strategy or tactics."),
-            Term(id: "Mutual Aid Agreement", definition: "Written agreement between agencies and/or jurisdictions in which they agreeto assist one another upon request, by furnishing personnel and equipment."),
+            Term(id: "Mutual Aid Agreement", definition: "Written agreement between agencies and/or jurisdictions in which they agreeto assist one another upon request, by furnishing personnel and equipment.")
         ],
-        "n" : [
+        "n": [
             Term(id: "National Environmental Policy Act (NEPA)", definition: "NEPA is the basic national law for protection of the environment, passed byCongress in 1969. It sets policy and procedures for environmental protection,and authorizes Environmental Impact Statements and Environmental Assessmentsto be used as analytical tools to help federal managers make decisions."),
             Term(id: "National Fire Danger Rating System (NFDRS)", definition: "A uniform fire danger rating system that focuses on the environmental factorsthat control the moisture content of fuels."),
             Term(id: "National Wildfire Coordinating Group", definition: "A group formed under the direction of the Secretaries of Agriculture and theInterior and comprised of representatives of the U.S. Forest Service, Bureauof Land Management, Bureau of Indian Affairs, National Park Service, U.S.Fish and Wildlife Service and Association of State Foresters. The group'spurpose is to facilitate coordination and effectiveness of wildland fire activitiesand provide a forum to discuss, recommend action, or resolve issues and problemsof substantive nature. NWCG is the certifying body for all courses in theNational Fire Curriculum."),
             Term(id: "Nomex ®", definition: "Trade name for a fire resistant synthetic material used in the manufacturingof flight suits and pants and shirts used by firefighters (see Aramid)."),
-            Term(id: "Normal Fire Season", definition: "1) A season when weather, fire danger, and number and distribution of firesare about average. 2) Period of the year that normally comprises the fireseason."),
+            Term(id: "Normal Fire Season", definition: "1) A season when weather, fire danger, and number and distribution of firesare about average. 2) Period of the year that normally comprises the fireseason.")
         ],
-        "o" : [
+        "o": [
             Term(id: "Operations Branch Director", definition: "Person under the direction of the operations section chief who is responsiblefor implementing that portion of the incident action plan appropriate to thebranch."),
             Term(id: "Operational Period", definition: "The period of time scheduled for execution of a given set of tactical actionsas specified in the Incident Action Plan. Operational periods can be of variouslengths, although usually not more than 24 hours."),
-            Term(id: "Overhead", definition: "People assigned to supervisory positions, including incident commanders, commandstaff, general staff, directors, supervisors, and unit leaders."),
+            Term(id: "Overhead", definition: "People assigned to supervisory positions, including incident commanders, commandstaff, general staff, directors, supervisors, and unit leaders.")
         ],
-        "p" : [
+        "p": [
             Term(id: "Pack Test", definition: "Used to determine the aerobic capacity of fire suppression and support personneland assign physical fitness scores. The test consists of walking a specifieddistance, with or without a weighted pack, in a predetermined period of time,with altitude corrections."),
             Term(id: "Paracargo", definition: "Anything dropped, or intended for dropping, from an aircraft by parachute,by other retarding devices, or by free fall."),
             Term(id: "Peak Fire Season", definition: "That period of the fire season during which fires are expected to ignite mostreadily, to burn with greater than average intensity, and to create damagesat an unacceptable level."),
@@ -248,10 +247,10 @@ struct GlossaryDatabase {
             Term(id: "Prescription", definition: "Measurable criteria that define conditions under which a prescribed fire maybe ignited, guide selection of appropriate management responses, and indicateother required actions. Prescription criteria may include safety, economic,public health, environmental, geographic, administrative, social, or legalconsiderations."),
             Term(id: "Prevention", definition: "Activities directed at reducing the incidence of fires, including public education,law enforcement, personal contact, and reduction of fuel hazards."),
             Term(id: "Project Fire", definition: "A fire of such size or complexity that a large organization and prolongedactivity is required to suppress it."),
-            Term(id: "Pulaski", definition: "A combination chopping and trenching tool, which combines a single-bittedaxe-blade with a narrow adze-like trenching blade fitted to a straight handle.Useful for grubbing or trenching in duff and matted roots. Well-balanced forchopping."),
+            Term(id: "Pulaski", definition: "A combination chopping and trenching tool, which combines a single-bittedaxe-blade with a narrow adze-like trenching blade fitted to a straight handle.Useful for grubbing or trenching in duff and matted roots. Well-balanced forchopping.")
         ],
-//        "q" : [],
-        "r" : [
+//        "q": [],
+        "r": [
             Term(id: "Radiant Burn", definition: "A burn received from a radiant heat source."),
             Term(id: "Radiant Heat Flux", definition: "The amount of heat flowing through a given area in a given time, usually expressedas calories/square centimeter/second."),
             Term(id: "Rappelling", definition: "Technique of landing specifically trained firefighters from hovering helicopters;involves sliding down ropes with the aid of friction-producing devices."),
@@ -267,9 +266,9 @@ struct GlossaryDatabase {
             Term(id: "Resource Order", definition: "An order placed for firefighting or support resources."),
             Term(id: "Retardant", definition: "A substance or chemical agent which reduced the flammability of combustibles."),
             Term(id: "Run (of a fire)", definition: "The rapid advance of the head of a fire with a marked change in fire lineintensity and rate of spread from that noted before and after the advance."),
-            Term(id: "Running", definition: "A rapidly spreading surface fire with a well-defined head."),
+            Term(id: "Running", definition: "A rapidly spreading surface fire with a well-defined head.")
         ],
-        "s" : [
+        "s": [
             Term(id: "Safety Zone", definition: "An area cleared of flammable materials used for escape in the event the lineis outflanked or in case a spot fire causes fuels outside the control lineto render the line unsafe. In firing operations, crews progress so as to maintaina safety zone close at hand allowing the fuels inside the control line tobe consumed before going ahead. Safety zones may also be constructed as integralparts of fuel breaks; they are greatly enlarged areas which can be used withrelative safety by firefighters and their equipment in the event of a blowupin the vicinity."),
             Term(id: "Scratch Line", definition: "An unfinished preliminary fire line hastily established or built as an emergencymeasure to check the spread of fire."),
             Term(id: "Severity Funding", definition: "Funds provided to increase wildland fire suppression response capability necessitatedby abnormal weather patterns, extended drought, or other events causing abnormalincrease in the fire potential and/or danger."),
@@ -295,9 +294,9 @@ struct GlossaryDatabase {
             Term(id: "Suppressant", definition: "An agent, such as water or foam, used to extinguish the flaming and glowingphases of combustion when direction applied to burning fuels."),
             Term(id: "Suppression", definition: "All the work of extinguishing or containing a fire, beginning with its discovery."),
             Term(id: "Surface Fuels", definition: "Loose surface litter on the soil surface, normally consisting of fallen leavesor needles, twigs, bark, cones, and small branches that have not yet decayedenough to lose their identity; also grasses, forbs, low and medium shrubs,tree seedlings, heavier branchwood, downed logs, and stumps interspersed withor partially replacing the litter."),
-            Term(id: "Swamper", definition: "(1) A worker who assists fallers and/or sawyers by clearing away brush, limbsand small trees. Carries fuel, oil and tools and watches for dangerous situations.(2) A worker on a dozer crew who pulls winch line, helps maintain equipment,etc., to speed suppression work on a fire."),
+            Term(id: "Swamper", definition: "(1) A worker who assists fallers and/or sawyers by clearing away brush, limbsand small trees. Carries fuel, oil and tools and watches for dangerous situations.(2) A worker on a dozer crew who pulls winch line, helps maintain equipment,etc., to speed suppression work on a fire.")
         ],
-        "t" : [
+        "t": [
             Term(id: "Tactics", definition: "Deploying and directing resources on an incident to accomplish the objectivesdesignated by strategy."),
             Term(id: "Temporary Flight Restrictions (TFR)", definition: "A restriction requested by an agency and put into effect by the Federal AviationAdministration in the vicinity of an incident which restricts the operationof nonessential aircraft in the airspace around that incident."),
             Term(id: "Terra Torch ®", definition: "Device for throwing a stream of flaming liquid, used to facilitate rapid ignitionduring burn out operations on a wildland fire or during a prescribed fireoperation."),
@@ -305,17 +304,17 @@ struct GlossaryDatabase {
             Term(id: "Timelag", definition: "Time needed under specified conditions for a fuel particle to lose about 63percent of the difference between its initial moisture content and its equilibriummoisture content. If conditions remain unchanged, a fuel will reach 95 percentof its equilibrium moisture content after four timelag periods."),
             Term(id: "Torching", definition: "The ignition and flare-up of a tree or small group of trees, usually frombottom to top."),
             Term(id: "Two-way Radio", definition: "Radio equipment with transmitters in mobile units on the same frequency asthe base station, permitting conversation in two directions using the samefrequency in turn."),
-            Term(id: "Type", definition: "The capability of a firefighting resource in comparison to another type. Type1 usually means a greater capability due to power, size, or capacity."),
+            Term(id: "Type", definition: "The capability of a firefighting resource in comparison to another type. Type1 usually means a greater capability due to power, size, or capacity.")
         ],
-        "u" : [
+        "u": [
             Term(id: "Uncontrolled Fire:", definition: "Any fire which threatens to destroy life,property, or natural resources, and"),
-            Term(id: "Underburn", definition: "A fire that consumes surface fuels but not trees or shrubs. (See Surface Fuels.)"),
+            Term(id: "Underburn", definition: "A fire that consumes surface fuels but not trees or shrubs. (See Surface Fuels.)")
         ],
-        "v" : [
+        "v": [
             Term(id: "Vectors", definition: "Directions of fire spread as related to rate of spread calculations (in degreesfrom upslope)."),
-            Term(id: "Volunteer Fire Department (VFD)", definition: "A fire department of which some or all members are unpaid."),
+            Term(id: "Volunteer Fire Department (VFD)", definition: "A fire department of which some or all members are unpaid.")
         ],
-        "w" : [
+        "w": [
             Term(id: "Water Tender", definition: "A ground vehicle capable of transporting specified quantities of water."),
             Term(id: "Weather Information and Management System (WIMS)", definition: "An interactive computer system designed to accommodate the weather informationneeds of all federal and state natural resource management agencies. Providestimely access to weather forecasts, current and historical weather data, theNational Fire Danger Rating System (NFDRS), and the National Interagency FireManagement Integrated Database (NIFMID)."),
             Term(id: "Wet Line", definition: "A line of water, or water and chemical retardant, sprayed along the ground,that serves as a temporary control line from which to ignite or stop a low-intensityfire."),
@@ -324,11 +323,11 @@ struct GlossaryDatabase {
             Term(id: "Wildland Fire Situation Analysis (WFSA)", definition: "A decision-making process that evaluates alternative suppression strategiesagainst selected environmental, social, political, and economic criteria.Provides a record of decisions."),
             Term(id: "Wildland Fire Use", definition: "The management of naturally ignited wildland fires to accomplish specificprestated resource management objectives in predefined geographic areas outlinedin Fire Management Plans."),
             Term(id: "Wildland Urban Interface", definition: "The line, area or zone where structures and other human development meet orintermingle with undeveloped wildland or vegetative fuels."),
-            Term(id: "Wind Vectors", definition: "Wind directions used to calculate fire behavior."),
-        ],
-//        "x" : [],
-//        "y" : [],
-//        "z" : [],
+            Term(id: "Wind Vectors", definition: "Wind directions used to calculate fire behavior.")
+        ]
+//        "x": [],
+//        "y": [],
+//        "z": [],
     ]
     
     /// returns all of the `Term` objects in a list

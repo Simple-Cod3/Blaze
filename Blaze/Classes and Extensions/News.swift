@@ -11,11 +11,11 @@ struct News: Comparable, Identifiable, Codable {
     // MARK: - Comparable Protocol Functions
     
     static func < (lhs: News, rhs: News) -> Bool {
-        return lhs.date < rhs.date;
+        return lhs.date < rhs.date
     }
     
     static func > (lhs: News, rhs: News) -> Bool {
-        return lhs.date > rhs.date;
+        return lhs.date > rhs.date
     }
     
     // MARK: - Attributes
@@ -29,7 +29,6 @@ struct News: Comparable, Identifiable, Codable {
     var publisher: String /// News site
     var sourceURL: String /// Direct link to article
     var date: Date
-    
     
     // MARK: - String Functions
     

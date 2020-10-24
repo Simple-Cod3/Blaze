@@ -62,7 +62,7 @@ struct InformationView: View {
 }
 
 struct FullScreenInfoView: View {
-    var dismiss: () -> ()
+    var dismiss: () -> Void
     var fireData: ForestFire
     
     var body: some View {
@@ -87,16 +87,15 @@ struct InformationViewInner: View {
     @State var shrink = false
     var fireData: ForestFire
     
-    private var isNotAccesible: Bool {
-        get { fireData.acres == -1 && fireData.contained == -1 }
-    }
+    private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
+    
     private func actionSheet() {
         var items = [
             fireData.name,
             ": : : : : : : : : : : :",
             " • Location: \(fireData.getLocation())",
             " • Area Burned: \(fireData.getAreaString())",
-            " • Contained: \(fireData.getContained())",
+            " • Contained: \(fireData.getContained())"
         ] as [Any]
         
         if let url = URL(string: fireData.url) {
@@ -105,8 +104,8 @@ struct InformationViewInner: View {
         
         items = items.map { "\n\($0)" }
         
-        let av = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(av, animated: true, completion: nil)
+        let actionView = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
     }
     
     private var header: some View {
@@ -138,7 +137,7 @@ struct InformationViewInner: View {
                 data: [
                     ["flame", "Name", fireData.name],
                     ["mappin.and.ellipse", "Location", fireData.getLocation(),
-                     String(fireData.latitude)+"°", String(fireData.longitude)+"°"],
+                     String(fireData.latitude)+"°", String(fireData.longitude)+"°"]
                 ]
             )
             
@@ -146,7 +145,7 @@ struct InformationViewInner: View {
                 title: "Times",
                 data: [
                     ["arrow.counterclockwise.icloud", "Information Updated", fireData.updated.getElapsedInterval(true)],
-                    ["calendar.badge.clock", "Fire Started", fireData.started.getElapsedInterval(true)],
+                    ["calendar.badge.clock", "Fire Started", fireData.started.getElapsedInterval(true)]
                 ]
             )
             
@@ -154,7 +153,7 @@ struct InformationViewInner: View {
                 title: "Statistics",
                 data: [
                     ["skew", "Area Burned", fireData.getAreaString()],
-                    ["lasso", "Contained", fireData.getContained()],
+                    ["lasso", "Contained", fireData.getContained()]
                 ]
             )
             
@@ -178,7 +177,7 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
-            trailing: Button(action: { show.toggle() }){
+            trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()
             }
         )
