@@ -33,11 +33,11 @@ struct NewsCard: View {
                         .fixedSize(horizontal: false, vertical: true)
                     
                     (Text(news.publisher)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
 
                         + Text(" • " + news.author)
-                        .fontWeight(.medium)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     )
                     .font(.body)

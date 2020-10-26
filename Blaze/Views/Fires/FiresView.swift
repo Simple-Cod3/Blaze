@@ -24,8 +24,14 @@ struct FiresView: View {
                         VStack {
                             Image("hydrant").resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(height: 250)
+                                .frame(height: 275)
                                 .padding(40)
+                            
+                            NoticeCard(
+                                title: "Deprecated Source",
+                                text: "The current RSS source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The source is now deemed as deprecated. The development team is currently working on a fix."
+                            )
+                            .padding(.bottom, 20)
                             
                             HStack {
                                 Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
