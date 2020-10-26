@@ -25,7 +25,7 @@ struct UpdateLog: View {
                 
                 VersionDot(
                     version: "1.0.1",
-                    date: "10.17.20",
+                    date: "10.22.20",
                     changes: ["• Fixed a bug where sorting by latest fires will not work", "• Adjusted label for latest fire section", "• Fixed grammar and wording", "• Improved typography and spacing"]
                 )
                 
