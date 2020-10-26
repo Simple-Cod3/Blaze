@@ -19,14 +19,9 @@ struct NoticeCard: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
-                HStack(alignment: .center) {
-                    Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.title3)
-                    
-                    Text(title)
-                        .font(.title3)
-                        .fontWeight(.medium)
-                }
+                Text("\(Image(systemName: "exclamationmark.triangle.fill")) \(title)")
+                    .font(.title3)
+                    .fontWeight(.medium)
                 
                 Text(text)
                     .foregroundColor(Color.secondary)

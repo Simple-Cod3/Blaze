@@ -29,7 +29,7 @@ struct FiresView: View {
                             
                             NoticeCard(
                                 title: "Deprecated Source",
-                                text: "The current RSS source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The source is now deemed as deprecated. The development team is currently working on a fix."
+                                text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
                             )
                             .padding(.bottom, 20)
                             
