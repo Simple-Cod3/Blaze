@@ -50,12 +50,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6D7A71B22547B85E00327F02"
+            BuildableName = "Blaze-iPad.app"
+            BlueprintName = "Blaze-iPad"
+            ReferencedContainer = "container:Blaze.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9AF015024FDB8DD0058C184"
             BuildableName = "Blaze.app"
             BlueprintName = "Blaze"
             ReferencedContainer = "container:Blaze.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"

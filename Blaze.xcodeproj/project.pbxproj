@@ -23,10 +23,8 @@
 		6D7A71C22547B85E00327F02 /* FullInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DA25082B3800B939F3 /* FullInformationView.swift */; };
 		6D7A71C32547B85E00327F02 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7E2502AEAD0051E4A2 /* Header.swift */; };
 		6D7A71C42547B85E00327F02 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692C2504B2D800DEFCB2 /* CreditsView.swift */; };
-		6D7A71C52547B85E00327F02 /* NoticeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6859D2254758F500060BB8 /* NoticeCard.swift */; };
 		6D7A71C62547B85E00327F02 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
 		6D7A71C72547B85E00327F02 /* SubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* SubHeader.swift */; };
-		6D7A71C82547B85E00327F02 /* MiniFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* MiniFireCard.swift */; };
 		6D7A71C92547B85E00327F02 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
 		6D7A71CA2547B85E00327F02 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
 		6D7A71CB2547B85E00327F02 /* UnitsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF312506B00400C86F0C /* UnitsCard.swift */; };
@@ -46,22 +44,17 @@
 		6D7A71D92547B85E00327F02 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EC25031681006038FD /* ButtonStyles.swift */; };
 		6D7A71DA2547B85E00327F02 /* WordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7C2502ACC00051E4A2 /* WordCard.swift */; };
 		6D7A71DB2547B85E00327F02 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
-		6D7A71DC2547B85E00327F02 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF016D24FDBC090058C184 /* NewsView.swift */; };
 		6D7A71DD2547B85E00327F02 /* WebModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DF2508444B00B939F3 /* WebModal.swift */; };
 		6D7A71DE2547B85E00327F02 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
-		6D7A71DF2547B85E00327F02 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
 		6D7A71E02547B85E00327F02 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
-		6D7A71E12547B85E00327F02 /* FiresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF016924FDBBEB0058C184 /* FiresView.swift */; };
 		6D7A71E22547B85E00327F02 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7A71E32547B85E00327F02 /* GlossaryTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */; };
 		6D7A71E42547B85E00327F02 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EE250319F4006038FD /* InformationView.swift */; };
-		6D7A71E52547B85E00327F02 /* HorizontalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9073CA425214AB200FE43C2 /* HorizontalCard.swift */; };
 		6D7A71E62547B85E00327F02 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E31A89250E958B007FF855 /* Progress.swift */; };
 		6D7A71E72547B85E00327F02 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		6D7A71E82547B85E00327F02 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
 		6D7A71E92547B85E00327F02 /* SearchUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DD250837FD00B939F3 /* SearchUIKit.swift */; };
 		6D7A71EA2547B85E00327F02 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
-		6D7A71EB2547B85E00327F02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015824FDB8DD0058C184 /* ContentView.swift */; };
 		6D7A71EC2547B85E00327F02 /* AQCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBAD72425098F2700E2BCA9 /* AQCard.swift */; };
 		6D7A71ED2547B85E00327F02 /* StatusBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903803C2518749C0043DC53 /* StatusBarBackground.swift */; };
 		6D7A71EE2547B85E00327F02 /* MapFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */; };
@@ -75,6 +68,13 @@
 		6D7A71F82547B85E00327F02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */; };
 		6D7A71F92547B85E00327F02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AF015D24FDB8DE0058C184 /* Preview Assets.xcassets */; };
 		6D7A71FA2547B85E00327F02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AF015A24FDB8DE0058C184 /* Assets.xcassets */; };
+		6D7A720A2547BB5F00327F02 /* FiresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A72092547BB5F00327F02 /* FiresView.swift */; };
+		6D7A72122547BB8F00327F02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A72112547BB8F00327F02 /* ContentView.swift */; };
+		6D7A72242547C60800327F02 /* NoticeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A72232547C60800327F02 /* NoticeCard.swift */; };
+		6D7A722A2547D33200327F02 /* MiniFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A72292547D33200327F02 /* MiniFireCard.swift */; };
+		6D7A723D2547EBBF00327F02 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A723C2547EBBF00327F02 /* NewsView.swift */; };
+		6D7A72462547EBFD00327F02 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
+		6D7A724A2547ED7A00327F02 /* HorizontalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7A72492547ED7A00327F02 /* HorizontalCard.swift */; };
 		6DA2FF302506AF6400C86F0C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF2F2506AF6400C86F0C /* Settings.swift */; };
 		6DA2FF322506B00400C86F0C /* UnitsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF312506B00400C86F0C /* UnitsCard.swift */; };
 		6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF352506B55E00C86F0C /* SettingsCard.swift */; };
@@ -162,6 +162,12 @@
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		6D7A72012547B85E00327F02 /* Blaze-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blaze-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7A72032547B85E00327F02 /* Blaze copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Blaze copy-Info.plist"; path = "/Users/polarizz/Downloads/Blaze/Blaze copy-Info.plist"; sourceTree = "<absolute>"; };
+		6D7A72092547BB5F00327F02 /* FiresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresView.swift; sourceTree = "<group>"; };
+		6D7A72112547BB8F00327F02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6D7A72232547C60800327F02 /* NoticeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCard.swift; sourceTree = "<group>"; };
+		6D7A72292547D33200327F02 /* MiniFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCard.swift; sourceTree = "<group>"; };
+		6D7A723C2547EBBF00327F02 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		6D7A72492547ED7A00327F02 /* HorizontalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCard.swift; sourceTree = "<group>"; };
 		6DA2FF2F2506AF6400C86F0C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		6DA2FF312506B00400C86F0C /* UnitsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsCard.swift; sourceTree = "<group>"; };
 		6DA2FF352506B55E00C86F0C /* SettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCard.swift; sourceTree = "<group>"; };
@@ -250,11 +256,57 @@
 			path = AQ;
 			sourceTree = "<group>";
 		};
-		6D7A72022547B85E00327F02 /* Resources-iPad */ = {
+		6D7A72082547BB3200327F02 /* Blaze-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				6D7A72202547C5EB00327F02 /* Elements */,
+				6D7A721B2547C36000327F02 /* Views */,
+				6D7A72112547BB8F00327F02 /* ContentView.swift */,
+			);
+			path = "Blaze-iPad";
+			sourceTree = "<group>";
+		};
+		6D7A721B2547C36000327F02 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D7A723B2547EBAA00327F02 /* News */,
+				6D7A72342547EB3500327F02 /* AQ */,
+				6D7A72332547EB2E00327F02 /* Fires */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D7A72202547C5EB00327F02 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				6D7A72232547C60800327F02 /* NoticeCard.swift */,
+				6D7A72292547D33200327F02 /* MiniFireCard.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		6D7A72332547EB2E00327F02 /* Fires */ = {
+			isa = PBXGroup;
+			children = (
+				6D7A72092547BB5F00327F02 /* FiresView.swift */,
+			);
+			path = Fires;
+			sourceTree = "<group>";
+		};
+		6D7A72342547EB3500327F02 /* AQ */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Resources-iPad";
+			path = AQ;
+			sourceTree = "<group>";
+		};
+		6D7A723B2547EBAA00327F02 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				6D7A72492547ED7A00327F02 /* HorizontalCard.swift */,
+				6D7A723C2547EBBF00327F02 /* NewsView.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 		6DA2FF2E2506AF5400C86F0C /* Settings */ = {
@@ -295,7 +347,7 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
-				6D7A72022547B85E00327F02 /* Resources-iPad */,
+				6D7A72082547BB3200327F02 /* Blaze-iPad */,
 				E9AF015324FDB8DD0058C184 /* Blaze */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
@@ -656,10 +708,10 @@
 				6D7A71C22547B85E00327F02 /* FullInformationView.swift in Sources */,
 				6D7A71C32547B85E00327F02 /* Header.swift in Sources */,
 				6D7A71C42547B85E00327F02 /* CreditsView.swift in Sources */,
-				6D7A71C52547B85E00327F02 /* NoticeCard.swift in Sources */,
+				6D7A72242547C60800327F02 /* NoticeCard.swift in Sources */,
 				6D7A71C62547B85E00327F02 /* PhoneInfoView.swift in Sources */,
 				6D7A71C72547B85E00327F02 /* SubHeader.swift in Sources */,
-				6D7A71C82547B85E00327F02 /* MiniFireCard.swift in Sources */,
+				6D7A72122547BB8F00327F02 /* ContentView.swift in Sources */,
 				6D7A71C92547B85E00327F02 /* FiresBackend.swift in Sources */,
 				6D7A71CA2547B85E00327F02 /* DateExtension.swift in Sources */,
 				6D7A71CB2547B85E00327F02 /* UnitsCard.swift in Sources */,
@@ -670,7 +722,9 @@
 				6D7A71D02547B85E00327F02 /* AppDelegate.swift in Sources */,
 				6D7A71D12547B85E00327F02 /* Extensions.swift in Sources */,
 				6D7A71D22547B85E00327F02 /* News.swift in Sources */,
+				6D7A722A2547D33200327F02 /* MiniFireCard.swift in Sources */,
 				6D7A71D32547B85E00327F02 /* NewsBackend.swift in Sources */,
+				6D7A724A2547ED7A00327F02 /* HorizontalCard.swift in Sources */,
 				6D7A71D42547B85E00327F02 /* UpdateLog.swift in Sources */,
 				6D7A71D52547B85E00327F02 /* SettingsCard.swift in Sources */,
 				6D7A71D62547B85E00327F02 /* SceneDelegate.swift in Sources */,
@@ -679,22 +733,20 @@
 				6D7A71D92547B85E00327F02 /* ButtonStyles.swift in Sources */,
 				6D7A71DA2547B85E00327F02 /* WordCard.swift in Sources */,
 				6D7A71DB2547B85E00327F02 /* ForestFire.swift in Sources */,
-				6D7A71DC2547B85E00327F02 /* NewsView.swift in Sources */,
+				6D7A720A2547BB5F00327F02 /* FiresView.swift in Sources */,
+				6D7A723D2547EBBF00327F02 /* NewsView.swift in Sources */,
 				6D7A71DD2547B85E00327F02 /* WebModal.swift in Sources */,
 				6D7A71DE2547B85E00327F02 /* PhoneView.swift in Sources */,
-				6D7A71DF2547B85E00327F02 /* AQView.swift in Sources */,
 				6D7A71E02547B85E00327F02 /* PhoneBackend.swift in Sources */,
-				6D7A71E12547B85E00327F02 /* FiresView.swift in Sources */,
 				6D7A71E22547B85E00327F02 /* AQMeter.swift in Sources */,
 				6D7A71E32547B85E00327F02 /* GlossaryTerms.swift in Sources */,
+				6D7A72462547EBFD00327F02 /* AQView.swift in Sources */,
 				6D7A71E42547B85E00327F02 /* InformationView.swift in Sources */,
-				6D7A71E52547B85E00327F02 /* HorizontalCard.swift in Sources */,
 				6D7A71E62547B85E00327F02 /* Progress.swift in Sources */,
 				6D7A71E72547B85E00327F02 /* LocationManager.swift in Sources */,
 				6D7A71E82547B85E00327F02 /* CloseModalButton.swift in Sources */,
 				6D7A71E92547B85E00327F02 /* SearchUIKit.swift in Sources */,
 				6D7A71EA2547B85E00327F02 /* GlossaryView.swift in Sources */,
-				6D7A71EB2547B85E00327F02 /* ContentView.swift in Sources */,
 				6D7A71EC2547B85E00327F02 /* AQCard.swift in Sources */,
 				6D7A71ED2547B85E00327F02 /* StatusBarBackground.swift in Sources */,
 				6D7A71EE2547B85E00327F02 /* MapFireCard.swift in Sources */,
@@ -784,18 +836,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -811,18 +863,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze copy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -955,7 +1007,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -965,8 +1017,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -982,7 +1035,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -992,8 +1045,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.2;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
