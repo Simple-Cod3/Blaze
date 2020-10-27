@@ -14,6 +14,8 @@ struct MiniFireCard: View {
     var fireData: ForestFire
     var area: Bool
     
+    @State var showMap = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
@@ -32,9 +34,19 @@ struct MiniFireCard: View {
                     .fontWeight(.regular)
                     .foregroundColor(.blaze)
                 Spacer()
-                NavigationLink(destination: FireMapView(fireData: fireData)) {
+                
+                Button(action: {
+                    self.showMap.toggle()
+                }) {
                     RoundedButton("MAP")
                 }
+                .sheet(isPresented: $showMap) {
+                    FireMapView(fireData: fireData)
+                }
+                
+//                NavigationLink(destination: FireMapView(fireData: fireData)) {
+//                    RoundedButton("MAP")
+//                }
             }
         }
         .padding(15)

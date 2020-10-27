@@ -40,33 +40,34 @@ struct NewsView: View {
     var body: some View {
         HStack {
             ScrollView(showsIndicators: false) {
+                Image("speaker").resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 250)
+                    .padding(.vertical, 100)
+                
                 VStack {
-                    Image("speaker").resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 200)
-                        .padding(.vertical, 50)
-                    
                     HStack {
                         Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                         Spacer()
                     }
+                    .padding(.bottom, 20)
+
+                    VStack(spacing: 20) {
+                        ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
+                            HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
+                        }.buttonStyle(CardButtonStyle())
+                        
+                        ModalLink(destination: { GlossaryView(dismiss: $0) }) {
+                            HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
+                        }.buttonStyle(CardButtonStyle())
+                    }
+                    .padding(.bottom, 80)
                 }
-                .padding(.bottom, 20)
                 
-                VStack(spacing: 20) {
-                    ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                        HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                    }.buttonStyle(CardButtonStyle())
-                    
-                    ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                        HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
-                    }.buttonStyle(CardButtonStyle())
-                }
-                .padding(.bottom, 80)
             }
             .frame(width: UIScreen.main.bounds.width/3)
             .background(Color(.secondarySystemBackground))
-            
+
             Spacer()
             
             ScrollView {
@@ -92,8 +93,8 @@ struct NewsView: View {
                     }
                 }
                 .padding(.top, 40)
+                .padding(.bottom, 80)
             }
-            .padding(.bottom, 70)
         }
         .edgesIgnoringSafeArea(.all)
     }

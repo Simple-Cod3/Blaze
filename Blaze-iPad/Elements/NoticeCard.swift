@@ -31,6 +31,7 @@ struct NoticeCard: View {
             }
             Spacer()
         }
+        .fixedSize(horizontal: false, vertical: true)
         .padding(20)
         .background(Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))

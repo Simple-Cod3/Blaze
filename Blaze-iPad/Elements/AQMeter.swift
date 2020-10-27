@@ -1,8 +1,8 @@
 //
 //  AQMeter.swift
-//  Blaze
+//  Blaze-iPad
 //
-//  Created by Paul Wong on 9/9/20.
+//  Created by Paul Wong on 10/27/20.
 //
 
 import SwiftUI
@@ -16,7 +16,7 @@ struct AQMeter: View {
                 ProgressView()
             } else {
                 Text(airQ.category.name)
-                    .font(airQ.category.name.count > 10 ? .callout : .largeTitle)
+                    .font(airQ.category.name.count > 10 ? .body : .largeTitle)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                 (Text(String(airQ.AQI)) + Text(" AQI"))
@@ -28,7 +28,7 @@ struct AQMeter: View {
             }
         }
         .foregroundColor(.white)
-        .padding(85)
+        .padding(150)
         .animation(.spring())
         .background(determineColor(cat: airQ.category.number))
         .clipShape(Circle())

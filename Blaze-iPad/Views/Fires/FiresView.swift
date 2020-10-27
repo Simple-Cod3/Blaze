@@ -17,30 +17,34 @@ struct FiresView: View {
     @State var progress = 0.0
     @State var show = false
     @State var done = false
+    @State var showingData = false
+    @State var showingMap = false
+    @State var showingDetailMap = false
+    @State var showingAll = false
     
     var body: some View {
         HStack {
             ScrollView(showsIndicators: false) {
-                VStack {
-                    Image("hydrant").resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 300)
-                        .padding(.vertical, 75)
-                    
-                    NoticeCard(
-                        title: "Deprecated Source",
-                        text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
-                    )
-                    .padding(.bottom, 20)
-                    
-                    HStack {
-                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                        Spacer()
-                    }
+                Image("hydrant").resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 300)
+                    .padding(.vertical, 100)
+                
+                NoticeCard(
+                    title: "Deprecated Source",
+                    text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
+                )
+                .padding(.bottom, 20)
+                
+                HStack {
+                    Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                    Spacer()
                 }
                 
                 HStack(spacing: 20) {
-                    NavigationLink(destination: FullFireMapView()) {
+                    Button(action: {
+                        self.showingMap.toggle()
+                    }) {
                         HStack {
                             Spacer()
                             Text("\(Image(systemName: "map")) Fire Map")
@@ -49,12 +53,31 @@ struct FiresView: View {
                                 .foregroundColor(.blaze)
                             Spacer()
                         }
+                        .padding(12)
+                        .background(Color(.tertiarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
-                    .padding(12)
-                    .background(Color(.tertiarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .sheet(isPresented: $showingMap) {
+                        FullFireMapView()
+                    }
                     
-                    NavigationLink(destination: DataView()) {
+//                    NavigationLink(destination: FullFireMapView()) {
+//                        HStack {
+//                            Spacer()
+//                            Text("\(Image(systemName: "map")) Fire Map")
+//                                .fontWeight(.regular)
+//                                .font(.body)
+//                                .foregroundColor(.blaze)
+//                            Spacer()
+//                        }
+//                    }
+//                    .padding(12)
+//                    .background(Color(.tertiarySystemBackground))
+//                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+
+                    Button(action: {
+                        self.showingData.toggle()
+                    }) {
                         HStack {
                             Spacer()
                             Text("\(Image(systemName: "tray.2")) Data")
@@ -63,10 +86,13 @@ struct FiresView: View {
                                 .foregroundColor(.blaze)
                             Spacer()
                         }
+                        .padding(12)
+                        .background(Color(.tertiarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
-                    .padding(12)
-                    .background(Color(.tertiarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .sheet(isPresented: $showingData) {
+                        DataView()
+                    }
                 }
                 .padding(20)
                 .padding(.bottom, 60)
@@ -97,12 +123,25 @@ struct FiresView: View {
                             }
                         }
                         Spacer()
-                        NavigationLink(destination: FullFireMapView()) {
+                        
+                        Button(action: {
+                            self.showingAll.toggle()
+                        }) {
                             HStack {
                                 Image(systemName: "plus.circle")
                                 Text("View All")
                             }
                         }
+                        .sheet(isPresented: $showingAll) {
+                            FullFireMapView()
+                        }
+                        
+//                        NavigationLink(destination: FullFireMapView()) {
+//                            HStack {
+//                                Image(systemName: "plus.circle")
+//                                Text("View All")
+//                            }
+//                        }
                     }
                     .padding(20)
                 }
@@ -132,8 +171,8 @@ struct FiresView: View {
                     }
                     .padding(20)
                 }
+                .padding(.bottom, 70)
             }
-            .padding(.bottom, 70)
         }
         .edgesIgnoringSafeArea(.all)
     }
