@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct FiresView: View {
     @EnvironmentObject var fireB: FireBackend
     @State var selectAll = 0
@@ -18,87 +16,68 @@ struct FiresView: View {
     @State var show = false
     @State var done = false
     @State var showingData = false
-    @State var showingMap = false
-    @State var showingDetailMap = false
-    @State var showingAll = false
     
     var body: some View {
-        HStack {
+        NavigationView {
             ScrollView(showsIndicators: false) {
                 Image("hydrant").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 300)
                     .padding(.vertical, 100)
                 
-                NoticeCard(
-                    title: "Deprecated Source",
-                    text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
-                )
-                .padding(.bottom, 20)
-                
-                HStack {
-                    Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                    Spacer()
-                }
-                
-                HStack(spacing: 20) {
-                    Button(action: {
-                        self.showingMap.toggle()
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("\(Image(systemName: "map")) Fire Map")
-                                .fontWeight(.regular)
-                                .font(.body)
-                                .foregroundColor(.blaze)
-                            Spacer()
-                        }
-                        .padding(12)
-                        .background(Color(.tertiarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    }
-                    .sheet(isPresented: $showingMap) {
-                        FullFireMapView()
+                VStack(spacing: 20) {
+                    NoticeCard(
+                        title: "Deprecated Source",
+                        text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
+                    )
+                    
+                    HStack {
+                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                        Spacer()
                     }
                     
-//                    NavigationLink(destination: FullFireMapView()) {
-//                        HStack {
-//                            Spacer()
-//                            Text("\(Image(systemName: "map")) Fire Map")
-//                                .fontWeight(.regular)
-//                                .font(.body)
-//                                .foregroundColor(.blaze)
-//                            Spacer()
-//                        }
-//                    }
-//                    .padding(12)
-//                    .background(Color(.tertiarySystemBackground))
-//                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-
-                    Button(action: {
-                        self.showingData.toggle()
-                    }) {
-                        HStack {
-                            Spacer()
-                            Text("\(Image(systemName: "tray.2")) Data")
-                                .fontWeight(.regular)
-                                .font(.body)
-                                .foregroundColor(.blaze)
-                            Spacer()
+                    HStack(spacing: 20) {
+                        NavigationLink(destination: FullFireMapView()) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "map")) Fire Map")
+                                    .fontWeight(.regular)
+                                    .font(.body)
+                                    .foregroundColor(.blaze)
+                                Spacer()
+                            }
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 10)
+                            .background(Color(.tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
-                        .padding(12)
-                        .background(Color(.tertiarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        
+                        Button(action: {
+                            self.showingData.toggle()
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "tray.2")) Data")
+                                    .fontWeight(.regular)
+                                    .font(.body)
+                                    .foregroundColor(.blaze)
+                                Spacer()
+                            }
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 10)
+                            .background(Color(.tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        }
+                        .sheet(isPresented: $showingData) {
+                            DataView()
+                        }
                     }
-                    .sheet(isPresented: $showingData) {
-                        DataView()
-                    }
+                    .padding(.horizontal, 20)
                 }
-                .padding(20)
-                .padding(.bottom, 60)
+                .padding(.bottom, 20)
             }
-            .frame(width: UIScreen.main.bounds.width/3)
             .background(Color(.secondarySystemBackground))
+            .navigationBarTitle("", displayMode: .inline)
             
             ScrollView {
                 SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
@@ -107,10 +86,10 @@ struct FiresView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         LazyVGrid(columns: [
-                            GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20)
+                            GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20)
                         ], spacing: 20) {
                             ForEach(
-                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(8).indices,
+                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(10).indices,
                                 id: \.self
                             ) { index in
                                 NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index])) {
@@ -124,24 +103,12 @@ struct FiresView: View {
                         }
                         Spacer()
                         
-                        Button(action: {
-                            self.showingAll.toggle()
-                        }) {
+                        NavigationLink(destination: FullFireMapView()) {
                             HStack {
                                 Image(systemName: "plus.circle")
                                 Text("View All")
                             }
                         }
-                        .sheet(isPresented: $showingAll) {
-                            FullFireMapView()
-                        }
-                        
-//                        NavigationLink(destination: FullFireMapView()) {
-//                            HStack {
-//                                Image(systemName: "plus.circle")
-//                                Text("View All")
-//                            }
-//                        }
                     }
                     .padding(20)
                 }
@@ -153,9 +120,9 @@ struct FiresView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         LazyVGrid(columns: [
-                            GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20), GridItem(.fixed(230), spacing: 20)
+                            GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20)
                         ], spacing: 20) {
-                            ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(8).indices, id: \.self) { index in
+                            ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
                                 NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
                                     MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                 }
@@ -171,9 +138,10 @@ struct FiresView: View {
                     }
                     .padding(20)
                 }
-                .padding(.bottom, 70)
             }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea(.all)
     }
 }

@@ -49,42 +49,44 @@ struct FireMapView: View {
             Map(coordinateRegion: $coordinateRegion, annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
                     Image("fire").resizable()
-                        .frame(width: 30, height: 30)
+                        .frame(width: 35, height: 35)
                         .foregroundColor(.white)
                 }
             }
-                .offset(y: 30)
-                .edgesIgnoringSafeArea(.all)
-                .onChange(of: coordinateRegion) { region in
-                    if free {
-                        if region.span.longitudeDelta > 16 &&
-                            region.span.latitudeDelta > 16 {
-                            coordinateRegion.span.latitudeDelta = 15
-                            coordinateRegion.span.longitudeDelta = 15
-                        }
-                        if region.center.latitude > centerLat + RADIUS {
-                            setCenter(option: OPTIONS.TOP)
-                        } else if region.center.latitude < centerLat - RADIUS {
-                            setCenter(option: OPTIONS.DOWN)
-                        }
-                        
-                        if region.center.longitude > centerLong + RADIUS {
-                            setCenter(option: OPTIONS.RIGHT)
-                        } else if region.center.longitude < centerLong - RADIUS {
-                            setCenter(option: OPTIONS.LEFT)
-                        }
-                        
+            .offset(y: 30)
+            .edgesIgnoringSafeArea(.all)
+            .onChange(of: coordinateRegion) { region in
+                if free {
+                    if region.span.longitudeDelta > 16 &&
+                        region.span.latitudeDelta > 16 {
+                        coordinateRegion.span.latitudeDelta = 15
+                        coordinateRegion.span.longitudeDelta = 15
                     }
+                    if region.center.latitude > centerLat + RADIUS {
+                        setCenter(option: OPTIONS.TOP)
+                    } else if region.center.latitude < centerLat - RADIUS {
+                        setCenter(option: OPTIONS.DOWN)
+                    }
+                    
+                    if region.center.longitude > centerLong + RADIUS {
+                        setCenter(option: OPTIONS.RIGHT)
+                    } else if region.center.longitude < centerLong - RADIUS {
+                        setCenter(option: OPTIONS.LEFT)
+                    }
+                    
                 }
-
-            Button(action: { hide.toggle() }) {
-                MapFireCard(fire: fireData, hide: $hide, show: $show)
-                    .padding(.bottom, 20)
-                    .buttonStyle(InfoCardButtonStyle())
             }
-            .buttonStyle(InfoCardButtonStyle())
-            .animation(.spring(), value: hide)
-            
+
+            HStack {
+                Spacer()
+                Button(action: { hide.toggle() }) {
+                    MapFireCard(fire: fireData, hide: $hide, show: $show)
+                        .padding(.bottom, 20)
+                        .buttonStyle(InfoCardButtonStyle())
+                }
+                .buttonStyle(InfoCardButtonStyle())
+                .animation(.spring(), value: hide)
+            }
         }
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)

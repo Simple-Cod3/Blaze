@@ -38,37 +38,31 @@ struct NewsView: View {
     }
     
     var body: some View {
-        HStack {
+        NavigationView {
             ScrollView(showsIndicators: false) {
                 Image("speaker").resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 250)
+                    .frame(height: 225)
                     .padding(.vertical, 100)
                 
-                VStack {
+                VStack(spacing: 20) {
                     HStack {
                         Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                         Spacer()
                     }
-                    .padding(.bottom, 20)
-
-                    VStack(spacing: 20) {
-                        ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                            HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                        }.buttonStyle(CardButtonStyle())
-                        
-                        ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                            HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
-                        }.buttonStyle(CardButtonStyle())
-                    }
-                    .padding(.bottom, 80)
+                    
+                    ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
+                        HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
+                    }.buttonStyle(CardButtonStyle())
+                    
+                    ModalLink(destination: { GlossaryView(dismiss: $0) }) {
+                        HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
+                    }.buttonStyle(CardButtonStyle())
                 }
-                
+                .padding(.bottom, 20)
             }
-            .frame(width: UIScreen.main.bounds.width/3)
             .background(Color(.secondarySystemBackground))
-
-            Spacer()
+            .navigationBarTitle("", displayMode: .inline)
             
             ScrollView {
                 VStack(spacing: 20) {
@@ -92,11 +86,11 @@ struct NewsView: View {
                         }
                     }
                 }
-                .padding(.top, 40)
-                .padding(.bottom, 80)
+                .padding(.vertical, 20)
             }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

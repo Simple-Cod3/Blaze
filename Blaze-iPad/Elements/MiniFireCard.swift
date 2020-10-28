@@ -13,9 +13,7 @@ struct MiniFireCard: View {
     var selected: Bool
     var fireData: ForestFire
     var area: Bool
-    
-    @State var showMap = false
-    
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
@@ -23,7 +21,7 @@ struct MiniFireCard: View {
                 .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
-                .font(.system(size: fireData.name.count > 35 ? 20 : 26))
+                .font(.system(size: fireData.name.count > 30 ? 18 : 24))
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
             
@@ -35,22 +33,13 @@ struct MiniFireCard: View {
                     .foregroundColor(.blaze)
                 Spacer()
                 
-                Button(action: {
-                    self.showMap.toggle()
-                }) {
+                NavigationLink(destination: FireMapView(fireData: fireData)) {
                     RoundedButton("MAP")
                 }
-                .sheet(isPresented: $showMap) {
-                    FireMapView(fireData: fireData)
-                }
-                
-//                NavigationLink(destination: FireMapView(fireData: fireData)) {
-//                    RoundedButton("MAP")
-//                }
             }
         }
         .padding(15)
-        .frame(width: 230, height: 190)
+        .frame(width: 210, height: 180)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }

@@ -44,7 +44,7 @@ struct FullFireMapView: View {
                 MapAnnotation(coordinate: fire.coordinate) {
                     VStack {
                         Image("fire").resizable()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 35, height: 35)
                             .foregroundColor(.white)
                         
                         Text(fire.name)

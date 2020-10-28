@@ -13,10 +13,11 @@ struct AQView: View {
     @State private var show = false
     
     var body: some View {
-        HStack {
+        NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack {
-                    Spacer()
+                Spacer()
+
+                VStack(spacing: 20) {
                     HStack {
                         Header(
                             title: "Air Quality",
@@ -24,7 +25,7 @@ struct AQView: View {
                             headerColor: determineColor(cat: forecast.forecasts[1].category.number)
                         )
                     }
-                    .padding(.bottom, 20)
+                    
                     AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                     
                     HStack {
@@ -32,6 +33,7 @@ struct AQView: View {
                             .font(.caption)
                             .fontWeight(.regular)
                             .foregroundColor(.secondary)
+                            
                         + Text("AirNow.gov")
                             .font(.caption)
                             .fontWeight(.regular)
@@ -39,25 +41,23 @@ struct AQView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 20)
-                    .padding(.bottom, 80)
                 }
-                .frame(height: UIScreen.main.bounds.height)
             }
-            .frame(width: UIScreen.main.bounds.width/3)
             .background(Color(.secondarySystemBackground))
+            .navigationBarTitle("", displayMode: .inline)
             
-            Spacer()
-            
-            ZStack {
-                if let color = forecast.forecasts[1].category.number, color != -1 {
-                    determineColor(cat: color)
-                        .frame(width: 415, height: 415)
-                        .clipShape(Circle())
-                        .scaleEffect(showCircle ? 1.0 : 0.5)
-                        .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
-                        .opacity(0.7)
-                }
-                
+            VStack {
+                Spacer()
+                ZStack {
+                    if let color = forecast.forecasts[1].category.number, color != -1 {
+                        determineColor(cat: color)
+                            .frame(width: 370, height: 370)
+                            .clipShape(Circle())
+                            .scaleEffect(showCircle ? 1.0 : 0.5)
+                            .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
+                            .opacity(0.7)
+                    }
+                    
                 AQMeter(airQ: forecast.forecasts[1])
                     .padding(.vertical, 75)
                     .scaleEffect(showCircle ? 1.0 : 0)
@@ -69,15 +69,10 @@ struct AQView: View {
                             show = true
                         }
                     }
+                }
+                .padding(.bottom, 60)
+                Spacer()
             }
-            .padding(.bottom, 60)
-            Spacer()
-            
-            
-            
-            
-            
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }

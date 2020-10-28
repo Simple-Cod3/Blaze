@@ -28,7 +28,7 @@ struct AQMeter: View {
             }
         }
         .foregroundColor(.white)
-        .padding(150)
+        .padding(135)
         .animation(.spring())
         .background(determineColor(cat: airQ.category.number))
         .clipShape(Circle())
@@ -47,11 +47,5 @@ func determineColor(cat: Int) -> Color {
         return Color.purple
     default:
         return Color.blaze
-    }
-}
-
-struct AQMeter_Previews: PreviewProvider {
-    static var previews: some View {
-        AQMeter(airQ: AirQuality())
     }
 }
