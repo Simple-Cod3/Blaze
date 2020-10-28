@@ -25,7 +25,7 @@ struct ContentView: View {
         TabView {
             FiresView().tabItem {
                 ItemLabel(icon: "flame.fill",
-                          title: "Fires")
+                          title: "Wildfires")
             }
             AQView().tabItem {
                 ItemLabel(icon: "sun.haze.fill",

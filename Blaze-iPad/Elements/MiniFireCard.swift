@@ -39,7 +39,7 @@ struct MiniFireCard: View {
             }
         }
         .padding(15)
-        .frame(width: 210, height: 180)
+        .frame(width: 220, height: 180)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }

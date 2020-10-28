@@ -86,7 +86,7 @@ struct FiresView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         LazyVGrid(columns: [
-                            GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20)
+                            GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20)
                         ], spacing: 20) {
                             ForEach(
                                 fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(10).indices,
@@ -120,7 +120,7 @@ struct FiresView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
                         LazyVGrid(columns: [
-                            GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20), GridItem(.fixed(210), spacing: 20)
+                            GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20)
                         ], spacing: 20) {
                             ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
                                 NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
@@ -139,8 +139,7 @@ struct FiresView: View {
                     .padding(20)
                 }
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+            .navigationBarTitle("Wildfires", displayMode: .inline)
         }
         .ignoresSafeArea(.all)
     }

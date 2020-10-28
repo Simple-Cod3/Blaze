@@ -46,7 +46,7 @@ struct AQView: View {
             .background(Color(.secondarySystemBackground))
             .navigationBarTitle("", displayMode: .inline)
             
-            VStack {
+            ScrollView {
                 Spacer()
                 ZStack {
                     if let color = forecast.forecasts[1].category.number, color != -1 {
@@ -70,9 +70,10 @@ struct AQView: View {
                         }
                     }
                 }
-                .padding(.bottom, 60)
+                .padding(.top, 60)
                 Spacer()
             }
+            .navigationBarTitle("Air Quality", displayMode: .inline)
         }
     }
 }

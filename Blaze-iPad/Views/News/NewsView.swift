@@ -43,7 +43,7 @@ struct NewsView: View {
                 Image("speaker").resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 225)
-                    .padding(.vertical, 100)
+                    .padding(.vertical, 85)
                 
                 VStack(spacing: 20) {
                     HStack {
@@ -88,8 +88,7 @@ struct NewsView: View {
                 }
                 .padding(.vertical, 20)
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+            .navigationBarTitle("News", displayMode: .inline)
         }
     }
 }
