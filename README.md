@@ -17,7 +17,7 @@ Download Blaze: Wildfires on the AppStore
 
 https://apps.apple.com/us/app/blaze-wildfires/id1530692513
 
-## Update
+## Updates
 **1.0.2**
 
 • Notice for deprecated source
