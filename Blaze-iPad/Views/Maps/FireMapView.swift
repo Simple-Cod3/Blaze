@@ -88,6 +88,11 @@ struct FireMapView: View {
                 .animation(.spring(), value: hide)
             }
         }
+        .navigationBarTitle(fireData.name, displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: moveBack) {
+            Image(systemName: "rotate.3d")
+                .font(.title2)
+        })
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)
         }
@@ -98,11 +103,6 @@ struct FireMapView: View {
                 hide = false
             }
         }
-        .navigationBarTitle(fireData.name, displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: moveBack) {
-            Image(systemName: "rotate.3d")
-                .font(.title2)
-        })
     }
     
     private func setCenter(option: OPTIONS) {

@@ -131,7 +131,7 @@ struct SearchView: View {
                 .navigationBarItems(
                     trailing: NavigationLink(destination: Settings()) {
                         Image(systemName: "gear")
-                            .font(.title)
+                            .font(Font.title2.weight(.regular))
                     })
                 .navigationBarTitle("Search")
                 .add(self.searchBar)

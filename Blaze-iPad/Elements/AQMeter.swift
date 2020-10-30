@@ -16,7 +16,7 @@ struct AQMeter: View {
                 ProgressView()
             } else {
                 Text(airQ.category.name)
-                    .font(airQ.category.name.count > 10 ? .body : .largeTitle)
+                    .font(airQ.category.name.count > 10 ? .title3 : .largeTitle)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                 (Text(String(airQ.AQI)) + Text(" AQI"))
