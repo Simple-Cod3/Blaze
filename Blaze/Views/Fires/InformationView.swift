@@ -157,7 +157,7 @@ struct InformationViewInner: View {
                 ]
             )
             
-            if let html = fireData.conditionStatement {
+            if let html = fireData.conditionStatement, html != "" {
                 Section(header: header) {
                     NativeWebView(html: html)
                         .padding(.vertical, 5)

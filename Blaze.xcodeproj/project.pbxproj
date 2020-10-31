@@ -162,7 +162,6 @@
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		6D7A72012547B85E00327F02 /* Blaze-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blaze-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D7A72032547B85E00327F02 /* Blaze copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Blaze copy-Info.plist"; path = "/Users/polarizz/Downloads/Blaze/Blaze copy-Info.plist"; sourceTree = "<absolute>"; };
 		6D7A72092547BB5F00327F02 /* FiresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresView.swift; sourceTree = "<group>"; };
 		6D7A72112547BB8F00327F02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6D7A72232547C60800327F02 /* NoticeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCard.swift; sourceTree = "<group>"; };
@@ -191,6 +190,7 @@
 		E91EB47B25393E63006F03C2 /* Blaze.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Blaze.entitlements; sourceTree = "<group>"; };
 		E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryTerms.swift; sourceTree = "<group>"; };
 		E941692C2504B2D800DEFCB2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		E94589EB254D2D570067BFE8 /* Info-iPad.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iPad.plist"; sourceTree = "<group>"; };
 		E949CFA72517016F00AD467B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E94C30BF25075FF20019E1E4 /* SubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHeader.swift; sourceTree = "<group>"; };
 		E97E26D8250813B300B939F3 /* FullFireMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFireMapView.swift; sourceTree = "<group>"; };
@@ -271,6 +271,7 @@
 				6D7A72202547C5EB00327F02 /* Elements */,
 				6D7A721B2547C36000327F02 /* Views */,
 				6D7A72112547BB8F00327F02 /* ContentView.swift */,
+				E94589EB254D2D570067BFE8 /* Info-iPad.plist */,
 			);
 			path = "Blaze-iPad";
 			sourceTree = "<group>";
@@ -376,7 +377,6 @@
 				E9AF015324FDB8DD0058C184 /* Blaze */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
-				6D7A72032547B85E00327F02 /* Blaze copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -862,10 +862,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = "Blaze copy-Info.plist";
+				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -873,7 +873,7 @@
 				);
 				MARKETING_VERSION = 2.0.2;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -889,10 +889,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = "Blaze copy-Info.plist";
+				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -900,7 +900,7 @@
 				);
 				MARKETING_VERSION = 2.0.2;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1033,7 +1033,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1042,10 +1042,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1061,7 +1061,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1070,10 +1070,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "-5345.e";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

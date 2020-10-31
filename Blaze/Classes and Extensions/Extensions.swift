@@ -20,6 +20,16 @@ struct Blur: UIViewRepresentable {
     }
 }
 
+extension String {
+    func becomeInt() -> Int? {
+        return Int(self.filter("-0123456789.".contains))
+    }
+    
+    func becomeDouble() -> Double? {
+        return Double(self.filter("-0123456789.".contains))
+    }
+}
+
 extension Int {
     func inCommas() -> String? {
         let largeNumber = self

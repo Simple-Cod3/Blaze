@@ -14,7 +14,7 @@ class NewsBackend: ObservableObject {
     @Published var newsList = [News]()
     @Published var loaded = false
     @Published var failed = false
-    @Published var progress = Progress()
+    @Published var progress = [Progress()]
     
     func createTestCases() {
         loaded = true
@@ -47,6 +47,7 @@ class NewsBackend: ObservableObject {
         let start = Date()
         self.loaded = false
         self.failed = false
+        
         print("📰 [ Grabbing News ]")
         
         /// Load news content
@@ -70,19 +71,17 @@ class NewsBackend: ObservableObject {
                             for item in items {
                                 /// Check if the date exists and its a day ago
                                 if let date = item.pubDate {
-                                    if date.timeIntervalSinceNow > -86400 {
-                                        let news = News(
-                                            id: item.title ?? "Forest Fire",
-                                            author: "Inciweb",
-                                            authorBio: "Latest incident updates nationally",
-                                            content: item.description ?? "<p style='text-align: center'>No Description</p>",
-                                            coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
-                                            publisher: "InciWeb National Incidents",
-                                            sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
-                                            date: date)
-                                        /// Push to temp
-                                        newNews.append(news)
-                                    }
+                                    let news = News(
+                                        id: item.title ?? "Forest Fire",
+                                        author: "Inciweb",
+                                        authorBio: "Latest incident updates nationally",
+                                        content: item.description ?? "<p style='text-align: center'>No Description</p>",
+                                        coverImage: "https://foresttech.events/wp-content/uploads/2017/08/Fire-Image3-1-864x486.jpg",
+                                        publisher: "InciWeb National Incidents",
+                                        sourceURL: item.link?.replacingOccurrences(of: "http://", with: "https://") ?? "",
+                                        date: date)
+                                    /// Push to temp
+                                    newNews.append(news)
                                 }
                             }
                         }
@@ -95,7 +94,7 @@ class NewsBackend: ObservableObject {
             }
         }
         
-        self.progress = task.progress
+        self.progress[0] = task.progress
         
         group.enter()
         task.resume()

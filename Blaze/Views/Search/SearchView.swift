@@ -129,10 +129,28 @@ struct SearchView: View {
                     }
                 }
                 .navigationBarItems(
-                    trailing: NavigationLink(destination: Settings()) {
+                    leading: NavigationLink(destination: Settings()) {
                         Image(systemName: "gear")
                             .font(Font.title2.weight(.regular))
-                    })
+                    },
+                    trailing: Menu(
+                        content: {
+                            Button("Sorting #1", action: {})
+                            Button("Sorting #2", action: {})
+                            Menu(
+                                content: {
+                                    Button("Even deeper lol.", action: {})
+                                }, label: {
+                                    Button("Sorting #Clickme", action: {})
+                                }
+                            )
+                        },
+                        label: {
+                            Image(systemName: "line.horizontal.3.decrease")
+                                .font(Font.title2.weight(.regular))
+                        }
+                    )
+                )
                 .navigationBarTitle("Search")
                 .add(self.searchBar)
             }

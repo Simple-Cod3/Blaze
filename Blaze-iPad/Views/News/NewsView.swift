@@ -114,4 +114,3 @@ struct NewsCardButton: View {
         .buttonStyle(CardButtonStyle())
     }
 }
-

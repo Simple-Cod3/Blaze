@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProgressBarView: View {
-    @Binding var progressObj: Progress
+    @Binding var progressObjs: [Progress]
     @Binding var progress: Double
     @Binding var done: Bool
     @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -28,9 +28,11 @@ struct ProgressBarView: View {
             ProgressBar(progress: $progress)
                 .onReceive(timer) { _ in
                     withAnimation {
-                        self.progress = progressObj.fractionCompleted
+                        self.progress = progressObjs
+                            .map { $0.fractionCompleted }
+                            .reduce(0, +) / Double(progressObjs.count)
                     }
-                    if progressObj.isFinished {
+                    if progressObjs.allSatisfy({$0.isFinished}) {
                         timer.upstream.connect().cancel()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             withAnimation {

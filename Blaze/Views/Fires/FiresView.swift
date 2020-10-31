@@ -154,7 +154,7 @@ struct FiresView: View {
             }
         } else {
             ProgressBarView(
-                progressObj: $fireB.progress,
+                progressObjs: $fireB.progress,
                 progress: $progress,
                 done: $done,
                 text: "Fires"

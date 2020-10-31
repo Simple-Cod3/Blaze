@@ -70,6 +70,12 @@ struct ForestFire: Codable, Identifiable {
     let dozers: Int?
     let waterTenders: Int?
     let airTankers: Int?
+    var sourceType: SourceType? = .calfire
+    
+    enum SourceType {
+        case calfire
+        case inciweb
+    }
 
     enum CodingKeys: String, CodingKey {
         case name = "Name"
@@ -120,7 +126,8 @@ struct ForestFire: Codable, Identifiable {
         longitude: Double?=nil,
         acres: Int?=nil,
         contained: Int?=nil,
-        relURL: String?=nil
+        relURL: String?=nil,
+        sourceType: SourceType?=nil
     ) {
         self.name = name ?? "Wildfire"
         self.location = location ?? "California"
@@ -136,8 +143,8 @@ struct ForestFire: Codable, Identifiable {
         self.searchDescription = ""
         self.searchKeywords = ""
         self.adminUnit = ""
-        self.updated = updated ?? Date()
-        self.started = started ?? Date()
+        self.updated = updated ?? Date.distantFuture
+        self.started = started ?? Date.distantFuture
         self.archiveYear = 2020
         self.incidentPublic = true
         self.active = true
@@ -146,7 +153,7 @@ struct ForestFire: Codable, Identifiable {
         self.majorIncident = true
         self.incidentFinal = false
         self.status = "Active"
-        self.relURL = relURL ?? "/incidents"
+        self.relURL = relURL ?? "/"
         self.structuresDestroyed = -1
         self.structuresDamaged = -1
         self.structuresThreatened = -1
@@ -159,6 +166,8 @@ struct ForestFire: Codable, Identifiable {
         self.dozers = -1
         self.waterTenders = -1
         self.airTankers = -1
+        
+        self.sourceType = sourceType ?? .calfire
     }
     
     // MARK: - String Functions
@@ -200,7 +209,16 @@ struct ForestFire: Codable, Identifiable {
 
     var acres: Int { self.acresO ?? -1 }
     var contained: Int { self.containedO ?? -1 }
-    var url: String { "https://www.fire.ca.gov" + self.relURL }
+    var url: String {
+        switch self.sourceType {
+        case .calfire:
+            return "https://www.fire.ca.gov" + self.relURL
+        case .inciweb:
+            return "https://inciweb.nwcg.gov" + self.relURL
+        default:
+            return "https://www.fire.ca.gov" + self.relURL
+        }
+    }
     var km: Double { ( Double(self.acres) / 247 ).squareRoot() }
     
     /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute
@@ -226,6 +244,9 @@ struct InciWebIncidents: Codable {
         var contained: String
         var lat: String
         var lng: String
+        var updated: Date
+        var url: String
+        var summary: String
         
         enum CodingKeys: String, CodingKey {
             case name
@@ -235,6 +256,9 @@ struct InciWebIncidents: Codable {
             case contained
             case lat
             case lng
+            case updated
+            case url
+            case summary
         }
         
         /// Computes a `CLLocationCoordinate2D` from the latitude and longitude attribute

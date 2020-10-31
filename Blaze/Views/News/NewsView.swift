@@ -87,6 +87,7 @@ struct NewsView: View {
                             
                             if news.newsList.count > newsShown {
                                 Button(action: {
+                                    print(news.newsList.count)
                                     newsShown += 10
                                 }) {
                                     Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
@@ -109,7 +110,7 @@ struct NewsView: View {
                 failed
             } else {
                 ProgressBarView(
-                    progressObj: $news.progress,
+                    progressObjs: $news.progress,
                     progress: $progress,
                     done: $done.animation(.easeInOut),
                     text: "News"
@@ -145,4 +146,3 @@ struct NewsCardButton: View {
         .buttonStyle(CardButtonStyle())
     }
 }
-

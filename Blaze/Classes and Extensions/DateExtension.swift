@@ -10,7 +10,9 @@ import Foundation
 /// https://medium.com/@iamjdpatel/time-ago-extension-for-date-swift-ed9b8d0a3a54
 extension Date {
     
-    func getElapsedInterval(_ prefix: Bool = false) -> String {
+    func getElapsedInterval(_ suffix: Bool = false) -> String {
+        if self == Date.distantFuture { return "Unknown" }
+        
         let interval = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self, to: Date())
         
         var output = ""
@@ -37,7 +39,7 @@ extension Date {
             return "a moment ago"
         }
         
-        return output + (prefix ? " ago" : "")
+        return output + (suffix ? " ago" : "")
     }
     
     func getDateTime() -> String {
@@ -58,9 +60,7 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-}
 
-extension DateFormatter {
     static let iso8601: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -69,13 +69,20 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-}
 
-/// https://useyourloaf.com/blog/swift-codable-with-custom-dates/
-extension DateFormatter {
+    /// https://useyourloaf.com/blog/swift-codable-with-custom-dates/
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
+    
+    static let dateTimeSeconds: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.locale = Locale(identifier: "en_US_POSIX")

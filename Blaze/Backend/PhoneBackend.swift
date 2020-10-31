@@ -90,8 +90,6 @@ class PhoneBackend: ObservableObject {
             long = -122.4194
             self.lost = true
         }
-        
-        print("[ Grabbing new numbers at (\(lat!), \(long!)) ]")
 
         let url = with ?? URL(
             string: "https://egis.fire.ca.gov/arcgis/rest/services/FRAP/Facilities/MapServer/0/query?where=1%3D1&outFields=*&geometry=\(lat!-50)%2C\(lat!+50)%2C\(long!-50)%2C\(long!+50)&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outSR=4326&f=json"
