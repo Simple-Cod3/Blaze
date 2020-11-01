@@ -9,6 +9,7 @@ import SwiftUI
 import UIKit
 import WebKit
 import SafariServices
+import Fuzi
 
 // MARK: - SwiftUI Modal View
 
@@ -166,7 +167,6 @@ struct HTMLWebView: UIViewRepresentable {
             maximum-scale=1.0,
             user-scalable=no\">
         <style>
-            * { user-select: none; -webkit-user-select: none; }
 
             body {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -178,7 +178,8 @@ struct HTMLWebView: UIViewRepresentable {
             }
 
             li {
-                padding-left: 0.5em;
+                margin: 0;
+                padding-left: 0.2em;
             }
             
             h1 {
@@ -253,5 +254,62 @@ struct SafariViewBootleg: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariViewBootleg>) {
+    }
+}
+
+// MARK: - INCIWEB HTML Parser
+struct InciWebContent: View {
+    @State var html = ""
+    @State var showLoading = false
+    @State var ranOnce = false
+    
+    var url: URL
+    
+    func getLatestInfo() {
+        URLSession.shared.dataTask(with: url) { unsafeData, _, error in
+            guard let data: Data = unsafeData else {
+                print("🚫 Couldn't get Inciweb data")
+                self.html = "<p>Couldn't find extra information.</p>"
+                return
+            }
+            
+            do {
+                let document = try HTMLDocument(data: data)
+                
+                var builtHTML = ""
+                for pTag in document.xpath("//*[@id=\"incidentOverview\"]/div/div/p") {
+                    builtHTML += pTag.rawXML
+                }
+                
+                self.html = builtHTML
+                print(self.html)
+            } catch {
+                print("🚫 Couldn't get Inciweb data: \(error)")
+            }
+        }.resume()
+    }
+    
+    var body: some View {
+        Group {
+            if html == "" {
+                LazyHStack {
+                    ProgressView()
+                    Text("Loading...")
+                        .padding(20)
+                }
+                .scaleEffect(showLoading ? 1 : 0)
+                .animation(.spring())
+                .onAppear { showLoading = true }
+            } else {
+                NativeWebView(html: html)
+                    .padding(.top, 20)
+            }
+        }
+        .onAppear {
+            if !ranOnce {
+                ranOnce = true
+                getLatestInfo()
+            }
+        }
     }
 }

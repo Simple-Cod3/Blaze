@@ -130,7 +130,7 @@ struct ForestFire: Codable, Identifiable {
         sourceType: SourceType?=nil
     ) {
         self.name = name ?? "Wildfire"
-        self.location = location ?? "California"
+        self.location = location ?? "Unknown"
         self.latitude = latitude ?? 31.7
         self.longitude = longitude ?? -122.3
         self.acresO = acres ?? 0

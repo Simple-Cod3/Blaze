@@ -69,6 +69,7 @@ class FireBackend: ObservableObject {
                             let forestFireObject = ForestFire(
                                 name: inciWebFire.name,
                                 updated: inciWebFire.updated,
+                                location: inciWebFire.state.capitalized,
                                 latitude: inciWebFire.lat.becomeDouble(),
                                 longitude: inciWebFire.lng.becomeDouble(),
                                 acres: inciWebFire.size.becomeInt(),

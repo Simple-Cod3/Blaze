@@ -91,6 +91,7 @@
 		E90CE1B12538F93C00217B94 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = E90CE1B02538F93C00217B94 /* BetterSafariView */; };
 		E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */; };
 		E941692D2504B2D800DEFCB2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692C2504B2D800DEFCB2 /* CreditsView.swift */; };
+		E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = E9458A00254E27F20067BFE8 /* Fuzi */; };
 		E949CFA82517016F00AD467B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* SubHeader.swift */; };
 		E96D2885252EF3CF0002DBB4 /* SwiftUIListSeparator in Frameworks */ = {isa = PBXBuildFile; productRef = E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */; };
@@ -247,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */,
 				E96D2885252EF3CF0002DBB4 /* SwiftUIListSeparator in Frameworks */,
 				E9AF017F24FDC19D0058C184 /* URLImage in Frameworks */,
 				E9AF019524FDEC700058C184 /* FeedKit in Frameworks */,
@@ -509,14 +511,14 @@
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E985F5352503752000A3BA83 /* FormButton.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
-				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
 				6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */,
 				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
-				E9E31A89250E958B007FF855 /* Progress.swift */,
-				E903803C2518749C0043DC53 /* StatusBarBackground.swift */,
-				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
-				6D56745A253F761B00177370 /* RoundedButton.swift */,
 				6D6859D2254758F500060BB8 /* NoticeCard.swift */,
+				E9E31A89250E958B007FF855 /* Progress.swift */,
+				6D56745A253F761B00177370 /* RoundedButton.swift */,
+				E903803C2518749C0043DC53 /* StatusBarBackground.swift */,
+				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
+				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -592,6 +594,7 @@
 				E9AF019424FDEC700058C184 /* FeedKit */,
 				E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */,
 				E90CE1B02538F93C00217B94 /* BetterSafariView */,
+				E9458A00254E27F20067BFE8 /* Fuzi */,
 			);
 			productName = Blaze;
 			productReference = E9AF015124FDB8DD0058C184 /* Blaze.app */;
@@ -626,6 +629,7 @@
 				E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */,
 				E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */,
 				E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
+				E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */,
 			);
 			productRefGroup = E9AF015224FDB8DD0058C184 /* Products */;
 			projectDirPath = "";
@@ -1171,6 +1175,14 @@
 				kind = branch;
 			};
 		};
+		E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cezheng/Fuzi.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
 		E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SchmidtyApps/SwiftUIListSeparator.git";
@@ -1235,6 +1247,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
 			productName = BetterSafariView;
+		};
+		E9458A00254E27F20067BFE8 /* Fuzi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */;
+			productName = Fuzi;
 		};
 		E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */ = {
 			isa = XCSwiftPackageProductDependency;
