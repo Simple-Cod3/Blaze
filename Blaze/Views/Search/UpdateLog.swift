@@ -14,12 +14,12 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
-                    version: "1.2",
+                    version: "2.1",
                     changes: ["• Improve performance and load times."]
                 )
                 
                 VersionCard(
-                    version: "1.1",
+                    version: "2.0",
                     changes: ["• Added support for iPad", "• Fixed source deprecation", "• Implemented nationwide wildfire data", "• UI Improvements"]
                 )
                 
@@ -230,11 +230,5 @@ struct VersionTag: View {
         .padding(.horizontal, 7)
         .background(Color.yellow)
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-    }
-}
-
-struct UpdateLog_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdateLog()
     }
 }
