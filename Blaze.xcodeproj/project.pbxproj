@@ -92,6 +92,7 @@
 		E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692825046E8D00DEFCB2 /* GlossaryTerms.swift */; };
 		E941692D2504B2D800DEFCB2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E941692C2504B2D800DEFCB2 /* CreditsView.swift */; };
 		E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = E9458A00254E27F20067BFE8 /* Fuzi */; };
+		E9458A11254E3E920067BFE8 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = E9458A10254E3E920067BFE8 /* Fuzi */; };
 		E949CFA82517016F00AD467B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* SubHeader.swift */; };
 		E96D2885252EF3CF0002DBB4 /* SwiftUIListSeparator in Frameworks */ = {isa = PBXBuildFile; productRef = E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */; };
@@ -236,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9458A11254E3E920067BFE8 /* Fuzi in Frameworks */,
 				6D7A71F22547B85E00327F02 /* SwiftUIListSeparator in Frameworks */,
 				6D7A71F32547B85E00327F02 /* URLImage in Frameworks */,
 				6D7A71F42547B85E00327F02 /* FeedKit in Frameworks */,
@@ -567,6 +569,7 @@
 				6D7A71B72547B85E00327F02 /* FeedKit */,
 				6D7A71B92547B85E00327F02 /* SwiftUIListSeparator */,
 				6D7A71BB2547B85E00327F02 /* BetterSafariView */,
+				E9458A10254E3E920067BFE8 /* Fuzi */,
 			);
 			productName = Blaze;
 			productReference = 6D7A72012547B85E00327F02 /* Blaze-iPad.app */;
@@ -876,7 +879,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
@@ -885,9 +888,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -903,7 +906,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
@@ -912,9 +915,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1047,7 +1050,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1059,7 +1062,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1075,7 +1078,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1087,7 +1090,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1249,6 +1252,11 @@
 			productName = BetterSafariView;
 		};
 		E9458A00254E27F20067BFE8 /* Fuzi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */;
+			productName = Fuzi;
+		};
+		E9458A10254E3E920067BFE8 /* Fuzi */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */;
 			productName = Fuzi;
