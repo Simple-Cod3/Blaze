@@ -36,3 +36,8 @@ struct NoticeCard: View {
         .padding(.horizontal, 20)
     }
 }
+
+//NoticeCard(
+//    title: "Deprecated Source",
+//    text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
+//)

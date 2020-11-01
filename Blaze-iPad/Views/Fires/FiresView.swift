@@ -16,6 +16,7 @@ struct FiresView: View {
     @State var show = false
     @State var done = false
     @State var showingData = false
+    @State var showingFullMap = false
     
     var body: some View {
         NavigationView {
@@ -26,18 +27,15 @@ struct FiresView: View {
                     .padding(.vertical, 100)
                 
                 VStack(spacing: 20) {
-                    NoticeCard(
-                        title: "Deprecated Source",
-                        text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
-                    )
-                    
                     HStack {
                         Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         Spacer()
                     }
                     
                     HStack(spacing: 20) {
-                        NavigationLink(destination: FullFireMapView()) {
+                        Button(action: {
+                            self.showingFullMap.toggle()
+                        }) {
                             HStack {
                                 Spacer()
                                 Text("\(Image(systemName: "map")) Fire Map")
@@ -50,6 +48,9 @@ struct FiresView: View {
                             .padding(.horizontal, 10)
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        }
+                        .sheet(isPresented: $showingFullMap) {
+                            FullFireMapModalView()
                         }
                         
                         Button(action: {

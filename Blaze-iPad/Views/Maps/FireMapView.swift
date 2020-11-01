@@ -53,29 +53,27 @@ struct FireMapView: View {
                         .foregroundColor(.white)
                 }
             }
-                .offset(y: 30)
-                .edgesIgnoringSafeArea(.all)
-                .onChange(of: coordinateRegion) { region in
-                    if free {
-                        if region.span.longitudeDelta > 16 &&
-                            region.span.latitudeDelta > 16 {
-                            coordinateRegion.span.latitudeDelta = 15
-                            coordinateRegion.span.longitudeDelta = 15
-                        }
-                        if region.center.latitude > centerLat + RADIUS {
-                            setCenter(option: OPTIONS.TOP)
-                        } else if region.center.latitude < centerLat - RADIUS {
-                            setCenter(option: OPTIONS.DOWN)
-                        }
-                        
-                        if region.center.longitude > centerLong + RADIUS {
-                            setCenter(option: OPTIONS.RIGHT)
-                        } else if region.center.longitude < centerLong - RADIUS {
-                            setCenter(option: OPTIONS.LEFT)
-                        }
-                        
+            .onChange(of: coordinateRegion) { region in
+                if free {
+                    if region.span.longitudeDelta > 16 &&
+                        region.span.latitudeDelta > 16 {
+                        coordinateRegion.span.latitudeDelta = 15
+                        coordinateRegion.span.longitudeDelta = 15
                     }
+                    if region.center.latitude > centerLat + RADIUS {
+                        setCenter(option: OPTIONS.TOP)
+                    } else if region.center.latitude < centerLat - RADIUS {
+                        setCenter(option: OPTIONS.DOWN)
+                    }
+                    
+                    if region.center.longitude > centerLong + RADIUS {
+                        setCenter(option: OPTIONS.RIGHT)
+                    } else if region.center.longitude < centerLong - RADIUS {
+                        setCenter(option: OPTIONS.LEFT)
+                    }
+                    
                 }
+            }
 
             HStack {
                 Spacer()
@@ -88,6 +86,11 @@ struct FireMapView: View {
                 .animation(.spring(), value: hide)
             }
         }
+        .navigationBarTitle(fireData.name, displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: moveBack) {
+            Image(systemName: "rotate.3d")
+                .font(.title2)
+        })
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)
         }
@@ -98,11 +101,6 @@ struct FireMapView: View {
                 hide = false
             }
         }
-        .navigationBarTitle(fireData.name, displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: moveBack) {
-            Image(systemName: "rotate.3d")
-                .font(.title2)
-        })
     }
     
     private func setCenter(option: OPTIONS) {

@@ -101,6 +101,7 @@ struct ExpandAlphabetView: View {
                             WordCard(term: term)
                                 .padding(.horizontal, 20)
                         }
+                        .padding(.bottom, 20)
                     }
                 }
                 .navigationBarTitle("", displayMode: .large)
@@ -125,8 +126,10 @@ struct ExpandAlphabetView: View {
                     .font(.body)
                     .fontWeight(.regular)
                     .foregroundColor(.secondary)
-                ).lineLimit(1)
-            }.padding(.leading, 20)
+                )
+                .lineLimit(1)
+            }
+            .padding(.leading, 20)
         }
     }
 }

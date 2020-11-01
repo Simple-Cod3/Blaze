@@ -106,7 +106,6 @@ struct NewsCardButton: View {
                     SafariView(
                         url: news.url,
                         configuration: SafariView.Configuration(
-                            entersReaderIfAvailable: true,
                             barCollapsingEnabled: true
                         )
                     )

@@ -40,7 +40,7 @@ struct ContentView: View {
                           title: "Search")
             }
         }
-        .fullScreenCover(isPresented: !$welcomed) {
+        .sheet(isPresented: !$welcomed) {
             SplashScreen(show: self.$welcomed)
         }
     }

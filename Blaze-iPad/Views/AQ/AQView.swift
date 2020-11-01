@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AQView: View {
     @EnvironmentObject var forecast: AirQualityBackend
-    @State private var showCircle = false
     
     var body: some View {
         NavigationView {
@@ -53,20 +52,11 @@ struct AQView: View {
                         determineColor(cat: color)
                             .frame(width: 370, height: 370)
                             .clipShape(Circle())
-                            .scaleEffect(showCircle ? 1.0 : 0.5)
-                            .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
                             .opacity(0.7)
                     }
                     
                 AQMeter(airQ: forecast.forecasts[1])
                     .padding(.vertical, 75)
-                    .scaleEffect(showCircle ? 1.0 : 0)
-                    .onAppear {
-                        withAnimation(nil) { showCircle = false }
-                        withAnimation(.spring(dampingFraction: 0.8)) {
-                            showCircle = true
-                        }
-                    }
                 }
                 .padding(.top, 60)
                 Spacer()

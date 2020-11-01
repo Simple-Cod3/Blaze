@@ -181,10 +181,6 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
-            leading: Button(action: actionSheet) {
-                Image(systemName: "square.and.arrow.up")
-                    .font(.system(size: 20, weight: .regular))
-            },
             trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()
             }

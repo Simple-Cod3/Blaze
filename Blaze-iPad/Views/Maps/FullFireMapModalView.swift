@@ -1,15 +1,15 @@
 //
-//  FullFireMapView.swift
+//  FullFireMapModalView.swift
 //  Blaze-iPad
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/1/20.
 //
 
 import Foundation
 import SwiftUI
 import MapKit
 
-struct FullFireMapView: View {
+struct FullFireMapModalView: View {
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @EnvironmentObject private var fireBackend: FireBackend
     
@@ -31,14 +31,6 @@ struct FullFireMapView: View {
         show = false
     }
     
-    private func moveBack() {
-        withAnimation {
-            self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: centerLat, longitude: centerLong),
-                span: .init(latitudeDelta: 7, longitudeDelta: 7)
-            )
-        }
-    }
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in
@@ -107,14 +99,6 @@ struct FullFireMapView: View {
             FullInformationView(show: $show)
                 .environmentObject(fireBackend)
         }
-        .onAppear {
-            moveBack()
-        }
-        .navigationBarTitle("All Wildfires", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: moveBack) {
-            Image(systemName: "rotate.3d")
-                .font(.title2)
-        })
     }
     
     private func setCenter(option: OPTIONS) {
