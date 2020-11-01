@@ -14,12 +14,12 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
-                    version: "2.1",
+                    version: "1.2",
                     changes: ["• Improve performance and load times."]
                 )
                 
                 VersionCard(
-                    version: "2.0",
+                    version: "1.1",
                     changes: ["• Added support for iPad", "• Fixed source deprecation", "• Implemented nationwide wildfire data", "• UI Improvements"]
                 )
                 
