@@ -38,57 +38,59 @@ struct NewsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                Image("speaker").resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 225)
-                    .padding(.vertical, 85)
-                
-                VStack(spacing: 20) {
-                    HStack {
-                        Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
-                        Spacer()
+        ModalPresenter {
+            NavigationView {
+                ScrollView(showsIndicators: false) {
+                    Image("speaker").resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 225)
+                        .padding(.vertical, 85)
+                    
+                    VStack(spacing: 20) {
+                        HStack {
+                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
+                            Spacer()
+                        }
+                        
+                        ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
+                            HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
+                        }.buttonStyle(CardButtonStyle())
+                        
+                        ModalLink(destination: { GlossaryView(dismiss: $0) }) {
+                            HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
+                        }.buttonStyle(CardButtonStyle())
                     }
-                    
-                    ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                        HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                    }.buttonStyle(CardButtonStyle())
-                    
-                    ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                        HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
-                    }.buttonStyle(CardButtonStyle())
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
-            }
-            .background(Color(.secondarySystemBackground))
-            .navigationBarTitle("", displayMode: .inline)
-            
-            ScrollView {
-                VStack(spacing: 20) {
-                    ForEach(news.newsList.prefix(newsShown)) { news in
-                        NewsCardButton(news: news)
-                    }
-                    
-                    if news.newsList.count > newsShown {
-                        Button(action: {
-                            newsShown += 10
-                        }) {
-                            Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
-                                .font(.body)
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 15)
-                                .background(Color.blaze)
-                                .clipShape(Capsule())
-                                .padding(.horizontal, 20)
+                .background(Color(.secondarySystemBackground))
+                .navigationBarTitle("", displayMode: .inline)
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(news.newsList.prefix(newsShown)) { news in
+                            NewsCardButton(news: news)
+                        }
+                        
+                        if news.newsList.count > newsShown {
+                            Button(action: {
+                                newsShown += 10
+                            }) {
+                                Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
+                                    .font(.body)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 10)
+                                    .padding(.horizontal, 15)
+                                    .background(Color.blaze)
+                                    .clipShape(Capsule())
+                                    .padding(.horizontal, 20)
+                            }
                         }
                     }
+                    .padding(.vertical, 20)
                 }
-                .padding(.vertical, 20)
+                .navigationBarTitle("News", displayMode: .inline)
             }
-            .navigationBarTitle("News", displayMode: .inline)
         }
     }
 }

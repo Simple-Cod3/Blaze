@@ -94,20 +94,17 @@ struct InformationViewInner: View {
     
     private func actionSheet() {
         var items = [
-            fireData.name,
-            ": : : : : : : : : : : :",
+            ": : : : : : \(fireData.name) : : : : : :",
             " • Location: \(fireData.getLocation())",
             " • Area Burned: \(fireData.getAreaString())",
             " • Contained: \(fireData.getContained())"
-        ] as [Any]
+        ].map { "\($0)\n"}
         
         if let url = URL(string: fireData.url) {
             items.append("\n🔎 Learn more about it here: \n\(url)")
         }
         
-        items = items.map { "\n\($0)" }
-        
-        let actionView = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let actionView = UIActivityViewController(activityItems: [items.joined()], applicationActivities: nil)
         UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
     }
     
@@ -184,6 +181,10 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
+            leading: Button(action: actionSheet) {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 20, weight: .regular))
+            },
             trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()
             }

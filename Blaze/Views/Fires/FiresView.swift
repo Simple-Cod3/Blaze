@@ -27,11 +27,11 @@ struct FiresView: View {
                                 .frame(height: 275)
                                 .padding(40)
                             
-                            NoticeCard(
-                                title: "Deprecated Source",
-                                text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
-                            )
-                            .padding(.bottom, 20)
+//                            NoticeCard(
+//                                title: "Deprecated Source",
+//                                text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
+//                            )
+//                            .padding(.bottom, 20)
                             
                             HStack {
                                 Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")

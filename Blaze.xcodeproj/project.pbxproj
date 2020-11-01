@@ -212,7 +212,7 @@
 		E9AF015D24FDB8DE0058C184 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9AF016024FDB8DE0058C184 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9AF016224FDB8DE0058C184 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9AF016924FDBBEB0058C184 /* FiresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresView.swift; sourceTree = "<group>"; };
+		E9AF016924FDBBEB0058C184 /* FiresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E9AF016B24FDBBF80058C184 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E9AF016D24FDBC090058C184 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E9AF017024FDBC290058C184 /* NewsBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsBackend.swift; sourceTree = "<group>"; };

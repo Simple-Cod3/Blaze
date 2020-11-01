@@ -282,7 +282,6 @@ struct InciWebContent: View {
                 }
                 
                 self.html = builtHTML
-                print(self.html)
             } catch {
                 print("🚫 Couldn't get Inciweb data: \(error)")
             }
