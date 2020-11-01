@@ -78,7 +78,11 @@ struct FiresView: View {
                                     fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
                                     id: \.self
                                 ) { index in
-                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index])) {
+                                    NavigationLink(
+                                        destination: FireMapView(
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
+                                        )
+                                    ) {
                                         MiniFireCard(
                                             selected: index == selectLargest,
                                             fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
@@ -103,8 +107,15 @@ struct FiresView: View {
                         SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
-                                ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices, id: \.self) { index in
-                                    NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
+                                ForEach(
+                                    fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices,
+                                    id: \.self
+                                ) { index in
+                                    NavigationLink(
+                                        destination: FireMapView(
+                                            fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
+                                        )
+                                    ) {
                                         MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                     }
                                 }

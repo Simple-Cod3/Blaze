@@ -20,6 +20,15 @@ struct SearchView: View {
     @State private var showFires = true
     @State private var showWords = false
     
+    @State private var sorting = SortingType.alpha
+    
+    private enum SortingType {
+        case alpha
+        case alphaReverse
+        case size
+        case updated
+    }
+    
     private func getFires() {
         DispatchQueue.main.async {
             let query = searchBar.text.lowercased()
@@ -30,7 +39,19 @@ struct SearchView: View {
                     $0.location.lowercased().contains(query) ||
                     $0.searchKeywords?.lowercased().contains(query) == true ||
                     $0.searchDescription?.lowercased().contains(query) == true
-            }.sorted(by: {$0.name < $1.name})
+            }
+            .sorted(by: {
+                switch sorting {
+                case .alpha:
+                    return $0.name < $1.name
+                case .alphaReverse:
+                    return $0.name > $1.name
+                case .size:
+                    return $0.acres > $1.acres
+                case .updated:
+                    return $0.updated < $0.updated
+                }
+            })
         }
     }
     
@@ -131,15 +152,35 @@ struct SearchView: View {
                 .navigationBarItems(
                     leading: Menu(
                         content: {
-                            Button("Sorting #1", action: {})
-                            Button("Sorting #2", action: {})
-                            Menu(
-                                content: {
-                                    Button("Even deeper lol.", action: {})
-                                }, label: {
-                                    Button("Sorting #Clickme", action: {})
+                            Text("Sorting Mode")
+                            Button(action: { sorting = .alpha; getFires() }) {
+                                HStack {
+                                    Text("A-Z")
+                                    Spacer()
+                                    if sorting == .alpha { Image(systemName: "checkmark.circle.fill") }
                                 }
-                            )
+                            }
+                            Button(action: { sorting = .alphaReverse; getFires() }) {
+                                HStack {
+                                    Text("Z-A")
+                                    Spacer()
+                                    if sorting == .alphaReverse { Image(systemName: "checkmark.circle.fill") }
+                                }
+                            }
+                            Button(action: { sorting = .size; getFires() }) {
+                                HStack {
+                                    Text("Largest Fires")
+                                    Spacer()
+                                    if sorting == .size { Image(systemName: "checkmark.circle.fill") }
+                                }
+                            }
+                            Button(action: { sorting = .updated; getFires() }) {
+                                HStack {
+                                    Text("Latest Updated")
+                                    Spacer()
+                                    if sorting == .updated { Image(systemName: "checkmark.circle.fill") }
+                                }
+                            }
                         },
                         label: {
                             Image(systemName: "line.horizontal.3.decrease")
