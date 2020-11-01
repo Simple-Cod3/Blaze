@@ -11,6 +11,7 @@ import MapKit
 import ModalView
 
 struct FireMapView: View {
+    @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var hide = true
     @State private var show = false
@@ -56,7 +57,7 @@ struct FireMapView: View {
                 .offset(y: 30)
                 .edgesIgnoringSafeArea(.all)
                 .onChange(of: coordinateRegion) { region in
-                    if free {
+                    if free && !caliOnly {
                         if region.span.longitudeDelta > 16 &&
                             region.span.latitudeDelta > 16 {
                             coordinateRegion.span.latitudeDelta = 15

@@ -84,7 +84,10 @@ struct FullScreenInfoView: View {
 
 struct InformationViewInner: View {
     @Binding var show: Bool
+    
     @State var shrink = false
+    @State var scrapedHTML = ""
+    
     var fireData: ForestFire
     
     private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
@@ -131,7 +134,7 @@ struct InformationViewInner: View {
                     }.padding(.vertical, 10)
                 }
             }
-            
+
             InformationSection(
                 title: "Basics",
                 data: [
@@ -140,7 +143,7 @@ struct InformationViewInner: View {
                      String(fireData.latitude)+"°", String(fireData.longitude)+"°"]
                 ]
             )
-            
+
             InformationSection(
                 title: "Times",
                 data: [
@@ -148,7 +151,7 @@ struct InformationViewInner: View {
                     ["calendar.badge.clock", "Fire Started", fireData.started.getElapsedInterval(true)]
                 ]
             )
-            
+
             InformationSection(
                 title: "Statistics",
                 data: [
@@ -156,11 +159,15 @@ struct InformationViewInner: View {
                     ["lasso", "Contained", fireData.getContained()]
                 ]
             )
-            
+
             if let html = fireData.conditionStatement, html != "" {
                 Section(header: header) {
                     NativeWebView(html: html)
                         .padding(.vertical, 5)
+                }
+            } else if fireData.sourceType == .inciweb {
+                Section(header: Text("Info")) {
+                    InciWebContent(url: URL(string: fireData.url)!)
                 }
             }
             

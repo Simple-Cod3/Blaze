@@ -38,7 +38,7 @@ struct UpdateLog: View {
             .padding(.top, 20)
             .padding(.bottom, 50)
         }
-        .navigationBarTitle("Updates", displayMode: .inline)
+        .navigationBarTitle("Updates", displayMode: .large)
         .onAppear {
             show = false
             withAnimation(Animation.spring(response: 0.5).delay(0.1)) {
