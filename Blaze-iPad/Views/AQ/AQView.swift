@@ -10,7 +10,6 @@ import SwiftUI
 struct AQView: View {
     @EnvironmentObject var forecast: AirQualityBackend
     @State private var showCircle = false
-    @State private var show = false
     
     var body: some View {
         NavigationView {
@@ -42,6 +41,7 @@ struct AQView: View {
                     }
                     .padding(.horizontal, 20)
                 }
+                .frame(height: UIScreen.main.bounds.size.height-40)
             }
             .background(Color(.secondarySystemBackground))
             .navigationBarTitle("", displayMode: .inline)
@@ -62,11 +62,9 @@ struct AQView: View {
                     .padding(.vertical, 75)
                     .scaleEffect(showCircle ? 1.0 : 0)
                     .onAppear {
-                        forecast.refreshForecastList()
                         withAnimation(nil) { showCircle = false }
                         withAnimation(.spring(dampingFraction: 0.8)) {
                             showCircle = true
-                            show = true
                         }
                     }
                 }
