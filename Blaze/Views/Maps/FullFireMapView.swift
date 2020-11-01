@@ -91,7 +91,7 @@ struct FullFireMapView: View {
                         .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.secondarySystemBackground))
+                        .background(Color(.systemBackground))
                         .clipShape(Capsule())
                 }
                 
@@ -100,7 +100,7 @@ struct FullFireMapView: View {
                         .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.secondarySystemBackground))
+                        .background(Color(.systemBackground))
                         .clipShape(Capsule())
                 }
             }.padding(20)

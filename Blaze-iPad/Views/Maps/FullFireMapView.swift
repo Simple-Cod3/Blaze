@@ -10,6 +10,7 @@ import SwiftUI
 import MapKit
 
 struct FullFireMapView: View {
+    @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @EnvironmentObject private var fireBackend: FireBackend
     
     @State private var coordinateRegion = MKCoordinateRegion(
@@ -44,7 +45,7 @@ struct FullFireMapView: View {
                 MapAnnotation(coordinate: fire.coordinate) {
                     VStack {
                         Image("fire").resizable()
-                            .frame(width: 35, height: 35)
+                            .frame(width: 30, height: 30)
                             .foregroundColor(.white)
                         
                         Text(fire.name)
@@ -63,7 +64,7 @@ struct FullFireMapView: View {
             .offset(y: 30)
             .edgesIgnoringSafeArea(.all)
             .onChange(of: coordinateRegion) { region in
-                if free {
+                if free && !caliOnly {
                     if region.span.longitudeDelta > 16 &&
                         region.span.latitudeDelta > 16 {
                         coordinateRegion.span.latitudeDelta = 15
@@ -90,7 +91,7 @@ struct FullFireMapView: View {
                         .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.secondarySystemBackground))
+                        .background(Color(.systemBackground))
                         .clipShape(Capsule())
                 }
                 
@@ -99,7 +100,7 @@ struct FullFireMapView: View {
                         .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.secondarySystemBackground))
+                        .background(Color(.systemBackground))
                         .clipShape(Capsule())
                 }
             }.padding(20)

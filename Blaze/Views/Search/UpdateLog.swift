@@ -14,12 +14,18 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
-                    version: "1.1",
-                    changes: ["• iPad support. You will be able to access Blaze: Wildfires on more devices."]
+                    version: "1.2",
+                    changes: ["• Improve performance and load times."]
                 )
                 
                 VersionCard(
+                    version: "1.1",
+                    changes: ["• Added support for iPad", "• Fixed source deprecation", "• Implemented nationwide wildfire data", "• UI Improvements"]
+                )
+                
+                VersionDot(
                     version: "1.0.2",
+                    date: "10.27.20",
                     changes: ["• Notice for deprecated source", "• Improved overall UI", "• Implemented roadmap in Updates", "• Front-end logic improvements"]
                 )
                 

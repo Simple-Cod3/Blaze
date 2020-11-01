@@ -78,7 +78,7 @@ struct MapFireCard: View {
                 }
             }
         }
-        .frame(width: 300)
+        .frame(width: 275)
         .frame(minHeight: hide ? 0 : 200)
         .padding(20)
         .background(Color(UIColor.systemBackground))

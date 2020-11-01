@@ -306,7 +306,6 @@ struct SplashScreen: View {
                 .transition(.move(edge: .leading))
             }
         }
-        
         .animation(.spring(), value: page)
     }
 }

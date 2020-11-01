@@ -1,8 +1,8 @@
 //
-//  SettingsView.swift
-//  Blaze
+//  SearchView.swift
+//  Blaze-iPad
 //
-//  Created by Nathan Choi on 8/31/20.
+//  Created by Paul Wong on 10/31/20.
 //
 
 import SwiftUI
@@ -153,6 +153,21 @@ struct SearchView: View {
                 )
                 .navigationBarTitle("Search")
                 .add(self.searchBar)
+                
+                VStack {
+                    Image("bandage").resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 250)
+                        .padding(.bottom, 20)
+                    
+                    Text("Nothing to see here, we just patched this part up with a bandage.")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 350)
+                        .padding(.bottom, 100)
+                }
             }
             .onChange(of: searchBar.text, perform: { _ in
                 getFires()
@@ -163,12 +178,5 @@ struct SearchView: View {
                 getWords()
             }
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-            .environmentObject(FireBackend())
     }
 }
