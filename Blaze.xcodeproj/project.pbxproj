@@ -893,7 +893,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
@@ -904,7 +904,7 @@
 				);
 				MARKETING_VERSION = 2.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simplycode.Blaze-iPad";
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -920,7 +920,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
@@ -931,7 +931,7 @@
 				);
 				MARKETING_VERSION = 2.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simplycode.Blaze-iPad";
 				PRODUCT_NAME = "Blaze-iPad";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
