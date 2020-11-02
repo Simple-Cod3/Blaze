@@ -269,6 +269,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D1DF5722550748600FEE5D3 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				E9AF016224FDB8DE0058C184 /* Info.plist */,
+				E94589EB254D2D570067BFE8 /* Info-iPad.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		6D330760254E2EFF00DECE22 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,7 +300,6 @@
 				6D7A72202547C5EB00327F02 /* Elements */,
 				6D7A721B2547C36000327F02 /* Views */,
 				6D7A72112547BB8F00327F02 /* ContentView.swift */,
-				E94589EB254D2D570067BFE8 /* Info-iPad.plist */,
 				6D74BF54254F4552003EB7C4 /* SplashScreen.swift */,
 			);
 			path = "Blaze-iPad";
@@ -398,6 +406,7 @@
 		E9AF014824FDB8DD0058C184 = {
 			isa = PBXGroup;
 			children = (
+				6D1DF5722550748600FEE5D3 /* Support */,
 				6D7A72082547BB3200327F02 /* Blaze-iPad */,
 				E9AF015324FDB8DD0058C184 /* Blaze */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
@@ -424,7 +433,6 @@
 				E9AF015C24FDB8DE0058C184 /* Preview Content */,
 				E9AF016824FDBBDA0058C184 /* Views */,
 				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
-				E9AF016224FDB8DE0058C184 /* Info.plist */,
 				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
 				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
 				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
@@ -896,7 +904,7 @@
 				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
+				INFOPLIST_FILE = "Support/Info-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -923,7 +931,7 @@
 				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = "Blaze-iPad/Info-iPad.plist";
+				INFOPLIST_FILE = "Support/Info-iPad.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1069,7 +1077,7 @@
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = Blaze/Info.plist;
+				INFOPLIST_FILE = Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1097,7 +1105,7 @@
 				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
-				INFOPLIST_FILE = Blaze/Info.plist;
+				INFOPLIST_FILE = Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
