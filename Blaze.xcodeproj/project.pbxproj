@@ -82,8 +82,6 @@
 		6DC18D022548AB97001B1F49 /* FullFireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC18D012548AB97001B1F49 /* FullFireMapView.swift */; };
 		6DC18D072548ABA9001B1F49 /* FullFireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26D8250813B300B939F3 /* FullFireMapView.swift */; };
 		6DC18D0D2548B081001B1F49 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC18D0C2548B081001B1F49 /* FireMapView.swift */; };
-		6DD55AB4254FC6C5008A0D72 /* Info-iPad.plist in Resources */ = {isa = PBXBuildFile; fileRef = E94589EB254D2D570067BFE8 /* Info-iPad.plist */; };
-		6DD55AB7254FC6CB008A0D72 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9AF016224FDB8DE0058C184 /* Info.plist */; };
 		6DEC9CED2548D2B100B245E9 /* DummyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEC9CEC2548D2B100B245E9 /* DummyView.swift */; };
 		6DEC9CF12548DFBB00B245E9 /* MapFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEC9CF02548DFBB00B245E9 /* MapFireCard.swift */; };
 		6DF6590C2510684100D47118 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6590B2510684100D47118 /* DataView.swift */; };
@@ -662,7 +660,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DD55AB4254FC6C5008A0D72 /* Info-iPad.plist in Resources */,
 				6D7A71F82547B85E00327F02 /* LaunchScreen.storyboard in Resources */,
 				6D7A71F92547B85E00327F02 /* Preview Assets.xcassets in Resources */,
 				6D7A71FA2547B85E00327F02 /* Assets.xcassets in Resources */,
@@ -673,7 +670,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DD55AB7254FC6CB008A0D72 /* Info.plist in Resources */,
 				E9AF016124FDB8DE0058C184 /* LaunchScreen.storyboard in Resources */,
 				E9AF015E24FDB8DE0058C184 /* Preview Assets.xcassets in Resources */,
 				E9AF015B24FDB8DE0058C184 /* Assets.xcassets in Resources */,
@@ -1085,7 +1081,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1113,7 +1109,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
