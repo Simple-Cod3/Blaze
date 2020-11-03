@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var show = false
     
     var body: some View {
+        ScrollView {
         ZStack {
             if let color = forecast.forecasts[1].category.number, color != -1 {
                 determineColor(cat: color)
@@ -36,8 +37,9 @@ struct ContentView: View {
                         }
                     }
                 }
+            }
+        .padding(.top, 20)
         }
-        .padding(.top, 40)
         .navigationTitle("Air Quality")
     }
 }
