@@ -13,8 +13,6 @@ struct AQViewiPad: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                Spacer()
-
                 VStack(spacing: 20) {
                     HStack {
                         Header(
@@ -40,13 +38,14 @@ struct AQViewiPad: View {
                     }
                     .padding(.horizontal, 20)
                 }
-                .frame(height: UIScreen.main.bounds.size.height-40)
             }
+            .padding(.top, 20)
             .background(Color(.secondarySystemBackground))
             .navigationBarTitle("", displayMode: .inline)
             
-            ScrollView {
+            VStack {
                 Spacer()
+                
                 ZStack {
                     if let color = forecast.forecasts[1].category.number, color != -1 {
                         determineColor(cat: color)
@@ -55,10 +54,10 @@ struct AQViewiPad: View {
                             .opacity(0.7)
                     }
                     
-                AQMeteriPad(airQ: forecast.forecasts[1])
-                    .padding(.vertical, 75)
+                    AQMeteriPad(airQ: forecast.forecasts[1])
+                        .padding(.vertical, 75)
                 }
-                .padding(.top, 60)
+                
                 Spacer()
             }
             .navigationBarTitle("Air Quality", displayMode: .inline)

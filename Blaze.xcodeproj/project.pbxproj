@@ -56,6 +56,7 @@
 		E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E125084ABF00B939F3 /* SplashScreen.swift */; };
 		E985F5362503752000A3BA83 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5352503752000A3BA83 /* FormButton.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
+		E9AAFC0D2551148E00BE1E45 /* FiresViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */; };
 		E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
 		E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015424FDB8DD0058C184 /* AppDelegate.swift */; };
 		E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */; };
@@ -145,6 +146,7 @@
 		E97E26E125084ABF00B939F3 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		E985F5352503752000A3BA83 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
+		E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresViewiPad.swift; sourceTree = "<group>"; };
 		E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInfoView.swift; sourceTree = "<group>"; };
 		E9AF015124FDB8DD0058C184 /* Blaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AF015424FDB8DD0058C184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,19 +272,19 @@
 			isa = PBXGroup;
 			children = (
 				E91EB47B25393E63006F03C2 /* Blaze.entitlements */,
+				E9AF016224FDB8DE0058C184 /* Info.plist */,
+				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
+				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
+				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
+				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
+				6D36029D2550F0A60054B3A9 /* SplashScreeniPad.swift */,
+				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
+				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
 				E9AF016F24FDBC120058C184 /* Backend */,
 				E9AF017224FDBC7B0058C184 /* Classes and Extensions */,
 				E9AF019024FDE5DF0058C184 /* Elements */,
 				E9AF015C24FDB8DE0058C184 /* Preview Content */,
 				E9AF016824FDBBDA0058C184 /* Views */,
-				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
-				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
-				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
-				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
-				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
-				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
-				E9AF016224FDB8DE0058C184 /* Info.plist */,
-				6D36029D2550F0A60054B3A9 /* SplashScreeniPad.swift */,
 			);
 			path = Blaze;
 			sourceTree = "<group>";
@@ -329,9 +331,9 @@
 				27BB5F9125098DFD0071F3FF /* AirQuality.swift */,
 				E9E769EC25031681006038FD /* ButtonStyles.swift */,
 				E9F222E72500886800EC5A06 /* DateExtension.swift */,
+				E9CE22A42502F48700929D13 /* Extensions.swift */,
 				E9F222E525005BEB00EC5A06 /* ForestFire.swift */,
 				E9AF017324FDBC870058C184 /* News.swift */,
-				E9CE22A42502F48700929D13 /* Extensions.swift */,
 			);
 			path = "Classes and Extensions";
 			sourceTree = "<group>";
@@ -342,6 +344,7 @@
 				6DF6590B2510684100D47118 /* DataView.swift */,
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
 				E9E769EE250319F4006038FD /* InformationView.swift */,
+				E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
@@ -349,11 +352,11 @@
 		E9AF017A24FDC0DC0058C184 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				E97E26DC250837E000B939F3 /* UIKit Search Functionality */,
 				E941692C2504B2D800DEFCB2 /* CreditsView.swift */,
 				E9AF016B24FDBBF80058C184 /* SearchView.swift */,
-				6D38E8A4253B782F009096C9 /* UpdateLog.swift */,
 				6D3602712550EF260054B3A9 /* SearchViewiPad.swift */,
+				6D38E8A4253B782F009096C9 /* UpdateLog.swift */,
+				E97E26DC250837E000B939F3 /* UIKit Search Functionality */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -362,11 +365,11 @@
 			isa = PBXGroup;
 			children = (
 				E9073CA425214AB200FE43C2 /* HorizontalCard.swift */,
+				6D3602892550EFFD0054B3A9 /* HorizontalCardiPad.swift */,
 				E9AF018324FDC3800058C184 /* NewsCard.swift */,
 				E9AF016D24FDBC090058C184 /* NewsView.swift */,
-				E97E26DF2508444B00B939F3 /* WebModal.swift */,
-				6D3602892550EFFD0054B3A9 /* HorizontalCardiPad.swift */,
 				6D36028F2550F0180054B3A9 /* NewsViewiPad.swift */,
+				E97E26DF2508444B00B939F3 /* WebModal.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -374,7 +377,6 @@
 		E9AF019024FDE5DF0058C184 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				6D36024C2550EDB90054B3A9 /* iPad */,
 				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
 				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 				E9073CAB2529096600FE43C2 /* Check.swift */,
@@ -389,6 +391,7 @@
 				E903803C2518749C0043DC53 /* StatusBarBackground.swift */,
 				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
+				6D36024C2550EDB90054B3A9 /* iPad */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -406,11 +409,11 @@
 			isa = PBXGroup;
 			children = (
 				E9F222EA2500C4A800EC5A06 /* FireMapView.swift */,
-				E97E26D8250813B300B939F3 /* FullFireMapView.swift */,
-				E97E26DA25082B3800B939F3 /* FullInformationView.swift */,
 				6D3602772550EF570054B3A9 /* FireMapViewiPad.swift */,
-				6D36027D2550EF930054B3A9 /* FullFireMapViewiPad.swift */,
 				6D3602832550EFD60054B3A9 /* FullFireMapModalViewiPad.swift */,
+				E97E26D8250813B300B939F3 /* FullFireMapView.swift */,
+				6D36027D2550EF930054B3A9 /* FullFireMapViewiPad.swift */,
+				E97E26DA25082B3800B939F3 /* FullInformationView.swift */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				6D36027E2550EF930054B3A9 /* FullFireMapViewiPad.swift in Sources */,
 				E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */,
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
+				E9AAFC0D2551148E00BE1E45 /* FiresViewiPad.swift in Sources */,
 				E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */,
 				6DA2FF322506B00400C86F0C /* UnitsCard.swift in Sources */,
 				E9073CAC2529096600FE43C2 /* Check.swift in Sources */,
@@ -766,6 +770,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -794,6 +800,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

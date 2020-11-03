@@ -1,10 +1,9 @@
 //
-//  FiresView.swift
+//  FiresViewiPad.swift
 //  Blaze-iPad
 //
 //  Created by Paul Wong on 10/26/20.
 //
-
 import SwiftUI
 
 struct FiresViewiPad: View {
@@ -21,61 +20,63 @@ struct FiresViewiPad: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                Image("hydrant").resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 300)
-                    .padding(.vertical, 100)
-                
-                VStack(spacing: 20) {
-                    HStack {
-                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                        Spacer()
-                    }
+                VStack {
+                    Image("hydrant").resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 300)
+                        .padding(.vertical, 100)
                     
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            self.showingFullMap.toggle()
-                        }) {
-                            HStack {
-                                Spacer()
-                                Text("\(Image(systemName: "map")) Fire Map")
-                                    .fontWeight(.regular)
-                                    .font(.body)
-                                    .foregroundColor(.blaze)
-                                Spacer()
-                            }
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 10)
-                            .background(Color(.tertiarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        }
-                        .sheet(isPresented: $showingFullMap) {
-                            FullFireMapModalViewiPad()
+                    VStack(spacing: 20) {
+                        HStack {
+                            Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                            Spacer()
                         }
                         
-                        Button(action: {
-                            self.showingData.toggle()
-                        }) {
-                            HStack {
-                                Spacer()
-                                Text("\(Image(systemName: "tray.2")) Data")
-                                    .fontWeight(.regular)
-                                    .font(.body)
-                                    .foregroundColor(.blaze)
-                                Spacer()
+                        HStack(spacing: 20) {
+                            Button(action: {
+                                self.showingFullMap.toggle()
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Text("\(Image(systemName: "map")) Fire Map")
+                                        .fontWeight(.regular)
+                                        .font(.body)
+                                        .foregroundColor(.blaze)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 10)
+                                .background(Color(.tertiarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 10)
-                            .background(Color(.tertiarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .sheet(isPresented: $showingFullMap) {
+                                FullFireMapModalViewiPad()
+                            }
+                            
+                            Button(action: {
+                                self.showingData.toggle()
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Text("\(Image(systemName: "tray.2")) Data")
+                                        .fontWeight(.regular)
+                                        .font(.body)
+                                        .foregroundColor(.blaze)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 12)
+                                .padding(.horizontal, 10)
+                                .background(Color(.tertiarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            }
+                            .sheet(isPresented: $showingData) {
+                                DataView()
+                            }
                         }
-                        .sheet(isPresented: $showingData) {
-                            DataView()
-                        }
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
             }
             .background(Color(.secondarySystemBackground))
             .navigationBarTitle("", displayMode: .inline)

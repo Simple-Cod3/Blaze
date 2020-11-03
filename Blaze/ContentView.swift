@@ -16,6 +16,10 @@ struct ContentView: View {
     @AppStorage("welcomed") private var welcomed = false
     
     init() {
+        if UserDefaults.standard.object(forKey: "californiaOnly") == nil {
+            UserDefaults.standard.setValue(true, forKey: "californiaOnly")
+        }
+        
         if !units.contains(currentUnit ?? "nil") {
             setUnit(unit: units[0])
         }
