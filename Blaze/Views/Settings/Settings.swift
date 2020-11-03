@@ -29,7 +29,6 @@ struct Settings: View {
                     .font(.body)
                     .fontWeight(.regular)
                     .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 
@@ -37,6 +36,10 @@ struct Settings: View {
                     Toggle("", isOn: $caliOnly)
                         .toggleStyle(SwitchToggleStyle(tint: .blaze))
                         .disabled(!fires.progress.allSatisfy({$0.isFinished}))
+                }
+                
+                SettingsCardLink(title: "Monitoring List", desc: "Select different wildfires to monitor.") {
+                    UpdateLog()
                 }
                 
                 SettingsCardLink(title: "Updates", desc: "See the latest changes to Blaze.") {
@@ -56,9 +59,8 @@ struct Settings: View {
                     .font(.caption)
                     .fontWeight(.regular)
                     .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
             }
-            .padding(.bottom, 20)
+            .padding([.bottom, .horizontal], 20)
         }
         .navigationBarTitle("Settings", displayMode: .large)
         .onAppear {
