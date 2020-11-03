@@ -1,14 +1,14 @@
 //
-//  MapFireCard.swift
-//  Blaze-iPad
+//  MapFireCardiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 import ModalView
 
-struct MapFireCard: View {
+struct MapFireCardiPad: View {
     @Binding var hide: Bool
     @Binding var show: Bool
     @State private var random = false

@@ -1,13 +1,13 @@
 //
-//  AQView.swift
-//  Blaze-iPad
+//  AQViewiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct AQView: View {
+struct AQViewiPad: View {
     @EnvironmentObject var forecast: AirQualityBackend
     
     var body: some View {
@@ -24,7 +24,7 @@ struct AQView: View {
                         )
                     }
                     
-                    AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
+                    AQCardiPad(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                     
                     HStack {
                         Text("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at ")
@@ -55,7 +55,7 @@ struct AQView: View {
                             .opacity(0.7)
                     }
                     
-                AQMeter(airQ: forecast.forecasts[1])
+                AQMeteriPad(airQ: forecast.forecasts[1])
                     .padding(.vertical, 75)
                 }
                 .padding(.top, 60)

@@ -1,8 +1,8 @@
 //
-//  FireMapView.swift
-//  Blaze-iPad
+//  FireMapViewiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import SwiftUI
 import MapKit
 import ModalView
 
-struct FireMapView: View {
+struct FireMapViewiPad: View {
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var hide = true
     @State private var show = false
@@ -78,7 +78,7 @@ struct FireMapView: View {
             HStack {
                 Spacer()
                 Button(action: { hide.toggle() }) {
-                    MapFireCard(fire: fireData, hide: $hide, show: $show)
+                    MapFireCardiPad(fire: fireData, hide: $hide, show: $show)
                         .padding(.bottom, 20)
                         .buttonStyle(InfoCardButtonStyle())
                 }
@@ -134,9 +134,3 @@ struct FireMapView: View {
     }
 }
 
-extension MKCoordinateRegion: Equatable {
-    public static func == (lhs: MKCoordinateRegion, rhs: MKCoordinateRegion) -> Bool {
-        return lhs.span.latitudeDelta == rhs.span.latitudeDelta &&
-               lhs.span.longitudeDelta == rhs.span.longitudeDelta
-    }
-}

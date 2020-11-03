@@ -20,20 +20,6 @@
                ReferencedContainer = "container:Blaze.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D7A71B22547B85E00327F02"
-               BuildableName = "Blaze-iPad.app"
-               BlueprintName = "Blaze-iPad"
-               ReferencedContainer = "container:Blaze.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -1,15 +1,15 @@
 //
-//  NewsView.swift
-//  Blaze-iPad
+//  NewsViewiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/26/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 import ModalView
 import BetterSafariView
 
-struct NewsView: View {
+struct NewsViewiPad: View {
     @EnvironmentObject var phone: PhoneBackend
     @EnvironmentObject var news: NewsBackend
     @State private var progress = 0.0
@@ -53,11 +53,11 @@ struct NewsView: View {
                         }
                         
                         ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                            HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
+                            HorizontalCardiPad(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
                         }.buttonStyle(CardButtonStyle())
                         
                         ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                            HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
+                            HorizontalCardiPad(title: "Glossary", subtitle: "Learn wildfire terms")
                         }.buttonStyle(CardButtonStyle())
                     }
                     .padding(.bottom, 20)
@@ -92,26 +92,5 @@ struct NewsView: View {
                 .navigationBarTitle("News", displayMode: .inline)
             }
         }
-    }
-}
-
-struct NewsCardButton: View {
-    @State var presenting = false
-    var news: News
-    
-    var body: some View {
-        Button(action: { presenting = true }) {
-            NewsCard(news: news)
-                .safariView(isPresented: $presenting) {
-                    SafariView(
-                        url: news.url,
-                        configuration: SafariView.Configuration(
-                            barCollapsingEnabled: true
-                        )
-                    )
-                    .preferredControlAccentColor(Color.blaze)
-                }
-        }
-        .buttonStyle(CardButtonStyle())
     }
 }

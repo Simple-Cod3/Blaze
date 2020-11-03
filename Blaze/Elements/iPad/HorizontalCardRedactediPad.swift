@@ -1,13 +1,13 @@
 //
-//  HorizontalCard.swift
-//  Blaze-iPad
+//  HorizontalCardRedactediPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/26/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct HorizontalCard: View {
+struct HorizontalCardRedactediPad: View {
     @State private var show = false
     
     private var title: String
@@ -37,8 +37,7 @@ struct HorizontalCard: View {
             Spacer()
         }
         .padding(20)
-        .background(Color(.tertiarySystemBackground))
+        .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
     }
 }

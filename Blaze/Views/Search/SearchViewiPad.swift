@@ -1,14 +1,14 @@
 //
-//  SearchView.swift
-//  Blaze-iPad
+//  SearchViewiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/31/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 import ModalView
 
-struct SearchView: View {
+struct SearchViewiPad: View {
     @EnvironmentObject var fireback: FireBackend
     @ObservedObject var searchBar = SearchBar()
     
@@ -55,7 +55,7 @@ struct SearchView: View {
                             isExpanded: $showFires,
                             content: {
                                 ForEach(firesList) { fire in
-                                    NavigationLink(destination: FireMapView(fireData: fire)) {
+                                    NavigationLink(destination: FireMapViewiPad(fireData: fire)) {
                                         Text(fire.name)
                                             .font(.body)
                                             .fontWeight(.regular)

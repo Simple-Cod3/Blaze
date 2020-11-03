@@ -1,13 +1,13 @@
 //
-//  MiniFireCard.swift
-//  Blaze-iPad
+//  MiniFireCardiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/26/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct MiniFireCard: View {
+struct MiniFireCardiPad: View {
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     
     var selected: Bool
@@ -40,29 +40,6 @@ struct MiniFireCard: View {
         }
         .padding(15)
         .frame(width: 220, height: 180)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-    }
-}
-
-struct MiniFireCard_Previews: PreviewProvider {
-    static var previews: some View {
-        let fire = ForestFire(
-            name: "Elkhorn Fire",
-            location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes",
-            counties: ["Los Angeles"],
-            latitude: 34.679402,
-            longitude: -118.451917,
-            acres: 45340,
-            contained: 58,
-            relURL: "/incidents/2020/8/12/lake-fire/"
-        )
-
-        NavigationView {
-            MiniFireCard(selected: true, fireData: fire, area: true)
-        }
-        .padding(15)
-        .frame(width: 230, height: 190)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }

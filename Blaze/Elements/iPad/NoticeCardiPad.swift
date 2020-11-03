@@ -1,13 +1,13 @@
 //
-//  NoticeCard.swift
-//  Blaze-iPad
+//  NoticeCardiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/26/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct NoticeCard: View {
+struct NoticeCardiPad: View {
     var title: String
     var text: String
     

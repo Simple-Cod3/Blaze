@@ -1,13 +1,13 @@
 //
-//  NewsCardRedacted.swift
-//  Blaze-iPad
+//  NewsCardRedactediPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 11/1/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct NewsCardRedacted: View {
+struct NewsCardRedactediPad: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
