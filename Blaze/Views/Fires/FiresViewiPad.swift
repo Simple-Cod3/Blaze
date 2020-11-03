@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FiresView: View {
+struct FiresViewiPad: View {
     @EnvironmentObject var fireB: FireBackend
     @State var selectAll = 0
     @State var selectLargest = 0
@@ -50,7 +50,7 @@ struct FiresView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .sheet(isPresented: $showingFullMap) {
-                            FullFireMapModalView()
+                            FullFireMapModalViewiPad()
                         }
                         
                         Button(action: {
@@ -94,7 +94,7 @@ struct FiresView: View {
                                 id: \.self
                             ) { index in
                                 NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index])) {
-                                    MiniFireCard(
+                                    MiniFireCardiPad(
                                         selected: index == selectLargest,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
@@ -125,7 +125,7 @@ struct FiresView: View {
                         ], spacing: 20) {
                             ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
                                 NavigationLink(destination: FireMapView(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
-                                    MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
+                                    MiniFireCardiPad(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                 }
                             }
                         }

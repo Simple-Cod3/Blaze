@@ -19,9 +19,3 @@ struct DataView: View {
         .navigationBarTitle("Data", displayMode: .large)
     }
 }
-
-struct DataView_Previews: PreviewProvider {
-    static var previews: some View {
-        DataView()
-    }
-}

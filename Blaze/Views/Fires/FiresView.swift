@@ -40,7 +40,7 @@ struct FiresView: View {
                         }
                         
                         HStack(spacing: 20) {
-                            NavigationLink(destination: FullFireMapView()) {
+                            NavigationLink(destination: FullFireMapViewiPad()) {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
@@ -79,11 +79,11 @@ struct FiresView: View {
                                     id: \.self
                                 ) { index in
                                     NavigationLink(
-                                        destination: FireMapView(
+                                        destination: FireMapViewiPad(
                                             fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
                                         )
                                     ) {
-                                        MiniFireCard(
+                                        MiniFireCardiPad(
                                             selected: index == selectLargest,
                                             fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                             area: true
@@ -91,7 +91,7 @@ struct FiresView: View {
                                     }
                                 }
                                 Spacer()
-                                NavigationLink(destination: FullFireMapView()) {
+                                NavigationLink(destination: FullFireMapViewiPad()) {
                                     HStack {
                                         Image(systemName: "plus.circle")
                                         Text("View All")
@@ -112,15 +112,15 @@ struct FiresView: View {
                                     id: \.self
                                 ) { index in
                                     NavigationLink(
-                                        destination: FireMapView(
+                                        destination: FireMapViewiPad(
                                             fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
                                         )
                                     ) {
-                                        MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
+                                        MiniFireCardiPad(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                     }
                                 }
                                 Spacer()
-                                NavigationLink(destination: FullFireMapView()) {
+                                NavigationLink(destination: FullFireMapViewiPad()) {
                                     HStack {
                                         Image(systemName: "plus.circle")
                                         Text("View All")
@@ -171,11 +171,5 @@ struct FiresView: View {
                 text: "Fires"
             )
         }
-    }
-}
-
-struct FiresView_Previews: PreviewProvider {
-    static var previews: some View {
-        FiresView().environmentObject(FireBackend())
     }
 }

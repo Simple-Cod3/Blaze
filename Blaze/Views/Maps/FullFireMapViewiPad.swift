@@ -1,15 +1,15 @@
 //
-//  FullFireMapView.swift
-//  Blaze-iPad
+//  FullFireMapViewiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import Foundation
 import SwiftUI
 import MapKit
 
-struct FullFireMapView: View {
+struct FullFireMapViewiPad: View {
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @EnvironmentObject private var fireBackend: FireBackend
     

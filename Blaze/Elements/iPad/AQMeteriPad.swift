@@ -1,13 +1,13 @@
 //
-//  AQMeter.swift
-//  Blaze-iPad
+//  AQMeteriPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct AQMeter: View {
+struct AQMeteriPad: View {
     var airQ: AirQuality
     
     var body: some View {
@@ -32,20 +32,5 @@ struct AQMeter: View {
         .animation(.spring())
         .background(determineColor(cat: airQ.category.number))
         .clipShape(Circle())
-    }
-}
-
-func determineColor(cat: Int) -> Color {
-    switch cat {
-    case 1:
-        return Color.green
-    case 2:
-        return Color.yellow
-    case 3:
-        return Color.red
-    case 4:
-        return Color.purple
-    default:
-        return Color.blaze
     }
 }

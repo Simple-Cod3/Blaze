@@ -1,13 +1,13 @@
 //
-//  AQCard.swift
-//  Blaze-iPad
+//  AQCardiPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 10/27/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct AQCard: View {
+struct AQCardiPad: View {
     private var date: String
     private var ozone: String
     private var ozoneCaption: String

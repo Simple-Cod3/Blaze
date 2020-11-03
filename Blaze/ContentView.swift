@@ -23,21 +23,27 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            FiresView().tabItem {
-                ItemLabel(icon: "flame.fill", title: "Wildfires")
-            }
-            AQView().tabItem {
-                ItemLabel(icon: "sun.haze.fill", title: "Air Quality")
-            }
-            NewsView().tabItem {
-                ItemLabel(icon: "newspaper.fill", title: "News")
-            }
-            SearchView().tabItem {
-                ItemLabel(icon: "magnifyingglass", title: "Search")
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                FiresViewiPad().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
+                AQViewiPad().tabItem { ItemLabel(icon: "sun.haze.fill", title: "Air Quality") }
+                NewsViewiPad().tabItem { ItemLabel(icon: "newspaper.fill", title: "News") }
+                SearchViewiPad().tabItem { ItemLabel(icon: "magnifyingglass", title: "Search") }
+            } else {
+                FiresView().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
+                AQView().tabItem { ItemLabel(icon: "sun.haze.fill", title: "Air Quality") }
+                NewsView().tabItem { ItemLabel(icon: "newspaper.fill", title: "News") }
+                SearchView().tabItem { ItemLabel(icon: "magnifyingglass", title: "Search") }
             }
         }
         .fullScreenCover(isPresented: !$welcomed) {
-            SplashScreen(show: self.$welcomed)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                SplashScreen(show: self.$welcomed)
+            }
+        }
+        .sheet(isPresented: !$welcomed) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                SplashScreeniPad(show: self.$welcomed)
+            }
         }
     }
 }

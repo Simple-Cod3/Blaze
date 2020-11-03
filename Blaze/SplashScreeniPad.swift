@@ -1,13 +1,13 @@
 //
-//  SplashScreen.swift
-//  Blaze-iPad
+//  SplashScreeniPad.swift
+//  Blaze
 //
-//  Created by Paul Wong on 11/1/20.
+//  Created by Paul Wong on 11/2/20.
 //
 
 import SwiftUI
 
-struct SplashScreen: View {
+struct SplashScreeniPad: View {
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @Binding var show: Bool
@@ -176,7 +176,7 @@ struct SplashScreen: View {
                             }
                         }
                         .padding(15)
-                        .frame(width: 180, height: 160)
+                        .frame(width: 160, height: 140)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     }
@@ -209,7 +209,7 @@ struct SplashScreen: View {
                             }
                         }
                         .padding(15)
-                        .frame(width: 180, height: 160)
+                        .frame(width: 160, height: 140)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     }
@@ -298,10 +298,10 @@ struct SplashScreen: View {
                         .redacted(reason: .placeholder)
                     
                     HStack(spacing: 20) {
-                        HorizontalCardRedacted(title: "Glossary", subtitle: "Learn")
+                        HorizontalCardRedactediPad(title: "Glossary", subtitle: "Learn")
                             .frame(width: 140)
                             .redacted(reason: .placeholder)
-                        HorizontalCardRedacted(title: "Glossary", subtitle: "Learn")
+                        HorizontalCardRedactediPad(title: "Glossary", subtitle: "Learn")
                             .frame(width: 140)
                             .redacted(reason: .placeholder)
                     }
@@ -312,8 +312,8 @@ struct SplashScreen: View {
                 Spacer()
                 
                 VStack(spacing: 20) {
-                    NewsCardRedacted()
-                    NewsCardRedacted()
+                    NewsCardRedactediPad()
+                    NewsCardRedactediPad()
                 }
                 .redacted(reason: .placeholder)
             }
@@ -402,13 +402,5 @@ struct SplashScreen: View {
             }
         }
         .animation(.spring(), value: page)
-    }
-}
-
-// MARK: - Previews
-
-struct SplashScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreen(show: .constant(true))
     }
 }
