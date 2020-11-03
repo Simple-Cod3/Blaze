@@ -20,12 +20,12 @@ struct UpdateLog: View {
                 
                 VersionDotSoon(
                     version: "1.2",
-                    changes: ["• Expand Air Quality information", "• Reference to current position", "• macOS and watchOS support", "• Improve filter system", "• Wildfire notifications"]
+                    changes: ["• Expand Air Quality information", "• Reference to current position", "• macOS and watchOS support", "• Improve filter system", "• Wildfire notifications", "• WidgetKit support"]
                 )
                 
                 VersionCard(
                     version: "1.1",
-                    changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• UI Improvements"]
+                    changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• Added Monitoring List to select wildfires to monitor", "• UI Improvements"]
                 )
                 
                 VersionDot(
