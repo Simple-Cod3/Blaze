@@ -68,7 +68,23 @@ struct FiresView: View {
                             .background(Color(.secondarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
-                        .padding(20)
+                        .padding([.horizontal, .top], 20)
+                        .padding(.bottom, 10)
+                        
+                        NavigationLink(destination: DataView()) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")
+                                    .fontWeight(.regular)
+                                    .font(.body)
+                                    .foregroundColor(.blaze)
+                                Spacer()
+                            }
+                        }
+                        .padding(12)
+                        .background(Color(.secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .padding([.horizontal, .bottom], 20)
                         
                         SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
                         

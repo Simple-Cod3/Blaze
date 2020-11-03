@@ -35,7 +35,7 @@ struct FullInformationView: View {
                         Spacer()
                         RoundedButton("INFO")
                     }
-                    .padding(.vertical, 10)
+                    .padding(10)
                 }
             }
             .navigationBarTitle("All Fires")

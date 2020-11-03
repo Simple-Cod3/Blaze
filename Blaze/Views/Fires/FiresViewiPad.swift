@@ -16,6 +16,8 @@ struct FiresViewiPad: View {
     @State var done = false
     @State var showingData = false
     @State var showingFullMap = false
+    @State var showingMonitor = false
+
     
     var body: some View {
         NavigationView {
@@ -74,6 +76,26 @@ struct FiresViewiPad: View {
                             }
                         }
                         .padding(.horizontal, 20)
+                        
+                        Button(action: {
+                            self.showingMonitor.toggle()
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")
+                                    .fontWeight(.regular)
+                                    .font(.body)
+                                    .foregroundColor(.blaze)
+                                Spacer()
+                            }
+                            .padding(.vertical, 12)
+                            .background(Color(.tertiarySystemBackground))
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .padding(.horizontal, 20)
+                        }
+                        .sheet(isPresented: $showingMonitor) {
+                            DataView()
+                        }
                     }
                     .padding(.bottom, 20)
                 }
@@ -184,6 +206,11 @@ struct FiresViewiPad: View {
                     }
                     .padding(20)
                 }
+                Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
+                    .font(.caption)
+                    .fontWeight(.regular)
+                    .foregroundColor(.secondary)
+                    .padding([.horizontal, .bottom], 20)
             }
             .navigationBarTitle("Wildfires", displayMode: .inline)
         }

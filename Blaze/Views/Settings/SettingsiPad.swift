@@ -43,7 +43,7 @@ struct SettingsiPad: View {
                             .disabled(!fires.progress.allSatisfy({$0.isFinished}))
                     }
                     
-                    SettingsCardLink(title: "Monitoring List", desc: "Select individual wildfires to monitor.") {
+                    SettingsCardLink(title: "Monitoring List", desc: "Select different wildfires to monitor.") {
                         UpdateLog()
                     }
                     
