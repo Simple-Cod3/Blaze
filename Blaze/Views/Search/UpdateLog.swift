@@ -20,7 +20,7 @@ struct UpdateLog: View {
                 
                 VersionDotSoon(
                     version: "1.2",
-                    changes: ["• Expand Air Quality information", "• Reference to current position", "• macOS support", "• Improve filter system"]
+                    changes: ["• Expand Air Quality information", "• Reference to current position", "• macOS and watchOS support", "• Improve filter system", "• Wildfire notifications"]
                 )
                 
                 VersionCard(
