@@ -53,6 +53,7 @@ struct FireMapViewiPad: View {
                         .foregroundColor(.white)
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
             .onChange(of: coordinateRegion) { region in
                 if free {
                     if region.span.longitudeDelta > 16 &&

@@ -61,6 +61,7 @@ struct FullFireMapViewiPad: View {
                     }
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
             .onChange(of: coordinateRegion) { region in
                 if free && !caliOnly {
                     if region.span.longitudeDelta > 16 &&
