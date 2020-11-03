@@ -19,7 +19,7 @@ struct Settings: View {
     
     private var loading: Binding<Bool> { Binding(
         get: { !fires.progress.allSatisfy({$0.isFinished}) },
-        set: { _ in false }
+        set: { _ in }
     )}
     
     var body: some View {

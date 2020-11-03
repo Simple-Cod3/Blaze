@@ -23,9 +23,10 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            FiresView().tabItem {
-                ItemLabel(icon: "flame.fill",
-                          title: "Wildfires")
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                FiresViewiPad().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
+            } else {
+                FiresView().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
             }
             AQView().tabItem {
                 ItemLabel(icon: "sun.haze.fill",

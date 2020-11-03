@@ -71,7 +71,7 @@ struct SplashScreen: View {
     
     // MARK: - Main SplashScreen View
     
-    var pageOne: some View {
+    var page1: some View {
         VStack(alignment: .leading) {
             Spacer()
             
@@ -104,7 +104,7 @@ struct SplashScreen: View {
         }
         .padding([.horizontal, .bottom], 20)
     }
-    var pageTwo: some View {
+    var page2: some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
@@ -156,7 +156,7 @@ struct SplashScreen: View {
         }
         .padding([.horizontal, .bottom], 20)
     }
-    var pageThree: some View {
+    var page3: some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
@@ -199,7 +199,7 @@ struct SplashScreen: View {
         }
         .padding([.horizontal, .bottom], 20)
     }
-    var pageFour: some View {
+    var page4: some View {
         VStack(alignment: .leading) {
             Spacer()
             HStack {
@@ -239,7 +239,7 @@ struct SplashScreen: View {
             .padding([.horizontal, .bottom], 20)
         }
     }
-    var pageFive: some View {
+    var page5: some View {
         VStack {
             Spacer()
             
@@ -280,16 +280,11 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack {
-            pageOne
-                .offset(x: -UIScreen.main.bounds.maxX*CGFloat(page))
-            pageTwo
-                .offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 1))
-            pageThree
-                .offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 2))
-            pageFour
-                .offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 3))
-            pageFive
-                .offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 4))
+            page1.offset(x: -UIScreen.main.bounds.maxX*CGFloat(page))
+            page2.offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 1))
+            page3.offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 2))
+            page4.offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 3))
+            page5.offset(x: -UIScreen.main.bounds.maxX*CGFloat(page - 4))
             
             if page > 0 {
                 HStack {
