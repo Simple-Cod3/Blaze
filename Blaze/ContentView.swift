@@ -23,22 +23,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                FiresViewiPad().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
-            } else {
-                FiresView().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
+            FiresView().tabItem {
+                ItemLabel(icon: "flame.fill", title: "Wildfires")
             }
             AQView().tabItem {
-                ItemLabel(icon: "sun.haze.fill",
-                          title: "Air Quality")
+                ItemLabel(icon: "sun.haze.fill", title: "Air Quality")
             }
             NewsView().tabItem {
-                ItemLabel(icon: "newspaper.fill",
-                          title: "News")
+                ItemLabel(icon: "newspaper.fill", title: "News")
             }
             SearchView().tabItem {
-                ItemLabel(icon: "magnifyingglass",
-                          title: "Search")
+                ItemLabel(icon: "magnifyingglass", title: "Search")
             }
         }
         .fullScreenCover(isPresented: !$welcomed) {
@@ -58,19 +53,6 @@ struct ItemLabel: View {
             Image(systemName: icon)
         }
     }
-}
-
-extension Color {
-    static let blaze = Color("blaze")
-}
-
-/// Inverting any binding boolean with prefix: `!`
-/// https://stackoverflow.com/questions/59474045/swiftui-invert-a-boolean-binding
-prefix func ! (value: Binding<Bool>) -> Binding<Bool> {
-    Binding<Bool>(
-        get: { !value.wrappedValue },
-        set: { value.wrappedValue = !$0 }
-    )
 }
 
 struct ContentView_Previews: PreviewProvider {
