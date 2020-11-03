@@ -40,7 +40,7 @@ struct FiresView: View {
                         }
                         
                         HStack(spacing: 20) {
-                            NavigationLink(destination: FullFireMapViewiPad()) {
+                            NavigationLink(destination: FullFireMapView()) {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
@@ -79,11 +79,11 @@ struct FiresView: View {
                                     id: \.self
                                 ) { index in
                                     NavigationLink(
-                                        destination: FireMapViewiPad(
+                                        destination: FireMapView(
                                             fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
                                         )
                                     ) {
-                                        MiniFireCardiPad(
+                                        MiniFireCard(
                                             selected: index == selectLargest,
                                             fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                             area: true
@@ -92,11 +92,16 @@ struct FiresView: View {
                                 }
                                 Spacer()
                                 NavigationLink(destination: FullFireMapViewiPad()) {
-                                    HStack {
-                                        Image(systemName: "plus.circle")
-                                        Text("View All")
-                                    }
+                                    Text("\(Image(systemName: "plus.circle")) View All")
+                                        .font(.body)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, 15)
+                                        .background(Color.blaze)
+                                        .clipShape(Capsule())
                                 }
+                                .padding(.leading, -20)
                             }
                             .padding(20)
                         }
@@ -112,20 +117,25 @@ struct FiresView: View {
                                     id: \.self
                                 ) { index in
                                     NavigationLink(
-                                        destination: FireMapViewiPad(
+                                        destination: FireMapView(
                                             fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
                                         )
                                     ) {
-                                        MiniFireCardiPad(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
+                                        MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                     }
                                 }
                                 Spacer()
                                 NavigationLink(destination: FullFireMapViewiPad()) {
-                                    HStack {
-                                        Image(systemName: "plus.circle")
-                                        Text("View All")
-                                    }
+                                    Text("\(Image(systemName: "plus.circle")) View All")
+                                        .font(.body)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.white)
+                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, 15)
+                                        .background(Color.blaze)
+                                        .clipShape(Capsule())
                                 }
+                                .padding(.leading, -20)
                             }
                             .padding(20)
                         }

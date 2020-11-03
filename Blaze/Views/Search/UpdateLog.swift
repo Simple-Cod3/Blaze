@@ -14,13 +14,18 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
+                    version: "2.0",
+                    changes: ["• Transition to Mapbox to include dynamic area and data viewing on map"]
+                )
+                
+                VersionDotSoon(
                     version: "1.2",
-                    changes: ["• Improve performance and load times."]
+                    changes: ["• Expand Air Quality information", "• Reference to current position", "• macOS support", "• Improve filter system"]
                 )
                 
                 VersionCard(
                     version: "1.1",
-                    changes: ["• Added support for iPad", "• Fixed source deprecation", "• Implemented nationwide wildfire data", "• UI Improvements"]
+                    changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• UI Improvements"]
                 )
                 
                 VersionDot(

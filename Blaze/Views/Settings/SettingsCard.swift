@@ -32,7 +32,6 @@ struct SettingsCardLink<Content: View>: View {
         .padding(20)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
     }
 }
 
@@ -81,6 +80,5 @@ struct SettingsCardCustom<Content: View>: View {
         .padding(20)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
     }
 }
