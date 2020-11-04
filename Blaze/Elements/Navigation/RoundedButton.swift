@@ -2,7 +2,7 @@
 //  RoundedButton.swift
 //  Blaze
 //
-//  Created by Paul Wong on 10/20/20.
+//  Created by Paul Wong on 11/4/20.
 //
 
 import SwiftUI
@@ -23,11 +23,5 @@ struct RoundedButton: View {
             .padding(.vertical, 6)
             .background(Color.blaze)
             .clipShape(Capsule())
-    }
-}
-
-struct RoundedButton_Previews: PreviewProvider {
-    static var previews: some View {
-        RoundedButton("MAP")
     }
 }

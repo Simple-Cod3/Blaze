@@ -90,16 +90,7 @@ struct SplashScreen: View {
             Spacer()
             
             Button(action: { page = 1 }) {
-                HStack {
-                    Spacer()
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Spacer()
-                }
-                .padding(15)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                LongButton("Next")
             }
         }
         .padding([.horizontal, .bottom], 20)
@@ -142,16 +133,7 @@ struct SplashScreen: View {
             
             Spacer()
             Button(action: { page = 2 }) {
-                HStack {
-                    Spacer()
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Spacer()
-                }
-                .padding(15)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                LongButton("Next")
             }
         }
         .padding([.horizontal, .bottom], 20)
@@ -185,16 +167,7 @@ struct SplashScreen: View {
             Spacer()
             
             Button(action: { page = 3 }) {
-                HStack {
-                    Spacer()
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Spacer()
-                }
-                .padding(15)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                LongButton("Next")
             }
         }
         .padding([.horizontal, .bottom], 20)
@@ -225,16 +198,7 @@ struct SplashScreen: View {
             Spacer()
             
             Button(action: { page = 4 }) {
-                HStack {
-                    Spacer()
-                    Text("Next")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Spacer()
-                }
-                .padding(15)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                LongButton("Next")
             }
             .padding([.horizontal, .bottom], 20)
         }
@@ -263,16 +227,7 @@ struct SplashScreen: View {
                 .padding(.horizontal, 20)
             
             Button(action: { presentationMode.wrappedValue.dismiss() }) {
-                HStack {
-                    Spacer()
-                    Text("Close")
-                        .foregroundColor(.white)
-                        .font(.body)
-                    Spacer()
-                }
-                .padding(15)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                LongButton("Close")
             }
             .padding(20)
             .zIndex(5)
