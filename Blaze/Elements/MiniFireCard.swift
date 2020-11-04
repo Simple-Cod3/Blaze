@@ -48,7 +48,7 @@ struct MiniFireCard: View {
             Button(action: {}) { Label("Pin", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "ruler") }
             Divider()
-            Button(action: { }) { Label("Share Fire", systemImage: "square.and.arrow.up") }
+            Button(action: fireData.share) { Label("Share Fire", systemImage: "square.and.arrow.up") }
         }
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)

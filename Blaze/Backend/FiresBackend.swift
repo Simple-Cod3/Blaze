@@ -78,14 +78,14 @@ class FireBackend: ObservableObject {
                                 sourceType: .inciweb
                             )
                             
-                            if  self.fires[fireI].acresO == nil &&
+                            if (self.fires[fireI].acresO == nil &&
                                 filteredNewFires[inciI].coordinate == self.fires[fireI].coordinate ||
-                                    filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "") {
+                                filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "")) {
                                 
                                 print("🔎 Found matching fires: \(filteredNewFires[inciI].name)")
                                 self.fires[fireI] = forestFireObject
                                 
-                            } else if fireI == 0 && self.fires.filter({$0.name == filteredNewFires[inciI].name}).count == 0 {
+                            } else if fireI == 0 && self.fires.filter({$0.name.replacingOccurrences(of: " Fire", with: "") == filteredNewFires[inciI].name}).count == 0 {
                                 unAddedFires.append(forestFireObject)
                             }
                         }

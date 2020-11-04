@@ -204,6 +204,22 @@ struct ForestFire: Codable, Identifiable {
 
         return location.prefix(1).capitalized + location.dropFirst()
     }
+    
+    func share() {
+        var items = [
+            ": : : : : : \(name) : : : : : :",
+            " • Location: \(getLocation())",
+            " • Area Burned: \(getAreaString())",
+            " • Contained: \(getContained())"
+        ].map { "\($0)\n"}
+        
+        if let url = URL(string: url) {
+            items.append("\n🔎 Learn more about it here: \n\(url)")
+        }
+        
+        let actionView = UIActivityViewController(activityItems: [items.joined()], applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
+    }
 
     // MARK: - Computed Properties
 
