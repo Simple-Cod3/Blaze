@@ -15,11 +15,7 @@ public func setUnit(unit: String) { UserDefaults.standard.setValue(unit, forKey:
 struct ContentView: View {
     @AppStorage("welcomed") private var welcomed = false
     
-    init() {
-        if UserDefaults.standard.object(forKey: "californiaOnly") == nil {
-            UserDefaults.standard.setValue(true, forKey: "californiaOnly")
-        }
-        
+    init() {        
         if !units.contains(currentUnit ?? "nil") {
             setUnit(unit: units[0])
         }
@@ -39,15 +35,14 @@ struct ContentView: View {
                 SearchView().tabItem { ItemLabel(icon: "magnifyingglass", title: "Search") }
             }
         }
-        .fullScreenCover(isPresented: !$welcomed) {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                SplashScreen(show: self.$welcomed)
-            }
-        }
-        .sheet(isPresented: !$welcomed) {
-            if UIDevice.current.userInterfaceIdiom == .pad {
+        .if(UIDevice.current.userInterfaceIdiom == .pad) {
+            $0.sheet(isPresented: !$welcomed) {
                 SplashScreeniPad(show: self.$welcomed)
             }
+        } else: {
+            $0.fullScreenCover(isPresented: !$welcomed) {
+                SplashScreen(show: self.$welcomed)
+            }   
         }
     }
 }

@@ -41,6 +41,13 @@ struct MiniFireCard: View {
         .frame(width: 230, height: 190)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .contextMenu(ContextMenu(menuItems: {
+            Text("Pin")
+            Text("Map")
+            Text("Menu Item 3")
+        }))
+        
     }
 }
 

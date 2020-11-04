@@ -71,7 +71,7 @@ struct FiresView: View {
                         .padding([.horizontal, .top], 20)
                         .padding(.bottom, 5)
                         
-                        NavigationLink(destination: DataView()) {
+                        NavigationLink(destination: MonitoringView()) {
                             HStack {
                                 Spacer()
                                 Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")

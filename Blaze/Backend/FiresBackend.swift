@@ -80,7 +80,7 @@ class FireBackend: ObservableObject {
                             
                             if  self.fires[fireI].acresO == nil &&
                                 filteredNewFires[inciI].coordinate == self.fires[fireI].coordinate ||
-                                filteredNewFires[inciI].name == self.fires[fireI].name {
+                                    filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "") {
                                 
                                 print("🔎 Found matching fires: \(filteredNewFires[inciI].name)")
                                 self.fires[fireI] = forestFireObject

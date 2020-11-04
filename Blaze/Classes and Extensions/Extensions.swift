@@ -66,3 +66,15 @@ public prefix func ! (value: Binding<Bool>) -> Binding<Bool> {
         set: { value.wrappedValue = !$0 }
     )
 }
+
+/// https://fivestars.blog/swiftui/conditional-modifiers.html
+/// Conditional modifiers
+extension View {
+    @ViewBuilder func `if`<TrueContent: View, FalseContent: View>(
+        _ condition: Bool,
+        if ifTransform: (Self) -> TrueContent,
+        else elseTransform: (Self) -> FalseContent
+    ) -> some View {
+        if condition { ifTransform(self) } else { elseTransform(self) }
+    }
+}
