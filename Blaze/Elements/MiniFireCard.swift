@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MiniFireCard: View {
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
+    @State var show = false
     
     var selected: Bool
     var fireData: ForestFire
@@ -39,15 +40,19 @@ struct MiniFireCard: View {
         }
         .padding(15)
         .frame(width: 230, height: 190)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .contentShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .contextMenu(ContextMenu(menuItems: {
-            Text("Pin")
-            Text("Map")
-            Text("Menu Item 3")
-        }))
-        
+        .background(
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
+        )
+        .contextMenu {
+            Button(action: {}) { Label("Pin", systemImage: "pin") }
+            Button(action: { show = true }) { Label("View Details", systemImage: "ruler") }
+            Divider()
+            Button(action: { }) { Label("Share Fire", systemImage: "square.and.arrow.up") }
+        }
+        .sheet(isPresented: $show) {
+            InformationView(show: $show, fireData: fireData)
+        }
     }
 }
 

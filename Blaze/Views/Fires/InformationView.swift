@@ -19,6 +19,7 @@ struct InformationSection: View {
                     Text("\(Image(systemName: row[0])) \(row[1])")
                         .font(.headline)
                         .padding(.trailing, 10)
+                        .foregroundColor(.primary)
                     Spacer()
                     Text(row[2])
                         .font(.body)

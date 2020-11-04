@@ -134,4 +134,3 @@ struct FireMapViewiPad: View {
         case LEFT = 4
     }
 }
-

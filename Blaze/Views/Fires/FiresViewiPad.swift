@@ -18,7 +18,6 @@ struct FiresViewiPad: View {
     @State var showingFullMap = false
     @State var showingMonitor = false
 
-    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {

@@ -153,6 +153,7 @@ struct SearchView: View {
                     leading: Menu(
                         content: {
                             Text("Sorting Mode")
+                            Divider()
                             Button(action: { sorting = .alpha; getFires() }) {
                                 HStack {
                                     Text("A-Z")

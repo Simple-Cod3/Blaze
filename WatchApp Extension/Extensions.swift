@@ -56,15 +56,6 @@ public prefix func ! (value: Binding<Bool>) -> Binding<Bool> {
     )
 }
 
-//
-//  DateExtension.swift
-//  Blaze
-//
-//  Created by Nathan Choi on 9/2/20.
-//
-
-import Foundation
-
 /// https://medium.com/@iamjdpatel/time-ago-extension-for-date-swift-ed9b8d0a3a54
 extension Date {
     
