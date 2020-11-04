@@ -187,7 +187,7 @@ struct SearchView: View {
                                 .font(Font.title2.weight(.regular))
                         }
                     ),
-                    trailing: NavigationLink(destination: Settings()) {
+                    trailing: NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                             .font(Font.title2.weight(.regular))
                     }

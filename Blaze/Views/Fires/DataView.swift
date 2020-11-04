@@ -18,6 +18,7 @@ struct DataView: View {
                 .padding(.horizontal, 20)
             }
             .navigationBarTitle("Data", displayMode: .large)
+            .navigationBarItems(trailing: CloseModalButton())
         }
     }
 }

@@ -9,6 +9,16 @@ import SwiftUI
 
 struct MonitoringListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Hello World")
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal, 20)
+            }
+            .navigationBarTitle("Monitoring List", displayMode: .large)
+            .navigationBarItems(trailing: CloseModalButton())
+        }
     }
 }

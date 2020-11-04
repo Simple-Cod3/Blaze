@@ -49,9 +49,11 @@ struct ProfileCircle: View {
 }
 
 struct CreditsView: View {
+    @State var show = false
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: show ? 20 : 400) {
                 Text("Three curious students with a passion for code and design.")
                     .font(.body)
                     .fontWeight(.regular)
@@ -73,6 +75,12 @@ struct CreditsView: View {
             }
         }
         .navigationBarTitle("Credits", displayMode: .large)
+        .onAppear {
+            show = false
+            withAnimation(Animation.spring(response: 0.5).delay(0.1)) {
+                show = true
+            }
+        }
     }
 }
 
