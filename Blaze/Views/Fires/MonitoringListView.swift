@@ -17,5 +17,11 @@ struct MonitoringListView: View {
             .padding(.horizontal, 20)
         }
         .navigationBarTitle("Monitoring List", displayMode: .large)
+        .navigationBarItems(
+            trailing: Button(action: {}) {
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 25))
+            }
+        )
     }
 }
