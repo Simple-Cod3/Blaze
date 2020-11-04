@@ -72,7 +72,7 @@ struct FiresViewiPad: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
                             .sheet(isPresented: $showingData) {
-                                DataView()
+                                DataViewiPad()
                             }
                         }
                         .padding(.horizontal, 20)
@@ -95,7 +95,7 @@ struct FiresViewiPad: View {
                             .padding(.horizontal, 20)
                         }
                         .sheet(isPresented: $showingMonitor) {
-                            MonitoringListView()
+                            MonitoringListViewiPad()
                         }
                     }
                     .padding(.bottom, 20)
