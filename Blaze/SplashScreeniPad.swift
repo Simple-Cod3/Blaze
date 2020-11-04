@@ -357,6 +357,7 @@ struct SplashScreeniPad: View {
             UnitsCard(title: "Units", desc: "Set the units of measurement for area.")
                 .offset(y: page == 4 ? 0 : UIScreen.main.bounds.maxY)
                 .opacity(page == 4 ? 1 : 0)
+                .padding(.horizontal, 20)
             
             Button(action: { presentationMode.wrappedValue.dismiss() }) {
                 HStack {

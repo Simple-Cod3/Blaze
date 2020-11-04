@@ -40,7 +40,7 @@ struct ContentView: View {
             }
         }
         .fullScreenCover(isPresented: !$welcomed) {
-            if UIDevice.current.userInterfaceIdiom == .pad {
+            if UIDevice.current.userInterfaceIdiom == .phone {
                 SplashScreen(show: self.$welcomed)
             }
         }
@@ -62,11 +62,5 @@ struct ItemLabel: View {
             Text(title)
             Image(systemName: icon)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

@@ -39,7 +39,7 @@ struct FiresView: View {
                             }
                         }
                         
-                        HStack(spacing: 20) {
+                        HStack(spacing: 15) {
                             NavigationLink(destination: FullFireMapView()) {
                                 HStack {
                                     Spacer()
@@ -69,7 +69,7 @@ struct FiresView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .padding([.horizontal, .top], 20)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 5)
                         
                         NavigationLink(destination: DataView()) {
                             HStack {

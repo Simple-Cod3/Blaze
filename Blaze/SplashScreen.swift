@@ -260,6 +260,7 @@ struct SplashScreen: View {
             UnitsCard(title: "Units", desc: "Set the units of measurement for area.")
                 .offset(y: page == 4 ? 0 : UIScreen.main.bounds.maxY)
                 .opacity(page == 4 ? 1 : 0)
+                .padding(.horizontal, 20)
             
             Button(action: { presentationMode.wrappedValue.dismiss() }) {
                 HStack {
@@ -302,13 +303,5 @@ struct SplashScreen: View {
             }
         }
         .animation(.spring(), value: page)
-    }
-}
-
-// MARK: - Previews
-
-struct SplashScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreen(show: .constant(true))
     }
 }

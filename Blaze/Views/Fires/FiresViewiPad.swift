@@ -34,7 +34,7 @@ struct FiresViewiPad: View {
                             Spacer()
                         }
                         
-                        HStack(spacing: 20) {
+                        HStack(spacing: 15) {
                             Button(action: {
                                 self.showingFullMap.toggle()
                             }) {
@@ -76,6 +76,7 @@ struct FiresViewiPad: View {
                             }
                         }
                         .padding(.horizontal, 20)
+                        .padding(.bottom, -5)
                         
                         Button(action: {
                             self.showingMonitor.toggle()
