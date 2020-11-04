@@ -69,9 +69,9 @@ struct FiresView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .padding([.horizontal, .top], 20)
-                        .padding(.bottom, 5)
+                        .padding(.bottom, 7)
                         
-                        NavigationLink(destination: MonitoringView()) {
+                        NavigationLink(destination: MonitoringListView()) {
                             HStack {
                                 Spacer()
                                 Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")

@@ -8,7 +8,7 @@
 import SwiftUI
 import ModalView
 
-struct SettingsiPad: View {
+struct SettingsViewiPad: View {
     @EnvironmentObject var fires: FireBackend
     @AppStorage("welcomed") var welcomed = true
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
@@ -34,7 +34,7 @@ struct SettingsiPad: View {
                 LazyVGrid(columns: [
                     GridItem(.flexible(), spacing: 20),
                     GridItem(.flexible(), spacing: 20)
-                ], spacing: 20) {
+                ], spacing: show ? 20 : 200) {
                     UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                     
                     SettingsCardCustom(title: "All Fires", desc: "View fires outside of California", loading: loading) {

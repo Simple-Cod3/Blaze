@@ -27,14 +27,17 @@
 		6D3602962550F0390054B3A9 /* AQViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3602952550F0390054B3A9 /* AQViewiPad.swift */; };
 		6D36029E2550F0A60054B3A9 /* SplashScreeniPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36029D2550F0A60054B3A9 /* SplashScreeniPad.swift */; };
 		6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E8A4253B782F009096C9 /* UpdateLog.swift */; };
+		6D4A43B52552360D0066884D /* MonitoringListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A43B42552360D0066884D /* MonitoringListView.swift */; };
+		6D4A43C2255238F70066884D /* DataViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A43C1255238F70066884D /* DataViewiPad.swift */; };
+		6D4A43C6255239800066884D /* MonitoringListViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A43C5255239800066884D /* MonitoringListViewiPad.swift */; };
 		6D56745B253F761B00177370 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D56745A253F761B00177370 /* RoundedButton.swift */; };
 		6D6859D3254758F500060BB8 /* NoticeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6859D2254758F500060BB8 /* NoticeCard.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
-		6DA2FF302506AF6400C86F0C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF2F2506AF6400C86F0C /* Settings.swift */; };
+		6DA2FF302506AF6400C86F0C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */; };
 		6DA2FF322506B00400C86F0C /* UnitsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF312506B00400C86F0C /* UnitsCard.swift */; };
 		6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA2FF352506B55E00C86F0C /* SettingsCard.swift */; };
-		6DB9503C2551E49E009509D7 /* SettingsiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9503B2551E49E009509D7 /* SettingsiPad.swift */; };
+		6DB9503C2551E49E009509D7 /* SettingsViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9503B2551E49E009509D7 /* SettingsViewiPad.swift */; };
 		6DBAD72525098F2700E2BCA9 /* AQCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBAD72425098F2700E2BCA9 /* AQCard.swift */; };
 		6DC18D072548ABA9001B1F49 /* FullFireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26D8250813B300B939F3 /* FullFireMapView.swift */; };
 		6DF6590C2510684100D47118 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6590B2510684100D47118 /* DataView.swift */; };
@@ -59,20 +62,6 @@
 		E985F5362503752000A3BA83 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5352503752000A3BA83 /* FormButton.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
 		E9AAFC0D2551148E00BE1E45 /* FiresViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */; };
-		E9AAFC16255122B600BE1E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AAFC15255122B600BE1E45 /* Assets.xcassets */; };
-		E9AAFC1D255122B700BE1E45 /* WatchApp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E9AAFC1C255122B700BE1E45 /* WatchApp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E9AAFC22255122B700BE1E45 /* BlazeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC21255122B700BE1E45 /* BlazeApp.swift */; };
-		E9AAFC24255122B700BE1E45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC23255122B700BE1E45 /* ContentView.swift */; };
-		E9AAFC26255122B700BE1E45 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC25255122B700BE1E45 /* NotificationController.swift */; };
-		E9AAFC28255122B700BE1E45 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC27255122B700BE1E45 /* NotificationView.swift */; };
-		E9AAFC2A255122B700BE1E45 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC29255122B700BE1E45 /* ComplicationController.swift */; };
-		E9AAFC2C255122B700BE1E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AAFC2B255122B700BE1E45 /* Assets.xcassets */; };
-		E9AAFC2F255122B700BE1E45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9AAFC2E255122B700BE1E45 /* Preview Assets.xcassets */; };
-		E9AAFC34255122B700BE1E45 /* WatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E9AAFC13255122B400BE1E45 /* WatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E9AAFC442551242100BE1E45 /* AirQualityBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC432551242100BE1E45 /* AirQualityBackend.swift */; };
-		E9AAFC4C2551244B00BE1E45 /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC4B2551244B00BE1E45 /* AirQuality.swift */; };
-		E9AAFC542551247800BE1E45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC532551247800BE1E45 /* Extensions.swift */; };
-		E9AAFC5C255124A400BE1E45 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC5B255124A400BE1E45 /* LocationManager.swift */; };
 		E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
 		E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015424FDB8DD0058C184 /* AppDelegate.swift */; };
 		E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */; };
@@ -101,42 +90,13 @@
 		E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* FireMapView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E9AAFC1E255122B700BE1E45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9AF014924FDB8DD0058C184 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9AAFC1B255122B700BE1E45;
-			remoteInfo = "WatchApp Extension";
-		};
-		E9AAFC32255122B700BE1E45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E9AF014924FDB8DD0058C184 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9AAFC12255122B400BE1E45;
-			remoteInfo = WatchApp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		E9AAFC38255122B700BE1E45 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				E9AAFC1D255122B700BE1E45 /* WatchApp Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9AAFC3C255122B700BE1E45 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				E9AAFC34255122B700BE1E45 /* WatchApp.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,14 +134,17 @@
 		6D3602952550F0390054B3A9 /* AQViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQViewiPad.swift; sourceTree = "<group>"; };
 		6D36029D2550F0A60054B3A9 /* SplashScreeniPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreeniPad.swift; sourceTree = "<group>"; };
 		6D38E8A4253B782F009096C9 /* UpdateLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLog.swift; sourceTree = "<group>"; };
+		6D4A43B42552360D0066884D /* MonitoringListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringListView.swift; sourceTree = "<group>"; };
+		6D4A43C1255238F70066884D /* DataViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewiPad.swift; sourceTree = "<group>"; };
+		6D4A43C5255239800066884D /* MonitoringListViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringListViewiPad.swift; sourceTree = "<group>"; };
 		6D56745A253F761B00177370 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		6D6859D2254758F500060BB8 /* NoticeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCard.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
-		6DA2FF2F2506AF6400C86F0C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6DA2FF312506B00400C86F0C /* UnitsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsCard.swift; sourceTree = "<group>"; };
 		6DA2FF352506B55E00C86F0C /* SettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCard.swift; sourceTree = "<group>"; };
-		6DB9503B2551E49E009509D7 /* SettingsiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsiPad.swift; sourceTree = "<group>"; };
+		6DB9503B2551E49E009509D7 /* SettingsViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewiPad.swift; sourceTree = "<group>"; };
 		6DBAD72425098F2700E2BCA9 /* AQCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQCard.swift; sourceTree = "<group>"; };
 		6DF6590B2510684100D47118 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFireCard.swift; sourceTree = "<group>"; };
@@ -204,23 +167,6 @@
 		E985F5352503752000A3BA83 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
 		E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresViewiPad.swift; sourceTree = "<group>"; };
-		E9AAFC13255122B400BE1E45 /* WatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9AAFC15255122B600BE1E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E9AAFC17255122B600BE1E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9AAFC1C255122B700BE1E45 /* WatchApp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchApp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9AAFC21255122B700BE1E45 /* BlazeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlazeApp.swift; sourceTree = "<group>"; };
-		E9AAFC23255122B700BE1E45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E9AAFC25255122B700BE1E45 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		E9AAFC27255122B700BE1E45 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		E9AAFC29255122B700BE1E45 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		E9AAFC2B255122B700BE1E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E9AAFC2E255122B700BE1E45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E9AAFC30255122B700BE1E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9AAFC31255122B700BE1E45 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		E9AAFC432551242100BE1E45 /* AirQualityBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityBackend.swift; sourceTree = "<group>"; };
-		E9AAFC4B2551244B00BE1E45 /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
-		E9AAFC532551247800BE1E45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		E9AAFC5B255124A400BE1E45 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInfoView.swift; sourceTree = "<group>"; };
 		E9AF015124FDB8DD0058C184 /* Blaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9AF015424FDB8DD0058C184 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -251,13 +197,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E9AAFC19255122B700BE1E45 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9AF014E24FDB8DD0058C184 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,10 +239,10 @@
 		6DA2FF2E2506AF5400C86F0C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				6DA2FF2F2506AF6400C86F0C /* Settings.swift */,
+				6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */,
 				6DA2FF352506B55E00C86F0C /* SettingsCard.swift */,
 				6DA2FF312506B00400C86F0C /* UnitsCard.swift */,
-				6DB9503B2551E49E009509D7 /* SettingsiPad.swift */,
+				6DB9503B2551E49E009509D7 /* SettingsViewiPad.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -324,43 +263,6 @@
 			path = Glossary;
 			sourceTree = "<group>";
 		};
-		E9AAFC14255122B400BE1E45 /* WatchApp */ = {
-			isa = PBXGroup;
-			children = (
-				E9AAFC15255122B600BE1E45 /* Assets.xcassets */,
-				E9AAFC17255122B600BE1E45 /* Info.plist */,
-			);
-			path = WatchApp;
-			sourceTree = "<group>";
-		};
-		E9AAFC20255122B700BE1E45 /* WatchApp Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E9AAFC4B2551244B00BE1E45 /* AirQuality.swift */,
-				E9AAFC432551242100BE1E45 /* AirQualityBackend.swift */,
-				E9AAFC21255122B700BE1E45 /* BlazeApp.swift */,
-				E9AAFC23255122B700BE1E45 /* ContentView.swift */,
-				E9AAFC532551247800BE1E45 /* Extensions.swift */,
-				E9AAFC5B255124A400BE1E45 /* LocationManager.swift */,
-				E9AAFC25255122B700BE1E45 /* NotificationController.swift */,
-				E9AAFC27255122B700BE1E45 /* NotificationView.swift */,
-				E9AAFC29255122B700BE1E45 /* ComplicationController.swift */,
-				E9AAFC2B255122B700BE1E45 /* Assets.xcassets */,
-				E9AAFC30255122B700BE1E45 /* Info.plist */,
-				E9AAFC31255122B700BE1E45 /* PushNotificationPayload.apns */,
-				E9AAFC2D255122B700BE1E45 /* Preview Content */,
-			);
-			path = "WatchApp Extension";
-			sourceTree = "<group>";
-		};
-		E9AAFC2D255122B700BE1E45 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E9AAFC2E255122B700BE1E45 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		E9ABC4372532C3D100E2DE49 /* Phone */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,8 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				E9AF015324FDB8DD0058C184 /* Blaze */,
-				E9AAFC14255122B400BE1E45 /* WatchApp */,
-				E9AAFC20255122B700BE1E45 /* WatchApp Extension */,
 				E9E31A92250EDD41007FF855 /* Frameworks */,
 				E9AF015224FDB8DD0058C184 /* Products */,
 			);
@@ -385,8 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				E9AF015124FDB8DD0058C184 /* Blaze.app */,
-				E9AAFC13255122B400BE1E45 /* WatchApp.app */,
-				E9AAFC1C255122B700BE1E45 /* WatchApp Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -465,10 +363,12 @@
 			isa = PBXGroup;
 			children = (
 				6DF6590B2510684100D47118 /* DataView.swift */,
+				6D4A43C1255238F70066884D /* DataViewiPad.swift */,
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
 				E9E769EE250319F4006038FD /* InformationView.swift */,
 				E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */,
-				E97FA5E125523093009754AA /* MonitoringView.swift */,
+				6D4A43B42552360D0066884D /* MonitoringListView.swift */,
+				6D4A43C5255239800066884D /* MonitoringListViewiPad.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
@@ -545,40 +445,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E9AAFC12255122B400BE1E45 /* WatchApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E9AAFC39255122B700BE1E45 /* Build configuration list for PBXNativeTarget "WatchApp" */;
-			buildPhases = (
-				E9AAFC11255122B400BE1E45 /* Resources */,
-				E9AAFC38255122B700BE1E45 /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E9AAFC1F255122B700BE1E45 /* PBXTargetDependency */,
-			);
-			name = WatchApp;
-			productName = WatchApp;
-			productReference = E9AAFC13255122B400BE1E45 /* WatchApp.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		E9AAFC1B255122B700BE1E45 /* WatchApp Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E9AAFC35255122B700BE1E45 /* Build configuration list for PBXNativeTarget "WatchApp Extension" */;
-			buildPhases = (
-				E9AAFC18255122B700BE1E45 /* Sources */,
-				E9AAFC19255122B700BE1E45 /* Frameworks */,
-				E9AAFC1A255122B700BE1E45 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "WatchApp Extension";
-			productName = "WatchApp Extension";
-			productReference = E9AAFC1C255122B700BE1E45 /* WatchApp Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
 		E9AF015024FDB8DD0058C184 /* Blaze */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9AF016524FDB8DE0058C184 /* Build configuration list for PBXNativeTarget "Blaze" */;
@@ -594,7 +460,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E9AAFC33255122B700BE1E45 /* PBXTargetDependency */,
 			);
 			name = Blaze;
 			packageProductDependencies = (
@@ -618,12 +483,6 @@
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					E9AAFC12255122B400BE1E45 = {
-						CreatedOnToolsVersion = 12.0.1;
-					};
-					E9AAFC1B255122B700BE1E45 = {
-						CreatedOnToolsVersion = 12.0.1;
-					};
 					E9AF015024FDB8DD0058C184 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -651,30 +510,11 @@
 			projectRoot = "";
 			targets = (
 				E9AF015024FDB8DD0058C184 /* Blaze */,
-				E9AAFC12255122B400BE1E45 /* WatchApp */,
-				E9AAFC1B255122B700BE1E45 /* WatchApp Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E9AAFC11255122B400BE1E45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9AAFC16255122B600BE1E45 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9AAFC1A255122B700BE1E45 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9AAFC2F255122B700BE1E45 /* Preview Assets.xcassets in Resources */,
-				E9AAFC2C255122B700BE1E45 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9AF014F24FDB8DD0058C184 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -725,30 +565,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E9AAFC18255122B700BE1E45 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E9AAFC26255122B700BE1E45 /* NotificationController.swift in Sources */,
-				E9AAFC24255122B700BE1E45 /* ContentView.swift in Sources */,
-				E9AAFC2A255122B700BE1E45 /* ComplicationController.swift in Sources */,
-				E9AAFC542551247800BE1E45 /* Extensions.swift in Sources */,
-				E9AAFC442551242100BE1E45 /* AirQualityBackend.swift in Sources */,
-				E9AAFC22255122B700BE1E45 /* BlazeApp.swift in Sources */,
-				E9AAFC28255122B700BE1E45 /* NotificationView.swift in Sources */,
-				E9AAFC4C2551244B00BE1E45 /* AirQuality.swift in Sources */,
-				E9AAFC5C255124A400BE1E45 /* LocationManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9AF014D24FDB8DD0058C184 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6D36026C2550EEFF0054B3A9 /* NewsCardRedactediPad.swift in Sources */,
 				E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */,
-				E97FA5E225523093009754AA /* MonitoringView.swift in Sources */,
-				6DA2FF302506AF6400C86F0C /* Settings.swift in Sources */,
+				6DA2FF302506AF6400C86F0C /* SettingsView.swift in Sources */,
 				27313E4C250ACD0F009876FA /* AirQualityBackend.swift in Sources */,
 				E97E26DB25082B3800B939F3 /* FullInformationView.swift in Sources */,
 				6DF73D7F2502AEAD0051E4A2 /* Header.swift in Sources */,
@@ -760,6 +583,7 @@
 				E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */,
 				6D3602662550EED40054B3A9 /* HorizontalCardRedactediPad.swift in Sources */,
 				E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */,
+				6D4A43B52552360D0066884D /* MonitoringListView.swift in Sources */,
 				6D36027E2550EF930054B3A9 /* FullFireMapViewiPad.swift in Sources */,
 				E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */,
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
@@ -778,7 +602,7 @@
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
 				6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */,
 				6DA2FF362506B55E00C86F0C /* SettingsCard.swift in Sources */,
-				6DB9503C2551E49E009509D7 /* SettingsiPad.swift in Sources */,
+				6DB9503C2551E49E009509D7 /* SettingsViewiPad.swift in Sources */,
 				6D3602842550EFD60054B3A9 /* FullFireMapModalViewiPad.swift in Sources */,
 				E9AF015724FDB8DD0058C184 /* SceneDelegate.swift in Sources */,
 				E985F5362503752000A3BA83 /* FormButton.swift in Sources */,
@@ -789,6 +613,7 @@
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
 				6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */,
 				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
+				6D4A43C2255238F70066884D /* DataViewiPad.swift in Sources */,
 				E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */,
 				E97E26E02508444B00B939F3 /* WebModal.swift in Sources */,
 				279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */,
@@ -796,6 +621,7 @@
 				6D36024E2550EDCF0054B3A9 /* MiniFireCardiPad.swift in Sources */,
 				279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */,
 				E9AF016A24FDBBEB0058C184 /* FiresView.swift in Sources */,
+				6D4A43C6255239800066884D /* MonitoringListViewiPad.swift in Sources */,
 				6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */,
 				6D3602962550F0390054B3A9 /* AQViewiPad.swift in Sources */,
 				E941692925046E8D00DEFCB2 /* GlossaryTerms.swift in Sources */,
@@ -819,19 +645,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		E9AAFC1F255122B700BE1E45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9AAFC1B255122B700BE1E45 /* WatchApp Extension */;
-			targetProxy = E9AAFC1E255122B700BE1E45 /* PBXContainerItemProxy */;
-		};
-		E9AAFC33255122B700BE1E45 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E9AAFC12255122B400BE1E45 /* WatchApp */;
-			targetProxy = E9AAFC32255122B700BE1E45 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -844,102 +657,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E9AAFC36255122B700BE1E45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchApp Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "WatchApp Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		E9AAFC37255122B700BE1E45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"WatchApp Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "WatchApp Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Release;
-		};
-		E9AAFC3A255122B700BE1E45 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = C53YYLJPD6;
-				IBSC_MODULE = WatchApp_Extension;
-				INFOPLIST_FILE = WatchApp/Info.plist;
-				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		E9AAFC3B255122B700BE1E45 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = C53YYLJPD6;
-				IBSC_MODULE = WatchApp_Extension;
-				INFOPLIST_FILE = WatchApp/Info.plist;
-				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Release;
-		};
 		E9AF016324FDB8DE0058C184 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1068,7 +785,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1080,7 +797,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1095,10 +812,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Blaze/Blaze.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -1110,7 +828,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -1122,24 +840,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E9AAFC35255122B700BE1E45 /* Build configuration list for PBXNativeTarget "WatchApp Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9AAFC36255122B700BE1E45 /* Debug */,
-				E9AAFC37255122B700BE1E45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E9AAFC39255122B700BE1E45 /* Build configuration list for PBXNativeTarget "WatchApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E9AAFC3A255122B700BE1E45 /* Debug */,
-				E9AAFC3B255122B700BE1E45 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E9AF014C24FDB8DD0058C184 /* Build configuration list for PBXProject "Blaze" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

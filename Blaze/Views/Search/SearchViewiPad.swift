@@ -188,7 +188,7 @@ struct SearchViewiPad: View {
                                 .font(Font.title2.weight(.regular))
                         }
                     ),
-                    trailing: NavigationLink(destination: SettingsiPad()) {
+                    trailing: NavigationLink(destination: SettingsViewiPad()) {
                         Image(systemName: "gear")
                             .font(Font.title2.weight(.regular))
                     }
