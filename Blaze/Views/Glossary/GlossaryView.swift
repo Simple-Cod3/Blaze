@@ -101,8 +101,8 @@ struct ExpandAlphabetView: View {
                             WordCard(term: term)
                                 .padding(.horizontal, 20)
                         }
-                        .padding(.bottom, 20)
                     }
+                    .padding(.bottom, 20)
                 }
                 .navigationBarTitle("", displayMode: .large)
                 .navigationBarItems(trailing: Button(action: dismiss) {
