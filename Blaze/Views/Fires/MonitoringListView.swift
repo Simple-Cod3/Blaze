@@ -145,7 +145,7 @@ struct FlexibleFireInfo: View {
             }
             Spacer()
         }
-        .frame(height: columns == 1 ? 145 : 150)
+        .frame(maxHeight: columns == 2 ? 150 : .infinity)
         .padding(15)
         .background(
             RoundedRectangle(cornerRadius: 15, style: .continuous)
