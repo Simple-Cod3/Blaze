@@ -20,46 +20,46 @@ struct MonitoringListView: View {
         ScrollView {
             HStack(spacing: 20) {
                 Button(action: {withAnimation(.spring()) {columns = 1.0}}) {
-                    GenericButton(icon: "list.dash", color: columns == 1 ? .blaze : .secondary)
+                    GenericButton(icon: "rectangle.grid.1x2", color: columns == 1 ? .blaze : .secondary)
                 }
                 Button(action: {withAnimation(.spring()) {columns = 2.0}}) {
                     GenericButton(icon: "rectangle.grid.2x2", color: columns == 2 ? .blaze : .secondary)
                 }
-                Button(action: {withAnimation(.spring()) {columns = 3.0}}) {
-                    GenericButton(icon: "square.grid.3x2", color: columns == 3 ? .blaze : .secondary)
-                }
             }
             .padding(20)
-            .background(Color(.systemBackground).frame(height: UIScreen.main.bounds.maxY), alignment: .bottom)
+            .background(Color(.secondarySystemBackground).frame(height: UIScreen.main.bounds.maxY), alignment: .bottom)
             
             if fireB.monitoringFires.count == 0 {
                 Image("bandage").resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 200)
-                    .padding(.top, 50)
-                Text("Pinned fires\nwill been shown here")
-                    .font(.headline)
+                    .frame(maxWidth: 150)
+                    .padding(.top, 150)
+                    .padding(.bottom, 20)
+                Text("Peal off this bandage by pinning wildfires.")
+                    .font(.body)
+                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
+                    .frame(width: 200)
                     .multilineTextAlignment(.center)
             }
             
-            LazyVGrid(columns: layout, spacing: 5) {
+            LazyVGrid(columns: layout, spacing: 10) {
                 ForEach(fireB.monitoringFires) { fire in
                     FlexibleFireInfo(columns: $columns, fireData: fire)
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 10, style: .continuous))
+            .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 15, style: .continuous))
             .padding(.vertical, 10)
             .padding(.horizontal, 15)
             .padding(.bottom, 50)
         }
         .animation(.spring(), value: fireB.monitoringFires)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(.systemBackground))
         .navigationBarTitle("Monitoring List", displayMode: .large)
         .navigationBarItems(
             trailing: Button(action: { show = true }) {
                 Image(systemName: "plus.circle")
-                    .font(.system(size: 25))
+                    .font(Font.title2.weight(.regular))
             }
         )
         .sheet(isPresented: $show) {
@@ -73,11 +73,11 @@ struct MonitoringListView: View {
                         fireB.addMonitoredFire(name: item.name)
                         show = false
                     }) {
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 5) {
                             Text(item.name)
                                 .font(.headline)
                             Text(item.getLocation())
-                                .font(.caption)
+                                .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -96,34 +96,37 @@ struct FlexibleFireInfo: View {
     
     var body: some View {
         NavigationLink(destination: FireMapView(fireData: fireData)) {
-            LazyVStack(alignment: columns == 1 ? .leading : .center, spacing: 5) {
+            LazyVStack(alignment: .leading, spacing: 5) {
+                Image(systemName: "flame")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+                    .padding(.bottom, 5)
                 Text(fireData.name)
-                    .font(columns != 3 ? Font.headline.weight(.semibold) : Font.subheadline.weight(.semibold))
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .padding(.bottom, 5)
+                                
+                Text(fireData.getAreaString())
                     .foregroundColor(.blaze)
-                    .multilineTextAlignment(columns != 1 ? .center : .leading)
-                if columns != 3 {
-                    Text(fireData.getAreaString())
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .transition(.scale)
-                    Text(fireData.getContained() + " contained")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .transition(.scale)
-                }
+                    .transition(.scale)
+                
+                Text(fireData.getContained() + " contained")
+                    .foregroundColor(.secondary)
+                    .transition(.scale)
             }
+            .frame(height: columns == 1 ? 120 : 150)
         }
-        .frame(height: columns == 1 ? 100 : 150)
+        .frame(height: columns == 1 ? 120 : 150)
         .padding(15)
         .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .fill(Color(.systemBackground))
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
         )
         .contextMenu {
             Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
-                Label("Remove Pin", systemImage: "pin")
+                Label("Remove Pin", systemImage: "pin.slash")
             }
-            Button(action: fireData.share) { Label("Share Fire", systemImage: "square.and.arrow.up") }
         }
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)

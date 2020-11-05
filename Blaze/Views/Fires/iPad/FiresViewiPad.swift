@@ -71,7 +71,7 @@ struct FiresViewiPad: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
                             .sheet(isPresented: $showingData) {
-                                DataViewiPad()
+                                DataViewiPad(showModal: self.$showingData)
                             }
                         }
                         .padding(.horizontal, 20)

@@ -35,13 +35,7 @@ struct GenericButton: View {
             Spacer()
         }
         .padding(.vertical, 12)
-        .background(Color(.secondarySystemBackground))
+        .background(Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-    }
-}
-
-struct GenericButton_Previews: PreviewProvider {
-    static var previews: some View {
-        GenericButton("Hello", icon: "pin")
     }
 }

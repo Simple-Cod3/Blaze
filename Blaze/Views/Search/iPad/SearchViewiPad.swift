@@ -203,8 +203,8 @@ struct SearchViewiPad: View {
                         .padding(.bottom, 20)
                     
                     Text("Nothing to see here, we just patched this part up with a bandage.")
-                        .font(.title3)
-                        .fontWeight(.medium)
+                        .font(.body)
+                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .frame(width: 350)

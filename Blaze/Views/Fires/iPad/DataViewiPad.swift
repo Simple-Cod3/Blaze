@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DataViewiPad: View {
+    @Binding var showModal: Bool
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -18,7 +20,11 @@ struct DataViewiPad: View {
                 .padding(.horizontal, 20)
             }
             .navigationBarTitle("Data", displayMode: .large)
-            .navigationBarItems(trailing: CloseModalButton())
+            .navigationBarItems(trailing:
+                Button(action: { showModal.toggle() }) {
+                    CloseModalButton()
+                }
+            )
         }
     }
 }
