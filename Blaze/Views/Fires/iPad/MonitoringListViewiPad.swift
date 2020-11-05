@@ -11,6 +11,7 @@ struct MonitoringListViewiPad: View {
     @EnvironmentObject var fireB: FireBackend
     @State private var columns: CGFloat = 2
     @State private var show = false
+    @Binding var showModal: Bool
     
     private var layout: [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(columns))
@@ -85,6 +86,11 @@ struct MonitoringListViewiPad: View {
                         .padding(.vertical, 5)
                     }
                 }.navigationBarTitle("Monitor Fires")
+                .navigationBarItems(trailing:
+                    Button(action: { showModal.toggle() }) {
+                        CloseModalButton()
+                    }
+                )
             }
         }
     }
