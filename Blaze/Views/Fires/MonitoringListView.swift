@@ -106,7 +106,7 @@ struct FlexibleFireInfo: View {
                     .font(.system(size: fireData.name.count > 25 ? 16 : 21))
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
-                    .lineLimit(3)
+                    .lineLimit(2)
                     .padding(.bottom, 5)
                                 
                 Text(fireData.getAreaString())
