@@ -84,6 +84,7 @@ struct FullScreenInfoView: View {
 }
 
 struct InformationViewInner: View {
+    @EnvironmentObject var fireB: FireBackend
     @Binding var show: Bool
     
     @State var shrink = false
@@ -168,13 +169,9 @@ struct InformationViewInner: View {
                     InciWebContent(url: URL(string: fireData.url)!)
                 }
             }
-            
+
             if let url = URL(string: fireData.url) {
-                if isNotAccesible {
-                    FormButtonDirect(text: "More Info", url: url)
-                } else {
-                    FormButton(text: "More Info", url: url)
-                }
+                FormButton(text: "More Info", url: url)
             } else {
                 FormButton(text: "More Info", url: URL(string: "https://google.com")!)
                     .disabled(true)
@@ -182,6 +179,17 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
+            leading: Button(action: {
+                if fireB.monitoringFires.contains(fireData) {
+                    fireB.removeMonitoredFire(name: fireData.name)
+                } else {
+                    fireB.addMonitoredFire(name: fireData.name)
+                }
+            }) {
+                Image(systemName: "pin.circle.fill")
+                    .font(.system(size: 30))
+                    .foregroundColor(fireB.monitoringFires.contains(fireData) ? .yellow : .secondary)
+            },
             trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()
             }

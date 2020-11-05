@@ -45,7 +45,9 @@ struct MonitoringListView: View {
             
             LazyVGrid(columns: layout, spacing: 10) {
                 ForEach(fireB.monitoringFires) { fire in
-                    FlexibleFireInfo(columns: $columns, fireData: fire)
+                    NavigationLink(destination: FireMapView(fireData: fire)) {
+                        FlexibleFireInfo(columns: $columns, fireData: fire)
+                    }
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 15, style: .continuous))
@@ -73,15 +75,27 @@ struct MonitoringListView: View {
                         fireB.addMonitoredFire(name: item.name)
                         show = false
                     }) {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.getLocation())
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text("\(Image(systemName: "mappin.and.ellipse")) \(item.getLocation())")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }.padding(.vertical, 10)
+                            Spacer()
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 25))
+                                .foregroundColor(.green)
                         }
                     }
-                }.navigationBarTitle("Monitor Fires")
+                }
+                .navigationBarTitle("Monitor Fires")
+                .navigationBarItems(
+                    trailing: Button(action: { show = false }) {
+                        CloseModalButton()
+                    })
             }
         }
     }
@@ -95,27 +109,33 @@ struct FlexibleFireInfo: View {
     var fireData: ForestFire
     
     var body: some View {
-        NavigationLink(destination: FireMapView(fireData: fireData)) {
-            LazyVStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 0) {
                 Image(systemName: "flame")
                     .font(.title2)
                     .foregroundColor(.secondary)
                     .padding(.bottom, 5)
-                Text(fireData.name)
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .foregroundColor(.primary)
-                    .padding(.bottom, 5)
-                                
+                Spacer()
+            }
+            Text(fireData.name)
+                .font(fireData.name.count < 18 ? .title2 : .title3)
+                .fontWeight(.medium)
+                .foregroundColor(.primary)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.bottom, 5)
+            
+            if fireData.getAreaString() != "Unknown Area" {
                 Text(fireData.getAreaString())
                     .foregroundColor(.blaze)
                     .transition(.scale)
-                
+            }
+            
+            if fireData.getContained() != "Unknown" {
                 Text(fireData.getContained() + " contained")
                     .foregroundColor(.secondary)
                     .transition(.scale)
             }
-            .frame(height: columns == 1 ? 120 : 150)
+            Spacer()
         }
         .frame(height: columns == 1 ? 120 : 150)
         .padding(15)
