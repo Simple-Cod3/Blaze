@@ -58,6 +58,7 @@
 		E97E26DE250837FD00B939F3 /* SearchUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DD250837FD00B939F3 /* SearchUIKit.swift */; };
 		E97E26E02508444B00B939F3 /* WebModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DF2508444B00B939F3 /* WebModal.swift */; };
 		E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E125084ABF00B939F3 /* SplashScreen.swift */; };
+		E97FA5F02553216B009754AA /* GenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97FA5EF2553216B009754AA /* GenericButton.swift */; };
 		E985F5362503752000A3BA83 /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5352503752000A3BA83 /* FormButton.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
 		E9AAFC0D2551148E00BE1E45 /* FiresViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */; };
@@ -162,6 +163,7 @@
 		E97E26DD250837FD00B939F3 /* SearchUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUIKit.swift; sourceTree = "<group>"; };
 		E97E26DF2508444B00B939F3 /* WebModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebModal.swift; sourceTree = "<group>"; };
 		E97E26E125084ABF00B939F3 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		E97FA5EF2553216B009754AA /* GenericButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericButton.swift; sourceTree = "<group>"; };
 		E985F5352503752000A3BA83 /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
 		E9AAFC0C2551148E00BE1E45 /* FiresViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresViewiPad.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 				6D36024C2550EDB90054B3A9 /* iPad */,
+				E97FA5EF2553216B009754AA /* GenericButton.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				E985F5362503752000A3BA83 /* FormButton.swift in Sources */,
 				6DC18D072548ABA9001B1F49 /* FullFireMapView.swift in Sources */,
 				6D36025A2550EE4C0054B3A9 /* AQCardiPad.swift in Sources */,
+				E97FA5F02553216B009754AA /* GenericButton.swift in Sources */,
 				6D3602782550EF570054B3A9 /* FireMapViewiPad.swift in Sources */,
 				E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */,
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
@@ -797,7 +801,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -828,7 +832,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

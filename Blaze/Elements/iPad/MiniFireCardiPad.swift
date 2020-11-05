@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MiniFireCardiPad: View {
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
+    @State var show = false
     
     var selected: Bool
     var fireData: ForestFire
@@ -42,5 +43,14 @@ struct MiniFireCardiPad: View {
         .frame(width: 220, height: 180)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .contextMenu {
+            Button(action: {}) { Label("Pin", systemImage: "pin") }
+            Button(action: { show = true }) { Label("View Details", systemImage: "ruler") }
+            Divider()
+            Button(action: fireData.share) { Label("Share Fire", systemImage: "square.and.arrow.up") }
+        }
+        .sheet(isPresented: $show) {
+            InformationView(show: $show, fireData: fireData)
+        }
     }
 }

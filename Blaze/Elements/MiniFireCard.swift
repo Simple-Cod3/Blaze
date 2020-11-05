@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MiniFireCard: View {
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
+    @EnvironmentObject var fireB: FireBackend
     @State var show = false
     
     var selected: Bool
@@ -45,7 +46,7 @@ struct MiniFireCard: View {
                 .fill(Color(.secondarySystemBackground))
         )
         .contextMenu {
-            Button(action: {}) { Label("Pin", systemImage: "pin") }
+            Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "ruler") }
             Divider()
             Button(action: fireData.share) { Label("Share Fire", systemImage: "square.and.arrow.up") }

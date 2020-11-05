@@ -13,6 +13,7 @@ class FireBackend: ObservableObject {
     // MARK: - Attributes
 
     @Published var fires = [ForestFire]()
+    @Published var monitoringFires = [ForestFire]()
     @Published var failed = false
     @Published var progress = [Progress(), Progress()]
 
@@ -24,7 +25,28 @@ class FireBackend: ObservableObject {
         }
     }
     // MARK: - Functions
-
+    func updateMonitored() {
+        if let monitored = UserDefaults.standard.stringArray(forKey: "monitoringFires") {
+            self.monitoringFires = self.fires.filter({ monitored.contains($0.name) })
+        }
+    }
+    
+    func addMonitoredFire(name: String) {
+        if monitoringFires.allSatisfy({ $0.name != name }) {
+            guard let fire = fires.filter({ $0.name == name }).first else {
+                return
+            }
+            
+            monitoringFires.append(fire)
+            UserDefaults.standard.setValue(monitoringFires.map { $0.name }, forKey: "monitoringFires")
+        }
+    }
+    
+    func removeMonitoredFire(name: String) {
+        monitoringFires = monitoringFires.filter({ $0.name != name })
+        UserDefaults.standard.setValue(monitoringFires.map { $0.name }, forKey: "monitoringFires")
+    }
+    
     func refreshFireList(with: URL? = nil) {
         self.failed = false
         self.fires = [ForestFire]()
@@ -78,14 +100,18 @@ class FireBackend: ObservableObject {
                                 sourceType: .inciweb
                             )
                             
-                            if (self.fires[fireI].acresO == nil &&
+                            if  self.fires[fireI].acresO == nil &&
                                 filteredNewFires[inciI].coordinate == self.fires[fireI].coordinate ||
-                                filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "")) {
+                                filteredNewFires[inciI].name == self.fires[fireI].name ||
+                                filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "") {
                                 
                                 print("🔎 Found matching fires: \(filteredNewFires[inciI].name)")
                                 self.fires[fireI] = forestFireObject
                                 
-                            } else if fireI == 0 && self.fires.filter({$0.name.replacingOccurrences(of: " Fire", with: "") == filteredNewFires[inciI].name}).count == 0 {
+                            } else if fireI == 0 && self.fires.filter({
+                                $0.name == filteredNewFires[inciI].name || 
+                                $0.name.replacingOccurrences(of: " Fire", with: "") == filteredNewFires[inciI].name
+                            }).count == 0 {
                                 unAddedFires.append(forestFireObject)
                             }
                         }
@@ -93,6 +119,7 @@ class FireBackend: ObservableObject {
                     
                     self.fires += unAddedFires
                     self.fires = self.fires.sorted(by: ForestFire.dateUpdated)
+                    self.updateMonitored()
                     
                 } catch {
                     self.failed = true

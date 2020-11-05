@@ -23,7 +23,11 @@ struct Incidents: Codable {
 
 // MARK: - Incident Struct
 
-struct ForestFire: Codable, Identifiable {
+struct ForestFire: Codable, Identifiable, Equatable {
+    static func ==(lhs: ForestFire, rhs: ForestFire) -> Bool {
+        return lhs.name == rhs.name && lhs.relURL == rhs.relURL
+    }
+    
     static func name(lhs: ForestFire, rhs: ForestFire) -> Bool {
         return lhs.name > rhs.name
     }
