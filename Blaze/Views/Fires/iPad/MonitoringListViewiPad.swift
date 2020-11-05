@@ -114,6 +114,7 @@ struct FlexibleFireInfoiPad: View {
                     .font(.title2)
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
+                    .lineLimit(1)
                     .padding(.bottom, 5)
                                 
                 Text(fireData.getAreaString())
