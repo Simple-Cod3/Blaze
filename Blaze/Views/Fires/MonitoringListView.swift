@@ -48,6 +48,13 @@ struct MonitoringListView: View {
                     NavigationLink(destination: FireMapView(fireData: fire)) {
                         FlexibleFireInfo(columns: $columns, fireData: fire)
                     }
+                    .buttonStyle(PlainButtonStyle())
+                    .contextMenu {
+                        Button(action: { fireB.removeMonitoredFire(name: fire.name) }) {
+                            Label("Remove Pin", systemImage: "pin.slash")
+                        }
+                    }
+                    .padding(5)
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 15, style: .continuous))
@@ -105,7 +112,6 @@ struct MonitoringListView: View {
 struct FlexibleFireInfo: View {
     @EnvironmentObject var fireB: FireBackend
     @Binding var columns: CGFloat
-    @State private var show = false
     
     var fireData: ForestFire
     
@@ -119,9 +125,10 @@ struct FlexibleFireInfo: View {
                 Spacer()
             }
             Text(fireData.name)
-                .font(fireData.name.count < 18 ? .title2 : .title3)
+                .font(fireData.name.count < 15 ? .title2 : .title3)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
+                .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.bottom, 5)
             
@@ -138,20 +145,11 @@ struct FlexibleFireInfo: View {
             }
             Spacer()
         }
-        .frame(height: columns == 1 ? 120 : 150)
+        .frame(height: columns == 1 ? 145 : 150)
         .padding(15)
         .background(
             RoundedRectangle(cornerRadius: 15, style: .continuous)
                 .fill(Color(.secondarySystemBackground))
         )
-        .contextMenu {
-            Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
-                Label("Remove Pin", systemImage: "pin.slash")
-            }
-        }
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
-        .padding(5)
     }
 }

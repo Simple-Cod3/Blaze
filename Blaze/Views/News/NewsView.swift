@@ -132,6 +132,12 @@ struct NewsCardButton: View {
     var body: some View {
         Button(action: { presenting = true }) {
             NewsCard(news: news)
+                .padding(.horizontal, 20)
+                .contextMenu {
+                    Button(action: { news.share() }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                }
                 .safariView(isPresented: $presenting) {
                     SafariView(
                         url: news.url,
@@ -142,6 +148,6 @@ struct NewsCardButton: View {
                     .preferredControlAccentColor(Color.blaze)
                 }
         }
-        .buttonStyle(CardButtonStyle())
+        .buttonStyle(PlainButtonStyle())
     }
 }

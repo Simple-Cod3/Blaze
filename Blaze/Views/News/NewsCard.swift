@@ -47,9 +47,10 @@ struct NewsCard: View {
             }
             .padding([.horizontal, .bottom], 20)
         }
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
+        .background(
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
+        )
         .opacity(show ? 1 : 0)
         .onAppear {
             withAnimation(Animation.easeInOut.delay(0.5)) {
@@ -61,15 +62,17 @@ struct NewsCard: View {
 
 struct NewsCard_Previews: PreviewProvider {
     static var previews: some View {
-        let news = News(id: "Paul is stuck in anime, still stuck.",
-                        author: "Paul Wong",
-                        authorImg: "https://assets3.thrillist.com/v1/image/2855068/1200x630",
-                        authorBio: "Is an anime lover",
-                        content: "# Markdown Support\n---\n * Yessir\n\n<p style='color: orange'>HTML Support</p>",
-                        coverImage: "https://arc-anglerfish-arc2-prod-tbt.s3.amazonaws.com/public/BWRGAGGQUFAD5H6BQ2VRVKF6ZE.jpg",
-                        publisher: "Fox News",
-                        sourceURL: "https://quick-mass.netlify.app",
-                        date: Date(timeIntervalSinceNow: .pi))
+        let news = News(
+            id: "Paul is stuck in anime, still stuck.",
+            author: "Paul Wong",
+            authorImg: "https://assets3.thrillist.com/v1/image/2855068/1200x630",
+            authorBio: "Is an anime lover",
+            content: "# Markdown Support\n---\n * Yessir\n\n<p style='color: orange'>HTML Support</p>",
+            coverImage: "https://arc-anglerfish-arc2-prod-tbt.s3.amazonaws.com/public/BWRGAGGQUFAD5H6BQ2VRVKF6ZE.jpg",
+            publisher: "Fox News",
+            sourceURL: "https://quick-mass.netlify.app",
+            date: Date(timeIntervalSinceNow: .pi)
+        )
         return NewsCard(news: news)
     }
 }

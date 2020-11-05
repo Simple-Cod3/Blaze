@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct News: Comparable, Identifiable, Codable {
     // MARK: - Comparable Protocol Functions
@@ -30,10 +31,15 @@ struct News: Comparable, Identifiable, Codable {
     var sourceURL: String /// Direct link to article
     var date: Date
     
-    // MARK: - String Functions
+    // MARK: - Functions
     
     func getTimeAgo() -> String {
         return date.getElapsedInterval()
+    }
+    
+    func share() {
+        let actionView = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
     }
     
     // MARK: - Computed Properties
