@@ -218,13 +218,13 @@
 		6D36024C2550EDB90054B3A9 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				6D3602462550ED910054B3A9 /* NoticeCardiPad.swift */,
-				6D36024D2550EDCF0054B3A9 /* MiniFireCardiPad.swift */,
-				6D3602532550EE100054B3A9 /* MapFireCardiPad.swift */,
 				6D3602592550EE4C0054B3A9 /* AQCardiPad.swift */,
 				6D36025F2550EEA80054B3A9 /* AQMeteriPad.swift */,
 				6D3602652550EED40054B3A9 /* HorizontalCardRedactediPad.swift */,
+				6D3602532550EE100054B3A9 /* MapFireCardiPad.swift */,
+				6D36024D2550EDCF0054B3A9 /* MiniFireCardiPad.swift */,
 				6D36026B2550EEFF0054B3A9 /* NewsCardRedactediPad.swift */,
+				6D3602462550ED910054B3A9 /* NoticeCardiPad.swift */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -243,8 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				6D3602772550EF570054B3A9 /* FireMapViewiPad.swift */,
-				6D36027D2550EF930054B3A9 /* FullFireMapViewiPad.swift */,
 				6D3602832550EFD60054B3A9 /* FullFireMapModalViewiPad.swift */,
+				6D36027D2550EF930054B3A9 /* FullFireMapViewiPad.swift */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -295,8 +295,8 @@
 		6DA2FF2E2506AF5400C86F0C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */,
 				6DA2FF352506B55E00C86F0C /* SettingsCard.swift */,
+				6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */,
 				6DA2FF312506B00400C86F0C /* UnitsCard.swift */,
 				6D6362CC25534D6D005A18A8 /* iPad */,
 			);
@@ -454,22 +454,22 @@
 		E9AF019024FDE5DF0058C184 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				6D6362CF25534DC0005A18A8 /* Navigation */,
 				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
 				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 				E9073CAB2529096600FE43C2 /* Check.swift */,
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E985F5352503752000A3BA83 /* FormButton.swift */,
+				E97FA5EF2553216B009754AA /* GenericButton.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
 				6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */,
 				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
-				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 				6D6859D2254758F500060BB8 /* NoticeCard.swift */,
 				E9E31A89250E958B007FF855 /* Progress.swift */,
 				E903803C2518749C0043DC53 /* StatusBarBackground.swift */,
 				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
+				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
 				6D36024C2550EDB90054B3A9 /* iPad */,
-				E97FA5EF2553216B009754AA /* GenericButton.swift */,
+				6D6362CF25534DC0005A18A8 /* Navigation */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
