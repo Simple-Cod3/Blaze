@@ -39,7 +39,7 @@ struct SettingsView: View {
                 }
                 
                 SettingsCardLink(title: "Monitoring List", desc: "Select different wildfires to monitor.") {
-                    UpdateLog()
+                    MonitoringListView()
                 }
                 
                 SettingsCardLink(title: "Updates", desc: "See the latest changes to Blaze.") {

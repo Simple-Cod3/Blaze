@@ -15,17 +15,12 @@ struct UpdateLog: View {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
                     version: "2.0",
-                    changes: ["• Transition to Mapbox to include dynamic area and data viewing on map"]
-                )
-                
-                VersionDotSoon(
-                    version: "1.2",
-                    changes: ["• Expand Air Quality information", "• Reference to current position", "• Improve filter system", "• Wildfire notifications", "• WidgetKit support"]
+                    changes: ["• Transition to new map structure to include dynamic area and data viewing on map"]
                 )
                 
                 VersionCard(
                     version: "1.1",
-                    changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• Added Monitoring List to select wildfires to monitor", "• UI Improvements"]
+                    changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• Tap and hold on a Wildfires Card to pin to Monitoring List", "• UI Improvements"]
                 )
                 
                 VersionDot(
