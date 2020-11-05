@@ -11,6 +11,7 @@ struct MonitoringListViewiPad: View {
     @EnvironmentObject var fireB: FireBackend
     @State private var columns: CGFloat = 2
     @State private var show = false
+    @Binding var showModal: Bool
     
     private var layout: [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(columns))
@@ -46,7 +47,7 @@ struct MonitoringListViewiPad: View {
                 
                 LazyVGrid(columns: layout, spacing: 10) {
                     ForEach(fireB.monitoringFires) { fire in
-                        FlexibleFireInfo(columns: $columns, fireData: fire)
+                        FlexibleFireInfoiPad(columns: $columns, fireData: fire)
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 15, style: .continuous))
@@ -82,9 +83,64 @@ struct MonitoringListViewiPad: View {
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
+                        .padding(.vertical, 5)
                     }
                 }.navigationBarTitle("Monitor Fires")
+                .navigationBarItems(trailing:
+                    Button(action: { showModal.toggle() }) {
+                        CloseModalButton()
+                    }
+                )
             }
         }
+    }
+}
+
+struct FlexibleFireInfoiPad: View {
+    @EnvironmentObject var fireB: FireBackend
+    @Binding var columns: CGFloat
+    @State private var show = false
+    
+    var fireData: ForestFire
+    
+    var body: some View {
+        NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
+            LazyVStack(alignment: .leading, spacing: 5) {
+                Image(systemName: "flame")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+                    .padding(.bottom, 5)
+                Text(fireData.name)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .lineLimit(1)
+                    .padding(.bottom, 5)
+                                
+                Text(fireData.getAreaString())
+                    .foregroundColor(.blaze)
+                    .transition(.scale)
+                
+                Text(fireData.getContained() + " contained")
+                    .foregroundColor(.secondary)
+                    .transition(.scale)
+            }
+            .frame(height: columns == 1 ? 120 : 150)
+        }
+        .frame(height: columns == 1 ? 120 : 150)
+        .padding(15)
+        .background(
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
+        )
+        .contextMenu {
+            Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
+                Label("Remove Pin", systemImage: "pin.slash")
+            }
+        }
+        .sheet(isPresented: $show) {
+            InformationView(show: $show, fireData: fireData)
+        }
+        .padding(5)
     }
 }
