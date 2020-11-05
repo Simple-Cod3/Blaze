@@ -80,6 +80,7 @@ struct MonitoringListView: View {
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
+                        .padding(.vertical, 5)
                     }
                 }.navigationBarTitle("Monitor Fires")
             }
