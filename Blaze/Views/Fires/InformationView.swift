@@ -187,8 +187,8 @@ struct InformationViewInner: View {
                 }
             }) {
                 Image(systemName: "pin.circle.fill")
-                    .font(.system(size: 30))
-                    .foregroundColor(fireB.monitoringFires.contains(fireData) ? .yellow : .secondary)
+                    .font(.system(size: 26))
+                    .foregroundColor(fireB.monitoringFires.contains(fireData) ? .blaze : .secondary)
             },
             trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()
