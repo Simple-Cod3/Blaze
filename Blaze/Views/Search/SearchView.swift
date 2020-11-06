@@ -106,6 +106,7 @@ struct SearchView: View {
                                 }
                             }}
                         )
+                        
                         DisclosureGroup(
                             isExpanded: $showWords,
                             content: {
@@ -118,8 +119,6 @@ struct SearchView: View {
                                         .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
                                         Text(word.id)
-                                            .font(.body)
-                                            .fontWeight(.regular)
                                             .foregroundColor(.secondary)
                                     }
                                 }
@@ -205,12 +204,5 @@ struct SearchView: View {
                 getWords()
             }
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-            .environmentObject(FireBackend())
     }
 }

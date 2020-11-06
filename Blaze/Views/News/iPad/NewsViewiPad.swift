@@ -47,10 +47,7 @@ struct NewsViewiPad: View {
                         .padding(.vertical, 85)
                     
                     VStack(spacing: 20) {
-                        HStack {
-                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
-                            Spacer()
-                        }
+                        Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                         
                         ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
                             HorizontalCardiPad(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
@@ -75,15 +72,7 @@ struct NewsViewiPad: View {
                             Button(action: {
                                 newsShown += 10
                             }) {
-                                Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
-                                    .font(.body)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 10)
-                                    .padding(.horizontal, 15)
-                                    .background(Color.blaze)
-                                    .clipShape(Capsule())
-                                    .padding(.horizontal, 20)
+                                MoreButton(symbol: "plus.circle", text: "Show More")
                             }
                         }
                     }

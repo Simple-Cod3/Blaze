@@ -26,8 +26,6 @@ struct SettingsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 200) {
                 Text("Customize the app and learn more about it.")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
@@ -54,13 +52,10 @@ struct SettingsView: View {
                 SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                     CreditsView()
                 }
-                
-                Text("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
             }
-            .padding([.bottom, .horizontal], 20)
+            .padding([.horizontal, .bottom], 20)
+            
+            Caption("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
         }
         .navigationBarTitle("Settings", displayMode: .large)
         .onAppear {

@@ -20,72 +20,32 @@ struct FiresView: View {
         if done {
             NavigationView {
                 ZStack(alignment: .top) {
-                    ScrollView(showsIndicators: false) {
-                        VStack {
-                            Image("hydrant").resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 275)
-                                .padding(40)
-                            
-//                            NoticeCard(
-//                                title: "Deprecated Source",
-//                                text: "The current data source from fire.ca.gov has transfered monitoring ownership for multiple major fires. The development team is currently working on adding more data sources."
-//                            )
-//                            .padding(.bottom, 20)
-                            
-                            HStack {
-                                Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                                Spacer()
-                            }
-                        }
+                    ScrollView {
+                        Image("hydrant").resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 275)
+                            .padding(60)
+                        
+                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+
                         
                         HStack(spacing: 15) {
                             NavigationLink(destination: FullFireMapView()) {
-                                HStack {
-                                    Spacer()
-                                    Text("\(Image(systemName: "map")) Fire Map")
-                                        .fontWeight(.regular)
-                                        .font(.body)
-                                        .foregroundColor(.blaze)
-                                    Spacer()
-                                }
+                                TabLongButton(symbol: "map", text: "Fire Map", background: Color(.secondarySystemBackground))
                             }
-                            .padding(12)
-                            .background(Color(.secondarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             
                             NavigationLink(destination: DataView()) {
-                                HStack {
-                                    Spacer()
-                                    Text("\(Image(systemName: "tray.2")) Data")
-                                        .fontWeight(.regular)
-                                        .font(.body)
-                                        .foregroundColor(.blaze)
-                                    Spacer()
-                                }
+                                TabLongButton(symbol: "tray.2", text: "Data", background: Color(.secondarySystemBackground))
                             }
-                            .padding(12)
-                            .background(Color(.secondarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         .padding([.horizontal, .top], 20)
                         .padding(.bottom, 7)
                         
                         NavigationLink(destination: MonitoringListView()) {
-                            HStack {
-                                Spacer()
-                                Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")
-                                    .fontWeight(.regular)
-                                    .font(.body)
-                                    .foregroundColor(.blaze)
-                                Spacer()
-                            }
+                            TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.secondarySystemBackground))
                         }
-                        .padding(12)
-                        .background(Color(.secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         .padding([.horizontal, .bottom], 20)
-                        
+
                         SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
                         
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -108,14 +68,7 @@ struct FiresView: View {
                                 }
                                 Spacer()
                                 NavigationLink(destination: FullFireMapViewiPad()) {
-                                    Text("\(Image(systemName: "plus.circle")) View All")
-                                        .font(.body)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.white)
-                                        .padding(.vertical, 10)
-                                        .padding(.horizontal, 15)
-                                        .background(Color.blaze)
-                                        .clipShape(Capsule())
+                                    MoreButton(symbol: "plus.circle", text: "View All")
                                 }
                                 .padding(.leading, -20)
                             }
@@ -142,14 +95,7 @@ struct FiresView: View {
                                 }
                                 Spacer()
                                 NavigationLink(destination: FullFireMapViewiPad()) {
-                                    Text("\(Image(systemName: "plus.circle")) View All")
-                                        .font(.body)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.white)
-                                        .padding(.vertical, 10)
-                                        .padding(.horizontal, 15)
-                                        .background(Color.blaze)
-                                        .clipShape(Capsule())
+                                    MoreButton(symbol: "plus.circle", text: "View All")
                                 }
                                 .padding(.leading, -20)
                             }
@@ -157,14 +103,8 @@ struct FiresView: View {
                         }
                         .edgesIgnoringSafeArea(.horizontal)
                             
-                        HStack {
-                            Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
-                                .font(.caption)
-                                .fontWeight(.regular)
-                                .foregroundColor(.secondary)
-                                .padding([.horizontal, .bottom], 20)
-                            Spacer()
-                        }
+                        Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
+                        
                         .navigationBarTitle("Wildfires", displayMode: .inline)
                         .navigationBarHidden(true)
                     }

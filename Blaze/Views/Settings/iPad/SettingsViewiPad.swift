@@ -26,8 +26,6 @@ struct SettingsViewiPad: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 200) {
                 Text("Customize the app and learn more about it.")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 20)
                 
@@ -62,11 +60,7 @@ struct SettingsViewiPad: View {
                 }
                 .padding(.horizontal, 20)
                 
-                Text("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
+                Caption("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
             }
         }
         .navigationBarTitle("Settings", displayMode: .large)

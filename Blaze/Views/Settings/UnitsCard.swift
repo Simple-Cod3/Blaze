@@ -43,9 +43,3 @@ struct UnitsCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }
-
-struct UnitsCard_Previews: PreviewProvider {
-    static var previews: some View {
-        UnitsCard(title: "Units", desc: "Change the units of the fire spread area")
-    }
-}
