@@ -44,11 +44,6 @@ struct SettingsView: View {
                     UpdateLog()
                 }
                 
-                SettingsCardCustom(title: "Splash Screen", desc: "View Splash Screen again.") {
-                    Toggle("", isOn: !$welcomed)
-                        .toggleStyle(SwitchToggleStyle(tint: .blaze))
-                }
-                
                 SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                     CreditsView()
                 }
