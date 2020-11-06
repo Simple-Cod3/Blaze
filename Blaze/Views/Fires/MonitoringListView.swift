@@ -108,3 +108,5 @@ struct MonitoringListView: View {
         }
     }
 }
+
+//First commit on reset
