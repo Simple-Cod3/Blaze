@@ -393,15 +393,15 @@
 		E9AF016824FDBBDA0058C184 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9C41A9A2555046700AC3052 /* SplashScreen */,
 				6D7405D42509CA0300F45BB2 /* AQ */,
 				E9AF017824FDC0BF0058C184 /* Fires */,
+				E985F5372503781300A3BA83 /* Glossary */,
 				E9F222E92500C49E00EC5A06 /* Maps */,
 				E9AF017B24FDC0E20058C184 /* News */,
 				E9ABC4372532C3D100E2DE49 /* Phone */,
-				E985F5372503781300A3BA83 /* Glossary */,
 				E9AF017A24FDC0DC0058C184 /* Search */,
 				6DA2FF2E2506AF5400C86F0C /* Settings */,
+				E9C41A9A2555046700AC3052 /* SplashScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
