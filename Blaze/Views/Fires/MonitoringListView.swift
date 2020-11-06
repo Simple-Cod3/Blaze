@@ -90,13 +90,13 @@ struct MonitoringListView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
-                            }.padding(.vertical, 10)
+                            }
                             Spacer()
                             Image(systemName: "plus.circle.fill")
                                 .font(.system(size: 25))
                                 .foregroundColor(.green)
                         }
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 10)
                     }
                 }
                 .navigationBarTitle("Monitor Fires")
@@ -117,15 +117,17 @@ struct FlexibleFireInfo: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            HStack(spacing: 0) {
+            Spacer()
+            HStack {
                 Image(systemName: "flame")
                     .font(.title2)
                     .foregroundColor(.secondary)
                     .padding(.bottom, 5)
                 Spacer()
             }
+            
             Text(fireData.name)
-                .font(fireData.name.count < 15 ? .title2 : .title3)
+                .font(fireData.name.count < 15 ? .title2 : .body)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
                 .lineLimit(2)
@@ -136,13 +138,19 @@ struct FlexibleFireInfo: View {
                 Text(fireData.getAreaString())
                     .foregroundColor(.blaze)
                     .transition(.scale)
+            } else {
+                Text("Information not available")
+                    .foregroundColor(.secondary)
+                    .transition(.scale)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             if fireData.getContained() != "Unknown" {
-                Text(fireData.getContained() + " contained")
+                Text(fireData.getContained() + " Contained")
                     .foregroundColor(.secondary)
                     .transition(.scale)
             }
+            
             Spacer()
         }
         .frame(maxHeight: columns == 2 ? 150 : .infinity)

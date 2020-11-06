@@ -11,7 +11,6 @@ struct MonitoringListViewiPad: View {
     @EnvironmentObject var fireB: FireBackend
     @State private var columns: CGFloat = 2
     @State private var show = false
-    @Binding var showModal: Bool
     
     private var layout: [GridItem] {
         Array(repeating: GridItem(.flexible()), count: Int(columns))
@@ -47,23 +46,32 @@ struct MonitoringListViewiPad: View {
                 
                 LazyVGrid(columns: layout, spacing: 10) {
                     ForEach(fireB.monitoringFires) { fire in
-                        FlexibleFireInfoiPad(columns: $columns, fireData: fire)
+                        NavigationLink(destination: FireMapView(fireData: fire)) {
+                            FlexibleFireInfo(columns: $columns, fireData: fire)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .contextMenu {
+                            Button(action: { fireB.removeMonitoredFire(name: fire.name) }) {
+                                Label("Remove Pin", systemImage: "pin.slash")
+                            }
+                        }
+                        .padding(5)
                     }
                 }
                 .clipShape(RoundedRectangle(cornerRadius: columns != 1 ? 0 : 15, style: .continuous))
                 .padding(.vertical, 10)
                 .padding(.horizontal, 15)
                 .padding(.bottom, 50)
+                .animation(.spring(), value: fireB.monitoringFires)
+                .background(Color(.systemBackground))
+                .navigationBarTitle("Monitoring List", displayMode: .large)
+                .navigationBarItems(
+                    trailing: Button(action: { show = true }) {
+                        Image(systemName: "plus.circle")
+                            .font(Font.title2.weight(.regular))
+                    }
+                )
             }
-            .animation(.spring(), value: fireB.monitoringFires)
-            .background(Color(.systemBackground))
-            .navigationBarTitle("Monitoring List", displayMode: .large)
-            .navigationBarItems(
-                trailing: Button(action: { show = true }) {
-                    Image(systemName: "plus.circle")
-                        .font(Font.title2.weight(.regular))
-                }
-            )
         }
         .sheet(isPresented: $show) {
             NavigationView {
@@ -76,71 +84,29 @@ struct MonitoringListViewiPad: View {
                         fireB.addMonitoredFire(name: item.name)
                         show = false
                     }) {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.getLocation())
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text("\(Image(systemName: "mappin.and.ellipse")) \(item.getLocation())")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                            Spacer()
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 25))
+                                .foregroundColor(.green)
                         }
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 10)
                     }
-                }.navigationBarTitle("Monitor Fires")
-                .navigationBarItems(trailing:
-                    Button(action: { showModal.toggle() }) {
+                }
+                .navigationBarTitle("Monitor Fires")
+                .navigationBarItems(
+                    trailing: Button(action: { show = false }) {
                         CloseModalButton()
-                    }
-                )
+                    })
             }
         }
-    }
-}
-
-struct FlexibleFireInfoiPad: View {
-    @EnvironmentObject var fireB: FireBackend
-    @Binding var columns: CGFloat
-    @State private var show = false
-    
-    var fireData: ForestFire
-    
-    var body: some View {
-        NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
-            LazyVStack(alignment: .leading, spacing: 5) {
-                Image(systemName: "flame")
-                    .font(.title2)
-                    .foregroundColor(.secondary)
-                    .padding(.bottom, 5)
-                Text(fireData.name)
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .foregroundColor(.primary)
-                    .lineLimit(2)
-                    .padding(.bottom, 5)
-                                
-                Text(fireData.getAreaString())
-                    .foregroundColor(.blaze)
-                    .transition(.scale)
-                
-                Text(fireData.getContained() + " contained")
-                    .foregroundColor(.secondary)
-                    .transition(.scale)
-            }
-            .frame(height: columns == 1 ? 120 : 150)
-        }
-        .frame(height: columns == 1 ? 120 : 150)
-        .padding(15)
-        .background(
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(Color(.secondarySystemBackground))
-        )
-        .contextMenu {
-            Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
-                Label("Remove Pin", systemImage: "pin.slash")
-            }
-        }
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
-        .padding(5)
     }
 }
