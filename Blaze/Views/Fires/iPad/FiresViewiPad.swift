@@ -94,7 +94,7 @@ struct FiresViewiPad: View {
                             .padding(.horizontal, 20)
                         }
                         .sheet(isPresented: $showingMonitor) {
-                            MonitoringListViewiPad()
+                            MonitoringListViewiPad().environmentObject(fireB)
                         }
                     }
                     .padding(.bottom, 20)

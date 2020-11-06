@@ -37,9 +37,9 @@ struct News: Comparable, Identifiable, Codable {
         return date.getElapsedInterval()
     }
     
-    func share() {
+    func share(_ pos: Int) {
         let actionView = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
+        UIApplication.shared.windows[pos].rootViewController?.present(actionView, animated: true, completion: nil)
     }
     
     // MARK: - Computed Properties

@@ -134,7 +134,7 @@ struct NewsCardButton: View {
             NewsCard(news: news)
                 .padding(.horizontal, 20)
                 .contextMenu {
-                    Button(action: { news.share() }) {
+                    Button(action: { news.share(0) }) {
                         Label("Share", systemImage: "square.and.arrow.up")
                     }
                 }

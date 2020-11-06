@@ -179,16 +179,23 @@ struct InformationViewInner: View {
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
-            leading: Button(action: {
-                if fireB.monitoringFires.contains(fireData) {
-                    fireB.removeMonitoredFire(name: fireData.name)
-                } else {
-                    fireB.addMonitoredFire(name: fireData.name)
+            leading: HStack(spacing: 20) {
+                Button(action: { fireData.share(0) }) {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.system(size: 24))
                 }
-            }) {
-                Image(systemName: "pin.circle.fill")
-                    .font(.system(size: 26))
-                    .foregroundColor(fireB.monitoringFires.contains(fireData) ? .blaze : .secondary)
+                
+                Button(action: {
+                    if fireB.monitoringFires.contains(fireData) {
+                        fireB.removeMonitoredFire(name: fireData.name)
+                    } else {
+                        fireB.addMonitoredFire(name: fireData.name)
+                    }
+                }) {
+                    Image(systemName: "pin.circle.fill")
+                        .font(.system(size: 26))
+                        .foregroundColor(fireB.monitoringFires.contains(fireData) ? .blaze : .secondary)
+                }
             },
             trailing: Button(action: { show.toggle() }) {
                 CloseModalButton()

@@ -48,6 +48,8 @@ struct MiniFireCard: View {
         .contextMenu {
             Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "doc.text.magnifyingglass") }
+            Divider()
+            Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
         }
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)

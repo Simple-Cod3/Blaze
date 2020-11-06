@@ -209,7 +209,7 @@ struct ForestFire: Codable, Identifiable, Equatable {
         return location.prefix(1).capitalized + location.dropFirst()
     }
     
-    func share() {
+    func share(_ pos: Int) {
         var items = [
             ": : : : : : \(name) : : : : : :",
             " • Location: \(getLocation())",
@@ -222,7 +222,7 @@ struct ForestFire: Codable, Identifiable, Equatable {
         }
         
         let actionView = UIActivityViewController(activityItems: [items.joined()], applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
+        UIApplication.shared.windows[pos].rootViewController?.present(actionView, animated: true, completion: nil)
     }
 
     // MARK: - Computed Properties

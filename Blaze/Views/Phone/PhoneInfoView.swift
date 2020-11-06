@@ -114,10 +114,10 @@ struct PhoneInfoView: View {
                                     )
                                 )
                             }
-                            .frame(width: UIScreen.main.bounds.maxX-40, height: 230)
+                            .frame(height: 230)
+                            .frame(maxWidth: .infinity)
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                             .padding([.horizontal, .bottom], 20)
-                            //.allowsHitTesting(false)
                             .offset(x: -UIScreen.main.bounds.maxX*CGFloat((viewMode - 1)))
                             .onAppear {
                                 self.coordinateRegion = MKCoordinateRegion(
