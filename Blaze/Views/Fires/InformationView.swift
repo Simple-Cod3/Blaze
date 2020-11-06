@@ -176,15 +176,32 @@ struct InformationViewInner: View {
                 FormButton(text: "More Info", url: URL(string: "https://google.com")!)
                     .disabled(true)
             }
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                Button(action: { fireData.share(1) }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 16))
+                        Text("Share")
+                        Spacer()
+                    }
+                }.disabled(true)
+            } else {
+                Button(action: { fireData.share(1) }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "square.and.arrow.up")
+                            .font(.system(size: 16))
+                        Text("Share")
+                        Spacer()
+                    }
+                }
+            }
         }
         .navigationBarTitle("Fire Info")
         .navigationBarItems(
             leading: HStack(spacing: 20) {
-                Button(action: { fireData.share(0) }) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(.system(size: 24))
-                }
-                
                 Button(action: {
                     if fireB.monitoringFires.contains(fireData) {
                         fireB.removeMonitoredFire(name: fireData.name)

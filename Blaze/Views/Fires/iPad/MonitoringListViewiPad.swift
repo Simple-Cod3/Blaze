@@ -46,7 +46,7 @@ struct MonitoringListViewiPad: View {
                 
                 LazyVGrid(columns: layout, spacing: 10) {
                     ForEach(fireB.monitoringFires) { fire in
-                        NavigationLink(destination: FireMapView(fireData: fire)) {
+                        NavigationLink(destination: FireMapViewiPad(fireData: fire)) {
                             FlexibleFireInfo(columns: $columns, fireData: fire)
                         }
                         .buttonStyle(PlainButtonStyle())

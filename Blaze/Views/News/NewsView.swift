@@ -134,8 +134,14 @@ struct NewsCardButton: View {
             NewsCard(news: news)
                 .padding(.horizontal, 20)
                 .contextMenu {
-                    Button(action: { news.share(0) }) {
-                        Label("Share", systemImage: "square.and.arrow.up")
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        Button(action: { news.share(0) }) {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        }.disabled(true)
+                    } else {
+                        Button(action: { news.share(0) }) {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        }
                     }
                 }
                 .safariView(isPresented: $presenting) {
@@ -151,3 +157,4 @@ struct NewsCardButton: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
+

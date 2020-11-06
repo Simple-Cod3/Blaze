@@ -18,10 +18,13 @@ struct FormButton: View {
     var body: some View {
         HStack {
             Spacer()
+            Image(systemName: "ellipsis.circle")
+                .font(.system(size: 16))
+                .foregroundColor(.blaze)
             Button(action: toggle) {
                 Text(text)
-                    .font(.headline)
-                    .fontWeight(.bold)
+                    .font(.body)
+                    .fontWeight(.regular)
             }
             Spacer()
         }
@@ -49,8 +52,3 @@ struct FormButtonDirect: View {
     }
 }
 
-struct LongButton_Previews: PreviewProvider {
-    static var previews: some View {
-        FormButton(text: "Navigation", url: URL(string: "https://google.com")!)
-    }
-}
