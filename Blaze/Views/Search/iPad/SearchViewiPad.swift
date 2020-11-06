@@ -54,7 +54,6 @@ struct SearchViewiPad: View {
             })
         }
     }
-    
     private func getWords() {
         DispatchQueue.main.async {
             let query = searchBar.text.lowercased()

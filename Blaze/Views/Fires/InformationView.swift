@@ -94,22 +94,6 @@ struct InformationViewInner: View {
     
     private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
     
-    private func actionSheet() {
-        var items = [
-            ": : : : : : \(fireData.name) : : : : : :",
-            " • Location: \(fireData.getLocation())",
-            " • Area Burned: \(fireData.getAreaString())",
-            " • Contained: \(fireData.getContained())"
-        ].map { "\($0)\n"}
-        
-        if let url = URL(string: fireData.url) {
-            items.append("\n🔎 Learn more about it here: \n\(url)")
-        }
-        
-        let actionView = UIActivityViewController(activityItems: [items.joined()], applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(actionView, animated: true, completion: nil)
-    }
-    
     private var header: some View {
         ModalPresenter {
             HStack {

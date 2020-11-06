@@ -8,6 +8,20 @@
 import SwiftUI
 
 struct PhoneView: View {
+    @EnvironmentObject var numbers: PhoneBackend
+    @ObservedObject var loc = LocationProvider()
+    
+    @State private var pinned = [PhoneNumber]()
+    @State var sortedPhones = [PhoneNumber]()
+    
+    @State private var text = ""
+    @State private var mode = 0
+    @State private var show = false
+    
+    var dismiss: () -> Void
+    
+    // MARK: - Pin Functionality
+    
     // Run first when appear (sets the state)
     private func decodePin() {
         let pinned = UserDefaults.standard.stringArray(forKey: "pinnedFacilities") ?? [String]()
@@ -21,7 +35,7 @@ struct PhoneView: View {
         
         self.pinned = pinObjects
     }
-    
+    // Pin a phonenumber and save it
     private func addPin(_ newPin: PhoneNumber) {
         var pinned = UserDefaults.standard.stringArray(forKey: "pinnedFacilities") ?? [String]()
         
@@ -33,31 +47,21 @@ struct PhoneView: View {
         
         UserDefaults.standard.setValue(pinned, forKey: "pinnedFacilities")
     }
-    
     // When envoke remove
     private func removePin(indexSet: IndexSet) {
         pinned.remove(atOffsets: indexSet)
         syncStates()
     }
-    
     // Updates UserDefaults
     private func syncStates() {
         UserDefaults.standard.setValue(pinned.map { $0.name }, forKey: "pinnedFacilities")
     }
     
-    @State private var pinned = [PhoneNumber]()
-    
-    @EnvironmentObject var numbers: PhoneBackend
-    @ObservedObject var loc = LocationProvider()
-    @State private var text = ""
-    
-    var dismiss: () -> Void
+    // MARK: - View Chooser
     
     private var choices = ["location.circle.fill", "info.circle.fill", "pin.circle.fill"]
     private var choiceColors = [Color.blue, Color.green, Color.yellow]
     private var labels = ["Nearest to you", "Alphabetically", "By Pinned Facilities"]
-    
-    @State var sortedPhones = [PhoneNumber]()
     
     private func sortNums() {
         DispatchQueue.main.async {
@@ -90,9 +94,6 @@ struct PhoneView: View {
             )
         }
     }
-    
-    @State private var mode = 0
-    @State private var show = false
     
     init(dismiss: @escaping () -> Void) {
         self.dismiss = dismiss
@@ -165,7 +166,7 @@ struct PhoneView: View {
                             Text("Save Facilities")
                                 .font(.title3)
                                 .fontWeight(.semibold)
-                        
+                            
                             Text("Press and hold on a facility to pin it.")
                                 .font(.body)
                                 .fontWeight(.medium)
@@ -205,54 +206,6 @@ struct PhoneView: View {
                 decodePin()
                 sortNums()
                 show = true
-            }
-        }
-    }
-    
-    private struct PhoneNumberCell: View {
-        var dismiss: () -> Void
-        
-        var addPin: (PhoneNumber) -> Void
-        var number: PhoneNumber
-        
-        var body: some View {
-            NavigationLink(destination: PhoneInfoView(dismiss: dismiss, phoneData: number)) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(number.name?.replacingOccurrences(of: " CLOSED", with: "") ?? "Unknown Name")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .foregroundColor(.primary)
-                        HStack(spacing: 10) {
-                            if let county = number.county {
-                                Text(county)
-                                    .font(.body)
-                                    .fontWeight(.regular)
-                            }
-                            
-                            Text(number.phoneNumber!)
-                                .font(.body)
-                                .fontWeight(.regular)
-
-                            Spacer()
-                        }
-                        .foregroundColor(.secondary)
-                    }
-                    Spacer()
-                    Check(yes: number.name!.contains(" CLOSED"), interval: 0)
-                }
-                .padding(.vertical, 10)
-            }
-            .contextMenu {
-                Button(action: { addPin(number) }) {
-                    HStack {
-                        Text("Pin Facility")
-                        
-                        Image(systemName: "pin.circle.fill")
-                            .foregroundColor(.yellow)
-                            .font(.system(size: 25))
-                    }
-                }
             }
         }
     }

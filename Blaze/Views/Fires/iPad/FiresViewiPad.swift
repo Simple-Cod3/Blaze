@@ -109,36 +109,24 @@ struct FiresViewiPad: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        LazyVGrid(columns: [
-                            GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20)
-                        ], spacing: 20) {
+                        LazyVGrid(
+                            columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
+                            spacing: 20
+                        ) {
                             ForEach(
                                 fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(10).indices,
                                 id: \.self
                             ) { index in
-                                NavigationLink(destination: FireMapViewiPad(fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index])) {
+                                NavigationLink(
+                                    destination: FireMapViewiPad(
+                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
+                                    )
+                                ) {
                                     MiniFireCardiPad(
                                         selected: index == selectLargest,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
                                     )
-                                    .contextMenu {
-                                        Button(action: {
-                                        }) {
-                                            HStack {
-                                                Text("Add to Monitoring List")
-                                                Image(systemName: "plus.circle")
-                                            }
-                                        }
-                                        
-                                        Button(action: {
-                                        }) {
-                                            HStack {
-                                                Text("Remove from Monitoring List")
-                                                Image(systemName: "minus.circle")
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -165,29 +153,21 @@ struct FiresViewiPad: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
-                        LazyVGrid(columns: [
-                            GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20), GridItem(.fixed(220), spacing: 20)
-                        ], spacing: 20) {
+                        LazyVGrid(
+                            columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
+                            spacing: 20
+                        ) {
                             ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
-                                NavigationLink(destination: FireMapViewiPad(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
-                                    MiniFireCardiPad(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
-                                        .contextMenu {
-                                            Button(action: {
-                                            }) {
-                                                HStack {
-                                                    Text("Add to Monitoring List")
-                                                    Image(systemName: "plus.circle")
-                                                }
-                                            }
-                                            
-                                            Button(action: {
-                                            }) {
-                                                HStack {
-                                                    Text("Remove from Monitoring List")
-                                                    Image(systemName: "minus.circle")
-                                                }
-                                            }
-                                        }
+                                NavigationLink(
+                                    destination: FireMapViewiPad(
+                                        fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
+                                    )
+                                ) {
+                                    MiniFireCardiPad(
+                                        selected: index == selectAll,
+                                        fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index],
+                                        area: false
+                                    )
                                 }
                             }
                         }
