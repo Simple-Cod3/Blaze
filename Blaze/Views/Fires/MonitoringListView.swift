@@ -127,7 +127,7 @@ struct FlexibleFireInfo: View {
             }
             
             Text(fireData.name)
-                .font(fireData.name.count < 15 ? .title2 : .body)
+                .font(fireData.name.count < 20 ? .title2 : .body)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
                 .lineLimit(2)

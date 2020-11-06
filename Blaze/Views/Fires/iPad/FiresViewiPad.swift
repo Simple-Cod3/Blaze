@@ -122,23 +122,6 @@ struct FiresViewiPad: View {
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
                                     )
-                                    .contextMenu {
-                                        Button(action: {
-                                        }) {
-                                            HStack {
-                                                Text("Add to Monitoring List")
-                                                Image(systemName: "plus.circle")
-                                            }
-                                        }
-                                        
-                                        Button(action: {
-                                        }) {
-                                            HStack {
-                                                Text("Remove from Monitoring List")
-                                                Image(systemName: "minus.circle")
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -171,23 +154,6 @@ struct FiresViewiPad: View {
                             ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
                                 NavigationLink(destination: FireMapViewiPad(fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index])) {
                                     MiniFireCardiPad(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
-                                        .contextMenu {
-                                            Button(action: {
-                                            }) {
-                                                HStack {
-                                                    Text("Add to Monitoring List")
-                                                    Image(systemName: "plus.circle")
-                                                }
-                                            }
-                                            
-                                            Button(action: {
-                                            }) {
-                                                HStack {
-                                                    Text("Remove from Monitoring List")
-                                                    Image(systemName: "minus.circle")
-                                                }
-                                            }
-                                        }
                                 }
                             }
                         }
