@@ -19,7 +19,13 @@ struct UpdateLog: View {
                 )
                 
                 VersionCard(
+                    version: "1.1.1",
+                    changes: ["• Split code to improve run-time processes", "• Improved dynamic type on all devices", "• Removed Splash Screen option from settings", "• Bug fixes and improvements"]
+                )
+                
+                VersionDot(
                     version: "1.1",
+                    date: "11.5.20",
                     changes: ["• Added support for all iPad devices", "• Fixed source deprecation and implemented nationwide wildfire data", "• Changed the appearance of \"View All\" button in Wildfires tab", "• Tap and hold on a Wildfires Card to pin to Monitoring List", "• UI Improvements"]
                 )
                 
