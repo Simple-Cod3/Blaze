@@ -17,11 +17,18 @@ struct UnitsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .fontWeight(.medium)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(.primary)
-            Text(desc)
-                .font(desc.count > 30 ? .callout : .body)
-                .foregroundColor(.secondary)
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                Text(desc)
+                    .font(desc.count > 30 ? .footnote : .body)
+                    .foregroundColor(.secondary)
+            } else {
+                Text(desc)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+            }
             
             Divider().padding(.bottom, 5)
             

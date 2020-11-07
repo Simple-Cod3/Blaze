@@ -9,12 +9,10 @@ struct SettingsCardLink<Content: View>: View {
         VStack(alignment: .leading, spacing: 15) {
             Text(title)
                 .fontWeight(.medium)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(.primary)
             
             Text(desc)
-                .font(.body)
-                .fontWeight(.regular)
                 .foregroundColor(.secondary)
             
             Divider()
@@ -61,7 +59,7 @@ struct SettingsCardCustom<Content: View>: View {
             HStack(alignment: .top, spacing: 0) {
                 Text(title)
                     .fontWeight(.medium)
-                    .font(.title)
+                    .font(.title2)
                     .foregroundColor(.primary)
                 Spacer()
                 ProgressView()
@@ -69,8 +67,6 @@ struct SettingsCardCustom<Content: View>: View {
                     .animation(.spring())
             }
             Text(desc)
-                .font(.body)
-                .fontWeight(.regular)
                 .foregroundColor(.secondary)
             
             Divider().padding(.bottom, 5)
