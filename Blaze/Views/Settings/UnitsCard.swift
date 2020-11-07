@@ -20,8 +20,7 @@ struct UnitsCard: View {
                 .font(.title)
                 .foregroundColor(.primary)
             Text(desc)
-                .font(.body)
-                .fontWeight(.regular)
+                .font(desc.count > 30 ? .callout : .body)
                 .foregroundColor(.secondary)
             
             Divider().padding(.bottom, 5)

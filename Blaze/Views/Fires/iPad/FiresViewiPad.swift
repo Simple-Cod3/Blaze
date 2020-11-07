@@ -21,49 +21,46 @@ struct FiresViewiPad: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack {
+                VStack(spacing: 20) {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 300)
                         .padding(.vertical, 100)
                     
-                    VStack(spacing: 20) {
                         Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         
-                        HStack(spacing: 15) {
-                            Button(action: {
-                                self.showingFullMap.toggle()
-                            }) {
-                                TabLongButton(symbol: "map", text: "Fire Map", background: Color(.tertiarySystemBackground))
-                            }
-                            .sheet(isPresented: $showingFullMap) {
-                                FullFireMapModalViewiPad()
-                            }
-                            
-                            Button(action: {
-                                self.showingData.toggle()
-                            }) {
-                                TabLongButton(symbol: "tray.2", text: "Data", background: Color(.tertiarySystemBackground))
-
-                            }
-                            .sheet(isPresented: $showingData) {
-                                DataViewiPad(showModal: self.$showingData)
-                            }
+                    HStack(spacing: 15) {
+                        Button(action: {
+                            self.showingFullMap.toggle()
+                        }) {
+                            TabLongButton(symbol: "map", text: "Fire Map", background: Color(.tertiarySystemBackground))
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, -5)
+                        .sheet(isPresented: $showingFullMap) {
+                            FullFireMapModalViewiPad()
+                        }
                         
                         Button(action: {
-                            self.showingMonitor.toggle()
+                            self.showingData.toggle()
                         }) {
-                            TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.tertiarySystemBackground))
+                            TabLongButton(symbol: "tray.2", text: "Data", background: Color(.tertiarySystemBackground))
+
                         }
-                        .sheet(isPresented: $showingMonitor) {
-                            MonitoringListViewiPad().environmentObject(fireB)
+                        .sheet(isPresented: $showingData) {
+                            DataViewiPad(showModal: self.$showingData)
                         }
-                        .padding(.horizontal, 20)
                     }
-                    .padding(.bottom, 20)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, -5)
+                    
+                    Button(action: {
+                        self.showingMonitor.toggle()
+                    }) {
+                        TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.tertiarySystemBackground))
+                    }
+                    .sheet(isPresented: $showingMonitor) {
+                        MonitoringListViewiPad().environmentObject(fireB)
+                    }
+                    .padding([.horizontal, .bottom], 20)
                 }
             }
             .background(Color(.secondarySystemBackground))
