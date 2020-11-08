@@ -18,6 +18,20 @@ Download Blaze: Wildfires on the AppStore
 https://apps.apple.com/us/app/blaze-wildfires/id1530692513
 
 ## Updates
+
+**1.1**
+
+• Added support for all iPad devices
+
+• Fixed source deprecation and implemented nationwide wildfire data
+
+• Changed the appearance of "View All" button in Wildfires tab
+
+• Tap and hold on a Wildfires Card to pin to Monitoring List
+
+• UI Improvements
+
+
 **1.0.2**
 
 • Notice for deprecated source

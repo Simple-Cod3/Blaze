@@ -2,7 +2,7 @@
 //  GenericButton.swift
 //  Blaze
 //
-//  Created by Nathan Choi on 11/4/20.
+//  Created by Paul Wong on 11/6/20.
 //
 
 import SwiftUI

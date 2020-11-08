@@ -19,11 +19,11 @@ struct MiniFireCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
-                .font(.system(size: 26))
+                .font(.title2)
                 .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
-                .font(.system(size: fireData.name.count > 15 ? 20 : 26))
+                .font(fireData.name.count > 15 ? .title3 : .title2)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
             

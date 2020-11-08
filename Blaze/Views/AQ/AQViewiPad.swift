@@ -14,29 +14,15 @@ struct AQViewiPad: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    HStack {
-                        Header(
-                            title: "Air Quality",
-                            desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
-                            headerColor: determineColor(cat: forecast.forecasts[1].category.number)
-                        )
-                    }
+                    Header(
+                        title: "Air Quality",
+                        desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
+                        headerColor: determineColor(cat: forecast.forecasts[1].category.number)
+                    )
                     
                     AQCardiPad(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                     
-                    HStack {
-                        Text("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at ")
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .foregroundColor(.secondary)
-                            
-                        + Text("AirNow.gov")
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding(.horizontal, 20)
+                    Caption("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
                 }
             }
             .padding(.top, 20)

@@ -39,7 +39,7 @@ struct MapFireCard: View {
             HStack {
                 Image(systemName: "flame")
                     .foregroundColor(.blaze)
-                    .font(.system(size: 30))
+                    .font(.title)
                 
                 Spacer()
                 

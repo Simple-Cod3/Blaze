@@ -21,23 +21,20 @@ struct Header: View {
     }
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 15) {
-            Text(title)
-                .font(.system(size: 60))
-                .fontWeight(.semibold)
-                .foregroundColor(hColor)
-            
-            if let desc = desc {
-                Text(desc)
-                    .foregroundColor(.secondary)
+        HStack {
+            LazyVStack(alignment: .leading, spacing: 15) {
+                Text(title)
+                    .font(.system(size: 60))
+                    .fontWeight(.semibold)
+                    .foregroundColor(hColor)
+                
+                if let desc = desc {
+                    Text(desc)
+                        .foregroundColor(.secondary)
+                }
             }
+            Spacer()
         }
         .padding(.horizontal, padding)
-    }
-}
-
-struct Header_Previews: PreviewProvider {
-    static var previews: some View {
-        Header(title: "Big Fires", desc: "The US Forest Service is in unified command with CAL FIRE on the Elkhorn Fire, which is burning in the Tomhead Mountain area west of Red Bluff.")
     }
 }

@@ -15,7 +15,7 @@ struct AQView: View {
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView(showsIndicators: false) {
-                VStack {
+                VStack(spacing: 20) {
                     ZStack {
                         if let color = forecast.forecasts[1].category.number, color != -1 {
                             determineColor(cat: color)
@@ -44,22 +44,10 @@ struct AQView: View {
                         desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
                         headerColor: determineColor(cat: forecast.forecasts[1].category.number)
                     )
-                        .padding(.bottom, 20)
                     
                     AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                     
-                    HStack {
-                        Text("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at ")
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .foregroundColor(.secondary)
-                        + Text("AirNow.gov")
-                            .font(.caption)
-                            .fontWeight(.regular)
-                            .foregroundColor(.primary)
-                        Spacer()
-                    }
-                    .padding([.horizontal, .bottom], 20)
+                    Caption("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
                 }
             }
             .opacity(show ? 1 : 0)

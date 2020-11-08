@@ -17,9 +17,17 @@ struct UnitsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .fontWeight(.medium)
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(.primary)
-            Text(desc).foregroundColor(.secondary)
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                Text(desc)
+                    .font(desc.count > 30 ? .footnote : .body)
+                    .foregroundColor(.secondary)
+            } else {
+                Text(desc)
+                    .foregroundColor(.secondary)
+            }
             
             Divider().padding(.bottom, 5)
             
@@ -38,11 +46,5 @@ struct UnitsCard: View {
         .padding(20)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-    }
-}
-
-struct UnitsCard_Previews: PreviewProvider {
-    static var previews: some View {
-        UnitsCard(title: "Units", desc: "Change the units of the fire spread area")
     }
 }

@@ -103,6 +103,7 @@ struct SearchView: View {
                                 }
                             }}
                         )
+                        
                         DisclosureGroup(
                             isExpanded: $showWords,
                             content: {
@@ -199,12 +200,5 @@ struct SearchView: View {
                 getWords()
             }
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-            .environmentObject(FireBackend())
     }
 }

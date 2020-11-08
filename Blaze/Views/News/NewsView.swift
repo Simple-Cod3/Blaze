@@ -46,20 +46,11 @@ struct NewsView: View {
                             Image("speaker").resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(maxWidth: 200)
-                                .padding(35)
+                                .padding(40)
                             
-                            HStack {
-                                Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
-                                Spacer()
-                            }
+                            Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                             
-                            HStack {
-                                Text("Resources")
-                                    .font(.title)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 20)
-                                Spacer()
-                            }
+                            SubHeader(title: "Resources")
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
@@ -73,13 +64,7 @@ struct NewsView: View {
                                 }.padding(.horizontal, 20)
                             }
                             
-                            HStack {
-                                Text("Alerts")
-                                    .font(.title)
-                                    .fontWeight(.medium)
-                                    .padding(.horizontal, 20)
-                                Spacer()
-                            }
+                            SubHeader(title: "Alerts")
                             
                             ForEach(news.newsList.prefix(newsShown)) { news in
                                 NewsCardButton(news: news)
@@ -90,19 +75,12 @@ struct NewsView: View {
                                     print(news.newsList.count)
                                     newsShown += 10
                                 }) {
-                                    Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.white)
-                                        .padding(.vertical, 10)
-                                        .padding(.horizontal, 15)
-                                        .background(Color.blaze)
-                                        .clipShape(Capsule())
-                                        .padding(.horizontal, 20)
+                                    MoreButton(symbol: "plus.circle", text: "Show More")
                                 }
                             }
-                        }// VStack
+                        }
                         .padding(.bottom, 20)
-                    }// ScrollView
+                    }
                     StatusBarBackground()
                 }
             } else if news.failed {

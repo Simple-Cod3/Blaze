@@ -34,12 +34,3 @@ struct NoticeCard: View {
         .padding(.horizontal, 20)
     }
 }
-
-struct NoticeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        NoticeCard(
-            title: "Deprecated Source",
-            text: "Placeholder"
-        )
-    }
-}

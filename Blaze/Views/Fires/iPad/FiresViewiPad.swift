@@ -21,77 +21,45 @@ struct FiresViewiPad: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack {
+                VStack(spacing: 20) {
                     Image("hydrant").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 300)
                         .padding(.vertical, 100)
                     
-                    VStack(spacing: 20) {
-                        HStack {
-                            Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                            Spacer()
-                        }
+                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         
-                        HStack(spacing: 15) {
-                            Button(action: {
-                                self.showingFullMap.toggle()
-                            }) {
-                                HStack {
-                                    Spacer()
-                                    Text("\(Image(systemName: "map")) Fire Map")
-                                        .foregroundColor(.blaze)
-                                    Spacer()
-                                }
-                                .padding(.vertical, 12)
-                                .padding(.horizontal, 10)
-                                .background(Color(.tertiarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            }
-                            .sheet(isPresented: $showingFullMap) {
-                                FullFireMapModalViewiPad()
-                            }
-                            
-                            Button(action: {
-                                self.showingData.toggle()
-                            }) {
-                                HStack {
-                                    Spacer()
-                                    Text("\(Image(systemName: "tray.2")) Data")
-                                        .foregroundColor(.blaze)
-                                    Spacer()
-                                }
-                                .padding(.vertical, 12)
-                                .padding(.horizontal, 10)
-                                .background(Color(.tertiarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            }
-                            .sheet(isPresented: $showingData) {
-                                DataViewiPad(showModal: self.$showingData)
-                            }
+                    HStack(spacing: 15) {
+                        Button(action: {
+                            self.showingFullMap.toggle()
+                        }) {
+                            TabLongButton(symbol: "map", text: "Fire Map", background: Color(.tertiarySystemBackground))
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, -5)
+                        .sheet(isPresented: $showingFullMap) {
+                            FullFireMapModalViewiPad()
+                        }
                         
                         Button(action: {
-                            self.showingMonitor.toggle()
+                            self.showingData.toggle()
                         }) {
-                            HStack {
-                                Spacer()
-                                Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")
-                                    .foregroundColor(.blaze)
-                                Spacer()
-                            }
-                            .padding(.vertical, 12)
-                            .background(Color(.tertiarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .padding(.horizontal, 20)
+                            TabLongButton(symbol: "tray.2", text: "Data", background: Color(.tertiarySystemBackground))
                         }
-                        .sheet(isPresented: $showingMonitor) {
-                            MonitoringListViewiPad().environmentObject(fireB)
+                        .sheet(isPresented: $showingData) {
+                            DataViewiPad(showModal: self.$showingData)
                         }
                     }
-                    .padding(.bottom, 20)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, -5)
+                    
+                    Button(action: {
+                        self.showingMonitor.toggle()
+                    }) {
+                        TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.tertiarySystemBackground))
+                    }
+                    .sheet(isPresented: $showingMonitor) {
+                        MonitoringListViewiPad().environmentObject(fireB)
+                    }
+                    .padding([.horizontal, .bottom], 20)
                 }
             }
             .background(Color(.secondarySystemBackground))
@@ -99,7 +67,7 @@ struct FiresViewiPad: View {
             
             ScrollView {
                 SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
-                    .padding(.top, 40)
+                    .padding(.top, 20)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 20) {
@@ -127,13 +95,7 @@ struct FiresViewiPad: View {
                         Spacer()
                         
                         NavigationLink(destination: FullFireMapViewiPad()) {
-                            Text("\(Image(systemName: "plus.circle")) View All")
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 15)
-                                .background(Color.blaze)
-                                .clipShape(Capsule())
+                            MoreButton(symbol: "plus.circle", text: "View All")
                         }
                         .padding(.leading, -20)
                     }
@@ -166,23 +128,13 @@ struct FiresViewiPad: View {
                         }
                         Spacer()
                         NavigationLink(destination: FullFireMapViewiPad()) {
-                            Text("\(Image(systemName: "plus.circle")) View All")
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 15)
-                                .background(Color.blaze)
-                                .clipShape(Capsule())
+                            MoreButton(symbol: "plus.circle", text: "View All")
                         }
                         .padding(.leading, -20)
                     }
                     .padding(20)
                 }
-                Text("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
-                    .padding([.horizontal, .bottom], 20)
+                Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
             }
             .navigationBarTitle("Wildfires", displayMode: .inline)
         }

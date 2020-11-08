@@ -19,18 +19,18 @@ struct MiniFireCardiPad: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image(systemName: "flame")
-                .font(.system(size: 26))
+                .font(.title2)
                 .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
-                .font(.system(size: fireData.name.count > 30 ? 18 : 24))
+                .font(fireData.name.count > 30 ? .title3 : .title2)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
             
             Spacer()
             HStack {
                 Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                    .font(.system(size: fireData.getAreaString(areaUnits).count > 14 ? 16 : 17))
+                    .font(fireData.getAreaString(areaUnits).count > 14 ? .callout : .body)
                     .fontWeight(.regular)
                     .foregroundColor(.blaze)
                 Spacer()

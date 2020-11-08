@@ -49,22 +49,13 @@ struct SettingsViewiPad: View {
                         UpdateLog()
                     }
                     
-                    SettingsCardCustom(title: "Splash Screen", desc: "View Splash Screen again.") {
-                        Toggle("", isOn: !$welcomed)
-                            .toggleStyle(SwitchToggleStyle(tint: .blaze))
-                    }
-                    
                     SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.") {
                         CreditsView()
                     }
                 }
                 .padding(.horizontal, 20)
                 
-                Text("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
+                Caption("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
             }
         }
         .navigationBarTitle("Settings", displayMode: .large)
