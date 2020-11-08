@@ -55,7 +55,7 @@ extension CLLocationCoordinate2D: Equatable {
 }
 
 extension Color {
-    static let blaze = Color("blaze")
+    static var blaze = Color("blaze")
 }
 
 /// Inverting any binding boolean with prefix: `!`

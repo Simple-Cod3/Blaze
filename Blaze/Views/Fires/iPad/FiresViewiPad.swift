@@ -40,8 +40,6 @@ struct FiresViewiPad: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "map")) Fire Map")
-                                        .fontWeight(.regular)
-                                        .font(.body)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
@@ -60,8 +58,6 @@ struct FiresViewiPad: View {
                                 HStack {
                                     Spacer()
                                     Text("\(Image(systemName: "tray.2")) Data")
-                                        .fontWeight(.regular)
-                                        .font(.body)
                                         .foregroundColor(.blaze)
                                     Spacer()
                                 }
@@ -83,8 +79,6 @@ struct FiresViewiPad: View {
                             HStack {
                                 Spacer()
                                 Text("\(Image(systemName: "doc.text.magnifyingglass")) Monitoring List")
-                                    .fontWeight(.regular)
-                                    .font(.body)
                                     .foregroundColor(.blaze)
                                 Spacer()
                             }
@@ -134,7 +128,6 @@ struct FiresViewiPad: View {
                         
                         NavigationLink(destination: FullFireMapViewiPad()) {
                             Text("\(Image(systemName: "plus.circle")) View All")
-                                .font(.body)
                                 .fontWeight(.medium)
                                 .foregroundColor(.white)
                                 .padding(.vertical, 10)
@@ -174,7 +167,6 @@ struct FiresViewiPad: View {
                         Spacer()
                         NavigationLink(destination: FullFireMapViewiPad()) {
                             Text("\(Image(systemName: "plus.circle")) View All")
-                                .font(.body)
                                 .fontWeight(.medium)
                                 .foregroundColor(.white)
                                 .padding(.vertical, 10)

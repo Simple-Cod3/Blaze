@@ -168,7 +168,6 @@ struct PhoneView: View {
                                 .fontWeight(.semibold)
                             
                             Text("Press and hold on a facility to pin it.")
-                                .font(.body)
                                 .fontWeight(.medium)
                                 .foregroundColor(.secondary)
                         }

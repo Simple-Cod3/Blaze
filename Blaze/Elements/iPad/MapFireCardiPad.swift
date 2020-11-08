@@ -60,20 +60,14 @@ struct MapFireCardiPad: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text(locations)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .padding(.bottom, 30)
                         .fixedSize(horizontal: false, vertical: true)
                     
                     Text(acres)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
                     
                     Text(containment)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
                 }
             }

@@ -25,10 +25,7 @@ struct SettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 200) {
-                Text("Customize the app and learn more about it.")
-                    .font(.body)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
+                Text("Customize the app and learn more about it.").foregroundColor(.secondary)
                 
                 UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                 

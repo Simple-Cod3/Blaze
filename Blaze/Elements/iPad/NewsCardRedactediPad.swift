@@ -30,9 +30,7 @@ struct NewsCardRedactediPad: View {
                         .fixedSize(horizontal: false, vertical: true)
                     
                    Text("news.publisher")
-                        .fontWeight(.regular)
                         .foregroundColor(.blaze)
-                        .font(.body)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()

@@ -40,7 +40,6 @@ struct NewsCard: View {
                         .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     )
-                    .font(.body)
                     .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()

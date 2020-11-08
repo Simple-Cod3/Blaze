@@ -30,8 +30,6 @@ struct MiniFireCard: View {
             Spacer()
             HStack {
                 Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.blaze)
                 Spacer()
                 NavigationLink(destination: FireMapView(fireData: fireData)) {

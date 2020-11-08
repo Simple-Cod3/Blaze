@@ -29,8 +29,6 @@ struct HorizontalCard: View {
                 .font(.title2)
                 .fontWeight(.medium)
             Text(subtitle)
-                .font(.body)
-                .fontWeight(.regular)
                 .foregroundColor(.secondary)
         }
         .padding(20)

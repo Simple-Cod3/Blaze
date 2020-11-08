@@ -91,7 +91,6 @@ struct NewsView: View {
                                     newsShown += 10
                                 }) {
                                     Text("\(Image(systemName: "rectangle.stack.fill.badge.plus")) Show More")
-                                        .font(.body)
                                         .fontWeight(.medium)
                                         .foregroundColor(.white)
                                         .padding(.vertical, 10)

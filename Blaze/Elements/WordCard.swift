@@ -16,8 +16,6 @@ struct WordCard: View {
                 .font(.title)
                 .fontWeight(.medium)
             Text(term.definition)
-                .font(.body)
-                .fontWeight(.regular)
                 .foregroundColor(.secondary)
         }
         .padding(20)

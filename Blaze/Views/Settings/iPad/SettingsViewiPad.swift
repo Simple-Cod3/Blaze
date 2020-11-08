@@ -26,8 +26,6 @@ struct SettingsViewiPad: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 200) {
                 Text("Customize the app and learn more about it.")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 20)
                 

@@ -93,6 +93,7 @@
 		E9E31A8A250E958B007FF855 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E31A89250E958B007FF855 /* Progress.swift */; };
 		E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EC25031681006038FD /* ButtonStyles.swift */; };
 		E9E769EF250319F4006038FD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EE250319F4006038FD /* InformationView.swift */; };
+		E9F013512556F8AB00C30827 /* AddMonitoringFires.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F013502556F8AB00C30827 /* AddMonitoringFires.swift */; };
 		E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E325005A5700EC5A06 /* FiresBackend.swift */; };
 		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
 		E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
@@ -208,6 +209,7 @@
 		E9E31A95250EDD41007FF855 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E9E769EC25031681006038FD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		E9E769EE250319F4006038FD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		E9F013502556F8AB00C30827 /* AddMonitoringFires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMonitoringFires.swift; sourceTree = "<group>"; };
 		E9F222E325005A5700EC5A06 /* FiresBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiresBackend.swift; sourceTree = "<group>"; };
 		E9F222E525005BEB00EC5A06 /* ForestFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForestFire.swift; sourceTree = "<group>"; };
 		E9F222E72500886800EC5A06 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				E9E769EE250319F4006038FD /* InformationView.swift */,
 				E97FA5FA2554FFC2009754AA /* FlexibleFireInfo.swift */,
 				6D4A43B42552360D0066884D /* MonitoringListView.swift */,
+				E9F013502556F8AB00C30827 /* AddMonitoringFires.swift */,
 				6D6362C825534D15005A18A8 /* iPad */,
 			);
 			path = Fires;
@@ -678,6 +681,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D36026C2550EEFF0054B3A9 /* NewsCardRedactediPad.swift in Sources */,
+				E9F013512556F8AB00C30827 /* AddMonitoringFires.swift in Sources */,
 				E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */,
 				E9C41A962555037800AC3052 /* VersionTag.swift in Sources */,
 				6DA2FF302506AF6400C86F0C /* SettingsView.swift in Sources */,

@@ -57,8 +57,6 @@ struct SplashScreeniPad: View {
         var body: some View {
             VStack(alignment: .trailing) {
                 Text(text)
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.white)
                     .padding(15)
                     .background(Color.blaze)
@@ -156,8 +154,6 @@ struct SplashScreeniPad: View {
                             Spacer()
                             HStack {
                                 Text("10,000 Acres")
-                                    .font(.body)
-                                    .fontWeight(.regular)
                                     .foregroundColor(.blaze)
                                     .redacted(reason: .placeholder)
                                 Spacer()
@@ -189,8 +185,6 @@ struct SplashScreeniPad: View {
                             Spacer()
                             HStack {
                                 Text("10,000 Acres")
-                                    .font(.body)
-                                    .fontWeight(.regular)
                                     .foregroundColor(.blaze)
                                     .redacted(reason: .placeholder)
                                 Spacer()
@@ -241,7 +235,6 @@ struct SplashScreeniPad: View {
                             Text("Good").redacted(reason: .placeholder)
                                 .font(.largeTitle)
                             Text("Good").redacted(reason: .placeholder)
-                                .font(.body)
                         }
                     }
                 }

@@ -23,8 +23,6 @@ struct FormButton: View {
                 .foregroundColor(.blaze)
             Button(action: toggle) {
                 Text(text)
-                    .font(.body)
-                    .fontWeight(.regular)
             }
             Spacer()
         }

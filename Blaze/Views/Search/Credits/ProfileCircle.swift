@@ -25,16 +25,12 @@ struct ProfileCircle: View {
                 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(role)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     Text(name)
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
                     Text(link)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                     
                 }

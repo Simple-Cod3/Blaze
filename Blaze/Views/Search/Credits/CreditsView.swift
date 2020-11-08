@@ -14,8 +14,6 @@ struct CreditsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 400) {
                 Text("Three curious students with a passion for code and design.")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 20)
                 

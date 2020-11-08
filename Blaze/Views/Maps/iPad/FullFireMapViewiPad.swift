@@ -87,7 +87,6 @@ struct FullFireMapViewiPad: View {
             LazyVStack(alignment: .trailing, spacing: 10) {
                 Button(action: { showLabels.toggle() }) {
                     Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
-                        .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
                         .background(Color(.systemBackground))
@@ -96,7 +95,6 @@ struct FullFireMapViewiPad: View {
                 
                 Button(action: { show = true }) {
                     Text("\(Image(systemName: "list.bullet")) Fire Information")
-                        .font(.body)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
                         .background(Color(.systemBackground))

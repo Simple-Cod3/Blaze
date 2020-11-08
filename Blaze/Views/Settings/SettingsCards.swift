@@ -12,10 +12,7 @@ struct SettingsCardLink<Content: View>: View {
                 .font(.title)
                 .foregroundColor(.primary)
             
-            Text(desc)
-                .font(.body)
-                .fontWeight(.regular)
-                .foregroundColor(.secondary)
+            Text(desc).foregroundColor(.secondary)
             
             Divider()
                 .padding(.bottom, 5)
@@ -68,10 +65,7 @@ struct SettingsCardCustom<Content: View>: View {
                     .scaleEffect(loading ? 1 : 0)
                     .animation(.spring())
             }
-            Text(desc)
-                .font(.body)
-                .fontWeight(.regular)
-                .foregroundColor(.secondary)
+            Text(desc).foregroundColor(.secondary)
             
             Divider().padding(.bottom, 5)
             

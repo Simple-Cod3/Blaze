@@ -20,8 +20,6 @@ struct SubHeader: View {
                 
                 if let description = description {
                     Text(description)
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }

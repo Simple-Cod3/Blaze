@@ -37,8 +37,6 @@ struct MonitoringListViewiPad: View {
                         .padding(.top, 150)
                         .padding(.bottom, 20)
                     Text("Peal off this bandage by pinning wildfires.")
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .frame(width: 200)
                         .multilineTextAlignment(.center)

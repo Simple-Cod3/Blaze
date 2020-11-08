@@ -22,8 +22,6 @@ struct InformationSection: View {
                         .foregroundColor(.primary)
                     Spacer()
                     Text(row[2])
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.trailing)
                 }

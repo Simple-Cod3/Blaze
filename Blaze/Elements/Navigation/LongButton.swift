@@ -19,7 +19,6 @@ struct LongButton: View {
             Spacer()
             Text(text)
                 .foregroundColor(.white)
-                .font(.body)
             Spacer()
         }
         .padding(15)

@@ -33,10 +33,7 @@ struct VersionDot: View {
                 
                 Spacer()
                 
-                Text(date)
-                    .font(.body)
-                    .fontWeight(.regular)
-                    .foregroundColor(Color(.tertiaryLabel))
+                Text(date).foregroundColor(Color(.tertiaryLabel))
             }
             
             HStack(alignment: .top) {

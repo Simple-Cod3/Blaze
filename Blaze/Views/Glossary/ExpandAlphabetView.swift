@@ -49,15 +49,8 @@ struct ExpandAlphabetView: View {
                     .padding(.trailing, 40)
                 Spacer()
                 
-                (Text(glossary[key]![0].id)
-                    .font(.body)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
-                + Text(" • " + glossary[key]![1].id)
-                    .font(.body)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
-                )
+                (Text(glossary[key]![0].id) + Text(" • " + glossary[key]![1].id))
+                .foregroundColor(.secondary)
                 .lineLimit(1)
             }
             .padding(.leading, 20)

@@ -24,13 +24,9 @@ struct PhoneNumberCell: View {
                     HStack(spacing: 10) {
                         if let county = number.county {
                             Text(county)
-                                .font(.body)
-                                .fontWeight(.regular)
                         }
                         
                         Text(number.phoneNumber!)
-                            .font(.body)
-                            .fontWeight(.regular)
 
                         Spacer()
                     }

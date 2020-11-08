@@ -57,8 +57,6 @@ struct SplashScreen: View {
         var body: some View {
             VStack(alignment: .trailing) {
                 Text(text)
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.white)
                     .padding(15)
                     .background(Color.blaze)
@@ -155,7 +153,6 @@ struct SplashScreen: View {
                         Text("Good").redacted(reason: .placeholder)
                             .font(.largeTitle)
                         Text("Good").redacted(reason: .placeholder)
-                            .font(.body)
                     }
                 }
             }

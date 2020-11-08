@@ -36,8 +36,6 @@ struct MonitoringListView: View {
                     .padding(.top, 150)
                     .padding(.bottom, 20)
                 Text("Peal off this bandage by pinning wildfires.")
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
                     .frame(width: 200)
                     .multilineTextAlignment(.center)
@@ -72,39 +70,7 @@ struct MonitoringListView: View {
             }
         )
         .sheet(isPresented: $show) {
-            NavigationView {
-                List(
-                    fireB.fires
-                        .sorted(by: { $0.name < $1.name })
-                        .filter({ !fireB.monitoringFires.map {$0.name}.contains($0.name) })
-                ) { item in
-                    Button(action: {
-                        fireB.addMonitoredFire(name: item.name)
-                        show = false
-                    }) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(item.name)
-                                    .font(.headline)
-                                Text("\(Image(systemName: "mappin.and.ellipse")) \(item.getLocation())")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                            }
-                            Spacer()
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 25))
-                                .foregroundColor(.green)
-                        }
-                        .padding(.vertical, 10)
-                    }
-                }
-                .navigationBarTitle("Monitor Fires")
-                .navigationBarItems(
-                    trailing: Button(action: { show = false }) {
-                        CloseModalButton()
-                    })
-            }
+            AddMonitoringFires(show: $show).environmentObject(fireB)
         }
     }
 }

@@ -30,8 +30,6 @@ struct HorizontalCardRedactediPad: View {
                     .font(.title2)
                     .fontWeight(.medium)
                 Text(subtitle)
-                    .font(.body)
-                    .fontWeight(.regular)
                     .foregroundColor(.secondary)
             }
             Spacer()

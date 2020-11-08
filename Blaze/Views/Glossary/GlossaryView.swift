@@ -53,8 +53,6 @@ struct GlossaryView: View {
                                 }.navigationBarTitle("Term", displayMode: .inline)
                             ) {
                                 Text(word.id)
-                                    .font(.body)
-                                    .fontWeight(.regular)
                                     .foregroundColor(.secondary)
                             }
                         }

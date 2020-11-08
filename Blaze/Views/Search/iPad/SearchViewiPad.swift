@@ -76,10 +76,7 @@ struct SearchViewiPad: View {
                             content: {
                                 ForEach(firesList) { fire in
                                     NavigationLink(destination: FireMapViewiPad(fireData: fire)) {
-                                        Text(fire.name)
-                                            .font(.body)
-                                            .fontWeight(.regular)
-                                            .foregroundColor(.secondary)
+                                        Text(fire.name).foregroundColor(.secondary)
                                     }
                                 }},
                             label: { HStack {
@@ -116,10 +113,7 @@ struct SearchViewiPad: View {
                                         }
                                         .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
-                                        Text(word.id)
-                                            .font(.body)
-                                            .fontWeight(.regular)
-                                            .foregroundColor(.secondary)
+                                        Text(word.id).foregroundColor(.secondary)
                                     }
                                 }
                             },
@@ -202,8 +196,6 @@ struct SearchViewiPad: View {
                         .padding(.bottom, 20)
                     
                     Text("Nothing to see here, we just patched this part up with a bandage.")
-                        .font(.body)
-                        .fontWeight(.regular)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .frame(width: 350)

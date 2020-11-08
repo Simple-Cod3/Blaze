@@ -28,8 +28,6 @@ struct GenericButton: View {
             }
             if let text = text {
                 Text(text)
-                    .fontWeight(.regular)
-                    .font(.body)
                     .foregroundColor(color)
             }
             Spacer()
