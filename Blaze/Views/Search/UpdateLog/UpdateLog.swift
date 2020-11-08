@@ -20,7 +20,7 @@ struct UpdateLog: View {
                 
                 VersionCard(
                     version: "1.1.1",
-                    changes: ["• Split code to improve run-time processes", "• Improved dynamic type on all devices", "• Removed Splash Screen option from settings", "• Bug fixes and improvements"]
+                    changes: ["• Split code to improve run-time processes", "• Improved dynamic type on all devices", "• Removed Splash Screen option from settings", "• Added three column toggle for Monitoring List on iPad", "• Reduced ram usage by 25 percent", "• Bug fixes and improvements"]
                 )
                 
                 VersionDot(

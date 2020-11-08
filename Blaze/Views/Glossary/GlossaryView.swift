@@ -61,12 +61,12 @@ struct GlossaryView: View {
                         }
                     }
                 }
-                    .listSeparatorStyle(.none)
-                    .navigationBarTitle(Text("Glossary"), displayMode: .large)
-                    .navigationBarItems(trailing: Button(action: dismiss) {
-                        CloseModalButton()
-                    })
-                    .add(bar)
+                .listSeparatorStyle(.none)
+                .navigationBarTitle(Text("Glossary"), displayMode: .large)
+                .navigationBarItems(trailing: Button(action: dismiss) {
+                    CloseModalButton()
+                })
+                .add(bar)
             }
         }.onAppear {
             self.getWords()
