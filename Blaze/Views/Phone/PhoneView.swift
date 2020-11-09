@@ -108,7 +108,6 @@ struct PhoneView: View {
     var body: some View {
         NavigationView {
             List {
-                VStack(spacing: 20) {
                     HStack(spacing: 20) {
                         ForEach(choices.indices) { index in
                             Button(action: {
@@ -141,7 +140,7 @@ struct PhoneView: View {
                     .foregroundColor(.secondary)
                     .background(Color(.tertiarySystemBackground))
                     .cornerRadius(10)
-                }
+                
                 .background(Color(.secondarySystemBackground), alignment: .bottom)
                 .onChange(of: text) { _ in
                     sortNums()

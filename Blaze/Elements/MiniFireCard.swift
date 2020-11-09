@@ -33,7 +33,7 @@ struct MiniFireCard: View {
                 Button(action: {
                     self.show.toggle()
                 }) {
-                    RectButton("INFO", color: .blaze, background: .white)
+                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
                 }
                 .sheet(isPresented: $show) {
                     InformationView(show: $show, fireData: fireData)
