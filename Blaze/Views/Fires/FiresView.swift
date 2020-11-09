@@ -27,7 +27,8 @@ struct FiresView: View {
                             .padding(60)
                         
                         Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-  
+
+                        
                         HStack(spacing: 15) {
                             NavigationLink(destination: FullFireMapView()) {
                                 TabLongButton(symbol: "map", text: "Fire Map", background: Color(.secondarySystemBackground))
