@@ -12,15 +12,12 @@ struct ProgressBarView: View {
     @Binding var progress: Double
     @Binding var done: Bool
     @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    
-    var text: String
-    
+        
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
             HStack(spacing: 10) {
                 ProgressView()
-                Text("Loading \(text)...")
+                Text("Fetching Data")
                     .foregroundColor(.secondary)
             }
             ProgressBar(progress: $progress)
@@ -39,8 +36,14 @@ struct ProgressBarView: View {
                         }
                     }
                 }
-            Spacer()
-        }.padding(50)
+            Text("Hang on...")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .padding(15)
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .frame(width: 300)
     }
 }
 

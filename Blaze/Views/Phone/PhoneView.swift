@@ -59,8 +59,7 @@ struct PhoneView: View {
     
     // MARK: - View Chooser
     
-    private var choices = ["location.circle.fill", "info.circle.fill", "pin.circle.fill"]
-    private var choiceColors = [Color.blue, Color.green, Color.yellow]
+    private var choices = ["location.circle", "info.circle", "pin.circle"]
     private var labels = ["Nearest to you", "Alphabetically", "By Pinned Facilities"]
     
     private func sortNums() {
@@ -109,57 +108,44 @@ struct PhoneView: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    LazyVStack(alignment: .leading, spacing: 20) {
-                        VStack(alignment: .leading) {
-                            Text("Facilities")
-                                .font(.system(size: 60))
-                                .fontWeight(.semibold)
-                                .foregroundColor(.blaze)
-                            
-                            Spacer()
-                            
-                            HStack {
-                                ForEach(choices.indices) { index in
-                                    Button(action: {
-                                        if index != mode {
-                                            mode = index
-                                            sortNums()
-                                        }
-                                    }) {
-                                        Image(systemName: choices[index])
-                                            .font(.system(size: 30))
-                                            .foregroundColor(index == mode ? choiceColors[index] : Color(.tertiaryLabel))
-                                            .scaleEffect(show ? 1 : 0)
-                                            .animation(
-                                                Animation.spring(response: 0.5 + Double(index)*0.1, dampingFraction: 0.5)
-                                                    .delay(0.8)
-                                            )
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
+                    HStack(spacing: 20) {
+                        ForEach(choices.indices) { index in
+                            Button(action: {
+                                if index != mode {
+                                    mode = index
+                                    sortNums()
                                 }
+                            }) {
+                                HStack {
+                                    Spacer()
+                                        Image(systemName: choices[index])
+                                            .font(Font.body.weight(.regular))
+                                            .foregroundColor(index == mode ? .blaze : .secondary)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 12)
+                                .background(Color(.tertiarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
                         }
-                        
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            TextField("Search", text: $text)
-                                .foregroundColor(.primary)
-                                .keyboardType(.alphabet)
-                            
-                        }
-                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                        .foregroundColor(.secondary)
-                        .background(Color(.tertiarySystemGroupedBackground))
-                        .cornerRadius(10)
                     }
-                    .padding(.top, 20)
-                    .padding(.bottom, 30)
-                }
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        TextField("Search", text: $text)
+                            .foregroundColor(.primary)
+                            .keyboardType(.alphabet)
+                        
+                    }
+                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                    .foregroundColor(.secondary)
+                    .background(Color(.tertiarySystemBackground))
+                    .cornerRadius(10)
+                
+                .background(Color(.secondarySystemBackground), alignment: .bottom)
                 .onChange(of: text) { _ in
                     sortNums()
                 }
-                
+
                 if mode == 2 {
                     if pinned.count == 0 {
                         VStack(alignment: .leading, spacing: 5) {
@@ -193,9 +179,8 @@ struct PhoneView: View {
                         }
                     }
                 }
-                
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle("Facilities", displayMode: .large)
             .navigationBarItems(
                 trailing: Button(action: dismiss) {
                     CloseModalButton()
@@ -209,3 +194,4 @@ struct PhoneView: View {
         }
     }
 }
+

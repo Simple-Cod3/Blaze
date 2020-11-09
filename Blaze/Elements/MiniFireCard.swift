@@ -17,23 +17,30 @@ struct MiniFireCard: View {
     var area: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 5) {
             Image(systemName: "flame")
                 .font(.title2)
-                .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
                 .font(fireData.name.count > 15 ? .title3 : .title2)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
-            
+            Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
+                .foregroundColor(.secondary)
+
             Spacer()
-            HStack {
-                Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                    .foregroundColor(.blaze)
-                Spacer()
+            HStack(spacing: 15) {
+                Button(action: {
+                    self.show.toggle()
+                }) {
+                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
+                }
+                .sheet(isPresented: $show) {
+                    InformationView(show: $show, fireData: fireData)
+                }
+                
                 NavigationLink(destination: FireMapView(fireData: fireData)) {
-                    RoundedButton("MAP")
+                    RectButton("MAP", color: .white, background: .blaze)
                 }
             }
         }
@@ -52,28 +59,5 @@ struct MiniFireCard: View {
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)
         }
-    }
-}
-
-struct MiniFireCard_Previews: PreviewProvider {
-    static var previews: some View {
-        let fire = ForestFire(
-            name: "Elkhorn Fire",
-            location: "Lake Hughes Rd and Prospect Rd, southwest Lake Hughes",
-            counties: ["Los Angeles"],
-            latitude: 34.679402,
-            longitude: -118.451917,
-            acres: 45340,
-            contained: 58,
-            relURL: "/incidents/2020/8/12/lake-fire/"
-        )
-
-        NavigationView {
-            MiniFireCard(selected: true, fireData: fire, area: true)
-        }
-        .padding(15)
-        .frame(width: 230, height: 190)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }

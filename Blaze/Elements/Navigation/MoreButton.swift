@@ -14,15 +14,14 @@ struct MoreButton: View {
     var body: some View {
         HStack {
             Image(systemName: symbol)
-                .font(Font.body.weight(.medium))
+                .font(Font.body.weight(.regular))
 
             Text(text)
-                .fontWeight(.medium)
         }
-        .foregroundColor(.white)
+        .foregroundColor(.blaze)
         .padding(.vertical, 10)
         .padding(.horizontal, 15)
-        .background(Color.blaze)
+        .background(Color(.secondarySystemBackground))
         .clipShape(Capsule())
     }
 }

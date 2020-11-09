@@ -13,6 +13,7 @@ struct FiresView: View {
     @State var selectLargest = 0
     
     @State var progress = 0.0
+    @State var data = false
     @State var show = false
     @State var done = false
     
@@ -21,90 +22,99 @@ struct FiresView: View {
             NavigationView {
                 ZStack(alignment: .top) {
                     ScrollView {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.data.toggle()
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .font(Font.title2.weight(.regular))
+                                    .foregroundColor(.blaze)
+                                    .padding(.trailing, 20)
+                            }
+                            .sheet(isPresented: $data) {
+                                DataView(showModal: $data)
+                            }
+                        }
+                        
                         Image("hydrant").resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: 275)
                             .padding(60)
                         
-                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-
-                        
-                        HStack(spacing: 15) {
+                        VStack(spacing: 20) {
+                            Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                            
                             NavigationLink(destination: FullFireMapView()) {
-                                TabLongButton(symbol: "map", text: "Fire Map", background: Color(.secondarySystemBackground))
-                            }
+                                VerticalButton(symbol: "map", text: "Fire Map", desc: "Showing wildfires in California", mark: "chevron.forward")
+                            }.buttonStyle(CardButtonStyle())
                             
-                            NavigationLink(destination: DataView()) {
-                                TabLongButton(symbol: "tray.2", text: "Data", background: Color(.secondarySystemBackground))
-                            }
-                        }
-                        .padding([.horizontal, .top], 20)
-                        .padding(.bottom, 7)
-                        
-                        NavigationLink(destination: MonitoringListView()) {
-                            TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.secondarySystemBackground))
-                        }
-                        .padding([.horizontal, .bottom], 20)
+                            NavigationLink(destination: MonitoringListView()) {
+                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "5 fires pinned", mark: "chevron.forward")
+                            }.buttonStyle(CardButtonStyle())
+                            .padding(.top, -5)
+                            .padding(.bottom, 10)
 
-                        SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 20) {
-                                ForEach(
-                                    fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
-                                    id: \.self
-                                ) { index in
-                                    NavigationLink(
-                                        destination: FireMapView(
-                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
-                                        )
-                                    ) {
-                                        MiniFireCard(
-                                            selected: index == selectLargest,
-                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                            area: true
-                                        )
-                                    }
-                                }
-                                Spacer()
-                                NavigationLink(destination: FullFireMapViewiPad()) {
-                                    MoreButton(symbol: "plus.circle", text: "View All")
-                                }
-                                .padding(.leading, -20)
-                            }
-                            .padding(20)
-                        }
-                        .edgesIgnoringSafeArea(.horizontal)
-
-                        Divider().padding(20)
-                        
-                        SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 20) {
-                                ForEach(
-                                    fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices,
-                                    id: \.self
-                                ) { index in
-                                    NavigationLink(
-                                        destination: FireMapView(
-                                            fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
-                                        )
-                                    ) {
-                                        MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
-                                    }
-                                }
-                                Spacer()
-                                NavigationLink(destination: FullFireMapViewiPad()) {
-                                    MoreButton(symbol: "plus.circle", text: "View All")
-                                }
-                                .padding(.leading, -20)
-                            }
-                            .padding(20)
-                        }
-                        .edgesIgnoringSafeArea(.horizontal)
+                            SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
                             
-                        Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
-                        
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 20) {
+                                    ForEach(
+                                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
+                                        id: \.self
+                                    ) { index in
+                                        NavigationLink(
+                                            destination: FireMapView(
+                                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
+                                            )
+                                        ) {
+                                            MiniFireCard(
+                                                selected: index == selectLargest,
+                                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                                area: true
+                                            )
+                                        }
+                                    }
+                                    Spacer()
+                                    NavigationLink(destination: FullFireMapView()) {
+                                        MoreButton(symbol: "plus.circle", text: "View All")
+                                    }.buttonStyle(CardButtonStyle())
+                                    .padding(.leading, -20)
+                                }
+                                .padding(.horizontal, 20)
+                            }
+                            .edgesIgnoringSafeArea(.horizontal)
+
+                            Divider().padding(.horizontal, 20)
+                            
+                            SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 20) {
+                                    ForEach(
+                                        fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(5).indices,
+                                        id: \.self
+                                    ) { index in
+                                        NavigationLink(
+                                            destination: FireMapView(
+                                                fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
+                                            )
+                                        ) {
+                                            MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
+                                        }
+                                    }
+                                    Spacer()
+                                    NavigationLink(destination: FullFireMapView()) {
+                                        MoreButton(symbol: "plus.circle", text: "View All")
+                                    }.buttonStyle(CardButtonStyle())
+                                    .padding(.leading, -20)
+                                }
+                                .padding(.horizontal, 20)
+                            }
+                            .edgesIgnoringSafeArea(.horizontal)
+                                
+                            Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
+                        }
                         .navigationBarTitle("Wildfires", displayMode: .inline)
                         .navigationBarHidden(true)
                     }
@@ -133,8 +143,7 @@ struct FiresView: View {
             ProgressBarView(
                 progressObjs: $fireB.progress,
                 progress: $progress,
-                done: $done,
-                text: "Fires"
+                done: $done
             )
         }
     }

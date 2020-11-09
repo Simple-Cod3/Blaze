@@ -26,6 +26,9 @@ struct MonitoringListViewiPad: View {
                     Button(action: {withAnimation(.spring()) {columns = 2.0}}) {
                         GenericButton(icon: "rectangle.grid.2x2", color: columns == 2 ? .blaze : .secondary)
                     }
+                    Button(action: {withAnimation(.spring()) {columns = 3.0}}) {
+                        GenericButton(icon: "square.grid.3x2", color: columns == 3 ? .blaze : .secondary)
+                    }
                 }
                 .padding(20)
                 .background(Color(.secondarySystemBackground).frame(height: UIScreen.main.bounds.maxY), alignment: .bottom)
@@ -62,49 +65,17 @@ struct MonitoringListViewiPad: View {
                 .padding(.bottom, 50)
                 .animation(.spring(), value: fireB.monitoringFires)
                 .background(Color(.systemBackground))
-                .navigationBarTitle("Monitoring List", displayMode: .large)
-                .navigationBarItems(
-                    trailing: Button(action: { show = true }) {
-                        Image(systemName: "plus.circle")
-                            .font(Font.title2.weight(.regular))
-                    }
-                )
             }
+            .navigationBarTitle("Monitoring List", displayMode: .large)
+            .navigationBarItems(
+                trailing: Button(action: { show = true }) {
+                    Image(systemName: "plus.circle")
+                        .font(Font.title2.weight(.regular))
+                }
+            )
         }
         .sheet(isPresented: $show) {
-            NavigationView {
-                List(
-                    fireB.fires
-                        .sorted(by: { $0.name < $1.name })
-                        .filter({ !fireB.monitoringFires.map {$0.name}.contains($0.name) })
-                ) { item in
-                    Button(action: {
-                        fireB.addMonitoredFire(name: item.name)
-                        show = false
-                    }) {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(item.name)
-                                    .font(.headline)
-                                Text("\(Image(systemName: "mappin.and.ellipse")) \(item.getLocation())")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                            }
-                            Spacer()
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 25))
-                                .foregroundColor(.green)
-                        }
-                        .padding(.vertical, 10)
-                    }
-                }
-                .navigationBarTitle("Monitor Fires")
-                .navigationBarItems(
-                    trailing: Button(action: { show = false }) {
-                        CloseModalButton()
-                    })
-            }
+            AddMonitoringFires(show: $show).environmentObject(fireB)
         }
     }
 }
