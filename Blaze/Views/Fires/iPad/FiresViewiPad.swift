@@ -19,125 +19,132 @@ struct FiresViewiPad: View {
     @State var showingMonitor = false
 
     var body: some View {
-        NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    Image("hydrant").resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 300)
-                        .padding(.vertical, 100)
-                    
-                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+        if done {
+            NavigationView {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        Image("hydrant").resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 300)
+                            .padding(.vertical, 100)
                         
-                    HStack(spacing: 15) {
-                        Button(action: {
-                            self.showingFullMap.toggle()
-                        }) {
-                            TabLongButton(symbol: "map", text: "Fire Map", background: Color(.tertiarySystemBackground))
-                        }
-                        .sheet(isPresented: $showingFullMap) {
-                            FullFireMapModalViewiPad()
-                        }
+                            Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+                            
+                            Button(action: {
+                                self.showingFullMap.toggle()
+                            }) {
+                                HorizontalButton(symbol: "map", text: "Fire Map", desc: "Showing wildfires in California")
+                            }
+                            .sheet(isPresented: $showingFullMap) {
+                                FullFireMapModalViewiPad()
+                            }
                         
                         Button(action: {
-                            self.showingData.toggle()
+                            self.showingMonitor.toggle()
                         }) {
-                            TabLongButton(symbol: "tray.2", text: "Data", background: Color(.tertiarySystemBackground))
+                            HorizontalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "5 fires pinned")
                         }
-                        .sheet(isPresented: $showingData) {
-                            DataViewiPad(showModal: self.$showingData)
+                        .sheet(isPresented: $showingMonitor) {
+                            MonitoringListViewiPad().environmentObject(fireB)
                         }
+                        .padding([.horizontal, .bottom], 20)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, -5)
-                    
-                    Button(action: {
-                        self.showingMonitor.toggle()
-                    }) {
-                        TabLongButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", background: Color(.tertiarySystemBackground))
-                    }
-                    .sheet(isPresented: $showingMonitor) {
-                        MonitoringListViewiPad().environmentObject(fireB)
-                    }
-                    .padding([.horizontal, .bottom], 20)
                 }
-            }
-            .background(Color(.secondarySystemBackground))
-            .navigationBarTitle("", displayMode: .inline)
-            
-            ScrollView {
-                SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
-                    .padding(.top, 20)
+                .background(Color(.secondarySystemBackground))
+                .navigationBarTitle("", displayMode: .inline)
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        LazyVGrid(
-                            columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
-                            spacing: 20
-                        ) {
-                            ForEach(
-                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(10).indices,
-                                id: \.self
-                            ) { index in
-                                NavigationLink(
-                                    destination: FireMapViewiPad(
-                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
-                                    )
-                                ) {
-                                    MiniFireCardiPad(
-                                        selected: index == selectLargest,
-                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                        area: true
-                                    )
+                ScrollView {
+                    SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
+                        .padding(.top, 20)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            LazyVGrid(
+                                columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
+                                spacing: 20
+                            ) {
+                                ForEach(
+                                    fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(10).indices,
+                                    id: \.self
+                                ) { index in
+                                    NavigationLink(
+                                        destination: FireMapViewiPad(
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
+                                        )
+                                    ) {
+                                        MiniFireCardiPad(
+                                            selected: index == selectLargest,
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                            area: true
+                                        )
+                                    }
                                 }
                             }
+                            Spacer()
+                            
+                            NavigationLink(destination: FullFireMapViewiPad()) {
+                                MoreButton(symbol: "plus.circle", text: "View All")
+                            }
+                            .padding(.leading, -20)
                         }
-                        Spacer()
-                        
-                        NavigationLink(destination: FullFireMapViewiPad()) {
-                            MoreButton(symbol: "plus.circle", text: "View All")
-                        }
-                        .padding(.leading, -20)
+                        .padding(20)
                     }
-                    .padding(20)
-                }
-                
-                Divider().padding(20)
-                
-                SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        LazyVGrid(
-                            columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
-                            spacing: 20
-                        ) {
-                            ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
-                                NavigationLink(
-                                    destination: FireMapViewiPad(
-                                        fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
-                                    )
-                                ) {
-                                    MiniFireCardiPad(
-                                        selected: index == selectAll,
-                                        fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index],
-                                        area: false
-                                    )
+                    
+                    Divider().padding(20)
+                    
+                    SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            LazyVGrid(
+                                columns: Array(repeating: GridItem(.fixed(220), spacing: 20), count: 5),
+                                spacing: 20
+                            ) {
+                                ForEach(fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(10).indices, id: \.self) { index in
+                                    NavigationLink(
+                                        destination: FireMapViewiPad(
+                                            fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index]
+                                        )
+                                    ) {
+                                        MiniFireCardiPad(
+                                            selected: index == selectAll,
+                                            fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index],
+                                            area: false
+                                        )
+                                    }
                                 }
                             }
+                            Spacer()
+                            NavigationLink(destination: FullFireMapViewiPad()) {
+                                MoreButton(symbol: "plus.circle", text: "View All")
+                            }
+                            .padding(.leading, -20)
                         }
-                        Spacer()
-                        NavigationLink(destination: FullFireMapViewiPad()) {
-                            MoreButton(symbol: "plus.circle", text: "View All")
-                        }
-                        .padding(.leading, -20)
+                        .padding(20)
                     }
-                    .padding(20)
+                    Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
                 }
-                Caption("Updates to fire data cannot be guaranteed on a set time schedule. Please use the information in Blaze only as a reference. This app is not meant to provide real-time evacuation or fire behavior information.")
+                .navigationBarTitle("Wildfires", displayMode: .inline)
             }
-            .navigationBarTitle("Wildfires", displayMode: .inline)
+            .ignoresSafeArea(.all)
+        } else if fireB.failed {
+            VStack(spacing: 20) {
+                Image(systemName: "wifi.exclamationmark")
+                    .font(.system(size: 30))
+                    .foregroundColor(.blaze)
+                
+                Text("No Connection")
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                Button("Click to Retry", action: { fireB.refreshFireList() })
+            }
+        } else {
+            ProgressBarView(
+                progressObjs: $fireB.progress,
+                progress: $progress,
+                done: $done
+            )
         }
-        .ignoresSafeArea(.all)
     }
 }

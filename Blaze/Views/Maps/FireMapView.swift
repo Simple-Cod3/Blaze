@@ -83,8 +83,8 @@ struct FireMapView: View {
                     .padding(.bottom, 20)
                     .buttonStyle(InfoCardButtonStyle())
             }
-                .buttonStyle(InfoCardButtonStyle())
-                .animation(.spring(), value: hide)
+            .buttonStyle(InfoCardButtonStyle())
+            .animation(.spring(), value: hide)
             
         }
         .sheet(isPresented: $show) {

@@ -19,6 +19,7 @@ struct InfoCardButtonStyle: ButtonStyle {
 struct CardButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
+            .opacity(configuration.isPressed ? 0.25 : 1)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.spring(), value: configuration.isPressed)
     }

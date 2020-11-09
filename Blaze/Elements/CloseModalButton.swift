@@ -17,9 +17,3 @@ struct CloseModalButton: View {
             .clipShape(Circle())
     }
 }
-
-struct CloseModalButton_Previews: PreviewProvider {
-    static var previews: some View {
-        CloseModalButton()
-    }
-}

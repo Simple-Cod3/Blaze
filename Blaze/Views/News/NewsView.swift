@@ -49,23 +49,18 @@ struct NewsView: View {
                                 .padding(40)
                             
                             Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
+                                                        
+                            ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
+                                VerticalButton(symbol: "phone.circle", text: "Emergency Contacts", desc: "Find the nearest fire stations", mark: "chevron.up")
+                            }.buttonStyle(CardButtonStyle())
                             
-                            SubHeader(title: "Resources")
+                            ModalLink(destination: { GlossaryView(dismiss: $0) }) {
+                                VerticalButton(symbol: "a.book.closed", text: "Glossary", desc: "Learn wildfire terms", mark: "chevron.up")
+                            }.buttonStyle(CardButtonStyle())
+                            .padding(.top, -5)
                             
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
-                                    ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                                        HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                                    }.buttonStyle(CardButtonStyle())
-                                    
-                                    ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                                        HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms")
-                                    }.buttonStyle(CardButtonStyle())
-                                }.padding(.horizontal, 20)
-                            }
-                            
-                            SubHeader(title: "Alerts")
-                            
+                            SubHeader(title: "Alerts", description: "Latest news and alerts are sorted by time and in order.")
+
                             ForEach(news.newsList.prefix(newsShown)) { news in
                                 NewsCardButton(news: news)
                             }
@@ -89,8 +84,7 @@ struct NewsView: View {
                 ProgressBarView(
                     progressObjs: $news.progress,
                     progress: $progress,
-                    done: $done.animation(.easeInOut),
-                    text: "News"
+                    done: $done.animation(.easeInOut)
                 )
             }
         }
