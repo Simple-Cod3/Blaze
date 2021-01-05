@@ -28,17 +28,17 @@ struct FiresViewiPad: View {
                             .frame(height: 300)
                             .padding(.vertical, 100)
                         
-                            Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
-                            
-                            Button(action: {
-                                self.showingFullMap.toggle()
-                            }) {
-                                VerticalButtoniPad(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
-                            }
-                            .sheet(isPresented: $showingFullMap) {
-                                FullFireMapModalViewiPad()
-                            }
+                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         
+                        Button(action: {
+                            self.showingFullMap.toggle()
+                        }) {
+                            VerticalButtoniPad(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
+                        }
+                        .sheet(isPresented: $showingFullMap) {
+                            FullFireMapModalViewiPad()
+                        }
+                    
                         Button(action: {
                             self.showingMonitor.toggle()
                         }) {
@@ -47,8 +47,8 @@ struct FiresViewiPad: View {
                         .sheet(isPresented: $showingMonitor) {
                             MonitoringListViewiPad().environmentObject(fireB)
                         }
-                        .padding([.horizontal, .bottom], 20)
                     }
+                    .padding(.bottom, 20)
                 }
                 .background(Color(.secondarySystemBackground))
                 .navigationBarTitle("", displayMode: .inline)
