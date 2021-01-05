@@ -15,41 +15,50 @@ struct MiniFireCardiPad: View {
     var selected: Bool
     var fireData: ForestFire
     var area: Bool
-        
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 5) {
             Image(systemName: "flame")
                 .font(.title2)
-                .padding(.bottom, 10)
                 .foregroundColor(.secondary)
             Text(fireData.name)
-                .font(fireData.name.count > 30 ? .title3 : .title2)
+                .font(fireData.name.count > 15 ? .title3 : .title2)
                 .fontWeight(.medium)
                 .foregroundColor(.primary)
-            
+            Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
+                .foregroundColor(.secondary)
+
             Spacer()
-            HStack {
-                Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                    .font(fireData.getAreaString(areaUnits).count > 14 ? .callout : .body)
-                    .fontWeight(.regular)
-                    .foregroundColor(.blaze)
-                Spacer()
+            HStack(spacing: 15) {
+                Button(action: {
+                    self.show.toggle()
+                }) {
+                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
+                }
+                .sheet(isPresented: $show) {
+                    InformationView(show: $show, fireData: fireData)
+                }
                 
                 NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
-                    RoundedButton("MAP")
+                    RectButton("MAP", color: .white, background: .blaze)
                 }
             }
         }
         .padding(15)
         .frame(width: 220, height: 180)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+        .background(
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.secondarySystemBackground))
+        )
         .contextMenu {
             Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "doc.text.magnifyingglass") }
+            Divider()
+            Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
         }
         .sheet(isPresented: $show) {
             InformationView(show: $show, fireData: fireData)
         }
     }
 }
+
