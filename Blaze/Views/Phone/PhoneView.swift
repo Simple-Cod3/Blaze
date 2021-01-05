@@ -107,45 +107,49 @@ struct PhoneView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                    HStack(spacing: 20) {
-                        ForEach(choices.indices) { index in
-                            Button(action: {
-                                if index != mode {
-                                    mode = index
-                                    sortNums()
-                                }
-                            }) {
-                                HStack {
-                                    Spacer()
+            Form {
+                Section(header: Text("Filters")) {
+                    VStack(spacing: 10) {
+                        HStack(spacing: 20) {
+                            ForEach(choices.indices) { index in
+                                Button(action: {
+                                    if index != mode {
+                                        mode = index
+                                        sortNums()
+                                    }
+                                }) {
+                                    HStack {
+                                        Spacer()
                                         Image(systemName: choices[index])
                                             .font(Font.body.weight(.regular))
                                             .foregroundColor(index == mode ? .blaze : .secondary)
-                                    Spacer()
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, 12)
+                                    .background(Color(.tertiarySystemGroupedBackground))
+                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                                 }
-                                .padding(.vertical, 12)
-                                .background(Color(.tertiarySystemBackground))
-                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                .buttonStyle(CardButtonStyle())
                             }
                         }
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Search", text: $text)
+                                .foregroundColor(.primary)
+                                .keyboardType(.alphabet)
+                            
+                        }
+                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                        .foregroundColor(.secondary)
+                        .background(Color(.tertiarySystemGroupedBackground))
+                        .cornerRadius(10)
+                        .onChange(of: text) { _ in
+                            sortNums()
+                        }
                     }
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        TextField("Search", text: $text)
-                            .foregroundColor(.primary)
-                            .keyboardType(.alphabet)
-                        
-                    }
-                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                    .foregroundColor(.secondary)
-                    .background(Color(.tertiarySystemBackground))
-                    .cornerRadius(10)
-                
-                .background(Color(.secondarySystemBackground), alignment: .bottom)
-                .onChange(of: text) { _ in
-                    sortNums()
+                    .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 }
-
+                
                 if mode == 2 {
                     if pinned.count == 0 {
                         VStack(alignment: .leading, spacing: 5) {

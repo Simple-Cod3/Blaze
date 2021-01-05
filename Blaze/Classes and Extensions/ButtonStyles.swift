@@ -32,3 +32,9 @@ struct CreditsButtonStyle: ButtonStyle {
             .animation(.spring())
     }
 }
+
+struct DoNothingButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+    }
+}

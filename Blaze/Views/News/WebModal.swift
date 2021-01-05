@@ -266,28 +266,30 @@ struct InciWebContent: View {
     var url: URL
     
     func getLatestInfo() {
-        DispatchQueue.main.async {
-            URLSession.shared.dataTask(with: url) { unsafeData, _, error in
-                guard let data: Data = unsafeData else {
-                    print("🚫 Couldn't get Inciweb data")
+        URLSession.shared.dataTask(with: url) { unsafeData, _, error in
+            guard let data: Data = unsafeData else {
+                print("🚫 Couldn't get Inciweb data")
+                DispatchQueue.main.async {
                     self.html = "<p>Couldn't find extra information.</p>"
-                    return
+                }
+                return
+            }
+            
+            do {
+                let document = try HTMLDocument(data: data)
+                
+                var builtHTML = ""
+                for pTag in document.xpath("//*[@id=\"incidentOverview\"]/div/div/p") {
+                    builtHTML += pTag.rawXML
                 }
                 
-                do {
-                    let document = try HTMLDocument(data: data)
-                    
-                    var builtHTML = ""
-                    for pTag in document.xpath("//*[@id=\"incidentOverview\"]/div/div/p") {
-                        builtHTML += pTag.rawXML
-                    }
-                    
+                DispatchQueue.main.async {
                     self.html = builtHTML
-                } catch {
-                    print("🚫 Couldn't get Inciweb data: \(error)")
                 }
-            }.resume()
-        }
+            } catch {
+                print("🚫 Couldn't get Inciweb data: \(error)")
+            }
+        }.resume()
     }
     
     var body: some View {

@@ -14,7 +14,7 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
-                    version: "2.0",
+                    version: "2.1",
                     changes: ["• Transition to new map structure to include dynamic area and data viewing on map"]
                 )
                 

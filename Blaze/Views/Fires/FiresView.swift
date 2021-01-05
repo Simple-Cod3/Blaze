@@ -50,7 +50,7 @@ struct FiresView: View {
                             }.buttonStyle(CardButtonStyle())
                             
                             NavigationLink(destination: MonitoringListView()) {
-                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "5 fires pinned", mark: "chevron.forward")
+                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
                             }.buttonStyle(CardButtonStyle())
                             .padding(.top, -5)
                             .padding(.bottom, 10)
@@ -74,6 +74,7 @@ struct FiresView: View {
                                                 area: true
                                             )
                                         }
+                                        .buttonStyle(DoNothingButtonStyle())
                                     }
                                     Spacer()
                                     NavigationLink(destination: FullFireMapView()) {
@@ -102,6 +103,7 @@ struct FiresView: View {
                                         ) {
                                             MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                         }
+                                        .buttonStyle(DoNothingButtonStyle())
                                     }
                                     Spacer()
                                     NavigationLink(destination: FullFireMapView()) {

@@ -82,6 +82,22 @@ class FireBackend: ObservableObject {
                         $0.type == "Wildfire" && ($0.state == "CALIFORNIA" || calOnly) 
                     })
                     
+                    if self.fires.count == 0 {
+                        self.fires += filteredNewFires.map { inciWebFire in
+                            ForestFire(
+                                name: inciWebFire.name,
+                                updated: inciWebFire.updated,
+                                location: inciWebFire.state.capitalized,
+                                latitude: inciWebFire.lat.becomeDouble(),
+                                longitude: inciWebFire.lng.becomeDouble(),
+                                acres: inciWebFire.size.becomeInt(),
+                                contained: inciWebFire.contained.becomeInt(),
+                                relURL: inciWebFire.url,
+                                sourceType: .inciweb
+                            )
+                        }
+                    }
+                    
                     var unAddedFires = [ForestFire]()
                     for fireI in self.fires.indices {
                         for inciI in filteredNewFires.indices {
@@ -113,6 +129,7 @@ class FireBackend: ObservableObject {
                                 $0.name.replacingOccurrences(of: " Fire", with: "") == filteredNewFires[inciI].name
                             }).count == 0 {
                                 unAddedFires.append(forestFireObject)
+                                print("adding", forestFireObject.name)
                             }
                         }
                     }

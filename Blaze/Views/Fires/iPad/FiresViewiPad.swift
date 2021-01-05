@@ -42,7 +42,7 @@ struct FiresViewiPad: View {
                         Button(action: {
                             self.showingMonitor.toggle()
                         }) {
-                            HorizontalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "5 fires pinned")
+                            HorizontalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned")
                         }
                         .sheet(isPresented: $showingMonitor) {
                             MonitoringListViewiPad().environmentObject(fireB)
