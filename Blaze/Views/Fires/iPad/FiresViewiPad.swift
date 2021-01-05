@@ -33,7 +33,7 @@ struct FiresViewiPad: View {
                             Button(action: {
                                 self.showingFullMap.toggle()
                             }) {
-                                HorizontalButton(symbol: "map", text: "Fire Map", desc: "Showing wildfires in California")
+                                VerticalButtoniPad(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
                             }
                             .sheet(isPresented: $showingFullMap) {
                                 FullFireMapModalViewiPad()
@@ -42,7 +42,7 @@ struct FiresViewiPad: View {
                         Button(action: {
                             self.showingMonitor.toggle()
                         }) {
-                            HorizontalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned")
+                            VerticalButtoniPad(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
                         }
                         .sheet(isPresented: $showingMonitor) {
                             MonitoringListViewiPad().environmentObject(fireB)

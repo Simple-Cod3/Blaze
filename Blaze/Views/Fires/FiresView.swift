@@ -46,7 +46,7 @@ struct FiresView: View {
                             Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                             
                             NavigationLink(destination: FullFireMapView()) {
-                                VerticalButton(symbol: "map", text: "Fire Map", desc: "Showing wildfires in California", mark: "chevron.forward")
+                                VerticalButton(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
                             }.buttonStyle(CardButtonStyle())
                             
                             NavigationLink(destination: MonitoringListView()) {
