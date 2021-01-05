@@ -19,8 +19,9 @@ struct UpdateLog: View {
                 )
                 
                 VersionCard(
+                    // 1.5.20
                     version: "2.0",
-                    changes: ["• Significant tweaks and changes to current UI", "• Split code to improve run-time processes", "• Improved dynamic type on all devices", "• Removed Splash Screen option from settings", "• Added three column toggle for Monitoring List on iPad", "• Reduced ram usage by 25 percent", "• Bug fixes and improvements"]
+                    changes: ["• Significant tweaks and changes to current UI", "• Split code to improve run-time processes", "• Improved dynamic type on all devices", "• Removed Splash Screen option from settings", "• Added three column toggle for Monitoring List on iPad", "• Reduced ram usage by 25 percent", "Fixed fire sources merge logic", "• Bug fixes and improvements"]
                 )
                 
                 VersionDot(

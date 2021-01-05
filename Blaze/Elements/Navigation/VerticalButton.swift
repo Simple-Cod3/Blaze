@@ -34,7 +34,8 @@ struct VerticalButton: View {
                 .font(Font.body.weight(.regular))
                 .foregroundColor(.secondary)
         }
-        .padding(15)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 15)
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .padding(.horizontal, 20)
