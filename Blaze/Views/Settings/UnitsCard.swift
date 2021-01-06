@@ -25,9 +25,11 @@ struct UnitsCard: View {
                 Text(desc)
                     .font(desc.count > 30 ? .footnote : .body)
                     .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             } else {
                 Text(desc)
                     .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Divider()
