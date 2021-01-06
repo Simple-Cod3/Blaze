@@ -14,15 +14,17 @@ struct SettingsCardLink<Content: View>: View {
     var content: () -> Content
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .fontWeight(.medium)
-                .font(.title2)
+                .font(.title3)
                 .foregroundColor(.primary)
             
-            Text(desc).foregroundColor(.secondary)
+            Text(desc)
+                .foregroundColor(.secondary)
             
             Divider()
+                .padding(.vertical, 10)
                 .padding(.bottom, 5)
             
             NavigationLink(destination: content()) {
@@ -63,11 +65,11 @@ struct SettingsCardCustom<Content: View>: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack(alignment: .top, spacing: 0) {
                 Text(title)
                     .fontWeight(.medium)
-                    .font(.title2)
+                    .font(.title3)
                     .foregroundColor(.primary)
                 Spacer()
                 
@@ -77,7 +79,9 @@ struct SettingsCardCustom<Content: View>: View {
             }
             Text(desc).foregroundColor(.secondary)
             
-            Divider().padding(.bottom, 5)
+            Divider()
+                .padding(.vertical, 10)
+                .padding(.bottom, 5)
             
             content()
         }

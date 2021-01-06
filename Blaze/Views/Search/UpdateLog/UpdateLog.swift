@@ -14,19 +14,20 @@ struct UpdateLog: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 5 : 400) {
                 VersionDotSoon(
-                    version: "2.1",
+                    version: "2.0",
                     changes: ["• Transition to new map structure to include dynamic area and data viewing on map"]
                 )
                 
                 VersionCard(
                     // 1.5.20
-                    version: "2.0",
-                    changes: ["• Significant tweaks and changes to current UI",
+                    version: "1.2",
+                    changes: ["• Tweaks and changes to current UI",
                               "• Split code to improve run-time processes",
                               "• Improved dynamic type on all devices",
+                              "• Improved padding on all devices",
                               "• Removed Splash Screen option from settings",
                               "• Added three column toggle for Monitoring List on iPad",
-                              "• Reduced ram usage by 25 percent",
+                              "• Reduced ram usage",
                               "• Fixed fire sources merge logic",
                               "• Linted project",
                               "• Bug fixes and improvements"]
@@ -72,8 +73,7 @@ struct UpdateLog: View {
         .navigationBarTitle("Updates", displayMode: .large)
         .onAppear {
             show = false
-            withAnimation(Animation.spring(response: 0.5)
-            ) {
+            withAnimation(Animation.spring(response: 0.5).delay(0.05)) {
                 show = true
             }
         }

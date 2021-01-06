@@ -15,7 +15,7 @@ struct UnitsCard: View {
     var desc: String
         
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .fontWeight(.medium)
                 .font(.title2)
@@ -30,7 +30,9 @@ struct UnitsCard: View {
                     .foregroundColor(.secondary)
             }
             
-            Divider().padding(.bottom, 5)
+            Divider()
+                .padding(.vertical, 10)
+                .padding(.bottom, 5)
             
             Picker("", selection: $selection) {
                 ForEach(units.indices) { index in

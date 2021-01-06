@@ -14,9 +14,9 @@ struct SubHeader: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.medium)
                 
                 if let description = description {

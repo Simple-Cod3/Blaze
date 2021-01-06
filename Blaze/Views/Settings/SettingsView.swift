@@ -54,7 +54,7 @@ struct SettingsView: View {
         }
         .navigationBarTitle("Settings", displayMode: .large)
         .onAppear {
-            withAnimation(Animation.spring().delay(0.2)) {
+            withAnimation(Animation.spring().delay(0.05)) {
                 show = true
             }
         }

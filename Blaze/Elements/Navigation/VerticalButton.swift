@@ -24,7 +24,7 @@ struct VerticalButton: View {
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 5) {
-                HStack(spacing: 5) {
+                HStack(spacing: 10) {
                     Image(systemName: symbol)
                         .font(Font.body.weight(.regular))
                         .foregroundColor(.blaze)

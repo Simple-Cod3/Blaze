@@ -90,7 +90,7 @@ struct FiresView: View {
                             }
                             .edgesIgnoringSafeArea(.horizontal)
 
-                            Divider().padding(.horizontal, 20)
+                            Divider().padding(.horizontal, 20).padding(.vertical, 10)
                             
                             SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
                             

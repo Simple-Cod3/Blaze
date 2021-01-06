@@ -33,11 +33,6 @@ struct FullInformationView: View {
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
-                        
-                        Spacer()
-                        
-                        RectButton("INFO", color: .white, background: .blaze)
-                            .frame(width: 65)
                     }
                     .padding(10)
                 }

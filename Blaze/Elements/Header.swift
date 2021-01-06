@@ -23,7 +23,7 @@ struct Header: View {
     
     var body: some View {
         HStack {
-            LazyVStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text(title)
                     .font(.system(size: 60))
                     .fontWeight(.semibold)

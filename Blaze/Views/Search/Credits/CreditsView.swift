@@ -29,13 +29,14 @@ struct CreditsView: View {
                 Link(destination: URL(string: "https://github.com/Sakend")!) {
                     ProfileCircle(img: "sakend", name: "Max Kerns", role: "Developer", link: "github.com/Sakend")
                 }
+                
                 Spacer()
             }
         }
         .navigationBarTitle("Credits", displayMode: .large)
         .onAppear {
             show = false
-            withAnimation(Animation.spring(response: 0.5).delay(0.1)) {
+            withAnimation(Animation.spring(response: 0.5).delay(0.05)) {
                 show = true
             }
         }
