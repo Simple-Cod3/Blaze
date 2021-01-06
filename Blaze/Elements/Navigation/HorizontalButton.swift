@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct HorizontalButton: View {
-    var symbol: String
-    var text: String
-    var desc: String
+    
+    private var symbol: String
+    private var text: String
+    private var desc: String
+    
+    init(symbol: String, text: String, desc: String) {
+        self.symbol = symbol
+        self.text = text
+        self.desc = desc
+    }
     
     var body: some View {
         HStack {
@@ -22,6 +29,7 @@ struct HorizontalButton: View {
                 .foregroundColor(.blaze)
 
             Spacer()
+            
             Text(desc)
                 .foregroundColor(.secondary)
         }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct AddMonitoringFires: View {
+    
     @EnvironmentObject var fireB: FireBackend
+    
     @Binding var show: Bool
     
     var body: some View {
@@ -31,8 +33,11 @@ struct AddMonitoringFires: View {
 }
 
 struct AddMonitoringFiresCell: View {
+    
     @EnvironmentObject var fireB: FireBackend
+    
     @Binding var show: Bool
+    
     @State var loaded = false
     
     var fireData: ForestFire

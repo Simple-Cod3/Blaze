@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct UnitsCard: View {
-    var title: String
-    var desc: String
     
     @State var selection: Int = units.firstIndex(of: currentUnit ?? units[0])!
     
+    var title: String
+    var desc: String
+        
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)

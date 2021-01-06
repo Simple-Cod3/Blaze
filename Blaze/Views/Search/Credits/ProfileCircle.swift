@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct ProfileCircle: View {
-    var img: String
-    var name: String
-    var role: String
-    var link: String
+    
+    private var img: String
+    private var name: String
+    private var role: String
+    private var link: String
+    
+    init(img: String, name: String, role: String, link: String) {
+        self.img = img
+        self.name = name
+        self.role = role
+        self.link = link
+    }
     
     var body: some View {
         VStack {
@@ -26,14 +34,17 @@ struct ProfileCircle: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(role)
                         .foregroundColor(.secondary)
+                    
                     Text(name)
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
+                    
                     Text(link)
                         .foregroundColor(.secondary)
                     
                 }
+                
                 Spacer()
             }
             .padding(.vertical, 20)

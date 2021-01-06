@@ -10,6 +10,7 @@ import SwiftUI
 struct Caption: View {
     var text: String
     
+    
     init(_ text: String) {
         self.text = text
     }
@@ -20,8 +21,8 @@ struct Caption: View {
                 .font(.caption)
                 .fontWeight(.regular)
                 .foregroundColor(.secondary)
-                .padding([.horizontal, .bottom], 20)
             Spacer()
         }
+        .padding([.horizontal, .bottom], 20)
     }
 }

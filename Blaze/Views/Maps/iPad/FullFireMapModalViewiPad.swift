@@ -10,6 +10,7 @@ import SwiftUI
 import MapKit
 
 struct FullFireMapModalViewiPad: View {
+    
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @EnvironmentObject private var fireBackend: FireBackend
     
@@ -43,7 +44,6 @@ struct FullFireMapModalViewiPad: View {
                         Text(fire.name)
                             .font(.caption2)
                             .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: 120)
                             .padding(5)
                             .background(Color(.tertiarySystemBackground))
@@ -51,6 +51,7 @@ struct FullFireMapModalViewiPad: View {
                             .scaleEffect(showLabels ? 1 : 0)
                             .animation(.spring())
                     }
+                    .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .onChange(of: coordinateRegion) { region in

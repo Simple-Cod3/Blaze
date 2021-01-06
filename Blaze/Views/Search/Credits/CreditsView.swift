@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CreditsView: View {
+    
     @State var show = false
 
     var body: some View {
@@ -38,11 +39,5 @@ struct CreditsView: View {
                 show = true
             }
         }
-    }
-}
-
-struct CreditsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
     }
 }

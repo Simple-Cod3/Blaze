@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GenericButton: View {
+    
     private var text: String?
     private var icon: String?
     private var color: Color
@@ -21,6 +22,7 @@ struct GenericButton: View {
     var body: some View {
         HStack {
             Spacer()
+            
             if let icon = icon {
                 Image(systemName: icon)
                     .font(Font.body.weight(.regular))
@@ -30,6 +32,7 @@ struct GenericButton: View {
                 Text(text)
                     .foregroundColor(color)
             }
+            
             Spacer()
         }
         .padding(.vertical, 12)

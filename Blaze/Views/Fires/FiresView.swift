@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FiresView: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @State var selectAll = 0
     @State var selectLargest = 0
@@ -24,6 +25,7 @@ struct FiresView: View {
                     ScrollView {
                         HStack {
                             Spacer()
+                            
                             Button(action: {
                                 self.data.toggle()
                             }) {
@@ -47,11 +49,13 @@ struct FiresView: View {
                             
                             NavigationLink(destination: FullFireMapView()) {
                                 VerticalButton(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
-                            }.buttonStyle(CardButtonStyle())
+                            }
+                            .buttonStyle(CardButtonStyle())
                             
                             NavigationLink(destination: MonitoringListView()) {
                                 VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
-                            }.buttonStyle(CardButtonStyle())
+                            }
+                            .buttonStyle(CardButtonStyle())
                             .padding(.top, -5)
                             .padding(.bottom, 10)
 

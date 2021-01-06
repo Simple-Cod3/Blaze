@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct NoticeCardiPad: View {
-    var title: String
-    var text: String
+    
+    private var title: String
+    private var text: String
     
     init(title: String = "1.0", text: String = "Placeholder") {
         self.title = title

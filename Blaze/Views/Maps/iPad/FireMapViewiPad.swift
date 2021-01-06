@@ -11,6 +11,7 @@ import MapKit
 import ModalView
 
 struct FireMapViewiPad: View {
+    
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var hide = true
     @State private var show = false

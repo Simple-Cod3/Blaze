@@ -9,6 +9,7 @@ import SwiftUI
 import ModalView
 
 struct SettingsView: View {
+    
     @EnvironmentObject var fires: FireBackend
     @AppStorage("welcomed") var welcomed = true
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")

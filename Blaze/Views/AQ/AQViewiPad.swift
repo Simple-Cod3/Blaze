@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AQViewiPad: View {
+    
     @EnvironmentObject var forecast: AirQualityBackend
     
     var body: some View {

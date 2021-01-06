@@ -9,6 +9,7 @@ import SwiftUI
 import BetterSafariView
 
 struct FormButton: View {
+    
     @State private var presenting = false
     var text: String
     var url: URL

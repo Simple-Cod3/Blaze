@@ -44,7 +44,8 @@ struct MapFireCardiPad: View {
                 Spacer()
                 
                 Button(action: { show.toggle() }) {
-                    RoundedButton("INFO")
+                    RectButton("INFO", color: .white, background: .blaze)
+                        .frame(width: 65)
                 }
                 .buttonStyle(PlainButtonStyle())
             }

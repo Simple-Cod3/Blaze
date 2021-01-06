@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FullInformationView: View {
+    
     @EnvironmentObject var fireBackend: FireBackend
     @ObservedObject var searchBar = SearchBar()
     @Binding var show: Bool
@@ -32,8 +33,11 @@ struct FullInformationView: View {
                                 .foregroundColor(.secondary)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
+                        
                         Spacer()
-                        RoundedButton("INFO")
+                        
+                        RectButton("INFO", color: .white, background: .blaze)
+                            .frame(width: 65)
                     }
                     .padding(10)
                 }

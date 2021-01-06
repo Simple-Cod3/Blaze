@@ -10,6 +10,7 @@ import ModalView
 import SwiftUIListSeparator
 
 struct GlossaryView: View {
+    
     @ObservedObject var bar = SearchBar()
     @State private var wordsList = [Term]()
     

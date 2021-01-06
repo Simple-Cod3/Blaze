@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WordCard: View {
+    
     var term: Term
     
     var body: some View {

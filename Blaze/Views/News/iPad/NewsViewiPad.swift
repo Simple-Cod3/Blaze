@@ -10,6 +10,7 @@ import ModalView
 import BetterSafariView
 
 struct NewsViewiPad: View {
+    
     @EnvironmentObject var phone: PhoneBackend
     @EnvironmentObject var news: NewsBackend
     @State private var progress = 0.0

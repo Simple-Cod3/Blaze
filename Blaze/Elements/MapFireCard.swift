@@ -44,7 +44,8 @@ struct MapFireCard: View {
                 Spacer()
                 
                 Button(action: { show.toggle() }) {
-                    RoundedButton("INFO")
+                    RectButton("INFO", color: .white, background: .blaze)
+                        .frame(width: 65)
                 }
                 .buttonStyle(PlainButtonStyle())
             }
@@ -53,6 +54,7 @@ struct MapFireCard: View {
                 
             } else {
                 Spacer().frame(height: 15)
+                
                 Text(name)
                     .font(.title)
                     .fontWeight(.medium)

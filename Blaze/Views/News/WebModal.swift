@@ -15,6 +15,7 @@ import Fuzi
 
 /// Loading website modal
 struct WebModal: View {
+    
     var dismiss: () -> Void
     var url: URL
     
@@ -44,6 +45,7 @@ struct WebModal: View {
 
 /// Loading Websites
 struct URLWebView: UIViewRepresentable {
+    
     let url: URL
     var webview = WKWebView()
     
@@ -93,6 +95,7 @@ struct URLWebView: UIViewRepresentable {
 // MARK: - WebView Responsive
 
 struct NativeWebView: View {
+    
     @State var height: CGFloat = .zero
     var html: String
     
@@ -103,6 +106,7 @@ struct NativeWebView: View {
 }
 
 struct HTMLWebView: UIViewRepresentable {
+    
     @Binding var height: CGFloat
     var html: String
     var webview = WKWebView()

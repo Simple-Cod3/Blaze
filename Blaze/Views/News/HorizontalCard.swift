@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HorizontalCard: View {
+    
     @State private var show = false
     
     private var title: String
@@ -28,6 +29,7 @@ struct HorizontalCard: View {
             Text(title)
                 .font(.title2)
                 .fontWeight(.medium)
+            
             Text(subtitle)
                 .foregroundColor(.secondary)
         }

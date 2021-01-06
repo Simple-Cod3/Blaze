@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AQView: View {
+    
     @EnvironmentObject var forecast: AirQualityBackend
     @State private var showCircle = false
     @State private var show = false

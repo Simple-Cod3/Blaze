@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FlexibleFireInfo: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @Binding var columns: CGFloat
     

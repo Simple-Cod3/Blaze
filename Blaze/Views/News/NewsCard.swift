@@ -9,6 +9,7 @@ import SwiftUI
 import URLImage
 
 struct NewsCard: View {
+    
     @State private var show = false
     var news: News
     

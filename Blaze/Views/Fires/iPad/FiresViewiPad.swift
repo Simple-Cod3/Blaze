@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct FiresViewiPad: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @State var selectAll = 0
     @State var selectLargest = 0

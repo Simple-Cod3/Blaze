@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NoticeCard: View {
+    
     var title: String
     var text: String
     

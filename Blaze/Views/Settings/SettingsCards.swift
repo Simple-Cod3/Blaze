@@ -1,6 +1,14 @@
+//
+//  SettingsCards.swift
+//  Blaze
+//
+//  Created by Paul Wong on 9/7/20.
+//
+
 import SwiftUI
 
 struct SettingsCardLink<Content: View>: View {
+    
     var title: String
     var desc: String
     var content: () -> Content
@@ -33,6 +41,7 @@ struct SettingsCardLink<Content: View>: View {
 }
 
 struct SettingsCardCustom<Content: View>: View {
+    
     @Binding var loading: Bool
     
     var title: String
@@ -61,6 +70,7 @@ struct SettingsCardCustom<Content: View>: View {
                     .font(.title2)
                     .foregroundColor(.primary)
                 Spacer()
+                
                 ProgressView()
                     .scaleEffect(loading ? 1 : 0)
                     .animation(.spring())

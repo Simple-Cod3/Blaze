@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct VerticalButton: View {
-    var symbol: String
-    var text: String
-    var desc: String
-    var mark: String
+    
+    private var symbol: String
+    private var text: String
+    private var desc: String
+    private var mark: String
+    
+    init(symbol: String, text: String, desc: String, mark: String) {
+        self.symbol = symbol
+        self.text = text
+        self.desc = desc
+        self.mark = mark
+    }
     
     var body: some View {
         HStack(alignment: .center) {

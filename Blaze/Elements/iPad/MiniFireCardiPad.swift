@@ -17,7 +17,7 @@ struct MiniFireCardiPad: View {
     var area: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 10) {
             Image(systemName: "flame")
                 .font(.title2)
                 .foregroundColor(.secondary)

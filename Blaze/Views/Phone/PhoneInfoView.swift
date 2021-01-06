@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 
 struct PhoneInfoView: View {
+    
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var pastedState = false
     @State private var viewMode = 0
@@ -37,7 +38,9 @@ struct PhoneInfoView: View {
                 
                 VStack {
                     LazyVStack(spacing: 15) {
+                        
                         Spacer()
+                        
                         phoneCircle
                             .overlay(
                                 Check(yes: closed, interval: 0, size: 40).offset(x: 45, y: -45)
@@ -71,6 +74,7 @@ struct PhoneInfoView: View {
                             Text(phoneData.phoneNumber ?? "Unknown Number")
                                 .font(.system(.largeTitle, design: .rounded))
                                 .fontWeight(.bold)
+                            
                             HStack(spacing: 20) {
                                 Button(action: {
                                     let url = URL(string: "tel://" + cleanNum)!
@@ -83,6 +87,7 @@ struct PhoneInfoView: View {
                                         .background(Color(.secondarySystemGroupedBackground))
                                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                                 }
+                                
                                 Button(action: {
                                     UIPasteboard.general.string = cleanNum
                                     pastedState = true
@@ -95,6 +100,7 @@ struct PhoneInfoView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                                 }
                             }.padding(20)
+                            
                             Spacer()
                         }
                         .frame(height: 300)

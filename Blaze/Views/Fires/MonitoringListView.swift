@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MonitoringListView: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @State private var columns: CGFloat = 2
     @State private var show = false

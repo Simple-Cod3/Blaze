@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AQCardiPad: View {
+    
     private var date: String
     private var ozone: String
     private var ozoneCaption: String
@@ -25,7 +26,7 @@ struct AQCardiPad: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(date)
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.medium)
                 .foregroundColor(.secondary)
 

@@ -10,6 +10,7 @@ import SwiftUI
 import MapKit
 
 struct FullFireMapViewiPad: View {
+    
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @EnvironmentObject private var fireBackend: FireBackend
     

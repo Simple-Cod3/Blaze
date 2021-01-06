@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct LongButton: View {
-    var text: String
+    
+    private var text: String
     
     init(_ text: String) {
         self.text = text

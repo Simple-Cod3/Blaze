@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct MoreButton: View {
-    var symbol: String
-    var text: String
+    
+    private var symbol: String
+    private var text: String
+    
+    init(symbol: String, text: String) {
+        self.symbol = symbol
+        self.text = text
+    }
     
     var body: some View {
         HStack {

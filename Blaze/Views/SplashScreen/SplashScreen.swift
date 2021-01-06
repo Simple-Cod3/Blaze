@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SplashScreen: View {
+    
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @Binding var show: Bool
@@ -77,9 +78,11 @@ struct SplashScreen: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 75)
                 .cornerRadius(20)
+            
             Text("Welcome to ")
                 .font(.largeTitle)
                 .fontWeight(.medium)
+            
             Text("Blaze: CA Wildfires")
                 .font(.largeTitle)
                 .fontWeight(.medium)
@@ -96,12 +99,14 @@ struct SplashScreen: View {
     var page2: some View {
         VStack(alignment: .leading) {
             Spacer()
+            
             HStack {
                 Spacer()
                 InfoBubble(text: "Latest fire information prepared for you.")
             }
                         
             Header(title: "Wildfires", padding: 0)
+            
             Text("Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                 .redacted(reason: .placeholder)
                 .padding(.bottom, 20)
@@ -117,6 +122,7 @@ struct SplashScreen: View {
                 .padding(12)
                 .background(Color(.secondarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                
                 HStack {
                     Spacer()
                     Text("\(Image(systemName: "map")) Fire Map")
@@ -127,7 +133,8 @@ struct SplashScreen: View {
                 .padding(12)
                 .background(Color(.secondarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            }.redacted(reason: .placeholder)
+            }
+            .redacted(reason: .placeholder)
             
             Spacer()
             Button(action: { page = 2 }) {
@@ -139,6 +146,7 @@ struct SplashScreen: View {
     var page3: some View {
         VStack(alignment: .leading) {
             Spacer()
+            
             HStack {
                 Spacer()
                 InfoBubble(text: "Real-time local air quality.")
@@ -149,6 +157,7 @@ struct SplashScreen: View {
                     Circle()
                         .fill(Color.green)
                         .frame(width: 150, height: 150)
+                    
                     VStack(alignment: .center) {
                         Text("Good").redacted(reason: .placeholder)
                             .font(.largeTitle)
@@ -158,6 +167,7 @@ struct SplashScreen: View {
             }
             
             Header(title: "Air Quality", headerColor: .green, padding: 0)
+            
             Text("Real-time local air quality. Real-time local air quality. Real-time local air quality. Real-time local air quality.")
                 .redacted(reason: .placeholder)
             
@@ -172,6 +182,7 @@ struct SplashScreen: View {
     var page4: some View {
         VStack(alignment: .leading) {
             Spacer()
+            
             HStack {
                 Spacer()
                 InfoBubble(text: "News and updates at your fingertips.")
@@ -180,6 +191,7 @@ struct SplashScreen: View {
             
             Header(title: "News", padding: 0)
                 .padding(.horizontal, 20)
+            
             Text("Real-time local air quality. Real-time local air quality.")
                 .redacted(reason: .placeholder)
                 .padding(.horizontal, 20)

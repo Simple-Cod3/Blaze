@@ -10,6 +10,7 @@ import ModalView
 import BetterSafariView
 
 struct NewsView: View {
+    
     @EnvironmentObject var phone: PhoneBackend
     @EnvironmentObject var news: NewsBackend
     @State private var progress = 0.0
@@ -52,11 +53,13 @@ struct NewsView: View {
                                                         
                             ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
                                 VerticalButton(symbol: "phone.circle", text: "Emergency Contacts", desc: "Find the nearest fire stations", mark: "chevron.up")
-                            }.buttonStyle(CardButtonStyle())
+                            }
+                            .buttonStyle(CardButtonStyle())
                             
                             ModalLink(destination: { GlossaryView(dismiss: $0) }) {
                                 VerticalButton(symbol: "a.book.closed", text: "Glossary", desc: "Learn wildfire terms", mark: "chevron.up")
-                            }.buttonStyle(CardButtonStyle())
+                            }
+                            .buttonStyle(CardButtonStyle())
                             .padding(.top, -5)
                             
                             SubHeader(title: "Alerts", description: "Latest news and alerts are sorted by time and in order.")

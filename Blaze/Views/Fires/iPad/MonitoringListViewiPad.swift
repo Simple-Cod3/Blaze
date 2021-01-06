@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MonitoringListViewiPad: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @State private var columns: CGFloat = 2
     @State private var show = false
@@ -39,6 +40,7 @@ struct MonitoringListViewiPad: View {
                         .frame(maxWidth: 150)
                         .padding(.top, 150)
                         .padding(.bottom, 20)
+                    
                     Text("Peal off this bandage by pinning wildfires.")
                         .foregroundColor(.secondary)
                         .frame(width: 200)

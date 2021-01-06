@@ -9,6 +9,7 @@ import SwiftUI
 import ModalView
 
 struct SearchView: View {
+    
     @EnvironmentObject var fireback: FireBackend
     @ObservedObject var searchBar = SearchBar()
     

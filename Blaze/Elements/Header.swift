@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Header: View {
+    
     private var title: String
     private var desc: String?
     private var hColor: Color

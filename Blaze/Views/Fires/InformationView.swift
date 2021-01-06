@@ -9,6 +9,7 @@ import SwiftUI
 import ModalView
 
 struct InformationSection: View {
+    
     var title: String
     var data: [[String]]
     
@@ -50,7 +51,9 @@ struct InformationSection: View {
 }
 
 struct InformationView: View {
+    
     @Binding var show: Bool
+    
     var fireData: ForestFire
     
     var body: some View {
@@ -61,6 +64,7 @@ struct InformationView: View {
 }
 
 struct FullScreenInfoView: View {
+    
     var dismiss: () -> Void
     var fireData: ForestFire
     
@@ -82,6 +86,7 @@ struct FullScreenInfoView: View {
 }
 
 struct InformationViewInner: View {
+    
     @EnvironmentObject var fireB: FireBackend
     @Binding var show: Bool
     

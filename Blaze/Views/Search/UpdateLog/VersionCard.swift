@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct VersionCard: View {
-    var version: String
-    var changes: [String]
+    
+    private var version: String
+    private var changes: [String]
     
     init(version: String, changes: [String] = ["Bug Fixes", "Memory leak fix"]) {
         self.version = version
@@ -34,6 +35,7 @@ struct VersionCard: View {
                         .fontWeight(.medium)
                         .foregroundColor(Color.blaze)
                 }
+                
                 Spacer()
             }
             .padding(.bottom, 5)

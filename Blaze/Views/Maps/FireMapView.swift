@@ -11,6 +11,7 @@ import MapKit
 import ModalView
 
 struct FireMapView: View {
+    
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
     @State private var coordinateRegion = MKCoordinateRegion()
     @State private var hide = true

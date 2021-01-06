@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct VersionDotSoon: View {
-    var version: String
-    var changes: [String]
+    
+    private var version: String
+    private var changes: [String]
     
     init(version: String = "1.0", changes: [String] = ["Bug Fixes", "Memory leak fix"]) {
         self.version = version
