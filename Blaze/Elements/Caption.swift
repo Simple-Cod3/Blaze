@@ -9,8 +9,7 @@ import SwiftUI
 
 struct Caption: View {
     var text: String
-    
-    
+
     init(_ text: String) {
         self.text = text
     }

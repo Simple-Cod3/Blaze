@@ -126,9 +126,7 @@ struct FiresView: View {
                     }
                     .opacity(show ? 1 : 0)
                     .onAppear {
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            self.show = true
-                        }
+                        self.show = true
                     }
                     StatusBarBackground()
                 }
