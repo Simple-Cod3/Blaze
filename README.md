@@ -19,6 +19,28 @@ https://apps.apple.com/us/app/blaze-wildfires/id1530692513
 
 ## Updates
 
+**1.2**
+
+• Tweaks and changes to current UI
+ 
+• Split code to improve run-time processes
+ 
+• Improved dynamic type on all devices
+ 
+• Improved padding on all devices
+ 
+• Removed Splash Screen option from settings
+ 
+• Added three column toggle for Monitoring List on iPad
+ 
+• Reduced ram usage
+ 
+• Fixed fire sources merge logic
+ 
+• Linted project
+
+• Bug fixes and improvements
+
 **1.1**
 
 • Added support for all iPad devices
