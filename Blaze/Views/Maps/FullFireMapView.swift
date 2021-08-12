@@ -91,7 +91,7 @@ struct FullFireMapView: View {
                     Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.systemBackground))
+                        .background(Blur(.prominent))
                         .clipShape(Capsule())
                 }
                 
@@ -99,7 +99,7 @@ struct FullFireMapView: View {
                     Text("\(Image(systemName: "list.bullet")) Fire Information")
                         .padding(.vertical, 10)
                         .padding(.horizontal, 15)
-                        .background(Color(.systemBackground))
+                        .background(Blur(.prominent))
                         .clipShape(Capsule())
                 }
             }.padding(20)

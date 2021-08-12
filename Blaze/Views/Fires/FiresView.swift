@@ -78,7 +78,7 @@ struct FiresView: View {
                                                 area: true
                                             )
                                         }
-                                        .buttonStyle(DoNothingButtonStyle())
+                                        .buttonStyle(NoButtonStyle())
                                     }
                                     Spacer()
                                     NavigationLink(destination: FullFireMapView()) {
@@ -107,7 +107,7 @@ struct FiresView: View {
                                         ) {
                                             MiniFireCard(selected: index == selectAll, fireData: fireB.fires.sorted(by: { $0.updated > $1.updated })[index], area: false)
                                         }
-                                        .buttonStyle(DoNothingButtonStyle())
+                                        .buttonStyle(NoButtonStyle())
                                     }
                                     Spacer()
                                     NavigationLink(destination: FullFireMapView()) {
