@@ -32,6 +32,7 @@ struct MiniFireCard: View {
                 .foregroundColor(.secondary)
 
             Spacer()
+            
             HStack(spacing: 15) {
                 Button(action: {
                     self.show.toggle()
@@ -47,10 +48,10 @@ struct MiniFireCard: View {
                 }
             }
         }
-        .padding(15)
+        .padding(20)
+        .background(Color(.quaternarySystemFill))
         .frame(width: 230, height: 190)
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .background(ProminentBlurBackground())
+        .cornerRadius(16)
         .contextMenu {
             Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "doc.text.magnifyingglass") }

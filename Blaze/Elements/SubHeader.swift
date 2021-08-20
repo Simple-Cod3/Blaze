@@ -16,17 +16,18 @@ struct SubHeader: View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .font(.title2)
-                    .fontWeight(.medium)
+                    .font(.title3)
+                    .fontWeight(.semibold)
                 
                 if let description = description {
                     Text(description)
-                        .foregroundColor(.secondary)
+                        .font(.footnote)
+                        .foregroundColor(.secondary.opacity(0.7))
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
+            
             Spacer()
         }
-        .padding(.horizontal, 20)
     }
 }

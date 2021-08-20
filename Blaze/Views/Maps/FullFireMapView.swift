@@ -85,23 +85,23 @@ struct FullFireMapView: View {
                 }
             }
             
-            LazyVStack(alignment: .leading, spacing: 10) {
-                Button(action: { showLabels.toggle() }) {
-                    Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 15)
-                        .background(Blur(.prominent))
-                        .clipShape(Capsule())
-                }
-                
-                Button(action: { show = true }) {
-                    Text("\(Image(systemName: "list.bullet")) Fire Information")
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 15)
-                        .background(Blur(.prominent))
-                        .clipShape(Capsule())
-                }
-            }.padding(20)
+//            LazyVStack(alignment: .leading, spacing: 10) {
+//                Button(action: { showLabels.toggle() }) {
+//                    Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
+//                        .padding(.vertical, 10)
+//                        .padding(.horizontal, 15)
+//                        .background(Blur(.prominent))
+//                        .clipShape(Capsule())
+//                }
+//                
+//                Button(action: { show = true }) {
+//                    Text("\(Image(systemName: "list.bullet")) Fire Information")
+//                        .padding(.vertical, 10)
+//                        .padding(.horizontal, 15)
+//                        .background(Blur(.prominent))
+//                        .clipShape(Capsule())
+//                }
+//            }.padding(20)
         }
         .sheet(isPresented: $show) {
             FullInformationView(show: $show)

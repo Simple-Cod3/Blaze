@@ -112,7 +112,7 @@ public class LocationProvider: NSObject, ObservableObject {
             /// However, this would prevent start() from running directly after the LocationProvider is initialized.
             /// This is because the delegate method `didChangeAuthorization`,
             /// setting `authorizationStatus` runs only after a brief delay after initialization.
-            //throw LocationProviderError.noAuthorization
+            // throw LocationProviderError.noAuthorization
         }
         self.lm.startUpdatingLocation()
     }
