@@ -3,7 +3,7 @@
 //  Blaze
 //
 //  Created by Nathan Choi on 9/2/20.
-//
+//                                                                                                                          
 
 import Foundation
 import SwiftUI
@@ -62,7 +62,6 @@ struct FullFireMapView: View {
                     }
                 }
             }
-            .offset(y: 30)
             .edgesIgnoringSafeArea(.all)
             .onChange(of: coordinateRegion) { region in
                 if free && !caliOnly {
@@ -111,11 +110,11 @@ struct FullFireMapView: View {
         .onAppear {
             moveBack()
         }
-        .navigationBarTitle("All Wildfires", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: moveBack) {
-            Image(systemName: "rotate.3d")
-                .font(.title2)
-        })
+//        .navigationBarTitle("All Wildfires", displayMode: .inline)
+//        .navigationBarItems(trailing: Button(action: moveBack) {
+//            Image(systemName: "rotate.3d")
+//                .font(.title2)
+//        })
     }
     
     private func setCenter(option: OPTIONS) {

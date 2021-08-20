@@ -29,7 +29,7 @@
         }
       },
       {
-        "package": "modal-view",
+        "package": "ModalView",
         "repositoryURL": "https://github.com/diniska/modal-view",
         "state": {
           "branch": "master",
@@ -47,7 +47,7 @@
         }
       },
       {
-        "package": "url-image",
+        "package": "URLImage",
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
         "state": {
           "branch": null,
