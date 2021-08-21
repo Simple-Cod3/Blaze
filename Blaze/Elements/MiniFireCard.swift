@@ -18,40 +18,49 @@ struct MiniFireCard: View {
     var area: Bool
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Image(systemName: "flame")
-                .font(.title2)
-                .foregroundColor(.secondary)
+        HStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(fireData.name)
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .lineLimit(2)
+                
+                HStack(spacing: 3) {
+                    Image(systemName: area ? "viewfinder.circle.fill" : "clock.fill")
+                        .font(.subheadline)
+                    
+                    Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
+                        .font(.subheadline)
+                }
+                .foregroundColor(Color.blaze)
+                
+    //            HStack(spacing: 15) {
+    //                Button(action: {
+    //                    show = true
+    //                }) {
+    //                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
+    //                }
+    //                .sheet(isPresented: $show) {
+    //                    InformationView(show: $show, fireData: fireData)
+    //                }
+    //
+    //                NavigationLink(destination: FireMapView(fireData: fireData)) {
+    //                    RectButton("MAP", color: .white, background: .blaze)
+    //                }
+    //            }
+            }
             
-            Text(fireData.name)
-                .font(fireData.name.count > 15 ? .title3 : .title2)
-                .fontWeight(.medium)
-                .foregroundColor(.primary)
-            
-            Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                .foregroundColor(.secondary)
-
             Spacer()
             
-            HStack(spacing: 15) {
-                Button(action: {
-                    self.show.toggle()
-                }) {
-                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
-                }
-                .sheet(isPresented: $show) {
-                    InformationView(show: $show, fireData: fireData)
-                }
-                
-                NavigationLink(destination: FireMapView(fireData: fireData)) {
-                    RectButton("MAP", color: .white, background: .blaze)
-                }
-            }
+            Image(systemName: "chevron.right")
+                .font(.callout.bold())
+                .foregroundColor(Color(.tertiaryLabel))
         }
-        .padding(20)
+        .padding(16)
         .background(Color(.quaternarySystemFill))
-        .frame(width: 230, height: 190)
-        .cornerRadius(16)
+        .cornerRadius(13)
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         .contextMenu {
             Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
             Button(action: { show = true }) { Label("View Details", systemImage: "doc.text.magnifyingglass") }

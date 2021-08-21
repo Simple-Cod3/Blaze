@@ -19,6 +19,7 @@ struct FiresView: View {
     @State var done = false
     @State var popup = false
     @State var aqi = false
+    @State var prefix = 20
     
     var body: some View {
         if done {
@@ -123,7 +124,10 @@ struct FiresView: View {
             .overlay(
                 Button(action: {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) { aqi.toggle() }
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                        aqi.toggle()
+                        popup = false
+                    }
                 }) {
                     VStack(alignment: .leading, spacing: 5) {
                         HStack(spacing: 5) {
@@ -144,7 +148,7 @@ struct FiresView: View {
                                 .foregroundColor(.white.opacity(0.7))
 
                             Image(systemName: aqi ? "flame" : "aqi.high")
-                                .font(.caption.bold())
+                                .font(.caption)
                                 .foregroundColor(.white)
                         }
                         
@@ -201,73 +205,81 @@ struct FiresView: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) { popup.toggle() }
                 }) {
-                    HStack(spacing: 0) {
-                        Text(aqi ? "Air Quality Data" : "Wildfire Overview")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        Image(systemName: popup ? "chevron.down" : "chevron.up")
-                            .font(.callout.bold())
-                            .foregroundColor(Color(.tertiaryLabel))
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            Text(aqi ? "Air Quality Data" : "Wildfire Overview")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.primary)
+                            
+                            Spacer()
+                            
+                            Image(systemName: popup ? "chevron.down" : "chevron.up")
+                                .font(.callout.bold())
+                                .foregroundColor(Color(.tertiaryLabel))
+                        }
+                        .padding(20)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 20)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
                 
                 if popup {
-                    VStack {
-                        Divider()
-                            .padding(.top, 20)
-                            .padding(.horizontal, 20)
-
-                        ScrollView(showsIndicators: false) {
-                            SubHeader(title: "Largest Fires", description: "Wildfires are sorted according to their sizes from largest to smallest.")
-                                .padding(.top, 20)
-                                .padding(.horizontal, 20)
-
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 20) {
-                                    ForEach(
-                                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(5).indices,
-                                        id: \.self
-                                    ) { index in
-                                        NavigationLink(
-                                            destination: FireMapView(
-                                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index]
-                                            )
-                                        ) {
-                                            MiniFireCard(
-                                                selected: index == selectLargest,
-                                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                                area: true
-                                            )
-                                        }
-                                        .buttonStyle(NoButtonStyle())
-                                    }
-                                    Spacer()
-                                    NavigationLink(destination: FullFireMapView()) {
-                                        MoreButton(symbol: "plus.circle", text: "View All")
-                                    }.buttonStyle(CardButtonStyle())
-                                    .padding(.leading, -20)
-                                }
-                                .padding(20)
-                            }
-                        }
-                        
-                        Spacer()
-                    }
+                    wildfiremain
                 }
             }
-            .padding(.bottom, 20)
             .background(ProminentBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .padding([.horizontal, .bottom], 20)
+        }
+    }
+    
+    private var wildfiremain: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal, 20)
+
+            ScrollView(showsIndicators: false) {
+                HStack(spacing: 10) {
+                    RectButton("Largest Fires", color: .primary, background: .white)
+                    RectButton("Latest Fires", color: .primary.opacity(0.85), background: Color(.quaternarySystemFill))
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                
+                SubHeader(title: "Largest Fires", description: "Wildfires are sorted according to their sizes from largest to smallest.")
+                    .padding(.top, 16)
+                    .padding(.horizontal, 20)
+
+                VStack(spacing: 13) {
+                    ForEach(
+                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
+                        id: \.self
+                    ) { index in
+                        MiniFireCard(
+                            selected: index == selectLargest,
+                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                            area: true
+                        )
+                    }
+//                        Spacer()
+//                        NavigationLink(destination: FullFireMapView()) {
+//                            MoreButton(symbol: "plus.circle", text: "View All")
+//                        }.buttonStyle(CardButtonStyle())
+//                        .padding(.leading, -20)
+                }
+                .padding(.vertical, 16)
+                .padding(.horizontal, 20)
+                
+                Spacer()
+            }
+        }
+    }
+    
+    private var aqimain: some View {
+        VStack {
+            
         }
     }
 }
