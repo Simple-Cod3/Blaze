@@ -9,14 +9,14 @@ import SwiftUI
 
 struct AQCard: View {
     
-    private var date: String
+    @EnvironmentObject var forecast: AirQualityBackend
+    
     private var ozone: String
     private var ozoneCaption: String
     private var primaryPollutant: String
     private var primaryPollutantCaption: String
     
     init (ozone: AirQuality, primary: AirQuality) {
-        self.date = ozone.getDate()
         self.ozone = ozone.category.name
         self.ozoneCaption = ozone.pollutant
         self.primaryPollutant = primary.category.name
@@ -24,55 +24,57 @@ struct AQCard: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(date)
-                .font(.title)
-                .fontWeight(.medium)
-                .foregroundColor(.secondary)
-
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("Ozone")
-                        .font(.title3)
-                        .fontWeight(.regular)
-                        .foregroundColor(.secondary)
+        VStack(spacing: 13) {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(spacing: 5) {
+                        Image(systemName: "sun.dust.fill")
+                        
+                        Text("Ozone")
+                    }
+                    .font(Font.callout.weight(.medium))
+                    .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
                     
                     Text(ozone)
-                        .font(.largeTitle)
+                        .font(.title)
                         .fontWeight(.medium)
+                        .foregroundColor(.primary)
                 }
                 
                 Spacer()
-                
-                Text(ozoneCaption)
-                    .font(.title3)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
             }
+            .padding(16)
+            .background(Color(.quaternarySystemFill))
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("Particulate Matter")
-                        .font(.title3)
-                        .fontWeight(.regular)
-                        .foregroundColor(.secondary)
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(spacing: 5) {
+                        Image(systemName: "aqi.low")
+                        
+                        Text("Particulate Matter")
+                    }
+                    .font(Font.callout.weight(.medium))
+                    .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
                     
-                    Text(primaryPollutant)
-                        .font(.largeTitle)
+                    Text(primaryPollutant + " ")
+                        .font(.title)
                         .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                    + Text(primaryPollutantCaption)
+                        .font(.callout)
+                        .fontWeight(.medium)
+                        .foregroundColor(Color(.tertiaryLabel))
                 }
                 
                 Spacer()
-                
-                Text(primaryPollutantCaption)
-                    .font(.title3)
-                    .fontWeight(.regular)
-                    .foregroundColor(.secondary)
             }
+            .padding(16)
+            .background(Color(.quaternarySystemFill))
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         }
-        .padding(15)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
         .padding(.horizontal, 20)
     }
 }

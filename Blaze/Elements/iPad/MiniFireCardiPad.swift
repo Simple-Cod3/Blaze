@@ -33,14 +33,14 @@ struct MiniFireCardiPad: View {
                 Button(action: {
                     self.show.toggle()
                 }) {
-                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
+                    RectButton("INFO")
                 }
                 .sheet(isPresented: $show) {
                     InformationView(show: $show, fireData: fireData)
                 }
                 
                 NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
-                    RectButton("MAP", color: .white, background: .blaze)
+                    RectButton("MAP")
                 }
             }
         }

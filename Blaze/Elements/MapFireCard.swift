@@ -9,9 +9,11 @@ import SwiftUI
 import ModalView
 
 struct MapFireCard: View {
-    @Binding var hide: Bool
-    @Binding var show: Bool
+    
     @State private var random = false
+    
+    @Binding var popup: Bool
+    @Binding var showFireInformation: Bool
     
     private var fireData: ForestFire
     private var name: String
@@ -21,63 +23,119 @@ struct MapFireCard: View {
     private var updated: String
     private var started: String
     
-    init(fire: ForestFire, hide: Binding<Bool>, show: Binding<Bool>) {
-        self._hide = hide
-        self._show = show
-        self.fireData = fire
-        
-        self.name = fire.name
-        self.locations = fire.getLocation()
-        self.acres = fire.getAreaString()
-        self.containment = "\(fire.getContained()) Contained"
-        self.updated = "\(fire.updated.getDateTime())"
-        self.started = "\(fire.started.getDateTime())"
+    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, fireData: ForestFire) {
+        self._popup = popup
+        self._showFireInformation = showFireInformation
+        self.fireData = fireData
+        self.name = fireData.name
+        self.locations = fireData.getLocation()
+        self.acres = fireData.getAreaString()
+        self.containment = "\(fireData.getContained()) Contained"
+        self.updated = "\(fireData.updated.getDateTime())"
+        self.started = "\(fireData.started.getDateTime())"
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "flame")
-                    .foregroundColor(.blaze)
-                    .font(.title)
-                
-                Spacer()
-                
-                Button(action: { show.toggle() }) {
-                    RectButton("INFO", color: .white, background: .blaze)
-                        .frame(width: 65)
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
+                }) {
+                    HStack(spacing: 0) {
+                        Image(systemName: "flame")
+                            .font(.callout.bold())
+                            .foregroundColor(Color.blaze)
+                            .padding(.trailing, 5)
+                        
+                        Text(name)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Image(systemName: popup ? "chevron.down" : "chevron.up")
+                            .font(.callout.bold())
+                            .foregroundColor(Color(.tertiaryLabel))
+                    }
+                    .contentShape(Rectangle())
                 }
-                .buttonStyle(PlainButtonStyle())
+                .buttonStyle(DefaultButtonStyle())
+
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.callout.bold())
+                        .foregroundColor(Color(.tertiaryLabel))
+                        .padding(.leading, 10)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(DefaultButtonStyle())
             }
+            .padding(20)
             
-            if hide {
-                
-            } else {
-                Spacer().frame(height: 15)
-                
-                Text(name)
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .padding(.bottom, 5)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(locations)
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 30)
-                        .fixedSize(horizontal: false, vertical: true)
-                    
-                    Text(acres)
-                        .foregroundColor(.blaze)
-                    
-                    Text(containment)
-                        .foregroundColor(.blaze)
-                }
+            if popup {
+                fireinformation
             }
         }
-        .frame(minHeight: hide ? 0 : 200)
-        .padding(20)
-        .background(Blur(.prominent))
-        .cornerRadius(15)
-        .padding(.horizontal, 20)
+    }
+    
+    private var fireinformation: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal, 20)
+
+            VStack {
+                HStack(spacing: 10) {
+                    RectButton("Data")
+                    RectButton("Information")
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(spacing: 5) {
+                        Image(systemName: "mappin.circle.fill")
+                            .font(.body)
+                            .foregroundColor(.primary)
+
+                        Text("Location: ")
+                            .foregroundColor(.primary)
+                        + Text(locations)
+                            .foregroundColor(.secondary.opacity(0.7))
+                        
+                        Spacer()
+                    }
+                    
+                    HStack(spacing: 5) {
+                        Image(systemName: "viewfinder.circle.fill")
+                            .font(.body)
+                            .foregroundColor(.primary)
+                        
+                        Text("Area: ")
+                            .foregroundColor(.primary)
+                        + Text(acres)
+                            .foregroundColor(.secondary.opacity(0.7))
+                    }
+                    
+                    HStack(spacing: 5) {
+                        Image(systemName: "lock.circle.fill")
+                            .font(.body)
+                            .foregroundColor(.primary)
+                        
+                        Text("Containment: ")
+                            .foregroundColor(.primary)
+                        + Text(containment)
+                            .foregroundColor(.secondary.opacity(0.7))
+                    }
+                }
+                .font(.callout)
+                .padding(.top, 16)
+                .padding([.horizontal, .bottom], 20)
+            }
+        }
     }
 }

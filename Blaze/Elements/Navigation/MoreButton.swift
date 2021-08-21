@@ -18,16 +18,18 @@ struct MoreButton: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 5) {
             Image(systemName: symbol)
-                .font(Font.body.weight(.regular))
+                .font(Font.callout.weight(.medium))
 
             Text(text)
+                .font(.subheadline)
+                .fontWeight(.medium)
         }
         .foregroundColor(.blaze)
-        .padding(.vertical, 10)
-        .padding(.horizontal, 15)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(Capsule())
+        .padding(.vertical, 9)
+        .padding(.horizontal, 13)
+        .background(Color(.quaternarySystemFill))
+        .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
     }
 }

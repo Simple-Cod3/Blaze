@@ -15,13 +15,14 @@ struct Caption: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Text(text)
                 .font(.caption)
                 .fontWeight(.regular)
-                .foregroundColor(.secondary)
+                .foregroundColor(Color(.tertiaryLabel))
+            
             Spacer()
         }
-        .padding([.horizontal, .bottom], 20)
+        .padding(.horizontal, 20)
     }
 }

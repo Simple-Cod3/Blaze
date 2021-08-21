@@ -10,17 +10,56 @@ import SwiftUI
 struct AQView: View {
     
     @EnvironmentObject var forecast: AirQualityBackend
+    
     @State private var showCircle = false
     @State private var show = false
     
+    @Binding var popup: Bool
+    
+    init(popup: Binding<Bool>) {
+        self._popup = popup
+    }
+
     var body: some View {
-        ZStack(alignment: .top) {
+        VStack(spacing: 0) {
+            Button(action: {
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
+            }) {
+                HStack(spacing: 0) {
+                    Text("Air Quality Data")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    Image(systemName: popup ? "chevron.down" : "chevron.up")
+                        .font(.callout.bold())
+                        .foregroundColor(Color(.tertiaryLabel))
+                }
+                .padding(20)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(DefaultButtonStyle())
+            
+            if popup {
+                aqidata
+            }
+        }
+    }
+    
+    private var aqidata: some View {
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal, 20)
+
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
+                VStack(spacing: 0) {
                     ZStack {
                         if let color = forecast.forecasts[1].category.number, color != -1 {
                             determineColor(cat: color)
-                                .frame(width: 270, height: 270)
+                                .frame(width: 230, height: 230)
                                 .clipShape(Circle())
                                 .scaleEffect(showCircle ? 1.0 : 0.5)
                                 .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
@@ -28,7 +67,7 @@ struct AQView: View {
                         }
                         
                         AQMeter(airQ: forecast.forecasts[1])
-                            .padding(.vertical, 75)
+                            .padding(.vertical, 60)
                             .scaleEffect(showCircle ? 1.0 : 0)
                             .onAppear {
                                 forecast.refreshForecastList()
@@ -40,19 +79,20 @@ struct AQView: View {
                             }
                     }
                     
-                    Header(
-                        title: "Air Quality",
-                        desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
-                        headerColor: determineColor(cat: forecast.forecasts[1].category.number)
-                    )
+    //                    Header(
+    //                        title: "Air Quality",
+    //                        desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
+    //                        headerColor: determineColor(cat: forecast.forecasts[1].category.number)
+    //                    )
                     
                     AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
+                        .padding(.bottom, 13)
                     
                     Caption("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
+                        .padding(.bottom, 20)
                 }
             }
-            .opacity(show ? 1 : 0)
-            StatusBarBackground()
         }
+        .opacity(show ? 1 : 0)
     }
 }

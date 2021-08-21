@@ -12,6 +12,7 @@ import MapKit
 struct FullFireMapView: View {
     
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
+    
     @EnvironmentObject private var fireBackend: FireBackend
     
     @State private var coordinateRegion = MKCoordinateRegion(
@@ -40,6 +41,7 @@ struct FullFireMapView: View {
             )
         }
     }
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in

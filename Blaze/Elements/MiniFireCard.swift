@@ -11,64 +11,72 @@ struct MiniFireCard: View {
     
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @EnvironmentObject var fireB: FireBackend
-    @State var show = false
     
-    var selected: Bool
-    var fireData: ForestFire
-    var area: Bool
+    @Binding var showFireInformation: Bool
+    
+    private var selected: Bool
+    private var fireData: ForestFire
+    private var area: Bool
+    
+    init(showFireInformation: Binding<Bool>, selected: Bool, fireData: ForestFire, area: Bool) {
+        self._showFireInformation = showFireInformation
+        self.selected = selected
+        self.fireData = fireData
+        self.area = area
+    }
     
     var body: some View {
-        HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 5) {
-                Text(fireData.name)
-                    .font(.body)
-                    .fontWeight(.medium)
-                    .foregroundColor(.primary)
-                    .lineLimit(2)
-                
-                HStack(spacing: 3) {
-                    Image(systemName: area ? "viewfinder.circle.fill" : "clock.fill")
-                        .font(.subheadline)
+        Button(action: {
+            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = true }
+        }) {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(fireData.name)
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                        .lineLimit(2)
                     
-                    Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
-                        .font(.subheadline)
+                    HStack(spacing: 5) {
+                        Image(systemName: area ? "viewfinder.circle.fill" : "clock.fill")
+                        
+                        Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
+                    }
+                    .font(Font.subheadline.weight(.medium))
+                    .foregroundColor(Color.blaze)
+                    
+        //            HStack(spacing: 15) {
+        //                Button(action: {
+        //                    show = true
+        //                }) {
+        //                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
+        //                }
+        //                .sheet(isPresented: $show) {
+        //                    InformationView(show: $show, fireData: fireData)
+        //                }
+        //
+        //                NavigationLink(destination: FireMapView(fireData: fireData)) {
+        //                    RectButton("MAP", color: .white, background: .blaze)
+        //                }
+        //            }
                 }
-                .foregroundColor(Color.blaze)
                 
-    //            HStack(spacing: 15) {
-    //                Button(action: {
-    //                    show = true
-    //                }) {
-    //                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
-    //                }
-    //                .sheet(isPresented: $show) {
-    //                    InformationView(show: $show, fireData: fireData)
-    //                }
-    //
-    //                NavigationLink(destination: FireMapView(fireData: fireData)) {
-    //                    RectButton("MAP", color: .white, background: .blaze)
-    //                }
-    //            }
+                Spacer()
+                
+                Image(systemName: "chevron.up")
+                    .font(.callout.bold())
+                    .foregroundColor(Color(.tertiaryLabel))
             }
-            
-            Spacer()
-            
-            Image(systemName: "chevron.right")
-                .font(.callout.bold())
-                .foregroundColor(Color(.tertiaryLabel))
+            .padding(16)
+            .background(Color(.quaternarySystemFill))
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contextMenu {
+                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
+                Divider()
+                Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
+            }
         }
-        .padding(16)
-        .background(Color(.quaternarySystemFill))
-        .cornerRadius(13)
-        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-        .contextMenu {
-            Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
-            Button(action: { show = true }) { Label("View Details", systemImage: "doc.text.magnifyingglass") }
-            Divider()
-            Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
-        }
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
+        .buttonStyle(DefaultButtonStyle())
     }
 }

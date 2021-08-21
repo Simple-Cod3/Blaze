@@ -55,37 +55,37 @@ struct FireMapView: View {
                         .foregroundColor(.white)
                 }
             }
-                .offset(y: 30)
-                .edgesIgnoringSafeArea(.all)
-                .onChange(of: coordinateRegion) { region in
-                    if free && !caliOnly {
-                        if region.span.longitudeDelta > 16 &&
-                            region.span.latitudeDelta > 16 {
-                            coordinateRegion.span.latitudeDelta = 15
-                            coordinateRegion.span.longitudeDelta = 15
-                        }
-                        if region.center.latitude > centerLat + RADIUS {
-                            setCenter(option: OPTIONS.TOP)
-                        } else if region.center.latitude < centerLat - RADIUS {
-                            setCenter(option: OPTIONS.DOWN)
-                        }
-                        
-                        if region.center.longitude > centerLong + RADIUS {
-                            setCenter(option: OPTIONS.RIGHT)
-                        } else if region.center.longitude < centerLong - RADIUS {
-                            setCenter(option: OPTIONS.LEFT)
-                        }
-                        
+            .offset(y: 30)
+            .edgesIgnoringSafeArea(.all)
+            .onChange(of: coordinateRegion) { region in
+                if free && !caliOnly {
+                    if region.span.longitudeDelta > 16 &&
+                        region.span.latitudeDelta > 16 {
+                        coordinateRegion.span.latitudeDelta = 15
+                        coordinateRegion.span.longitudeDelta = 15
                     }
+                    if region.center.latitude > centerLat + RADIUS {
+                        setCenter(option: OPTIONS.TOP)
+                    } else if region.center.latitude < centerLat - RADIUS {
+                        setCenter(option: OPTIONS.DOWN)
+                    }
+                    
+                    if region.center.longitude > centerLong + RADIUS {
+                        setCenter(option: OPTIONS.RIGHT)
+                    } else if region.center.longitude < centerLong - RADIUS {
+                        setCenter(option: OPTIONS.LEFT)
+                    }
+                    
                 }
-
-            Button(action: { hide.toggle() }) {
-                MapFireCard(fire: fireData, hide: $hide, show: $show)
-                    .padding(.bottom, 20)
-                    .buttonStyle(InfoCardButtonStyle())
             }
-            .buttonStyle(InfoCardButtonStyle())
-            .animation(.spring(), value: hide)
+//
+//            Button(action: { hide.toggle() }) {
+//                MapFireCard(fire: fireData)
+//                    .padding(.bottom, 20)
+//                    .buttonStyle(InfoCardButtonStyle())
+//            }
+//            .buttonStyle(InfoCardButtonStyle())
+//            .animation(.spring(), value: hide)
             
         }
         .sheet(isPresented: $show) {

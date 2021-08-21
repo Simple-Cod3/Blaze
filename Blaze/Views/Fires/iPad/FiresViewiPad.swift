@@ -55,7 +55,7 @@ struct FiresViewiPad: View {
                 .navigationBarTitle("", displayMode: .inline)
                 
                 ScrollView {
-                    SubHeader(title: "Largest Fires", description: "Wildfires will be sorted according to their sizes from largest to smallest.")
+                    SubHeader(title: "Largest Fires", desc: "Wildfires will be sorted according to their sizes from largest to smallest.")
                         .padding(.top, 20)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -93,7 +93,7 @@ struct FiresViewiPad: View {
                     
                     Divider().padding(20)
                     
-                    SubHeader(title: "Latest Fires", description: "Recently updated fires will be shown first.")
+                    SubHeader(title: "Latest Fires", desc: "Recently updated fires will be shown first.")
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {

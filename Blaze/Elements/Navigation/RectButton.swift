@@ -12,13 +12,9 @@ struct RectButton: View {
     @State var selected = false
     
     private var text: String
-    private var color: Color
-    private var background: Color
     
-    init(_ text: String, color: Color, background: Color) {
+    init(_ text: String) {
         self.text = text
-        self.color = color
-        self.background = background
     }
     
     var body: some View {
@@ -28,7 +24,7 @@ struct RectButton: View {
             Text(text)
                 .font(.subheadline)
                 .fontWeight(selected ? .bold : .medium)
-                .foregroundColor(.primary.opacity(selected ? 1 : 0.8))
+                .foregroundColor(.primary.opacity(selected ? 1 : 0.7))
             
             Spacer()
         }

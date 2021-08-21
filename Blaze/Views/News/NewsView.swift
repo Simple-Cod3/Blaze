@@ -62,7 +62,7 @@ struct NewsView: View {
                             .buttonStyle(CardButtonStyle())
                             .padding(.top, -5)
                             
-                            SubHeader(title: "Alerts", description: "Latest news and alerts are sorted by time and in order.")
+                            SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
 
                             ForEach(news.newsList.prefix(newsShown)) { news in
                                 NewsCardButton(news: news)

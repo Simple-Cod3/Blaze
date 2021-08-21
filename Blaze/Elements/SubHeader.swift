@@ -9,22 +9,25 @@ import SwiftUI
 
 struct SubHeader: View {
     
-    var title: String
-    var description: String?
+    private var title: String
+    private var desc: String
+    
+    init(title: String, desc: String) {
+        self.title = title
+        self.desc = desc
+    }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
                     .font(.title3)
                     .fontWeight(.semibold)
                 
-                if let description = description {
-                    Text(description)
-                        .font(.footnote)
-                        .foregroundColor(.secondary.opacity(0.7))
-                        .fixedSize(horizontal: false, vertical: true)
-                }
+                Text(desc)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary.opacity(0.7))
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Spacer()
