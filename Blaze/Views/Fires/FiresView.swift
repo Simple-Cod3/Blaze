@@ -33,7 +33,14 @@ struct FiresView: View {
     var body: some View {
         if done {
             VStack {
-                FullFireMapView(showLabels: $showLabels)
+                Button(action: {
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                        popup = false
+                    }
+                }) {
+                    FullFireMapView(showLabels: $showLabels)
+                }
+                .buttonStyle(NoButtonStyle())
                 
 //                            NavigationLink(destination: MonitoringListView()) {
 //                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
@@ -135,12 +142,14 @@ struct FiresView: View {
                 
             VStack(alignment: .leading, spacing: 0) {
                 if !popup {
-                    VStack(spacing: 15) {
+                    HStack(spacing: 15) {
+                        Image(systemName: "location")
+                        
+                        Image(systemName: "rectangle.grid.1x2")
+
                         Button(action: { showLabels.toggle() }) {
                             Image(systemName: showLabels ? "bubble.middle.top.fill" : "bubble.middle.top")
                         }
-                        
-                        Image(systemName: "location")
                     }
                     .font(Font.title2.weight(.regular))
                     .foregroundColor(wildfire ? Color.blaze : aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
