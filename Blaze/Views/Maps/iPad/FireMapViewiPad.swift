@@ -93,9 +93,9 @@ struct FireMapViewiPad: View {
             Image(systemName: "rotate.3d")
                 .font(.title2)
         })
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
+//        .sheet(isPresented: $show) {
+//            InformationView(fireData: fireData)
+//        }
         .onAppear {
             moveBack()
 

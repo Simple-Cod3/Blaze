@@ -211,7 +211,7 @@ struct ForestFire: Codable, Identifiable, Equatable {
     
     func share(_ pos: Int) {
         var items = [
-            ": : : : : : \(name) : : : : : :",
+            "🔥【\(name)】\n",
             " • Location: \(getLocation())",
             " • Area Burned: \(getAreaString())",
             " • Contained: \(getContained())"

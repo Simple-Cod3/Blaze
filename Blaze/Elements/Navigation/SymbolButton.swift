@@ -24,4 +24,3 @@ struct SymbolButton: View {
             .contentShape(Rectangle())
     }
 }
-

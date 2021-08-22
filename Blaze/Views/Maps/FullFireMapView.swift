@@ -21,7 +21,6 @@ struct FullFireMapView: View {
     )
     
     // Map States
-    @State private var showLabels = false
     @State private var show = false
     @State private var centerLat = 36.7783
     @State private var centerLong = -119.4
@@ -42,6 +41,12 @@ struct FullFireMapView: View {
         }
     }
     
+    @Binding var showLabels: Bool
+
+    init(showLabels: Binding<Bool>) {
+        self._showLabels = showLabels
+    }
+    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in
@@ -60,7 +65,7 @@ struct FullFireMapView: View {
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                             .scaleEffect(showLabels ? 1 : 0)
-                            .animation(.spring())
+                            .animation(.spring(response: 0.39, dampingFraction: 0.9))
                     }
                 }
             }
@@ -104,10 +109,6 @@ struct FullFireMapView: View {
 //                        .clipShape(Capsule())
 //                }
 //            }.padding(20)
-        }
-        .sheet(isPresented: $show) {
-            FullInformationView(show: $show)
-                .environmentObject(fireBackend)
         }
         .onAppear {
             moveBack()

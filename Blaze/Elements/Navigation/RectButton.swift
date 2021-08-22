@@ -9,11 +9,14 @@ import SwiftUI
 
 struct RectButton: View {
     
-    @State var selected = false
+    @Environment(\.colorScheme) var colorScheme
+    
+    @Binding var selected: Bool
     
     private var text: String
     
-    init(_ text: String) {
+    init(selected: Binding<Bool>, _ text: String) {
+        self._selected = selected
         self.text = text
     }
     
@@ -23,13 +26,13 @@ struct RectButton: View {
             
             Text(text)
                 .font(.subheadline)
-                .fontWeight(selected ? .bold : .medium)
+                .fontWeight(.medium)
                 .foregroundColor(.primary.opacity(selected ? 1 : 0.7))
             
             Spacer()
         }
         .padding(.vertical, 9)
-        .background(selected ? Color(.tertiarySystemBackground) : Color(.quaternarySystemFill))
+        .background(selected ? (colorScheme == .dark ? Color(.tertiaryLabel) : Color.white) : Color(.quaternarySystemFill))
         .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
     }
 }

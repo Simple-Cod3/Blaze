@@ -88,9 +88,9 @@ struct FireMapView: View {
 //            .animation(.spring(), value: hide)
             
         }
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
+//        .sheet(isPresented: $show) {
+//            InformationView(fireData: fireData)
+//        }
         .onAppear {
             moveBack()
 

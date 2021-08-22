@@ -103,7 +103,7 @@ struct SplashScreeniPad: View {
                    
             HStack {
                 VStack {
-                    Header(title: "Wildfires", padding: 0)
+//                    Header(title: "Wildfires", padding: 0)
                     Text("Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         .redacted(reason: .placeholder)
                         .padding(.bottom, 20)
@@ -213,7 +213,7 @@ struct SplashScreeniPad: View {
             
             HStack {
                 VStack {
-                    Header(title: "Air Quality", headerColor: .green, padding: 0)
+//                    Header(title: "Air Quality", headerColor: .green, padding: 0)
                     Text("Real-time local air quality. Real-time local air quality. Real-time local air quality.")
                         .redacted(reason: .placeholder)
                 }
@@ -254,7 +254,7 @@ struct SplashScreeniPad: View {
             
             HStack {
                 VStack {
-                    Header(title: "News", padding: 0)
+//                    Header(title: "News", padding: 0)
                     Text("Real-time local air quality. Real-time local air quality.")
                         .redacted(reason: .placeholder)
                     

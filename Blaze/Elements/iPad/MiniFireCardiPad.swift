@@ -29,20 +29,20 @@ struct MiniFireCardiPad: View {
                 .foregroundColor(.secondary)
 
             Spacer()
-            HStack(spacing: 15) {
-                Button(action: {
-                    self.show.toggle()
-                }) {
-                    RectButton("INFO")
-                }
-                .sheet(isPresented: $show) {
-                    InformationView(show: $show, fireData: fireData)
-                }
-                
-                NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
-                    RectButton("MAP")
-                }
-            }
+//            HStack(spacing: 15) {
+//                Button(action: {
+//                    self.show.toggle()
+//                }) {
+//                    RectButton("INFO")
+//                }
+//                .sheet(isPresented: $show) {
+//                    InformationView(show: $show, fireData: fireData)
+//                }
+//                
+//                NavigationLink(destination: FireMapViewiPad(fireData: fireData)) {
+//                    RectButton("MAP")
+//                }
+//            }
         }
         .padding(15)
         .frame(width: 220, height: 180)
@@ -56,8 +56,8 @@ struct MiniFireCardiPad: View {
             Divider()
             Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
         }
-        .sheet(isPresented: $show) {
-            InformationView(show: $show, fireData: fireData)
-        }
+//        .sheet(isPresented: $show) {
+//            InformationView(fireData: fireData)
+//        }
     }
 }

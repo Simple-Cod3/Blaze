@@ -48,15 +48,15 @@ struct NewsViewiPad: View {
                         .padding(.vertical, 85)
                     
                     VStack(spacing: 20) {
-                        Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
+//                        Header(title: "News", desc: "Latest national news and updates issued by the Incident Information System.")
                         
-                        ModalLink(destination: { PhoneView(dismiss: $0).environmentObject(phone) }) {
-                            HorizontalCardiPad(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
-                        }.buttonStyle(CardButtonStyle())
-                        
-                        ModalLink(destination: { GlossaryView(dismiss: $0) }) {
-                            HorizontalCardiPad(title: "Glossary", subtitle: "Learn wildfire terms")
-                        }.buttonStyle(CardButtonStyle())
+//                        ModalLink(destination: { PhoneView().environmentObject(phone) }) {
+//                            HorizontalCardiPad(title: "Emergency Contacts", subtitle: "Find the nearest fire stations")
+//                        }.buttonStyle(CardButtonStyle())
+//                        
+//                        ModalLink(destination: { GlossaryView(dismiss: $0) }) {
+//                            HorizontalCardiPad(title: "Glossary", subtitle: "Learn wildfire terms")
+//                        }.buttonStyle(CardButtonStyle())
                     }
                     .padding(.bottom, 20)
                 }
@@ -73,7 +73,7 @@ struct NewsViewiPad: View {
                             Button(action: {
                                 newsShown += 10
                             }) {
-                                MoreButton(symbol: "plus.circle", text: "Show More")
+                                MoreButton(symbol: "plus.circle", text: "Show More", color: .orange)
                             }
                         }
                     }

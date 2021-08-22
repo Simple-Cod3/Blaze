@@ -14,7 +14,6 @@ struct PhoneInfoView: View {
     @State private var pastedState = false
     @State private var viewMode = 0
     
-    var dismiss: () -> Void
     var phoneData: PhoneNumber
     
     var phoneCircle: some View {
@@ -154,9 +153,6 @@ struct PhoneInfoView: View {
             }
         }
         .background(Color(.systemGroupedBackground).edgesIgnoringSafeArea(.all))
-        .navigationBarItems(trailing: Button(action: dismiss) {
-            CloseModalButton()
-        })
         .onAppear {
             pastedState = pasted
         }

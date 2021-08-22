@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import ModalView
 
 struct FiresView: View {
     
@@ -20,21 +21,20 @@ struct FiresView: View {
     @State var data = false
     @State var done = false
     @State private var popup = false
-    @State var aqi = false
-    @State var prefix = 10
-    
+    @State var wildfire = true
     @State var showFireInformation = false
-    
+    @State var aqi = false
+    @State var news = false
+    @State var prefix = 10
+    @State var showLabels = false
+    @State var largest = true
+    @State var latest = false
+        
     var body: some View {
         if done {
             VStack {
-                FullFireMapView()
+                FullFireMapView(showLabels: $showLabels)
                 
-//                            NavigationLink(destination: FullFireMapView()) {
-//                                VerticalButton(symbol: "map", text: "Fire Map", desc: "See wildfires on a greater scale", mark: "chevron.forward")
-//                            }
-//                            .buttonStyle(CardButtonStyle())
-//
 //                            NavigationLink(destination: MonitoringListView()) {
 //                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
 //                            }
@@ -45,22 +45,71 @@ struct FiresView: View {
                 alignment: .bottom
             )
             .overlay(
-                Button(action: {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        aqi.toggle()
-                        
-                        if aqi {
-                            popup = true
-                        } else {
-                            popup = false
+                Menu(
+                    content: {
+                        Button(action: {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                wildfire = true
+                                aqi = false
+                                news = false
+                            }
+                        }) {
+                            HStack {
+                                Text("Wildfires")
+                                Image(systemName: "flame")
+                            }
                         }
+                        
+                        Button(action: {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                wildfire = false
+                                popup = true
+                                aqi = true
+                                news = false
+                            }
+                        }) {
+                            HStack {
+                                Text("Air Quality")
+                                Image(systemName: "aqi.high")
+                            }
+                        }
+                        
+                        Button(action: {
+                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                wildfire = false
+                                popup = true
+                                aqi = false
+                                news = true
+                            }
+                        }) {
+                            HStack {
+                                Text("News")
+                                Image(systemName: "newspaper")
+                            }
+                        }
+                        
+                        Divider()
+                        
+                        Button(action: {
+                        
+                        }) {
+                            HStack {
+                                Text("Settings")
+                                Image(systemName: "gear")
+                            }
+                        }
+                    },
+                    label: {
+                        Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
+                            .padding(20)
+                            .buttonStyle(ShrinkButtonStyle())
+
                     }
-                }) {
-                    Hero(aqi: $aqi)
-                        .padding(20)
-                }
-                .buttonStyle(ShrinkButtonStyle()),
+                )
+                ,
                 alignment: .top
             )
             .navigationBarTitle("", displayMode: .inline)
@@ -79,7 +128,7 @@ struct FiresView: View {
     private var main: some View {
         VStack(spacing: 0) {
             if popup {
-                Hero(aqi: $aqi)
+                Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
                     .padding(20)
                     .opacity(0)
             }
@@ -87,53 +136,63 @@ struct FiresView: View {
             VStack(alignment: .leading, spacing: 0) {
                 if !popup {
                     VStack(spacing: 15) {
-                        Image(systemName: "bubble.middle.top")
-                            .foregroundColor(aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.blaze)
+                        Button(action: { showLabels.toggle() }) {
+                            Image(systemName: showLabels ? "bubble.middle.top.fill" : "bubble.middle.top")
+                        }
                         
                         Image(systemName: "location")
-                            .foregroundColor(aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.blaze)
                     }
-                    .font(Font.title2.weight(.medium))
+                    .font(Font.title2.weight(.regular))
+                    .foregroundColor(wildfire ? Color.blaze : aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
                     .padding(11)
                     .background(ProminentBlurBackground())
                     .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     .padding(.horizontal, 20)
-                    .padding(.bottom, 13)
+                    .padding(.bottom, 15)
                 }
                 
                 VStack(spacing: 0) {
+                    if wildfire {
+                        if !showFireInformation {
+                            Button(action: {
+                                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
+                            }) {
+                                VStack(spacing: 0) {
+                                    HStack(spacing: 0) {
+                                        Text("Wildfire Overview")
+                                            .font(.title3)
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.primary)
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: popup ? "chevron.down" : "chevron.up")
+                                            .font(.callout.bold())
+                                            .foregroundColor(Color(.tertiaryLabel))
+                                    }
+                                    .padding(20)
+                                }
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(DefaultButtonStyle())
+                            
+                            if popup {
+                                wildfiremain
+                            }
+                        } else {
+                            FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
+                        }
+                    }
+                    
                     if aqi {
                         AQView(popup: $popup)
-                    } else if !showFireInformation {
-                        Button(action: {
-                            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
-                        }) {
-                            VStack(spacing: 0) {
-                                HStack(spacing: 0) {
-                                    Text("Wildfire Overview")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                    
-                                    Image(systemName: popup ? "chevron.down" : "chevron.up")
-                                        .font(.callout.bold())
-                                        .foregroundColor(Color(.tertiaryLabel))
-                                }
-                                .padding(20)
-                            }
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(DefaultButtonStyle())
-                        
-                        if popup {
-                            wildfiremain
-                        }
-                    } else {
-                        FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
+                    }
+                    
+                    if news {
+                        NewsView(popup: $popup)
+
                     }
                 }
                 .background(ProminentBlurBackground())
@@ -151,27 +210,67 @@ struct FiresView: View {
 
             ScrollView(showsIndicators: false) {
                 HStack(spacing: 10) {
-                    RectButton("Largest Fires")
-                    RectButton("Latest Fires")
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3)) {
+                            largest = true
+                            latest = false
+                        }
+                    }) {
+                        RectButton(selected: $largest, "Largest Fires")
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3)) {
+                            largest = false
+                            latest = true
+                        }
+                    }) {
+                        RectButton(selected: $latest, "Latest Fires")
+                    }
+                    .buttonStyle(DefaultButtonStyle())
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
                 
-                SubHeader(title: "Largest Fires", desc: "Wildfires are sorted according to their sizes from largest to smallest.")
-                    .padding(.top, 16)
-                    .padding(.horizontal, 20)
+                SubHeader(
+                    title: largest ? "Largest Fires" : "Latest Fires",
+                    desc: largest ? "Wildfires are sorted according to their sizes from largest to smallest." :
+                        "Wildfires are sorted based on time updated."
+                )
+                .padding(.top, 16)
+                .padding(.horizontal, 20)
 
                 VStack(spacing: 13) {
-                    ForEach(
-                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
-                        id: \.self
-                    ) { index in
-                        FireCard(
-                            showFireInformation: $showFireInformation,
-                            selected: index == selectLargest,
-                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                            area: true
-                        )
+                    if largest {
+                        ForEach(
+                            fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
+                            id: \.self
+                        ) { index in
+                            FireCard(
+                                showFireInformation: $showFireInformation,
+                                popup: $popup,
+                                selected: index == selectLargest,
+                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                area: true
+                            )
+                        }
+                    }
+                    
+                    if latest {
+                        ForEach(
+                            fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
+                            id: \.self
+                        ) { index in
+                            FireCard(
+                                showFireInformation: $showFireInformation,
+                                popup: $popup,
+                                selected: index == selectAll,
+                                fireData: fireB.fires.sorted(by: {
+                                    $0.updated > $1.updated
+                                })[index],
+                                area: false)
+                        }
                     }
                     
                     Button(action: {
@@ -179,38 +278,13 @@ struct FiresView: View {
                         
                         print(prefix)
                     }) {
-                        MoreButton(symbol: "plus.circle", text: "View More")
+                        MoreButton(symbol: "plus.circle", text: "View More", color: .blaze)
                     }
                     .buttonStyle(DefaultButtonStyle())
                 }
                 .padding(.vertical, 16)
                 .padding(.horizontal, 20)
-                
-//                VStack(spacing: 13) {
-//                    ForEach(
-//                        fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
-//                        id: \.self
-//                    ) { index in
-//                        MiniFireCard(
-//                            selected: index == selectAll,
-//                            fireData: fireB.fires.sorted(by: {
-//                                $0.updated > $1.updated
-//                            })[index],
-//                            area: false)
-//                    }
-//
-//                    Button(action: {
-//                        prefix += 10
-//
-//                        print(prefix)
-//                    }) {
-//                        MoreButton(symbol: "plus.circle", text: "View More")
-//                    }
-//                    .buttonStyle(DefaultButtonStyle())
-//                }
-//                .padding(.vertical, 16)
-//                .padding(.horizontal, 20)
-                
+
                 Spacer()
             }
         }

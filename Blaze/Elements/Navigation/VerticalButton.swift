@@ -13,41 +13,41 @@ struct VerticalButton: View {
     private var text: String
     private var desc: String
     private var mark: String
+    private var color: Color
     
-    init(symbol: String, text: String, desc: String, mark: String) {
+    init(symbol: String, text: String, desc: String, mark: String, color: Color) {
         self.symbol = symbol
         self.text = text
         self.desc = desc
         self.mark = mark
+        self.color = color
     }
     
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 5) {
-                HStack(spacing: 10) {
+                HStack(spacing: 5) {
                     Image(systemName: symbol)
-                        .font(Font.body.weight(.regular))
-                        .foregroundColor(.blaze)
+                        .foregroundColor(color)
 
                     Text(text)
-                        .foregroundColor(.blaze)
+                        .foregroundColor(color)
                 }
+                .font(Font.callout.weight(.medium))
                 
                 Text(desc)
-                    .foregroundColor(.secondary)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(Color(.tertiaryLabel))
             }
             
             Spacer()
             
-            Image(systemName: mark)
-                .font(Font.body.weight(.regular))
-                .foregroundColor(.secondary)
+            SymbolButton(mark, Color(.tertiaryLabel))
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 15)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-        .padding(.horizontal, 20)
+        .padding(16)
+        .background(Color(.quaternarySystemFill))
+        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }
 
@@ -83,6 +83,5 @@ struct VerticalButtoniPad: View {
         .padding(.vertical, 15)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-        .padding(.horizontal, 20)
     }
 }

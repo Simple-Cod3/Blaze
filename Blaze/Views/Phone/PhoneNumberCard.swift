@@ -1,5 +1,5 @@
 //
-//  PhoneNumberCell.swift
+//  PhoneNumberCard.swift
 //  Blaze
 //
 //  Created by Nathan Choi on 11/5/20.
@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct PhoneNumberCell: View {
-    var dismiss: () -> Void
+struct PhoneNumberCard: View {
     
     var addPin: (PhoneNumber) -> Void
     var number: PhoneNumber
     
     var body: some View {
-        NavigationLink(destination: PhoneInfoView(dismiss: dismiss, phoneData: number)) {
+        NavigationLink(destination: PhoneInfoView(phoneData: number)) {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(number.name?.replacingOccurrences(of: " CLOSED", with: "") ?? "Unknown Name")
@@ -33,6 +32,7 @@ struct PhoneNumberCell: View {
                     .foregroundColor(.secondary)
                 }
                 Spacer()
+                
                 Check(yes: number.name!.contains(" CLOSED"), interval: 0)
             }
             .padding(.vertical, 10)

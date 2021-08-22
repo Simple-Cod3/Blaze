@@ -105,7 +105,7 @@ struct SplashScreen: View {
                 InfoBubble(text: "Latest fire information prepared for you.")
             }
                         
-            Header(title: "Wildfires", padding: 0)
+//            Header(title: "Wildfires", padding: 0)
             
             Text("Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                 .redacted(reason: .placeholder)
@@ -166,7 +166,7 @@ struct SplashScreen: View {
                 }
             }
             
-            Header(title: "Air Quality", headerColor: .green, padding: 0)
+//            Header(title: "Air Quality", headerColor: .green, padding: 0)
             
             Text("Real-time local air quality. Real-time local air quality. Real-time local air quality. Real-time local air quality.")
                 .redacted(reason: .placeholder)
@@ -189,8 +189,8 @@ struct SplashScreen: View {
                     .padding(.trailing, 20)
             }
             
-            Header(title: "News", padding: 0)
-                .padding(.horizontal, 20)
+//            Header(title: "News", padding: 0)
+//                .padding(.horizontal, 20)
             
             Text("Real-time local air quality. Real-time local air quality.")
                 .redacted(reason: .placeholder)

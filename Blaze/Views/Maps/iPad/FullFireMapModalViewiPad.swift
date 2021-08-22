@@ -94,10 +94,6 @@ struct FullFireMapModalViewiPad: View {
                 }
             }.padding(20)
         }
-        .sheet(isPresented: $show) {
-            FullInformationView(show: $show)
-                .environmentObject(fireBackend)
-        }
     }
     
     private func setCenter(option: OPTIONS) {

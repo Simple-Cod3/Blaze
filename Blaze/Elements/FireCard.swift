@@ -13,13 +13,15 @@ struct FireCard: View {
     @EnvironmentObject var fireB: FireBackend
     
     @Binding var showFireInformation: Bool
+    @Binding var popup: Bool
     
     private var selected: Bool
     private var fireData: ForestFire
     private var area: Bool
     
-    init(showFireInformation: Binding<Bool>, selected: Bool, fireData: ForestFire, area: Bool) {
+    init(showFireInformation: Binding<Bool>, popup: Binding<Bool>, selected: Bool, fireData: ForestFire, area: Bool) {
         self._showFireInformation = showFireInformation
+        self._popup = popup
         self.selected = selected
         self.fireData = fireData
         self.area = area
@@ -27,7 +29,10 @@ struct FireCard: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = true }
+            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                showFireInformation = true
+                popup = true
+            }
         }) {
             HStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 5) {
@@ -63,7 +68,7 @@ struct FireCard: View {
                 
                 Spacer()
                 
-                SymbolButton("chevron.up", Color(.tertiaryLabel))
+                SymbolButton("chevron.right", Color(.tertiaryLabel))
             }
             .padding(16)
             .background(Color(.quaternarySystemFill))

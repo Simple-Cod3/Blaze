@@ -11,6 +11,8 @@ import ModalView
 struct FireInfoCard: View {
     
     @State private var random = false
+    @State private var data = true
+    @State private var info = false
     
     @Binding var popup: Bool
     @Binding var showFireInformation: Bool
@@ -57,17 +59,23 @@ struct FireInfoCard: View {
                         
                         SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
                     }
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
+                
+                Spacer()
 
-                Button(action: {
-                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
-                }) {
-                    SymbolButton("xmark", Color(.tertiaryLabel))
-                        .padding(.leading, 10)
+                if popup {
+                    Button(action: {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
+                    }) {
+                        SymbolButton("chevron.left", Color(.tertiaryLabel))
+                            .padding(.leading, 10)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(DefaultButtonStyle())
                 }
-                .buttonStyle(DefaultButtonStyle())
             }
             .padding(20)
             
@@ -84,51 +92,34 @@ struct FireInfoCard: View {
 
             VStack {
                 HStack(spacing: 10) {
-                    RectButton("Data")
-                    RectButton("Information")
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3)) {
+                            data = true
+                            info = false
+                        }
+                    }) {
+                        RectButton(selected: $data, "Data")
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.3)) {
+                            data = false
+                            info = true
+                        }
+                    }) {
+                        RectButton(selected: $info, "Information")
+                    }
+                    .buttonStyle(DefaultButtonStyle())
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
 
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack(spacing: 5) {
-                        Image(systemName: "mappin.circle.fill")
-                            .font(.body)
-                            .foregroundColor(.primary)
-
-                        Text("Location: ")
-                            .foregroundColor(.primary)
-                        + Text(locations)
-                            .foregroundColor(.secondary.opacity(0.7))
-                        
-                        Spacer()
-                    }
-                    
-                    HStack(spacing: 5) {
-                        Image(systemName: "viewfinder.circle.fill")
-                            .font(.body)
-                            .foregroundColor(.primary)
-                        
-                        Text("Area: ")
-                            .foregroundColor(.primary)
-                        + Text(acres)
-                            .foregroundColor(.secondary.opacity(0.7))
-                    }
-                    
-                    HStack(spacing: 5) {
-                        Image(systemName: "lock.circle.fill")
-                            .font(.body)
-                            .foregroundColor(.primary)
-                        
-                        Text("Containment: ")
-                            .foregroundColor(.primary)
-                        + Text(containment)
-                            .foregroundColor(.secondary.opacity(0.7))
-                    }
+                if data {
+                    InformationView(data: $data, info: $info, fireData: fireData)
+                        .padding(.top, 16)
+                        .padding([.horizontal, .bottom], 20)
                 }
-                .font(.callout)
-                .padding(.top, 16)
-                .padding([.horizontal, .bottom], 20)
             }
         }
     }

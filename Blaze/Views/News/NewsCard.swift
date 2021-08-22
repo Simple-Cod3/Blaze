@@ -6,56 +6,35 @@
 //
 
 import SwiftUI
-import URLImage
 
 struct NewsCard: View {
-    
-    @State private var show = false
+        
     var news: News
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(news.getTimeAgo().uppercased())
-                .fontWeight(.semibold)
-                .font(.caption)
-                .foregroundColor(.white)
-                .padding(5)
-                .background(Color.blaze)
-                .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                .padding([.horizontal, .top], 20)
-                .padding(.bottom, 10)
+        VStack(alignment: .leading, spacing: 7) {
+            Text(news.id)
+                .font(.body)
+                .fontWeight(.medium)
+                .foregroundColor(.primary)
             
-            HStack {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(news.id)
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .foregroundColor(.primary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    
-                    (Text(news.publisher)
-                        .fontWeight(.regular)
-                        .foregroundColor(.blaze)
-
-                        + Text(" • " + news.author)
-                        .fontWeight(.regular)
-                        .foregroundColor(.secondary)
-                    )
-                    .fixedSize(horizontal: false, vertical: true)
-                }
+            HStack(spacing: 0) {
+                Text(news.publisher)
+                    .font(Font.subheadline.weight(.medium))
+                    .foregroundColor(.orange)
+             
                 Spacer()
-            }
-            .padding([.horizontal, .bottom], 20)
-        }
-        .background(
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(Color(.secondarySystemBackground))
-        )
-        .opacity(show ? 1 : 0)
-        .onAppear {
-            withAnimation(Animation.easeInOut.delay(0.5)) {
-                show = true
+                
+                Text(news.getTimeAgo().uppercased())
+                    .font(Font.footnote.weight(.medium))
+                    .foregroundColor(Color(.tertiaryLabel))
+
             }
         }
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(16)
+        .background(Color(.quaternarySystemFill))
+        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }

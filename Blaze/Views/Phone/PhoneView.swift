@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PhoneView: View {
+    
     @EnvironmentObject var numbers: PhoneBackend
     @ObservedObject var loc = LocationProvider()
     
@@ -17,9 +18,7 @@ struct PhoneView: View {
     @State private var text = ""
     @State private var mode = 0
     @State private var show = false
-    
-    var dismiss: () -> Void
-    
+        
     // MARK: - Pin Functionality
     
     // Run first when appear (sets the state)
@@ -93,108 +92,91 @@ struct PhoneView: View {
             )
         }
     }
-    
-    init(dismiss: @escaping () -> Void) {
-        self.dismiss = dismiss
-        do {
-            loc.lm.allowsBackgroundLocationUpdates = false
-            try loc.start()
-        } catch {
-            print("!!! 🚫 Failed to get access to location 🚫 !!!")
-            loc.requestAuthorization()
-        }
-    }
-    
     var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("Filters")) {
-                    VStack(spacing: 10) {
-                        HStack(spacing: 20) {
-                            ForEach(choices.indices) { index in
-                                Button(action: {
-                                    if index != mode {
-                                        mode = index
-                                        sortNums()
-                                    }
-                                }) {
-                                    HStack {
-                                        Spacer()
-                                        Image(systemName: choices[index])
-                                            .font(Font.body.weight(.regular))
-                                            .foregroundColor(index == mode ? .blaze : .secondary)
-                                        Spacer()
-                                    }
-                                    .padding(.vertical, 12)
-                                    .background(Color(.tertiarySystemGroupedBackground))
-                                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        VStack(spacing: 0) {
+            Divider()
+                .padding(.horizontal, 20)
+
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 10) {
+                    HStack(spacing: 20) {
+                        ForEach(choices.indices) { index in
+                            Button(action: {
+                                if index != mode {
+                                    mode = index
+                                    sortNums()
                                 }
-                                .buttonStyle(CardButtonStyle())
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: choices[index])
+                                        .font(Font.body.weight(.regular))
+                                        .foregroundColor(index == mode ? .blaze : .secondary)
+                                    Spacer()
+                                }
+                                .padding(.vertical, 12)
+                                .background(Color(.tertiarySystemGroupedBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             }
-                        }
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            TextField("Search", text: $text)
-                                .foregroundColor(.primary)
-                                .keyboardType(.alphabet)
-                            
-                        }
-                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                        .foregroundColor(.secondary)
-                        .background(Color(.tertiarySystemGroupedBackground))
-                        .cornerRadius(10)
-                        .onChange(of: text) { _ in
-                            sortNums()
+                            .buttonStyle(CardButtonStyle())
                         }
                     }
-                    .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                    
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        TextField("Search", text: $text)
+                            .foregroundColor(.primary)
+                            .keyboardType(.alphabet)
+                        
+                    }
+                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                    .foregroundColor(.secondary)
+                    .background(Color(.tertiarySystemGroupedBackground))
+                    .cornerRadius(10)
+                    .onChange(of: text) { _ in
+                        sortNums()
+                    }
                 }
-                
-                if mode == 2 {
-                    if pinned.count == 0 {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("Save Facilities")
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                            
-                            Text("Press and hold on a facility to pin it.")
-                                .fontWeight(.medium)
-                                .foregroundColor(.secondary)
-                        }
-                        .padding(.bottom, 20)
-                    } else {
-                        Section(header: Text("Sorted \(labels[mode])")) {
-                            ForEach(
-                                pinned.filter({
-                                    text == "" ||
-                                        ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                        ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                        ($0.name?.lowercased() ?? "???").contains(text.lowercased())
-                                })
-                            ) { number in
-                                PhoneNumberCell(dismiss: dismiss, addPin: addPin, number: number)
-                            }.onDelete(perform: removePin)
-                        }
+                .padding(.horizontal, 20)
+            }
+            
+            if mode == 2 {
+                if pinned.count == 0 {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Save Facilities")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        
+                        Text("Press and hold on a facility to pin it.")
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
                     }
+                    .padding(.bottom, 20)
                 } else {
-                    Section(header: Text("Sorted \(labels[mode])")) {
-                        ForEach(sortedPhones) { number in
-                            PhoneNumberCell(dismiss: dismiss, addPin: addPin, number: number)
+                    VStack(spacing: 13) {
+                        ForEach(
+                            pinned.filter({
+                                text == "" ||
+                                    ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                    ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                    ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                            })
+                        ) { number in
+                            PhoneNumberCard(addPin: addPin, number: number)
                         }
+                        .onDelete(perform: removePin)
                     }
                 }
-            }
-            .navigationBarTitle("Facilities", displayMode: .large)
-            .navigationBarItems(
-                trailing: Button(action: dismiss) {
-                    CloseModalButton()
+            } else {
+                ForEach(sortedPhones) { number in
+                    PhoneNumberCard(addPin: addPin, number: number)
                 }
-            )
-            .onAppear {
-                decodePin()
-                sortNums()
-                show = true
             }
+        }
+        .onAppear {
+            decodePin()
+            sortNums()
+            show = true
         }
     }
 }

@@ -29,7 +29,7 @@ struct FiresViewiPad: View {
                             .frame(height: 300)
                             .padding(.vertical, 100)
                         
-                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
+//                        Header(title: "Wildfires", desc: "Uncontrollable fires that spreads quickly over vegetation in rural areas. The scale of destruction is largely driven by weather conditions.")
                         
                         Button(action: {
                             self.showingFullMap.toggle()
@@ -84,7 +84,7 @@ struct FiresViewiPad: View {
                             Spacer()
                             
                             NavigationLink(destination: FullFireMapViewiPad()) {
-                                MoreButton(symbol: "plus.circle", text: "View All")
+                                MoreButton(symbol: "plus.circle", text: "View All", color: .blaze)
                             }
                             .padding(.leading, -20)
                         }
@@ -117,7 +117,7 @@ struct FiresViewiPad: View {
                             }
                             Spacer()
                             NavigationLink(destination: FullFireMapViewiPad()) {
-                                MoreButton(symbol: "plus.circle", text: "View All")
+                                MoreButton(symbol: "plus.circle", text: "View All", color: .blaze)
                             }
                             .padding(.leading, -20)
                         }

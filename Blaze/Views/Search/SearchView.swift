@@ -112,8 +112,8 @@ struct SearchView: View {
                                 ForEach(wordsList) { word in
                                     NavigationLink(
                                         destination: ScrollView {
-                                            Header(title: word.id, desc: word.definition)
-                                                .padding(.vertical, 50)
+//                                            Header(title: word.id, desc: word.definition)
+//                                                .padding(.vertical, 50)
                                         }
                                         .navigationBarTitle("Term", displayMode: .inline)
                                     ) {
