@@ -50,9 +50,3 @@ func determineColor(cat: Int) -> Color {
         return Color.blaze
     }
 }
-
-struct AQMeter_Previews: PreviewProvider {
-    static var previews: some View {
-        AQMeter(airQ: AirQuality())
-    }
-}

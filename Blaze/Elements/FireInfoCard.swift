@@ -1,5 +1,5 @@
 //
-//  InfoCard.swift
+//  FireInfoCard.swift
 //  Blaze
 //
 //  Created by Paul Wong on 9/4/20.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ModalView
 
-struct MapFireCard: View {
+struct FireInfoCard: View {
     
     @State private var random = false
     
@@ -55,11 +55,8 @@ struct MapFireCard: View {
                         
                         Spacer()
                         
-                        Image(systemName: popup ? "chevron.down" : "chevron.up")
-                            .font(.callout.bold())
-                            .foregroundColor(Color(.tertiaryLabel))
+                        SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
                     }
-                    .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
 
@@ -67,11 +64,8 @@ struct MapFireCard: View {
                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
                 }) {
-                    Image(systemName: "xmark")
-                        .font(.callout.bold())
-                        .foregroundColor(Color(.tertiaryLabel))
+                    SymbolButton("xmark", Color(.tertiaryLabel))
                         .padding(.leading, 10)
-                        .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
             }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Check: View {
+    
     @State private var show = false
     @State var yes: Bool
     @State var interval: Double
@@ -53,11 +54,5 @@ struct Check: View {
                 show = true
             }
         }
-    }
-}
-
-struct Check_Previews: PreviewProvider {
-    static var previews: some View {
-        Check(yes: true, interval: 2)
     }
 }

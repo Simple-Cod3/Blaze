@@ -1,5 +1,5 @@
 //
-//  MiniFireCard.swift
+//  FireCard.swift
 //  Blaze
 //
 //  Created by Nathan Choi on 9/4/20.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MiniFireCard: View {
+struct FireCard: View {
     
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @EnvironmentObject var fireB: FireBackend
@@ -63,9 +63,7 @@ struct MiniFireCard: View {
                 
                 Spacer()
                 
-                Image(systemName: "chevron.up")
-                    .font(.callout.bold())
-                    .foregroundColor(Color(.tertiaryLabel))
+                SymbolButton("chevron.up", Color(.tertiaryLabel))
             }
             .padding(16)
             .background(Color(.quaternarySystemFill))

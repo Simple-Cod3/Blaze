@@ -11,9 +11,9 @@
 		279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
 		279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
 		27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB5F9125098DFD0071F3FF /* AirQuality.swift */; };
+		6D15C42726D1AC38008339F4 /* SymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D15C42626D1AC38008339F4 /* SymbolButton.swift */; };
 		6D2DE04B2555F3B100D07038 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04A2555F3B100D07038 /* MoreButton.swift */; };
 		6D2DE04F2555F56200D07038 /* Caption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04E2555F56200D07038 /* Caption.swift */; };
-		6D2DE0532555F70800D07038 /* HorizontalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE0522555F70800D07038 /* HorizontalButton.swift */; };
 		6D2DE0582555FD4800D07038 /* GenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE0572555FD4800D07038 /* GenericButton.swift */; };
 		6D3602472550ED910054B3A9 /* NoticeCardiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3602462550ED910054B3A9 /* NoticeCardiPad.swift */; };
 		6D36024E2550EDCF0054B3A9 /* MiniFireCardiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D36024D2550EDCF0054B3A9 /* MiniFireCardiPad.swift */; };
@@ -35,8 +35,6 @@
 		6D4A43C6255239800066884D /* MonitoringListViewiPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4A43C5255239800066884D /* MonitoringListViewiPad.swift */; };
 		6D58B33B26B4F90C00311CF3 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D58B33A26B4F90C00311CF3 /* Blur.swift */; };
 		6D6362C525534C38005A18A8 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6362C425534C38005A18A8 /* LongButton.swift */; };
-		6D6362D325534E59005A18A8 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6362D225534E59005A18A8 /* RoundedButton.swift */; };
-		6D6859D3254758F500060BB8 /* NoticeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6859D2254758F500060BB8 /* NoticeCard.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
 		6D77EB3B26CF53CA0057BB0E /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77EB3A26CF53CA0057BB0E /* Hero.swift */; };
@@ -49,7 +47,7 @@
 		6DE79D252558B82E008397E9 /* RectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE79D242558B82E008397E9 /* RectButton.swift */; };
 		6DE79D282558BADE008397E9 /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE79D272558BADE008397E9 /* VerticalButton.swift */; };
 		6DF6590C2510684100D47118 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF6590B2510684100D47118 /* DataView.swift */; };
-		6DF73D7B2502A3A90051E4A2 /* MapFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */; };
+		6DF73D7B2502A3A90051E4A2 /* FireInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7A2502A3A90051E4A2 /* FireInfoCard.swift */; };
 		6DF73D7D2502ACC00051E4A2 /* WordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7C2502ACC00051E4A2 /* WordCard.swift */; };
 		6DF73D7F2502AEAD0051E4A2 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF73D7E2502AEAD0051E4A2 /* Header.swift */; };
 		E903803D2518749C0043DC53 /* StatusBarBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E903803C2518749C0043DC53 /* StatusBarBackground.swift */; };
@@ -95,7 +93,7 @@
 		E9C41A932555035900AC3052 /* VersionDotSoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A922555035900AC3052 /* VersionDotSoon.swift */; };
 		E9C41A962555037800AC3052 /* VersionTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A952555037800AC3052 /* VersionTag.swift */; };
 		E9CE22A52502F48700929D13 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A42502F48700929D13 /* Extensions.swift */; };
-		E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* MiniFireCard.swift */; };
+		E9CE22A7250308F900929D13 /* FireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* FireCard.swift */; };
 		E9E31A8A250E958B007FF855 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E31A89250E958B007FF855 /* Progress.swift */; };
 		E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EC25031681006038FD /* ButtonStyles.swift */; };
 		E9E769EF250319F4006038FD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E769EE250319F4006038FD /* InformationView.swift */; };
@@ -134,9 +132,9 @@
 		279FE6F725213216004AC147 /* PhoneBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBackend.swift; sourceTree = "<group>"; };
 		279FE6FD25214AAE004AC147 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
+		6D15C42626D1AC38008339F4 /* SymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolButton.swift; sourceTree = "<group>"; };
 		6D2DE04A2555F3B100D07038 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		6D2DE04E2555F56200D07038 /* Caption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caption.swift; sourceTree = "<group>"; };
-		6D2DE0522555F70800D07038 /* HorizontalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalButton.swift; sourceTree = "<group>"; };
 		6D2DE0572555FD4800D07038 /* GenericButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericButton.swift; sourceTree = "<group>"; };
 		6D3602462550ED910054B3A9 /* NoticeCardiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCardiPad.swift; sourceTree = "<group>"; };
 		6D36024D2550EDCF0054B3A9 /* MiniFireCardiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCardiPad.swift; sourceTree = "<group>"; };
@@ -158,8 +156,6 @@
 		6D4A43C5255239800066884D /* MonitoringListViewiPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoringListViewiPad.swift; sourceTree = "<group>"; };
 		6D58B33A26B4F90C00311CF3 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		6D6362C425534C38005A18A8 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
-		6D6362D225534E59005A18A8 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		6D6859D2254758F500060BB8 /* NoticeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCard.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
 		6D7405D52509CA1200F45BB2 /* AQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		6D77EB3A26CF53CA0057BB0E /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
@@ -171,7 +167,7 @@
 		6DE79D242558B82E008397E9 /* RectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectButton.swift; sourceTree = "<group>"; };
 		6DE79D272558BADE008397E9 /* VerticalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
 		6DF6590B2510684100D47118 /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFireCard.swift; sourceTree = "<group>"; };
+		6DF73D7A2502A3A90051E4A2 /* FireInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireInfoCard.swift; sourceTree = "<group>"; };
 		6DF73D7C2502ACC00051E4A2 /* WordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCard.swift; sourceTree = "<group>"; };
 		6DF73D7E2502AEAD0051E4A2 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		E903803C2518749C0043DC53 /* StatusBarBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarBackground.swift; sourceTree = "<group>"; };
@@ -215,7 +211,7 @@
 		E9C41A922555035900AC3052 /* VersionDotSoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionDotSoon.swift; sourceTree = "<group>"; };
 		E9C41A952555037800AC3052 /* VersionTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTag.swift; sourceTree = "<group>"; };
 		E9CE22A42502F48700929D13 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		E9CE22A6250308F900929D13 /* MiniFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFireCard.swift; sourceTree = "<group>"; };
+		E9CE22A6250308F900929D13 /* FireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireCard.swift; sourceTree = "<group>"; };
 		E9E31A89250E958B007FF855 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		E9E31A93250EDD41007FF855 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E9E31A95250EDD41007FF855 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -307,12 +303,11 @@
 			isa = PBXGroup;
 			children = (
 				6D6362C425534C38005A18A8 /* LongButton.swift */,
-				6D6362D225534E59005A18A8 /* RoundedButton.swift */,
 				6D2DE04A2555F3B100D07038 /* MoreButton.swift */,
-				6D2DE0522555F70800D07038 /* HorizontalButton.swift */,
 				6DE79D272558BADE008397E9 /* VerticalButton.swift */,
 				6D2DE0572555FD4800D07038 /* GenericButton.swift */,
 				6DE79D242558B82E008397E9 /* RectButton.swift */,
+				6D15C42626D1AC38008339F4 /* SymbolButton.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -322,6 +317,8 @@
 			children = (
 				6D7405D52509CA1200F45BB2 /* AQView.swift */,
 				6D3602952550F0390054B3A9 /* AQViewiPad.swift */,
+				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
+				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 			);
 			path = AQ;
 			sourceTree = "<group>";
@@ -493,16 +490,13 @@
 			isa = PBXGroup;
 			children = (
 				6D77EB3A26CF53CA0057BB0E /* Hero.swift */,
-				6DBAD72425098F2700E2BCA9 /* AQCard.swift */,
-				6D7405D22509C85000F45BB2 /* AQMeter.swift */,
 				E9073CAB2529096600FE43C2 /* Check.swift */,
 				E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */,
 				E985F5352503752000A3BA83 /* FormButtons.swift */,
 				6DF73D7E2502AEAD0051E4A2 /* Header.swift */,
 				E94C30BF25075FF20019E1E4 /* SubHeader.swift */,
-				E9CE22A6250308F900929D13 /* MiniFireCard.swift */,
-				6DF73D7A2502A3A90051E4A2 /* MapFireCard.swift */,
-				6D6859D2254758F500060BB8 /* NoticeCard.swift */,
+				E9CE22A6250308F900929D13 /* FireCard.swift */,
+				6DF73D7A2502A3A90051E4A2 /* FireInfoCard.swift */,
 				E9E31A89250E958B007FF855 /* Progress.swift */,
 				E903803C2518749C0043DC53 /* StatusBarBackground.swift */,
 				6DF73D7C2502ACC00051E4A2 /* WordCard.swift */,
@@ -712,7 +706,6 @@
 				6D3602902550F0180054B3A9 /* NewsViewiPad.swift in Sources */,
 				6D3602472550ED910054B3A9 /* NoticeCardiPad.swift in Sources */,
 				E941692D2504B2D800DEFCB2 /* CreditsView.swift in Sources */,
-				6D6859D3254758F500060BB8 /* NoticeCard.swift in Sources */,
 				6D2DE04F2555F56200D07038 /* Caption.swift in Sources */,
 				E9C41A932555035900AC3052 /* VersionDotSoon.swift in Sources */,
 				6D3602722550EF260054B3A9 /* SearchViewiPad.swift in Sources */,
@@ -721,8 +714,7 @@
 				E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */,
 				6D4A43B52552360D0066884D /* MonitoringListView.swift in Sources */,
 				6D36027E2550EF930054B3A9 /* FullFireMapViewiPad.swift in Sources */,
-				6D2DE0532555F70800D07038 /* HorizontalButton.swift in Sources */,
-				E9CE22A7250308F900929D13 /* MiniFireCard.swift in Sources */,
+				E9CE22A7250308F900929D13 /* FireCard.swift in Sources */,
 				E9F222E425005A5700EC5A06 /* FiresBackend.swift in Sources */,
 				E9AAFC0D2551148E00BE1E45 /* FiresViewiPad.swift in Sources */,
 				E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */,
@@ -749,6 +741,7 @@
 				6DC18D072548ABA9001B1F49 /* FullFireMapView.swift in Sources */,
 				6D36025A2550EE4C0054B3A9 /* AQCardiPad.swift in Sources */,
 				6D3602782550EF570054B3A9 /* FireMapViewiPad.swift in Sources */,
+				6D15C42726D1AC38008339F4 /* SymbolButton.swift in Sources */,
 				E9C41A81255501B500AC3052 /* PhoneNumberCell.swift in Sources */,
 				E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */,
 				E9E769ED25031681006038FD /* ButtonStyles.swift in Sources */,
@@ -778,12 +771,11 @@
 				E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */,
 				E9AF015924FDB8DD0058C184 /* ContentView.swift in Sources */,
 				6D3602602550EEA80054B3A9 /* AQMeteriPad.swift in Sources */,
-				6D6362D325534E59005A18A8 /* RoundedButton.swift in Sources */,
 				6DBAD72525098F2700E2BCA9 /* AQCard.swift in Sources */,
 				E9C41A902555033B00AC3052 /* VersionDot.swift in Sources */,
 				6D77EB3B26CF53CA0057BB0E /* Hero.swift in Sources */,
 				E903803D2518749C0043DC53 /* StatusBarBackground.swift in Sources */,
-				6DF73D7B2502A3A90051E4A2 /* MapFireCard.swift in Sources */,
+				6DF73D7B2502A3A90051E4A2 /* FireInfoCard.swift in Sources */,
 				E9C41A8D2555032000AC3052 /* VersionCard.swift in Sources */,
 				27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */,
 			);

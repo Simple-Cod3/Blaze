@@ -24,9 +24,3 @@ struct WordCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
     }
 }
-
-struct WordCard_Previews: PreviewProvider {
-    static var previews: some View {
-        WordCard(term: Term(id: "Paul", definition: "A very interesting person. Why? It's because he is a designer. Just kidding."))
-    }
-}

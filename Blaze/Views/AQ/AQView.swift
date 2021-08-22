@@ -12,7 +12,6 @@ struct AQView: View {
     @EnvironmentObject var forecast: AirQualityBackend
     
     @State private var showCircle = false
-    @State private var show = false
     
     @Binding var popup: Bool
     
@@ -34,9 +33,7 @@ struct AQView: View {
                     
                     Spacer()
                     
-                    Image(systemName: popup ? "chevron.down" : "chevron.up")
-                        .font(.callout.bold())
-                        .foregroundColor(Color(.tertiaryLabel))
+                    SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
                 }
                 .padding(20)
                 .contentShape(Rectangle())
@@ -74,7 +71,6 @@ struct AQView: View {
                                 withAnimation(nil) { showCircle = false }
                                 withAnimation(.spring(dampingFraction: 0.8)) {
                                     showCircle = true
-                                    show = true
                                 }
                             }
                     }
@@ -93,6 +89,5 @@ struct AQView: View {
                 }
             }
         }
-        .opacity(show ? 1 : 0)
     }
 }

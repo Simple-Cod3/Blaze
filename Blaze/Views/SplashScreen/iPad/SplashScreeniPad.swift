@@ -158,8 +158,6 @@ struct SplashScreeniPad: View {
                                     .redacted(reason: .placeholder)
                                 Spacer()
                                 
-                                RoundedButton("MAP")
-                                    .redacted(reason: .placeholder)
                             }
                         }
                         .padding(15)
@@ -188,9 +186,6 @@ struct SplashScreeniPad: View {
                                     .foregroundColor(.blaze)
                                     .redacted(reason: .placeholder)
                                 Spacer()
-                                
-                                RoundedButton("MAP")
-                                    .redacted(reason: .placeholder)
                             }
                         }
                         .padding(15)
