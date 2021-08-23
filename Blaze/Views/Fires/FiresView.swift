@@ -123,7 +123,7 @@ struct FiresView: View {
     
     private var main: some View {
         VStack(spacing: 0) {
-            if popup {
+            if popup || showFireInformation {
                 Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
                     .padding(20)
                     .opacity(0)
@@ -187,7 +187,7 @@ struct FiresView: View {
                                     wildfiremain
                                 }
                             } else {
-                                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
+                                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, wildfire: $wildfire, aqi: $aqi, news: $news, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
                             }
                         }
                         
@@ -227,7 +227,7 @@ struct FiresView: View {
                     }
                     .buttonStyle(DefaultButtonStyle())
                     .padding(.horizontal, 20)
-                    .padding(.top, 10)
+                    .padding(.top, 20)
                     
                     HStack(spacing: 10) {
                         Button(action: {
@@ -259,7 +259,7 @@ struct FiresView: View {
                         title: monitorList ? "Monitoring List" : (largest ? "Largest Fires" : "Latest Fires"),
                         desc: monitorList ? "Showing pinned wildfires." : (largest ? "Wildfires are sorted according to their sizes from largest to smallest." : "Wildfires are sorted based on time updated.")
                     )
-                    .padding(.top, 16)
+                    .padding(.top, 20)
                     .padding(.horizontal, 20)
 
                     VStack(spacing: 13) {

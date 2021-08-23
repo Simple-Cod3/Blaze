@@ -16,6 +16,9 @@ struct FireInfoCard: View {
     
     @Binding var popup: Bool
     @Binding var showFireInformation: Bool
+    @Binding var wildfire: Bool
+    @Binding var aqi: Bool
+    @Binding var news: Bool
     
     private var fireData: ForestFire
     private var name: String
@@ -25,9 +28,12 @@ struct FireInfoCard: View {
     private var updated: String
     private var started: String
     
-    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, fireData: ForestFire) {
+    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, wildfire: Binding<Bool>, aqi: Binding<Bool>, news: Binding<Bool>, fireData: ForestFire) {
         self._popup = popup
         self._showFireInformation = showFireInformation
+        self._wildfire = wildfire
+        self._aqi = aqi
+        self._news = news
         self.fireData = fireData
         self.name = fireData.name
         self.locations = fireData.getLocation()
@@ -59,7 +65,8 @@ struct FireInfoCard: View {
                         
                         SymbolButton(popup ? "chevron.down" : "chevron.up")
                     }
-                    .padding(.leading, 20)
+                    .padding([.leading, .vertical], 20)
+                    .padding(.trailing, popup ? 0 : 20)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
@@ -88,7 +95,7 @@ struct FireInfoCard: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            VStack {
+            VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     Button(action: {
                         withAnimation(.spring(response: 0.3)) {
@@ -113,11 +120,9 @@ struct FireInfoCard: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
 
-                if data {
-                    InformationView(data: $data, info: $info, fireData: fireData)
-                        .padding(.top, 16)
-                        .padding([.horizontal, .bottom], 20)
-                }
+                InformationView(data: $data, info: $info, fireData: fireData)
+                    .padding(.top, 16)
+                    .padding([.horizontal, .bottom], 20)
             }
         }
     }

@@ -53,11 +53,12 @@ struct GlossaryCard: View {
                 VStack(spacing: 0) {
                     (Text(letter.uppercased()) +
                         Text(letter.lowercased()))
-                        .font(.largeTitle)
+                        .font(.system(size: 59))
                         .fontWeight(.semibold)
                         .foregroundColor(.orange)
                         .fixedSize()
-                        .padding(.bottom, 40)
+                        .padding(.top, 10)
+                        .padding(.bottom, 20)
                     
                     LazyVStack(spacing: 13) {
                         ForEach(glossary[letter]!) { term in

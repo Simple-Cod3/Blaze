@@ -22,7 +22,7 @@ struct InformationView: View {
     private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 10) {
+        LazyVStack(alignment: .leading, spacing: 00) {
             if isNotAccesible {
                 Section {
                     VStack(alignment: .leading) {
@@ -37,52 +37,77 @@ struct InformationView: View {
             }
             
             if data {
-                DataSection(
-                    symbol: "info.circle.fill",
-                    unit: "Name",
-                    data: fireData.name
-                )
-                
-                DataSection(
-                    symbol: "viewfinder.circle.fill",
-                    unit: "Location",
-                    data: fireData.getLocation()
-                )
-
-    //            String(fireData.latitude)+"°", String(fireData.longitude)+"°"]
-
-                DataSection(
-                    symbol: "clock.fill",
-                    unit: "Updated",
-                    data: fireData.updated.getElapsedInterval(true)
-                )
-                
-                DataSection(
-                    symbol: "calendar.circle.fill",
-                    unit: "Fire Started",
-                    data: fireData.started.getElapsedInterval(true)
-                )
-                
-                DataSection(
-                    symbol: "viewfinder.circle.fill",
-                    unit: "Area Burned",
-                    data: fireData.getAreaString()
-                )
-                
-                DataSection(
-                    symbol: "lock.circle.fill",
-                    unit: "Containment",
-                    data: fireData.getContained()
-                )
+                dataView
             }
             
             if info {
-                if let html = fireData.conditionStatement, html != "" {
-                    NativeWebView(html: html)
-                        .padding(.vertical, 5)
-                } else if fireData.sourceType == .inciweb {
-                    InciWebContent(url: URL(string: fireData.url)!)
+                infoView
+            }
+        }
+    }
+    
+    private var dataView: some View {
+        LazyVStack(alignment: .leading, spacing: 10) {
+            DataSection(
+                symbol: "info.circle.fill",
+                unit: "Name",
+                data: fireData.name
+            )
+            
+            DataSection(
+                symbol: "viewfinder.circle.fill",
+                unit: "Location",
+                data: fireData.getLocation()
+            )
+
+//            String(fireData.latitude)+"°", String(fireData.longitude)+"°"]
+
+            DataSection(
+                symbol: "clock.fill",
+                unit: "Updated",
+                data: fireData.updated.getElapsedInterval(true)
+            )
+            
+            DataSection(
+                symbol: "calendar.circle.fill",
+                unit: "Fire Started",
+                data: fireData.started.getElapsedInterval(true)
+            )
+            
+            DataSection(
+                symbol: "viewfinder.circle.fill",
+                unit: "Area Burned",
+                data: fireData.getAreaString()
+            )
+            
+            DataSection(
+                symbol: "lock.circle.fill",
+                unit: "Containment",
+                data: fireData.getContained()
+            )
+            
+            HStack(spacing: 0) {
+                Spacer()
+                
+                if let url = URL(string: fireData.url) {
+                    MoreButtonLink(url: url)
+                } else {
+                    MoreButtonLink(url: URL(string: "https://google.com")!)
+                        .disabled(true)
                 }
+                
+                Spacer()
+            }
+            .padding(.top, 6)
+        }
+    }
+    
+    private var infoView: some View {
+        ScrollView(showsIndicators: false) {
+            if let html = fireData.conditionStatement, html != "" {
+                NativeWebView(html: html)
+            } else if fireData.sourceType == .inciweb {
+                InciWebContent(url: URL(string: fireData.url)!)
             }
             
             HStack(spacing: 0) {
@@ -97,22 +122,7 @@ struct InformationView: View {
                 
                 Spacer()
             }
-            .padding(.top, 16)
+            .padding(.top, 6)
         }
-//        .navigationBarItems(
-//            leading: HStack(spacing: 20) {
-//                Button(action: {
-//                    if fireB.monitoringFires.contains(fireData) {
-//                        fireB.removeMonitoredFire(name: fireData.name)
-//                    } else {
-//                        fireB.addMonitoredFire(name: fireData.name)
-//                    }
-//                }) {
-//                    Image(systemName: "pin.circle.fill")
-//                        .font(.system(size: 26))
-//                        .foregroundColor(fireB.monitoringFires.contains(fireData) ? .blaze : .secondary)
-//                }
-//            }
-//        )
     }
 }
