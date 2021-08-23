@@ -47,33 +47,18 @@ struct FireCard: View {
                     }
                     .font(Font.subheadline.weight(.medium))
                     .foregroundColor(Color.blaze)
-                    
-        //            HStack(spacing: 15) {
-        //                Button(action: {
-        //                    show = true
-        //                }) {
-        //                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
-        //                }
-        //                .sheet(isPresented: $show) {
-        //                    InformationView(show: $show, fireData: fireData)
-        //                }
-        //
-        //                NavigationLink(destination: FireMapView(fireData: fireData)) {
-        //                    RectButton("MAP", color: .white, background: .blaze)
-        //                }
-        //            }
                 }
                 
                 Spacer()
                 
-                SymbolButton("chevron.right", Color(.tertiaryLabel))
+                SymbolButton("chevron.right")
             }
             .padding(16)
             .background(Color(.quaternarySystemFill))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contextMenu {
-                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
+                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Add to Monitoring List", systemImage: "plus.circle") }
                 Divider()
                 Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
             }

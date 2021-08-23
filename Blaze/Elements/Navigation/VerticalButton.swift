@@ -43,7 +43,7 @@ struct VerticalButton: View {
             
             Spacer()
             
-            SymbolButton(mark, Color(.tertiaryLabel))
+            SymbolButton(mark)
         }
         .padding(16)
         .background(Color(.quaternarySystemFill))

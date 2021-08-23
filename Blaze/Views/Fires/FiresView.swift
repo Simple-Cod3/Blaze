@@ -34,7 +34,7 @@ struct FiresView: View {
         
     var body: some View {
         if done {
-            VStack {
+            VStack(spacing: 0) {
                 Button(action: {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                         popup = false
@@ -43,11 +43,6 @@ struct FiresView: View {
                     FullFireMapView(showLabels: $showLabels)
                 }
                 .buttonStyle(NoButtonStyle())
-                
-//                            NavigationLink(destination: MonitoringListView()) {
-//                                VerticalButton(symbol: "doc.text.magnifyingglass", text: "Monitoring List", desc: "\(fireB.monitoringFires.count) fires pinned", mark: "chevron.forward")
-//                            }
-//                            .buttonStyle(CardButtonStyle())
             }
             .overlay(
                 main,
@@ -183,22 +178,10 @@ struct FiresView: View {
                                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                                 }) {
-                                    HStack(spacing: 0) {
-                                        Text("Wildfires Overview")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.primary)
-                                        
-                                        Spacer()
-                                        
-                                        Image(systemName: popup ? "chevron.down" : "chevron.up")
-                                            .font(.callout.bold())
-                                            .foregroundColor(Color(.tertiaryLabel))
-                                    }
-                                    .contentShape(Rectangle())
+                                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
                                 }
                                 .buttonStyle(DefaultButtonStyle())
-                                .padding(20)
+                                .padding(.trailing, 20)
 
                                 if popup {
                                     wildfiremain
@@ -281,37 +264,37 @@ struct FiresView: View {
 
                     VStack(spacing: 13) {
                         LazyVStack(spacing: 13) {
-                            if !monitorList {
-                                if largest {
-                                    ForEach(
-                                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
-                                        id: \.self
-                                    ) { index in
-                                        FireCard(
-                                            showFireInformation: $showFireInformation,
-                                            popup: $popup,
-                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                            area: true
-                                        )
-                                    }
+                            if largest {
+                                ForEach(
+                                    fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
+                                    id: \.self
+                                ) { index in
+                                    FireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                        area: true
+                                    )
                                 }
-                                
-                                if latest {
-                                    ForEach(
-                                        fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
-                                        id: \.self
-                                    ) { index in
-                                        FireCard(
-                                            showFireInformation: $showFireInformation,
-                                            popup: $popup,
-                                            fireData: fireB.fires.sorted(by: {
-                                                $0.updated > $1.updated
-                                            })[index],
-                                            area: false
-                                        )
-                                    }
+                            }
+                            
+                            if latest {
+                                ForEach(
+                                    fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
+                                    id: \.self
+                                ) { index in
+                                    FireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        fireData: fireB.fires.sorted(by: {
+                                            $0.updated > $1.updated
+                                        })[index],
+                                        area: false
+                                    )
                                 }
-                            } else {
+                            }
+                        
+                            if monitorList {
                                 ForEach(fireB.monitoringFires) { fire in
                                     MonitorFireCard(
                                         showFireInformation: $showFireInformation,

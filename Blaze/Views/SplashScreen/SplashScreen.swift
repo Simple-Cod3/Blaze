@@ -196,14 +196,6 @@ struct SplashScreen: View {
                 .redacted(reason: .placeholder)
                 .padding(.horizontal, 20)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 20) {
-                    HorizontalCard(title: "Emergency Contacts", subtitle: "Find the nearest fire stations").redacted(reason: .placeholder)
-                    HorizontalCard(title: "Glossary", subtitle: "Learn wildfire terms").redacted(reason: .placeholder)
-                }
-                .padding(.horizontal, 20)
-            }
-            
             Spacer()
             
             Button(action: { page = 4 }) {

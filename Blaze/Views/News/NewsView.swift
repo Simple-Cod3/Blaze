@@ -54,19 +54,8 @@ struct NewsView: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
-                    HStack(spacing: 0) {
-                        Text(
-                            contacts ? "Contacts" : glossary ? "Glossary" : "News and Updates"
-                        )
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
-                    }
-                    .contentShape(Rectangle())
+                    HeaderButton(contacts ? "Contacts" : glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
+                        .padding(.trailing, glossary ? 0 : 20)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 
@@ -83,14 +72,11 @@ struct NewsView: View {
                             }
                         }
                     }) {
-                        SymbolButton("chevron.left", Color(.tertiaryLabel))
-                            .padding(.leading, 10)
-                            .contentShape(Rectangle())
+                        TrailingButton("chevron.left")
                     }
                     .buttonStyle(DefaultButtonStyle())
                 }
             }
-            .padding(20)
 
             if popup {
                 if contacts {
@@ -180,6 +166,7 @@ struct NewsView: View {
 }
 
 struct NewsCardButton: View {
+    
     @State var presenting = false
     var news: News
     

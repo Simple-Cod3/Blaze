@@ -22,7 +22,8 @@ struct AQMeter: View {
                     .multilineTextAlignment(.center)
                 
                 (Text(String(airQ.AQI)) + Text(" AQI"))
-                    .font(.headline)
+                    .font(.body)
+                    .fontWeight(.medium)
                     .opacity(0.7)
                     .transition(.opacity)
                     .animation(.easeInOut)
@@ -47,6 +48,6 @@ func determineColor(cat: Int) -> Color {
     case 4:
         return Color.purple
     default:
-        return Color.blaze
+        return Color.gray
     }
 }

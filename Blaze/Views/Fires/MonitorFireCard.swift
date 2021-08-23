@@ -48,7 +48,7 @@ struct MonitorFireCard: View {
                 
                 Spacer()
                 
-                SymbolButton("chevron.right", Color(.tertiaryLabel))
+                SymbolButton("chevron.right")
             }
             .padding(16)
             .background(Color(.quaternarySystemFill))
@@ -56,7 +56,7 @@ struct MonitorFireCard: View {
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contextMenu {
                 Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
-                   Label("Remove Pin", systemImage: "pin.slash")
+                   Label("Remove from Monitoring List", systemImage: "minus.circle")
                 }
                 Divider()
                 Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }

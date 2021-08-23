@@ -25,20 +25,10 @@ struct AQView: View {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
             }) {
-                HStack(spacing: 0) {
-                    Text("Air Quality Overview")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    
-                    Spacer()
-                    
-                    SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
-                }
-                .padding(20)
-                .contentShape(Rectangle())
+                HeaderButton("Air Quality Overview", popup ? "chevron.down" : "chevron.up")
             }
             .buttonStyle(DefaultButtonStyle())
+            .padding(.trailing, 20)
             
             if popup {
                 aqidata

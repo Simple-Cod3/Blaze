@@ -37,7 +37,7 @@ struct GlossaryCard: View {
                             
                             Spacer()
                             
-                            SymbolButton("chevron.right", Color(.tertiaryLabel))
+                            SymbolButton("chevron.right")
 
                         }
                         .padding(16)

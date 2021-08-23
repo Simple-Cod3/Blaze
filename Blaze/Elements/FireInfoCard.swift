@@ -57,8 +57,9 @@ struct FireInfoCard: View {
                         
                         Spacer()
                         
-                        SymbolButton(popup ? "chevron.down" : "chevron.up", Color(.tertiaryLabel))
+                        SymbolButton(popup ? "chevron.down" : "chevron.up")
                     }
+                    .padding(.leading, 20)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
@@ -70,14 +71,11 @@ struct FireInfoCard: View {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
                     }) {
-                        SymbolButton("chevron.left", Color(.tertiaryLabel))
-                            .padding(.leading, 10)
-                            .contentShape(Rectangle())
+                        TrailingButton("chevron.left")
                     }
                     .buttonStyle(DefaultButtonStyle())
                 }
             }
-            .padding(20)
             
             if popup {
                 fireinformation
