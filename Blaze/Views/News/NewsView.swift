@@ -129,7 +129,7 @@ struct NewsView: View {
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { glossary = true }
                     }) {
                         VerticalButton(
-                            symbol: "a.book.closed",
+                            symbol: "character.book.closed.fill",
                             text: "Glossary",
                             desc: "Learn wildfire terms",
                             mark: "chevron.right",
@@ -204,7 +204,7 @@ struct NewsCardButton: View {
                             barCollapsingEnabled: true
                         )
                     )
-                    .preferredControlAccentColor(Color.blaze)
+                    .preferredControlAccentColor(Color.orange)
                 }
         }
         .buttonStyle(PlainButtonStyle())

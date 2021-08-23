@@ -46,7 +46,7 @@ struct Hero: View {
             
             Text(
                 wildfire ? "Showing 390 hotspots across the United States." :
-                aqi ? "Displaying air quality in San Francisco." :
+                aqi ? (!forecast.lost ? "Displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.") :
                     "Latest national news and updates issued by the Incident Information System."
             )
             .font(.subheadline)

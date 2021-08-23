@@ -26,7 +26,7 @@ struct AQView: View {
                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
             }) {
                 HStack(spacing: 0) {
-                    Text("Air Quality Data")
+                    Text("Air Quality Overview")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
@@ -75,16 +75,10 @@ struct AQView: View {
                             }
                     }
                     
-    //                    Header(
-    //                        title: "Air Quality",
-    //                        desc: !forecast.lost ? "Currently displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Cannot get the location of your device. Showing air quality in San Francisco.",
-    //                        headerColor: determineColor(cat: forecast.forecasts[1].category.number)
-    //                    )
-                    
                     AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
                         .padding(.bottom, 13)
                     
-                    Caption("Ozone (O3) is harmful to air quality at ground level. PM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
+                    Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
                         .padding(.bottom, 20)
                 }
             }

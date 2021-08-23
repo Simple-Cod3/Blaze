@@ -29,6 +29,8 @@ struct FiresView: View {
     @State var showLabels = false
     @State var largest = true
     @State var latest = false
+    @State private var zoom = false
+    @State var monitorList = false
         
     var body: some View {
         if done {
@@ -52,70 +54,62 @@ struct FiresView: View {
                 alignment: .bottom
             )
             .overlay(
-                Menu(
-                    content: {
-                        Button(action: {
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                wildfire = true
-                                aqi = false
-                                news = false
+                Group {
+                    if !zoom {
+                        Menu(
+                            content: {
+                                Button(action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        wildfire = true
+                                        aqi = false
+                                        news = false
+                                    }
+                                }) {
+                                    HStack {
+                                        Text("Wildfires")
+                                        Image(systemName: "flame")
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        wildfire = false
+                                        popup = true
+                                        aqi = true
+                                        news = false
+                                    }
+                                }) {
+                                    HStack {
+                                        Text("Air Quality")
+                                        Image(systemName: "aqi.high")
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        wildfire = false
+                                        popup = true
+                                        aqi = false
+                                        news = true
+                                    }
+                                }) {
+                                    HStack {
+                                        Text("News")
+                                        Image(systemName: "newspaper")
+                                    }
+                                }
+                            },
+                            label: {
+                                Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
+                                    .padding(20)
+                                    .buttonStyle(ShrinkButtonStyle())
                             }
-                        }) {
-                            HStack {
-                                Text("Wildfires")
-                                Image(systemName: "flame")
-                            }
-                        }
-                        
-                        Button(action: {
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                wildfire = false
-                                popup = true
-                                aqi = true
-                                news = false
-                            }
-                        }) {
-                            HStack {
-                                Text("Air Quality")
-                                Image(systemName: "aqi.high")
-                            }
-                        }
-                        
-                        Button(action: {
-                            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                wildfire = false
-                                popup = true
-                                aqi = false
-                                news = true
-                            }
-                        }) {
-                            HStack {
-                                Text("News")
-                                Image(systemName: "newspaper")
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        Button(action: {
-                        
-                        }) {
-                            HStack {
-                                Text("Settings")
-                                Image(systemName: "gear")
-                            }
-                        }
-                    },
-                    label: {
-                        Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
-                            .padding(20)
-                            .buttonStyle(ShrinkButtonStyle())
-
+                        )
                     }
-                )
+                }
                 ,
                 alignment: .top
             )
@@ -142,35 +136,55 @@ struct FiresView: View {
                 
             VStack(alignment: .leading, spacing: 0) {
                 if !popup {
-                    HStack(spacing: 15) {
-                        Image(systemName: "location")
-                        
-                        Image(systemName: "rectangle.grid.1x2")
+                    HStack(spacing: 0) {
+                        HStack(spacing: 15) {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { zoom.toggle() }
+                            }) {
+                                Image(systemName: zoom ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                            }
 
-                        Button(action: { showLabels.toggle() }) {
-                            Image(systemName: showLabels ? "bubble.middle.top.fill" : "bubble.middle.top")
+                            Button(action: { showLabels.toggle() }) {
+                                Image(systemName: showLabels ? "bubble.middle.top.fill" : "bubble.middle.top")
+                            }
+                            
+                            Button(action: {  }) {
+                                Image(systemName: "location")
+                            }
                         }
+                        .padding(11)
+                        .background(ProminentBlurBackground())
+                        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                        
+                        Spacer()
+                        
+                        HStack(spacing: 15) {
+                            Button(action: {  }) {
+                                Image(systemName: "gearshape")
+                            }
+                        }
+                        .padding(11)
+                        .background(ProminentBlurBackground())
+                        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     }
                     .font(Font.title2.weight(.regular))
                     .foregroundColor(wildfire ? Color.blaze : aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
-                    .padding(11)
-                    .background(ProminentBlurBackground())
-                    .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-                    .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     .padding(.horizontal, 20)
                     .padding(.bottom, 15)
                 }
                 
-                VStack(spacing: 0) {
-                    if wildfire {
-                        if !showFireInformation {
-                            Button(action: {
-                                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
-                            }) {
-                                VStack(spacing: 0) {
+                if !zoom {
+                    VStack(spacing: 0) {
+                        if wildfire {
+                            if !showFireInformation {
+                                Button(action: {
+                                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
+                                }) {
                                     HStack(spacing: 0) {
-                                        Text("Wildfire Overview")
+                                        Text("Wildfires Overview")
                                             .font(.title3)
                                             .fontWeight(.semibold)
                                             .foregroundColor(.primary)
@@ -181,33 +195,33 @@ struct FiresView: View {
                                             .font(.callout.bold())
                                             .foregroundColor(Color(.tertiaryLabel))
                                     }
-                                    .padding(20)
+                                    .contentShape(Rectangle())
                                 }
-                                .contentShape(Rectangle())
+                                .buttonStyle(DefaultButtonStyle())
+                                .padding(20)
+
+                                if popup {
+                                    wildfiremain
+                                }
+                            } else {
+                                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
                             }
-                            .buttonStyle(DefaultButtonStyle())
-                            
-                            if popup {
-                                wildfiremain
-                            }
-                        } else {
-                            FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
+                        }
+                        
+                        if aqi {
+                            AQView(popup: $popup)
+                        }
+                        
+                        if news {
+                            NewsView(popup: $popup)
+
                         }
                     }
-                    
-                    if aqi {
-                        AQView(popup: $popup)
-                    }
-                    
-                    if news {
-                        NewsView(popup: $popup)
-
-                    }
+                    .background(ProminentBlurBackground())
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .padding([.horizontal, .bottom], 20)
                 }
-                .background(ProminentBlurBackground())
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .padding([.horizontal, .bottom], 20)
             }
         }
     }
@@ -218,83 +232,114 @@ struct FiresView: View {
                 .padding(.horizontal, 20)
 
             ScrollView(showsIndicators: false) {
-                HStack(spacing: 10) {
+                VStack(spacing: 0) {
                     Button(action: {
-                        withAnimation(.spring(response: 0.3)) {
-                            largest = true
-                            latest = false
-                        }
-                    }) {
-                        RectButton(selected: $largest, "Largest Fires")
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                    
-                    Button(action: {
-                        withAnimation(.spring(response: 0.3)) {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
                             largest = false
-                            latest = true
+                            latest = false
+                            monitorList = true
                         }
                     }) {
-                        RectButton(selected: $latest, "Latest Fires")
+                        RectButton(selected: $monitorList, "Monitoring List")
                     }
                     .buttonStyle(DefaultButtonStyle())
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 20)
-                
-                SubHeader(
-                    title: largest ? "Largest Fires" : "Latest Fires",
-                    desc: largest ? "Wildfires are sorted according to their sizes from largest to smallest." :
-                        "Wildfires are sorted based on time updated."
-                )
-                .padding(.top, 16)
-                .padding(.horizontal, 20)
-
-                VStack(spacing: 13) {
-                    if largest {
-                        ForEach(
-                            fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
-                            id: \.self
-                        ) { index in
-                            FireCard(
-                                showFireInformation: $showFireInformation,
-                                popup: $popup,
-                                selected: index == selectLargest,
-                                fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                area: true
-                            )
-                        }
-                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
                     
-                    if latest {
-                        ForEach(
-                            fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
-                            id: \.self
-                        ) { index in
-                            FireCard(
-                                showFireInformation: $showFireInformation,
-                                popup: $popup,
-                                selected: index == selectAll,
-                                fireData: fireB.fires.sorted(by: {
-                                    $0.updated > $1.updated
-                                })[index],
-                                area: false)
+                    HStack(spacing: 10) {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                largest = true
+                                latest = false
+                                monitorList = false
+                            }
+                        }) {
+                            RectButton(selected: $largest, "Largest Fires")
                         }
-                    }
-                    
-                    Button(action: {
-                        prefix += 10
+                        .buttonStyle(DefaultButtonStyle())
                         
-                        print(prefix)
-                    }) {
-                        MoreButton(symbol: "plus.circle", text: "View More", color: .blaze)
+                        Button(action: {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
+                                largest = false
+                                latest = true
+                                monitorList = false
+                            }
+                        }) {
+                            RectButton(selected: $latest, "Latest Fires")
+                        }
+                        .buttonStyle(DefaultButtonStyle())
                     }
-                    .buttonStyle(DefaultButtonStyle())
-                }
-                .padding(.vertical, 16)
-                .padding(.horizontal, 20)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 11)
+                    
+                    SubHeader(
+                        title: monitorList ? "Monitoring List" : (largest ? "Largest Fires" : "Latest Fires"),
+                        desc: monitorList ? "Showing pinned wildfires." : (largest ? "Wildfires are sorted according to their sizes from largest to smallest." : "Wildfires are sorted based on time updated.")
+                    )
+                    .padding(.top, 16)
+                    .padding(.horizontal, 20)
 
-                Spacer()
+                    VStack(spacing: 13) {
+                        LazyVStack(spacing: 13) {
+                            if !monitorList {
+                                if largest {
+                                    ForEach(
+                                        fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
+                                        id: \.self
+                                    ) { index in
+                                        FireCard(
+                                            showFireInformation: $showFireInformation,
+                                            popup: $popup,
+                                            fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                            area: true
+                                        )
+                                    }
+                                }
+                                
+                                if latest {
+                                    ForEach(
+                                        fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
+                                        id: \.self
+                                    ) { index in
+                                        FireCard(
+                                            showFireInformation: $showFireInformation,
+                                            popup: $popup,
+                                            fireData: fireB.fires.sorted(by: {
+                                                $0.updated > $1.updated
+                                            })[index],
+                                            area: false
+                                        )
+                                    }
+                                }
+                            } else {
+                                ForEach(fireB.monitoringFires) { fire in
+                                    MonitorFireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        fireData: fire
+                                    )
+                                    .buttonStyle(PlainButtonStyle())
+                                    .contextMenu {
+                                        Button(action: { fireB.removeMonitoredFire(name: fire.name) }) {
+                                            Label("Remove Pin", systemImage: "pin.slash")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if !monitorList {
+                            Button(action: {
+                                prefix += 10
+                            }) {
+                                MoreButton(symbol: "plus.circle", text: "View More", color: .blaze)
+                            }
+                            .buttonStyle(DefaultButtonStyle())
+                        }
+                    }
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 20)
+                }
             }
         }
     }

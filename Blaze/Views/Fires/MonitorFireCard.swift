@@ -1,28 +1,25 @@
 //
-//  FireCard.swift
+//  MonitorFireCard.swift
 //  Blaze
 //
-//  Created by Nathan Choi on 9/4/20.
+//  Created by Nathan Choi on 11/5/20.
 //
 
 import SwiftUI
 
-struct FireCard: View {
+struct MonitorFireCard: View {
     
-    @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @EnvironmentObject var fireB: FireBackend
     
     @Binding var showFireInformation: Bool
     @Binding var popup: Bool
     
     var fireData: ForestFire
-    private var area: Bool
-    
-    init(showFireInformation: Binding<Bool>, popup: Binding<Bool>, fireData: ForestFire, area: Bool) {
+        
+    init(showFireInformation: Binding<Bool>, popup: Binding<Bool>, fireData: ForestFire) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self.fireData = fireData
-        self.area = area
     }
     
     var body: some View {
@@ -41,27 +38,12 @@ struct FireCard: View {
                         .lineLimit(2)
                     
                     HStack(spacing: 5) {
-                        Image(systemName: area ? "viewfinder.circle.fill" : "clock.fill")
+                        Image(systemName: "viewfinder.circle.fill")
                         
-                        Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
+                        Text(fireData.getAreaString())
                     }
                     .font(Font.subheadline.weight(.medium))
                     .foregroundColor(Color.blaze)
-                    
-        //            HStack(spacing: 15) {
-        //                Button(action: {
-        //                    show = true
-        //                }) {
-        //                    RectButton("INFO", color: .blaze, background: Color(.tertiarySystemBackground))
-        //                }
-        //                .sheet(isPresented: $show) {
-        //                    InformationView(show: $show, fireData: fireData)
-        //                }
-        //
-        //                NavigationLink(destination: FireMapView(fireData: fireData)) {
-        //                    RectButton("MAP", color: .white, background: .blaze)
-        //                }
-        //            }
                 }
                 
                 Spacer()
@@ -73,7 +55,9 @@ struct FireCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contextMenu {
-                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Pin to Monitoring List", systemImage: "pin") }
+                Button(action: { fireB.removeMonitoredFire(name: fireData.name) }) {
+                   Label("Remove Pin", systemImage: "pin.slash")
+                }
                 Divider()
                 Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
             }

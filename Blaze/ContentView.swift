@@ -28,18 +28,11 @@ struct ContentView: View {
     
     var body: some View {
 //        TabView {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                FiresViewiPad().tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
-                AQViewiPad().tabItem { ItemLabel(icon: "sun.haze.fill", title: "Air Quality") }
-                NewsViewiPad().tabItem { ItemLabel(icon: "newspaper.fill", title: "News") }
-                SearchViewiPad().tabItem { ItemLabel(icon: "magnifyingglass", title: "Search") }
-            } else {
-                FiresView()
-//                    .tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
+        FiresView()
+//                .tabItem { ItemLabel(icon: "flame.fill", title: "Wildfires") }
 //                AQView().tabItem { ItemLabel(icon: "sun.haze.fill", title: "Air Quality") }
 //                NewsView().tabItem { ItemLabel(icon: "newspaper.fill", title: "News") }
 //                SearchView().tabItem { ItemLabel(icon: "magnifyingglass", title: "Search") }
-            }
 //        }
 //        .if(UIDevice.current.userInterfaceIdiom == .pad) {
 //            $0.sheet(isPresented: !$welcomed) {
@@ -50,18 +43,5 @@ struct ContentView: View {
 //                SplashScreen(show: self.$welcomed)
 //            }   
 //        }
-    }
-}
-
-/// Reduce code redundency
-struct ItemLabel: View {
-    var icon: String
-    var title: String
-    
-    var body: some View {
-        VStack {
-            Text(title)
-            Image(systemName: icon)
-        }
     }
 }
