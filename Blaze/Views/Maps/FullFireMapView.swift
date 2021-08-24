@@ -51,10 +51,8 @@ struct FullFireMapView: View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-                    VStack {
-                        Image("fire").resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
+                    VStack(spacing: 3) {
+                        FirePin()
                         
                         Text(fire.name)
                             .font(.caption2)

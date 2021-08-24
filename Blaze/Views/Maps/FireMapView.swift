@@ -50,9 +50,7 @@ struct FireMapView: View {
         ZStack(alignment: .bottom) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-                    Image("fire").resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.white)
+                    FirePin()
                 }
             }
             .offset(y: 30)
