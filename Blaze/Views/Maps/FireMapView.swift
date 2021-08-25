@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import MapKit
-import ModalView
 
 struct FireMapView: View {
     
@@ -50,7 +49,7 @@ struct FireMapView: View {
         ZStack(alignment: .bottom) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-                    FirePin()
+//                    FirePin(showLabels : $showLabels)
                 }
             }
             .offset(y: 30)
@@ -76,19 +75,7 @@ struct FireMapView: View {
                     
                 }
             }
-//
-//            Button(action: { hide.toggle() }) {
-//                MapFireCard(fire: fireData)
-//                    .padding(.bottom, 20)
-//                    .buttonStyle(InfoCardButtonStyle())
-//            }
-//            .buttonStyle(InfoCardButtonStyle())
-//            .animation(.spring(), value: hide)
-            
         }
-//        .sheet(isPresented: $show) {
-//            InformationView(fireData: fireData)
-//        }
         .onAppear {
             moveBack()
 

@@ -51,19 +51,21 @@ struct FullFireMapView: View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $coordinateRegion, annotationItems: fireBackend.fires) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-                    VStack(spacing: 3) {
-                        FirePin()
-                        
+                    VStack(spacing: 5) {
                         Text(fire.name)
                             .font(.caption2)
+                            .foregroundColor(.primary.opacity(0.7))
                             .multilineTextAlignment(.center)
+                            .lineLimit(2)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: 120)
                             .padding(5)
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                             .scaleEffect(showLabels ? 1 : 0)
-                            .animation(.spring(response: 0.39, dampingFraction: 0.9))
+                            .animation(.spring(response: 0.45, dampingFraction: 0.7))
+
+                        FirePin(showLabels: $showLabels)
                     }
                 }
             }
@@ -89,24 +91,6 @@ struct FullFireMapView: View {
                     
                 }
             }
-            
-//            LazyVStack(alignment: .leading, spacing: 10) {
-//                Button(action: { showLabels.toggle() }) {
-//                    Text("\(Image(systemName: "bubble.middle.top")) \(showLabels ? "Hide" : "Show") Labels")
-//                        .padding(.vertical, 10)
-//                        .padding(.horizontal, 15)
-//                        .background(Blur(.prominent))
-//                        .clipShape(Capsule())
-//                }
-//                
-//                Button(action: { show = true }) {
-//                    Text("\(Image(systemName: "list.bullet")) Fire Information")
-//                        .padding(.vertical, 10)
-//                        .padding(.horizontal, 15)
-//                        .background(Blur(.prominent))
-//                        .clipShape(Capsule())
-//                }
-//            }.padding(20)
         }
         .onAppear {
             moveBack()
@@ -119,6 +103,7 @@ struct FullFireMapView: View {
     }
     
     private func setCenter(option: OPTIONS) {
+        
         var tempLat = coordinateRegion.center.latitude
         var tempLong = coordinateRegion.center.longitude
         

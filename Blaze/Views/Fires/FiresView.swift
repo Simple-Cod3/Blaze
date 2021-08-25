@@ -137,18 +137,25 @@ struct FiresView: View {
                                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { zoom.toggle() }
                             }) {
                                 Image(systemName: zoom ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
+                                    .padding([.leading, .vertical], 11)
+                                    .contentShape(Rectangle())
                             }
 
-                            Button(action: { showLabels.toggle() }) {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { showLabels.toggle() }
+                            }) {
                                 Image(systemName: showLabels ? "bubble.middle.top.fill" : "bubble.middle.top")
+                                    .padding(.vertical, 11)
+                                    .contentShape(Rectangle())
                             }
                             
                             Button(action: {  }) {
                                 Image(systemName: "location")
+                                    .padding([.trailing, .vertical], 11)
+                                    .contentShape(Rectangle())
                             }
                         }
-                        .padding(11)
-                        .background(ProminentBlurBackground())
+                        .background(RegularBlurBackground())
                         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                         
@@ -160,7 +167,7 @@ struct FiresView: View {
                             }
                         }
                         .padding(11)
-                        .background(ProminentBlurBackground())
+                        .background(RegularBlurBackground())
                         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     }
@@ -200,7 +207,7 @@ struct FiresView: View {
 
                         }
                     }
-                    .background(ProminentBlurBackground())
+                    .background(RegularBlurBackground())
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .padding([.horizontal, .bottom], 20)

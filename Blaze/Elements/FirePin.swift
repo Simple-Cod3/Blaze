@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct FirePin: View {
+    
+    @Environment(\.colorScheme) var colorScheme
+    
+    @Binding var showLabels: Bool
+    
     var body: some View {
-        Circle()
-            .frame(width: 15, height: 15)
-            .foregroundColor(Color.blaze)
-            .padding(3)
-            .background(Color.borderBackground)
+        Image(systemName: showLabels ? "" : "flame.fill")
+            .font(.footnote)
+            .foregroundColor(.blaze)
+            .padding(7)
+            .background(showLabels ? Color.blaze : (colorScheme == .dark ? Color(.tertiarySystemBackground) : Color.borderBackground))
             .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .stroke(colorScheme == .dark ? (Color.borderBackground) : Color(.tertiarySystemBackground), lineWidth: showLabels ? 0 : 2)
+            )
     }
 }
