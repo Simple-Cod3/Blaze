@@ -66,6 +66,7 @@ struct FiresView: View {
                                         Image(systemName: "flame")
                                     }
                                 }
+                                .disabled(wildfire)
                                 
                                 Button(action: {
                                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -81,7 +82,8 @@ struct FiresView: View {
                                         Image(systemName: "aqi.medium")
                                     }
                                 }
-                                
+                                .disabled(aqi)
+
                                 Button(action: {
                                     UIImpactFeedbackGenerator(style: .light).impactOccurred()
                                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
@@ -96,11 +98,11 @@ struct FiresView: View {
                                         Image(systemName: "newspaper")
                                     }
                                 }
+                                .disabled(news)
                             },
                             label: {
                                 Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
                                     .padding(20)
-                                    .buttonStyle(ShrinkButtonStyle())
                             }
                         )
                     }
