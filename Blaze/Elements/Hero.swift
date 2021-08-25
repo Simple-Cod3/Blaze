@@ -24,7 +24,7 @@ struct Hero: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack(spacing: 5) {
-                Image(systemName: wildfire ? "flame" : aqi ? "aqi.high" : "newspaper")
+                Image(systemName: wildfire ? "flame" : aqi ? "aqi.medium" : "newspaper")
                     .font(Font.body.weight(.medium))
                     .foregroundColor(.white)
 

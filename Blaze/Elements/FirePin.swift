@@ -17,7 +17,7 @@ struct FirePin: View {
         Image(systemName: showLabels ? "" : "flame.fill")
             .font(.footnote)
             .foregroundColor(.blaze)
-            .padding(7)
+            .padding(showLabels ? 5 : 7)
             .background(showLabels ? Color.blaze : (colorScheme == .dark ? Color(.tertiarySystemBackground) : Color.borderBackground))
             .clipShape(Circle())
             .overlay(
