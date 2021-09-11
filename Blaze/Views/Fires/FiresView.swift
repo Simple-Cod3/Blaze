@@ -31,6 +31,7 @@ struct FiresView: View {
     @State var latest = false
     @State private var zoom = false
     @State var monitorList = false
+    @State var showSettings = false
         
     var body: some View {
         if done {
@@ -164,7 +165,9 @@ struct FiresView: View {
                         Spacer()
                         
                         HStack(spacing: 15) {
-                            Button(action: {  }) {
+                            Button(action: {
+                                showSettings = true
+                            }) {
                                 Image(systemName: "gearshape")
                             }
                         }

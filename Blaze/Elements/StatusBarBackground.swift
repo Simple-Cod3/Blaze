@@ -11,7 +11,7 @@ struct StatusBarBackground: View {
     var body: some View {
         GeometryReader { geo in
             VStack {
-                Color(.systemBackground)
+                Blur(.systemChromeMaterial)
                     .frame(height: geo.safeAreaInsets.top)
                     .edgesIgnoringSafeArea(.top)
                 Spacer()
