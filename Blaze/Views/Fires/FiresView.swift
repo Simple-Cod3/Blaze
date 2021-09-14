@@ -51,7 +51,7 @@ struct FiresView: View {
             )
             .overlay(
                 Group {
-                    if !zoom {
+                    if !zoom && !showSettings {
                         Menu(
                             content: {
                                 Button(action: {
@@ -133,7 +133,7 @@ struct FiresView: View {
             }
                 
             VStack(alignment: .leading, spacing: 0) {
-                if !popup {
+                if !popup && !showSettings {
                     HStack(spacing: 0) {
                         HStack(spacing: 15) {
                             Button(action: {
@@ -166,12 +166,13 @@ struct FiresView: View {
                         
                         HStack(spacing: 15) {
                             Button(action: {
-                                showSettings = true
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showSettings = true }
                             }) {
                                 Image(systemName: "gearshape")
+                                    .padding(11)
                             }
+                            .contentShape(Rectangle())
                         }
-                        .padding(11)
                         .background(RegularBlurBackground())
                         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
@@ -187,10 +188,21 @@ struct FiresView: View {
                         if wildfire {
                             if !showFireInformation {
                                 Button(action: {
-                                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
+                                    if !showSettings {
+                                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                            popup.toggle()
+                                        }
+                                    } else {
+                                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                            showSettings = false
+                                        }
+                                    }
                                 }) {
-                                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
+                                    HeaderButton(
+                                        showSettings ? "Settings" : "Wildfires Overview",
+                                        showSettings ? "xmark" : (popup ? "chevron.down" : "chevron.up")
+                                    )
                                 }
                                 .buttonStyle(DefaultButtonStyle())
                                 .padding(.trailing, 20)
@@ -209,7 +221,10 @@ struct FiresView: View {
                         
                         if news {
                             NewsView(popup: $popup)
-
+                        }
+                        
+                        if showSettings {
+                            SettingsView(showSettings: $showSettings)
                         }
                     }
                     .background(RegularBlurBackground())

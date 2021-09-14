@@ -184,11 +184,7 @@ struct SearchView: View {
                             Image(systemName: "line.horizontal.3.decrease")
                                 .font(Font.title2.weight(.regular))
                         }
-                    ),
-                    trailing: NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gear")
-                            .font(Font.title2.weight(.regular))
-                    }
+                    )
                 )
                 .navigationBarTitle("Search")
                 .add(self.searchBar)

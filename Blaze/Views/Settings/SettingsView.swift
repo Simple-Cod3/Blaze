@@ -13,10 +13,12 @@ struct SettingsView: View {
     @EnvironmentObject var fires: FireBackend
     @AppStorage("welcomed") var welcomed = true
     @AppStorage("californiaOnly") var caliOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
+    
     @State var selection = 0
     @State var show = false
-    
     @State var progress = 0.0
+    
+    @Binding var showSettings: Bool
     
     private var loading: Binding<Bool> { Binding(
         get: { !fires.progress.allSatisfy({$0.isFinished}) },
@@ -48,7 +50,6 @@ struct SettingsView: View {
             
             Caption("Blaze is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.")
         }
-        .navigationBarTitle("Settings", displayMode: .large)
         .onAppear {
             withAnimation(Animation.spring().delay(0.05)) {
                 show = true
