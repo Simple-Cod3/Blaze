@@ -41,7 +41,7 @@ struct AQView: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 0) {
                     ZStack {
                         if let color = forecast.forecasts[1].category.number, color != -1 {
@@ -69,7 +69,7 @@ struct AQView: View {
                         .padding(.bottom, 13)
                     
                     Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
-                        .padding(.bottom, 20)
+                        .padding([.horizontal, .bottom], 20)
                 }
             }
         }

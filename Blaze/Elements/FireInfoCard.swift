@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-import ModalView
 
 struct FireInfoCard: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     @State private var random = false
     @State private var data = true
     @State private var info = false
@@ -51,10 +52,17 @@ struct FireInfoCard: View {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
                     HStack(spacing: 0) {
-                        Image(systemName: "flame")
-                            .font(.callout.bold())
-                            .foregroundColor(Color.blaze)
-                            .padding(.trailing, 5)
+                        Image(systemName: "flame.fill")
+                            .font(.footnote)
+                            .foregroundColor(.blaze)
+                            .padding(7)
+                            .background(colorScheme == .dark ? Color(.tertiarySystemBackground) : Color.borderBackground)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(colorScheme == .dark ? (Color.borderBackground) : Color(.tertiarySystemBackground), lineWidth: 2)
+                            )
+                            .padding(.trailing, 10)
                         
                         Text(name)
                             .font(.title3)

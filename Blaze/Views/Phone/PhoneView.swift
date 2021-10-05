@@ -97,7 +97,7 @@ struct PhoneView: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 10) {
                     HStack(spacing: 20) {
                         ForEach(choices.indices) { index in

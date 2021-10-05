@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import ModalView
-import SwiftUIListSeparator
 
 struct GlossaryView: View {
     
@@ -35,7 +33,7 @@ struct GlossaryView: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 0) {
                     if bar.text == "" {
 //                        ForEach(letters, id: \.self) { letter in

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ModalView
 import BetterSafariView
 
 struct NewsView: View {
@@ -95,7 +94,7 @@ struct NewsView: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 0) {
 //                    Button(action: {
 //                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { contacts = true }

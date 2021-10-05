@@ -23,6 +23,5 @@ struct Caption: View {
             
             Spacer()
         }
-        .padding(.horizontal, 20)
     }
 }

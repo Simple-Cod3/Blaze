@@ -21,8 +21,7 @@ struct SubHeader: View {
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .font(.title3)
-                    .fontWeight(.semibold)
+                    .font(.headline)
                 
                 Text(desc)
                     .font(.subheadline)

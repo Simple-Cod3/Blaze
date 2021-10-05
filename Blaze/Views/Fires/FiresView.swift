@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MapKit
-import ModalView
 
 struct FiresView: View {
     
@@ -32,7 +31,7 @@ struct FiresView: View {
     @State private var zoom = false
     @State var monitorList = false
     @State var showSettings = false
-        
+    
     var body: some View {
         if done {
             VStack(spacing: 0) {
@@ -107,12 +106,9 @@ struct FiresView: View {
                             }
                         )
                     }
-                }
-                ,
+                },
                 alignment: .top
             )
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarHidden(true)
         } else if fireB.failed {
         
         } else {
@@ -126,7 +122,7 @@ struct FiresView: View {
     
     private var main: some View {
         VStack(spacing: 0) {
-            if popup || showFireInformation {
+            if (popup || showFireInformation) && !showSettings {
                 Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
                     .padding(20)
                     .opacity(0)
@@ -185,24 +181,31 @@ struct FiresView: View {
                 
                 if !zoom {
                     VStack(spacing: 0) {
-                        if wildfire {
-                            if !showFireInformation {
+                        if showSettings {
+                            VStack(spacing: 0) {
                                 Button(action: {
-                                    if !showSettings {
-                                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                            popup.toggle()
-                                        }
-                                    } else {
-                                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                            showSettings = false
-                                        }
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        showSettings = false
                                     }
                                 }) {
-                                    HeaderButton(
-                                        showSettings ? "Settings" : "Wildfires Overview",
-                                        showSettings ? "xmark" : (popup ? "chevron.down" : "chevron.up")
-                                    )
+                                    HeaderButton("Settings", "xmark")
+                                }
+                                .buttonStyle(DefaultButtonStyle())
+                                .padding(.trailing, 20)
+                                    
+                                SettingsView(showSettings: $showSettings)
+                            }
+                        }
+                        
+                        if wildfire && !showSettings {
+                            if !showFireInformation {
+                                Button(action: {
+                                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        popup.toggle()
+                                    }
+                                }) {
+                                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
                                 }
                                 .buttonStyle(DefaultButtonStyle())
                                 .padding(.trailing, 20)
@@ -215,22 +218,19 @@ struct FiresView: View {
                             }
                         }
                         
-                        if aqi {
+                        if aqi && !showSettings {
                             AQView(popup: $popup)
                         }
                         
-                        if news {
+                        if news && !showSettings {
                             NewsView(popup: $popup)
-                        }
-                        
-                        if showSettings {
-                            SettingsView(showSettings: $showSettings)
                         }
                     }
                     .background(RegularBlurBackground())
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .padding([.horizontal, .bottom], 20)
+                    .padding(.top, showSettings ? 20 : 0)
                 }
             }
         }
@@ -241,7 +241,7 @@ struct FiresView: View {
             Divider()
                 .padding(.horizontal, 20)
 
-            ScrollView(showsIndicators: false) {
+            ScrollView {
                 VStack(spacing: 0) {
                     Button(action: {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {

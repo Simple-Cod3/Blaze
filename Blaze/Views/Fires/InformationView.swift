@@ -22,7 +22,7 @@ struct InformationView: View {
     private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 00) {
+        LazyVStack(alignment: .leading, spacing: 0) {
             if isNotAccesible {
                 Section {
                     VStack(alignment: .leading) {
@@ -103,7 +103,7 @@ struct InformationView: View {
     }
     
     private var infoView: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView {
             if let html = fireData.conditionStatement, html != "" {
                 NativeWebView(html: html)
             } else if fireData.sourceType == .inciweb {
