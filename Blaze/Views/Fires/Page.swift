@@ -8,6 +8,7 @@
 import SwiftUI
 
 class PagerViewModel: ObservableObject {
+    
     @Published var lastDrag: CGFloat = 0.0
     @Binding var currentIndex: Int
     
@@ -36,11 +37,15 @@ struct PagerView<Content: View>: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack(spacing: 0) {
-                content.frame(width: geometry.size.width)
+            HStack(alignment: .top, spacing: -20) {
+                content.frame(width: geometry.size.width-20)
             }
-            .frame(width: geometry.size.width, alignment: .leading)
-            .offset(x: (-CGFloat(viewModel.currentIndex) * geometry.size.width) + viewModel.lastDrag)
+            .frame(width: geometry.size.width-20, alignment: .leading)
+            .offset(x:
+                viewModel.currentIndex == pageCount - 1 ?
+                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 50)) + viewModel.lastDrag :
+                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 40)) + viewModel.lastDrag
+            )
             .gesture(
                 DragGesture().updating($translation) { value, state, _ in
                     state = value.translation.width

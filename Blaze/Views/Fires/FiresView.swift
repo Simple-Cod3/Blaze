@@ -47,20 +47,6 @@ struct FiresView: View {
                 .buttonStyle(NoButtonStyle())
             }
             .overlay(
-//                PageView(selection: $page, contentMode: .fit) {
-//                    ForEach(0..<3) { page in
-//                        HeroCard(page)
-//                    }
-//                }
-                
-//                HStack(alignment: .top, spacing: 20) {
-//                    ForEach(0..<3) { page in
-//                        HeroCard(page)
-//                            .frame(width: UIScreen.main.bounds.width-60)
-//                    }
-//                }
-//                .modifier(ScrollingHStackModifier(items: 3, itemWidth: UIScreen.main.bounds.width-60, itemSpacing: 20))
-                
                 PagerView(pageCount: 3, currentIndex: $page) {
                     ForEach(0..<3) { page in
                         HeroCard(page)
@@ -210,7 +196,7 @@ struct FiresView: View {
                     .padding(.horizontal, 20)
 
                     VStack(spacing: 13) {
-                        LazyVStack(spacing: 13) {
+                        VStack(spacing: 13) {
                             if largest {
                                 ForEach(
                                     fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
@@ -223,9 +209,7 @@ struct FiresView: View {
                                         area: true
                                     )
                                 }
-                            }
-                            
-                            if latest {
+                            } else if latest {
                                 ForEach(
                                     fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
                                     id: \.self
