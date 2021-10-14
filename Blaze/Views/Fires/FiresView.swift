@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import MapKit
+import Containers
 
 struct FiresView: View {
     
@@ -31,6 +31,7 @@ struct FiresView: View {
     @State private var zoom = false
     @State var monitorList = false
     @State var showSettings = false
+    @State var currentPage = 0
     
     var body: some View {
         if done {
@@ -45,69 +46,29 @@ struct FiresView: View {
                 .buttonStyle(NoButtonStyle())
             }
             .overlay(
-                main,
-                alignment: .bottom
-            )
-            .overlay(
-                Group {
-                    if !zoom && !showSettings {
-                        Menu(
-                            content: {
-                                Button(action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        wildfire = true
-                                        aqi = false
-                                        news = false
-                                    }
-                                }) {
-                                    HStack {
-                                        Text("Wildfires")
-                                        Image(systemName: "flame")
-                                    }
-                                }
-                                .disabled(wildfire)
-                                
-                                Button(action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        wildfire = false
-                                        popup = true
-                                        aqi = true
-                                        news = false
-                                    }
-                                }) {
-                                    HStack {
-                                        Text("Air Quality")
-                                        Image(systemName: "aqi.medium")
-                                    }
-                                }
-                                .disabled(aqi)
+                PageView(selection: $currentPage, contentMode: .fit) {
+                    Group {
+                        Hero(
+                            "flame",
+                            "Wildfires",
+                            "Showing 390 hotspots across the United States.",
+                            Color.blaze
+                        )
 
-                                Button(action: {
-                                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        wildfire = false
-                                        popup = true
-                                        aqi = false
-                                        news = true
-                                    }
-                                }) {
-                                    HStack {
-                                        Text("News")
-                                        Image(systemName: "newspaper")
-                                    }
-                                }
-                                .disabled(news)
-                            },
-                            label: {
-                                Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
-                                    .padding(20)
-                            }
+                        Hero(
+                            "aqi.medium",
+                            "Air Quality",
+                            !forecast.lost ? "Displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.",
+                            determineColor(cat: forecast.forecasts[1].category.number)
                         )
                     }
-                },
+                }
+                ,
                 alignment: .top
+            )
+            .overlay(
+                main,
+                alignment: .bottom
             )
         } else if fireB.failed {
         
@@ -122,11 +83,13 @@ struct FiresView: View {
     
     private var main: some View {
         VStack(spacing: 0) {
-            if (popup || showFireInformation) && !showSettings {
-                Hero(wildfire: $wildfire, aqi: $aqi, news: $news)
-                    .padding(20)
-                    .opacity(0)
-            }
+            Hero(
+                "flame",
+                "Wildfires",
+                "Showing 390 hotspots across the United States.",
+                Color.blaze
+            )
+            .opacity(0)
                 
             VStack(alignment: .leading, spacing: 0) {
                 if !popup && !showSettings {
