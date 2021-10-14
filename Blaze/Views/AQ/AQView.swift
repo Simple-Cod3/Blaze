@@ -12,6 +12,7 @@ struct AQView: View {
     @EnvironmentObject var forecast: AirQualityBackend
     
     @State private var showCircle = false
+    @State private var startAnimation = false
     
     @Binding var popup: Bool
     
@@ -29,6 +30,18 @@ struct AQView: View {
             }
             .buttonStyle(DefaultButtonStyle())
             .padding(.trailing, 20)
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onEnded({ value in
+                    if value.translation.height > 0 {
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup = false
+                        }
+                    } else {
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup = true
+                        }
+                    }
+                }))
             
             if popup {
                 aqidata
@@ -49,8 +62,17 @@ struct AQView: View {
                                 .frame(width: 230, height: 230)
                                 .clipShape(Circle())
                                 .scaleEffect(showCircle ? 1.0 : 0.5)
-                                .animation(Animation.easeInOut(duration: 0.7), value: showCircle)
+                                .animation(Animation.spring(response: 1.1, dampingFraction: 1), value: showCircle)
                                 .opacity(0.7)
+                                .scaleEffect(startAnimation ? 1 : 1.03)
+                                .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[1].category.number))
+                                            .repeatForever(autoreverses: true), value: startAnimation)
+                                .onAppear {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { startAnimation = true }
+                                }
+                                .onDisappear {
+                                    startAnimation = false
+                                }
                         }
                         
                         AQMeter(airQ: forecast.forecasts[1])

@@ -34,10 +34,9 @@ struct Hero: View {
             }
             
             Text(desc)
-            .font(.subheadline)
-            .foregroundColor(.white.opacity(0.7))
+                .font(.subheadline)
+                .foregroundColor(.white.opacity(0.7))
         }
-        .fixedSize(horizontal: false, vertical: true)
         .padding(20)
         .background(background)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -46,39 +45,47 @@ struct Hero: View {
     }
 }
 
-//VStack(alignment: .leading, spacing: 5) {
-//    HStack(spacing: 5) {
-//        Image(systemName: wildfire ? "flame" : aqi ? "aqi.medium" : "newspaper")
-//            .font(Font.body.weight(.medium))
-//            .foregroundColor(.white)
-//
-//        Header(
-//            wildfire ? "Wildfires" : aqi ? "Air Quality" : "News"
-//        )
-//
-//        Spacer()
-//
-//        Text("See More")
-//            .font(.subheadline)
-//            .fontWeight(.medium)
-//            .foregroundColor(.white.opacity(1))
-//
-//        Image(systemName: "arrowtriangle.down.fill")
-//            .font(.caption)
-//            .foregroundColor(.white.opacity(1))
-//    }
-//
-//    Text(
-//        wildfire ? "Showing 390 hotspots across the United States." :
-//        aqi ? (!forecast.lost ? "Displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.") :
-//            "Latest national news and updates issued by the Incident Information System."
-//    )
-//    .font(.subheadline)
-//    .foregroundColor(.white.opacity(0.7))
-//}
-//.fixedSize(horizontal: false, vertical: true)
-//.padding(20)
-//.background(
-//    wildfire ? Color.blaze : aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
-//)
-//.clipShape(RoundedRectangle(cornerRadius: 16, style
+struct HeroCard: View {
+        
+    @EnvironmentObject var fireB: FireBackend
+    @EnvironmentObject var forecast: AirQualityBackend
+    
+    private var page: Int
+    
+    init(_ page: Int) {
+        self.page = page
+    }
+
+    var body: some View {
+        switch page {
+        case 0:
+            Hero(
+                "flame",
+                "Wildfires",
+                "Showing 390 hotspots across the United States.",
+                Color.blaze
+            )
+        case 1:
+            Hero(
+                "aqi.medium",
+                "Air Quality",
+                !forecast.lost ? "Showing air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.",
+                determineColor(cat: forecast.forecasts[1].category.number)
+            )
+        case 2:
+            Hero(
+                "newspaper",
+                "News",
+                "Latest national news and updates.",
+                Color.orange
+            )
+        default:
+            Hero(
+                "flame",
+                "Wildfires",
+                "Showing 390 hotspots across the United States.",
+                Color.blaze
+            )
+        }
+    }
+}

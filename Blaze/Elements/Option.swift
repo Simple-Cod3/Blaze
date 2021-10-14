@@ -1,0 +1,73 @@
+//
+//  Option.swift
+//  Blaze
+//
+//  Created by Paul Wong on 10/13/21.
+//
+
+import SwiftUI
+
+struct Option: View {
+    
+    private var foreground: Color
+    
+    init(_ foreground: Color) {
+        self.foreground = foreground
+    }
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            HStack(spacing: 15) {
+                Button(action: {
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                    
+                    }
+                }) {
+                    Image(systemName: "arrow.up.left.and.arrow.down.right")
+                        .padding([.leading, .vertical], 11)
+                        .contentShape(Rectangle())
+                }
+
+                Button(action: {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                    
+                    }
+                }) {
+                    Image(systemName: "bubble.middle.bottom")
+                        .padding(.vertical, 11)
+                        .contentShape(Rectangle())
+                }
+                
+                Button(action: {
+                    
+                }) {
+                    Image(systemName: "location")
+                        .padding([.trailing, .vertical], 11)
+                        .contentShape(Rectangle())
+                }
+            }
+            .background(RegularBlurBackground())
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            
+            Spacer()
+            
+            HStack(spacing: 15) {
+                Button(action: {
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                    
+                    }
+                }) {
+                    Image(systemName: "gearshape")
+                        .padding(11)
+                }
+                .contentShape(Rectangle())
+            }
+            .background(RegularBlurBackground())
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        }
+        .font(Font.title2.weight(.regular))
+        .foregroundColor(foreground)
+    }
+}

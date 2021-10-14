@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AQMeter: View {
-    
+        
     var airQ: AirQuality
     
     var body: some View {
@@ -49,5 +49,20 @@ func determineColor(cat: Int) -> Color {
         return Color.purple
     default:
         return Color.gray
+    }
+}
+
+func determineInt(cat: Int) -> Double {
+    switch cat {
+    case 1:
+        return 1.3
+    case 2:
+        return 0.7
+    case 3:
+        return 0.3
+    case 4:
+        return 0.1
+    default:
+        return 1.3
     }
 }

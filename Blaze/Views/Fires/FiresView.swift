@@ -31,7 +31,8 @@ struct FiresView: View {
     @State private var zoom = false
     @State var monitorList = false
     @State var showSettings = false
-    @State var currentPage = 0
+    @State var page = 0
+    @State var shrink = false
     
     var body: some View {
         if done {
@@ -46,21 +47,23 @@ struct FiresView: View {
                 .buttonStyle(NoButtonStyle())
             }
             .overlay(
-                PageView(selection: $currentPage, contentMode: .fit) {
-                    Group {
-                        Hero(
-                            "flame",
-                            "Wildfires",
-                            "Showing 390 hotspots across the United States.",
-                            Color.blaze
-                        )
-
-                        Hero(
-                            "aqi.medium",
-                            "Air Quality",
-                            !forecast.lost ? "Displaying air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.",
-                            determineColor(cat: forecast.forecasts[1].category.number)
-                        )
+//                PageView(selection: $page, contentMode: .fit) {
+//                    ForEach(0..<3) { page in
+//                        HeroCard(page)
+//                    }
+//                }
+                
+//                HStack(alignment: .top, spacing: 20) {
+//                    ForEach(0..<3) { page in
+//                        HeroCard(page)
+//                            .frame(width: UIScreen.main.bounds.width-60)
+//                    }
+//                }
+//                .modifier(ScrollingHStackModifier(items: 3, itemWidth: UIScreen.main.bounds.width-60, itemSpacing: 20))
+                
+                PagerView(pageCount: 3, currentIndex: $page) {
+                    ForEach(0..<3) { page in
+                        HeroCard(page)
                     }
                 }
                 ,
@@ -82,6 +85,7 @@ struct FiresView: View {
     }
     
     private var main: some View {
+
         VStack(spacing: 0) {
             Hero(
                 "flame",
@@ -93,74 +97,14 @@ struct FiresView: View {
                 
             VStack(alignment: .leading, spacing: 0) {
                 if !popup && !showSettings {
-                    HStack(spacing: 0) {
-                        HStack(spacing: 15) {
-                            Button(action: {
-                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { zoom.toggle() }
-                            }) {
-                                Image(systemName: zoom ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right")
-                                    .padding([.leading, .vertical], 11)
-                                    .contentShape(Rectangle())
-                            }
-
-                            Button(action: {
-                                withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { showLabels.toggle() }
-                            }) {
-                                Image(systemName: showLabels ? "bubble.middle.bottom.fill" : "bubble.middle.bottom")
-                                    .padding(.vertical, 11)
-                                    .contentShape(Rectangle())
-                            }
-                            
-                            Button(action: {  }) {
-                                Image(systemName: "location")
-                                    .padding([.trailing, .vertical], 11)
-                                    .contentShape(Rectangle())
-                            }
-                        }
-                        .background(RegularBlurBackground())
-                        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-                        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 15) {
-                            Button(action: {
-                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showSettings = true }
-                            }) {
-                                Image(systemName: "gearshape")
-                                    .padding(11)
-                            }
-                            .contentShape(Rectangle())
-                        }
-                        .background(RegularBlurBackground())
-                        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-                        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-                    }
-                    .font(Font.title2.weight(.regular))
-                    .foregroundColor(wildfire ? Color.blaze : aqi ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 15)
+                    Option(page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 15)
                 }
                 
                 if !zoom {
                     VStack(spacing: 0) {
-                        if showSettings {
-                            VStack(spacing: 0) {
-                                Button(action: {
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        showSettings = false
-                                    }
-                                }) {
-                                    HeaderButton("Settings", "xmark")
-                                }
-                                .buttonStyle(DefaultButtonStyle())
-                                .padding(.trailing, 20)
-                                    
-                                SettingsView(showSettings: $showSettings)
-                            }
-                        }
-                        
-                        if wildfire && !showSettings {
+                        if page == 0 {
                             if !showFireInformation {
                                 Button(action: {
                                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
@@ -172,6 +116,18 @@ struct FiresView: View {
                                 }
                                 .buttonStyle(DefaultButtonStyle())
                                 .padding(.trailing, 20)
+                                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                                    .onEnded({ value in
+                                        if value.translation.height > 0 {
+                                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                                popup = false
+                                            }
+                                        } else {
+                                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                                popup = true
+                                            }
+                                        }
+                                    }))
 
                                 if popup {
                                     wildfiremain
@@ -181,15 +137,16 @@ struct FiresView: View {
                             }
                         }
                         
-                        if aqi && !showSettings {
+                        if page == 1 {
                             AQView(popup: $popup)
                         }
                         
-                        if news && !showSettings {
+                        if page == 2 {
                             NewsView(popup: $popup)
                         }
                     }
                     .background(RegularBlurBackground())
+                    .padding(.bottom, shrink ? -20 : 0)
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                     .padding([.horizontal, .bottom], 20)

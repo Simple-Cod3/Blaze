@@ -54,10 +54,22 @@ struct NewsView: View {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
                     HeaderButton(contacts ? "Contacts" : glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.trailing, glossary ? 0 : 20)
                 }
                 .buttonStyle(DefaultButtonStyle())
-                
+                .padding(.trailing, 20)
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+                        if value.translation.height > 0 {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                popup = false
+                            }
+                        } else {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                popup = true
+                            }
+                        }
+                    }))
+
                 Spacer()
                 
                 if glossary && popup {
@@ -173,14 +185,8 @@ struct NewsCardButton: View {
         Button(action: { presenting = true }) {
             NewsCard(news: news)
                 .contextMenu {
-                    if UIDevice.current.userInterfaceIdiom == .pad {
-                        Button(action: { news.share(0) }) {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }.disabled(true)
-                    } else {
-                        Button(action: { news.share(0) }) {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }
+                    Button(action: { news.share(0) }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
                     }
                 }
                 .safariView(isPresented: $presenting) {

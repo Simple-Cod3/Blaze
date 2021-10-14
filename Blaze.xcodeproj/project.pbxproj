@@ -11,6 +11,8 @@
 		279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6F725213216004AC147 /* PhoneBackend.swift */; };
 		279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279FE6FD25214AAE004AC147 /* PhoneView.swift */; };
 		27BB5F9225098DFD0071F3FF /* AirQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BB5F9125098DFD0071F3FF /* AirQuality.swift */; };
+		6D10C7482717BCB3001A4B1C /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10C7472717BCB3001A4B1C /* Option.swift */; };
+		6D10C74C2717F8D7001A4B1C /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10C74B2717F8D7001A4B1C /* Page.swift */; };
 		6D15C42726D1AC38008339F4 /* SymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D15C42626D1AC38008339F4 /* SymbolButton.swift */; };
 		6D2DE04B2555F3B100D07038 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04A2555F3B100D07038 /* MoreButton.swift */; };
 		6D2DE04F2555F56200D07038 /* Caption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04E2555F56200D07038 /* Caption.swift */; };
@@ -113,6 +115,8 @@
 		279FE6F725213216004AC147 /* PhoneBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBackend.swift; sourceTree = "<group>"; };
 		279FE6FD25214AAE004AC147 /* PhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneView.swift; sourceTree = "<group>"; };
 		27BB5F9125098DFD0071F3FF /* AirQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQuality.swift; sourceTree = "<group>"; };
+		6D10C7472717BCB3001A4B1C /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		6D10C74B2717F8D7001A4B1C /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		6D15C42626D1AC38008339F4 /* SymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolButton.swift; sourceTree = "<group>"; };
 		6D2DE04A2555F3B100D07038 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		6D2DE04E2555F56200D07038 /* Caption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caption.swift; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
 				E9E769EE250319F4006038FD /* InformationView.swift */,
 				E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */,
+				6D10C74B2717F8D7001A4B1C /* Page.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				6D6362CF25534DC0005A18A8 /* Navigation */,
 				6D77EB3E26D227C50057BB0E /* DataSection.swift */,
 				6D77EB4626D4C2F90057BB0E /* FirePin.swift */,
+				6D10C7472717BCB3001A4B1C /* Option.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -602,6 +608,7 @@
 				E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */,
 				E9AF016C24FDBBF80058C184 /* SearchView.swift in Sources */,
 				6DF6590C2510684100D47118 /* DataView.swift in Sources */,
+				6D10C74C2717F8D7001A4B1C /* Page.swift in Sources */,
 				E9AF015524FDB8DD0058C184 /* AppDelegate.swift in Sources */,
 				E9CE22A52502F48700929D13 /* Extensions.swift in Sources */,
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
@@ -622,6 +629,7 @@
 				E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */,
 				E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */,
 				E97E26E02508444B00B939F3 /* WebModal.swift in Sources */,
+				6D10C7482717BCB3001A4B1C /* Option.swift in Sources */,
 				279FE6FE25214AAE004AC147 /* PhoneView.swift in Sources */,
 				6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */,
 				279FE6F825213216004AC147 /* PhoneBackend.swift in Sources */,
