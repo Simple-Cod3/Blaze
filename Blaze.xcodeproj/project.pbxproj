@@ -22,7 +22,6 @@
 		6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E8A4253B782F009096C9 /* UpdateLog.swift */; };
 		6D58B33B26B4F90C00311CF3 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D58B33A26B4F90C00311CF3 /* Blur.swift */; };
 		6D6362C525534C38005A18A8 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6362C425534C38005A18A8 /* LongButton.swift */; };
-		6D6AE278271760B00031CEFD /* Containers in Frameworks */ = {isa = PBXBuildFile; productRef = 6D6AE277271760B00031CEFD /* Containers */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
 		6D7405D62509CA1200F45BB2 /* AQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D52509CA1200F45BB2 /* AQView.swift */; };
 		6D77EB3B26CF53CA0057BB0E /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77EB3A26CF53CA0057BB0E /* Hero.swift */; };
@@ -204,7 +203,6 @@
 				E9AF019524FDEC700058C184 /* FeedKit in Frameworks */,
 				E9AF017724FDBEBC0058C184 /* ModalView in Frameworks */,
 				E90CE1B12538F93C00217B94 /* BetterSafariView in Frameworks */,
-				6D6AE278271760B00031CEFD /* Containers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +520,6 @@
 				E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */,
 				E90CE1B02538F93C00217B94 /* BetterSafariView */,
 				E9458A00254E27F20067BFE8 /* Fuzi */,
-				6D6AE277271760B00031CEFD /* Containers */,
 			);
 			productName = Blaze;
 			productReference = E9AF015124FDB8DD0058C184 /* Blaze.app */;
@@ -558,7 +555,6 @@
 				E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */,
 				E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */,
-				6D6AE276271760B00031CEFD /* XCRemoteSwiftPackageReference "Containers" */,
 			);
 			productRefGroup = E9AF015224FDB8DD0058C184 /* Products */;
 			projectDirPath = "";
@@ -915,14 +911,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6D6AE276271760B00031CEFD /* XCRemoteSwiftPackageReference "Containers" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUI-Plus/Containers.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stleamist/BetterSafariView.git";
@@ -974,11 +962,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6D6AE277271760B00031CEFD /* Containers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6D6AE276271760B00031CEFD /* XCRemoteSwiftPackageReference "Containers" */;
-			productName = Containers;
-		};
 		E90CE1B02538F93C00217B94 /* BetterSafariView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */;

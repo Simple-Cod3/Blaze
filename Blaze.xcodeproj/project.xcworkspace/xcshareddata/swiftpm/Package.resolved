@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "Containers",
-        "repositoryURL": "https://github.com/SwiftUI-Plus/Containers.git",
-        "state": {
-          "branch": null,
-          "revision": "959f91e28fc070c795ceddc412a68787d2dd3ef7",
-          "version": "1.6.0"
-        }
-      },
-      {
         "package": "FeedKit",
         "repositoryURL": "https://github.com/nmdias/FeedKit",
         "state": {
