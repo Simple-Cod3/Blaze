@@ -11,133 +11,43 @@ import Containers
 struct FiresView: View {
     
     @EnvironmentObject var fireB: FireBackend
-    @EnvironmentObject var forecast: AirQualityBackend
+
+    @State private var showFireInformation = false
+    @State private var prefix = 10
+    @State private var largest = true
+    @State private var latest = false
+    @State private var monitorList = false
     
-    @State var selectAll = 0
-    @State var selectLargest = 0
+    @Binding var popup: Bool
     
-    @State var progress = 0.0
-    @State var data = false
-    @State var done = false
-    @State private var popup = false
-    @State var wildfire = true
-    @State var showFireInformation = false
-    @State var aqi = false
-    @State var news = false
-    @State var prefix = 10
-    @State var showLabels = false
-    @State var largest = true
-    @State var latest = false
-    @State private var zoom = false
-    @State var monitorList = false
-    @State var showSettings = false
-    @State var page = 0
-    @State var shrink = false
-    
-    var body: some View {
-        if done {
-            VStack(spacing: 0) {
-                Button(action: {
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        popup = false
-                    }
-                }) {
-                    FullFireMapView(showLabels: $showLabels)
-                }
-                .buttonStyle(NoButtonStyle())
-            }
-            .overlay(
-                PagerView(pageCount: 3, currentIndex: $page) {
-                    ForEach(0..<3) { page in
-                        HeroCard(page)
-                    }
-                }
-                ,
-                alignment: .top
-            )
-            .overlay(
-                main,
-                alignment: .bottom
-            )
-        } else if fireB.failed {
-        
-        } else {
-            ProgressBarView(
-                progressObjs: $fireB.progress,
-                progress: $progress,
-                done: $done
-            )
-        }
+    init(popup: Binding<Bool>) {
+        self._popup = popup
     }
     
-    private var main: some View {
-
+    var body: some View {
         VStack(spacing: 0) {
-            Hero(
-                "flame",
-                "Wildfires",
-                "Showing 390 hotspots across the United States.",
-                Color.blaze
-            )
-            .opacity(0)
-                
-            VStack(alignment: .leading, spacing: 0) {
-                if !popup && !showSettings {
-                    Option(page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange)
-                            .padding(.horizontal, 20)
-                            .padding(.bottom, 15)
-                }
-                
-                if !zoom {
-                    VStack(spacing: 0) {
-                        if page == 0 {
-                            if !showFireInformation {
-                                Button(action: {
-                                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        popup.toggle()
-                                    }
-                                }) {
-                                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                                }
-                                .buttonStyle(DefaultButtonStyle())
-                                .padding(.trailing, 20)
-                                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                                    .onEnded({ value in
-                                        if value.translation.height > 0 {
-                                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                                popup = false
-                                            }
-                                        } else {
-                                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                                popup = true
-                                            }
-                                        }
-                                    }))
-
-                                if popup {
-                                    wildfiremain
-                                }
-                            } else {
-                                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, wildfire: $wildfire, aqi: $aqi, news: $news, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
-                            }
-                        }
-                        
-                        if page == 1 {
-                            AQView(popup: $popup)
-                        }
-                        
-                        if page == 2 {
-                            NewsView(popup: $popup)
-                        }
+            if !showFireInformation {
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                        popup.toggle()
                     }
-                    .background(RegularBlurBackground())
-                    .padding(.bottom, shrink ? -20 : 0)
-                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .padding([.horizontal, .bottom], 20)
-                    .padding(.top, showSettings ? 20 : 0)
+                }) {
+                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
                 }
+                .buttonStyle(DefaultButtonStyle())
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup = value.translation.height > 0 ? false : true
+                        }
+                    }))
+
+                if popup {
+                    wildfiremain
+                }
+            } else {
+                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
             }
         }
     }
@@ -159,7 +69,6 @@ struct FiresView: View {
                         RectButton(selected: $monitorList, "Monitoring List")
                     }
                     .buttonStyle(DefaultButtonStyle())
-                    .padding(.horizontal, 20)
                     .padding(.top, 20)
                     
                     HStack(spacing: 10) {
@@ -185,58 +94,71 @@ struct FiresView: View {
                         }
                         .buttonStyle(DefaultButtonStyle())
                     }
-                    .padding(.horizontal, 20)
                     .padding(.top, 11)
                     
-                    SubHeader(
-                        title: monitorList ? "Monitoring List" : (largest ? "Largest Fires" : "Latest Fires"),
-                        desc: monitorList ? "Showing pinned wildfires." : (largest ? "Wildfires are sorted according to their sizes from largest to smallest." : "Wildfires are sorted based on time updated.")
-                    )
+                    Group {
+                        if monitorList {
+                            SubHeader(
+                                title: "Monitoring List",
+                                desc: "Showing pinned wildfires."
+                            )
+                            .transition(.opacity)
+                        } else if largest {
+                            SubHeader(
+                                title: "Largest Fires",
+                                desc: "Wildfires are sorted according to their sizes from largest to smallest."
+                            )
+                            .transition(.opacity)
+                        } else if latest {
+                            SubHeader(
+                                title: "Latest Fires",
+                                desc: "Wildfires are sorted based on time updated."
+                            )
+                            .transition(.opacity)
+                        }
+                    }
                     .padding(.top, 20)
-                    .padding(.horizontal, 20)
 
                     VStack(spacing: 13) {
-                        VStack(spacing: 13) {
-                            if largest {
-                                ForEach(
-                                    fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
-                                    id: \.self
-                                ) { index in
-                                    FireCard(
-                                        showFireInformation: $showFireInformation,
-                                        popup: $popup,
-                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                        area: true
-                                    )
-                                }
-                            } else if latest {
-                                ForEach(
-                                    fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
-                                    id: \.self
-                                ) { index in
-                                    FireCard(
-                                        showFireInformation: $showFireInformation,
-                                        popup: $popup,
-                                        fireData: fireB.fires.sorted(by: {
-                                            $0.updated > $1.updated
-                                        })[index],
-                                        area: false
-                                    )
-                                }
+                        if largest {
+                            ForEach(
+                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
+                                id: \.self
+                            ) { index in
+                                FireCard(
+                                    showFireInformation: $showFireInformation,
+                                    popup: $popup,
+                                    fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                    area: true
+                                )
                             }
-                        
-                            if monitorList {
-                                ForEach(fireB.monitoringFires) { fire in
-                                    MonitorFireCard(
-                                        showFireInformation: $showFireInformation,
-                                        popup: $popup,
-                                        fireData: fire
-                                    )
-                                    .buttonStyle(PlainButtonStyle())
-                                    .contextMenu {
-                                        Button(action: { fireB.removeMonitoredFire(name: fire.name) }) {
-                                            Label("Remove Pin", systemImage: "pin.slash")
-                                        }
+                        } else if latest {
+                            ForEach(
+                                fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
+                                id: \.self
+                            ) { index in
+                                FireCard(
+                                    showFireInformation: $showFireInformation,
+                                    popup: $popup,
+                                    fireData: fireB.fires.sorted(by: {
+                                        $0.updated > $1.updated
+                                    })[index],
+                                    area: false
+                                )
+                            }
+                        }
+                    
+                        if monitorList {
+                            ForEach(fireB.monitoringFires) { fire in
+                                MonitorFireCard(
+                                    showFireInformation: $showFireInformation,
+                                    popup: $popup,
+                                    fireData: fire
+                                )
+                                .buttonStyle(PlainButtonStyle())
+                                .contextMenu {
+                                    Button(action: { fireB.removeMonitoredFire(name: fire.name) }) {
+                                        Label("Remove Pin", systemImage: "pin.slash")
                                     }
                                 }
                             }
@@ -252,8 +174,8 @@ struct FiresView: View {
                         }
                     }
                     .padding(.vertical, 16)
-                    .padding(.horizontal, 20)
                 }
+                .padding(.horizontal, 20)
             }
         }
     }

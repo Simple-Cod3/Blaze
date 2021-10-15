@@ -28,7 +28,7 @@ struct ContentView: View {
     }
     
     var body: some View {
-        FiresView()
+        MainView()
 //        .if(UIDevice.current.userInterfaceIdiom == .pad) {
 //            $0.sheet(isPresented: !$welcomed) {
 //                SplashScreeniPad(show: self.$welcomed)

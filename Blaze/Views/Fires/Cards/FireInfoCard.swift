@@ -17,9 +17,6 @@ struct FireInfoCard: View {
     
     @Binding var popup: Bool
     @Binding var showFireInformation: Bool
-    @Binding var wildfire: Bool
-    @Binding var aqi: Bool
-    @Binding var news: Bool
     
     private var fireData: ForestFire
     private var name: String
@@ -29,12 +26,9 @@ struct FireInfoCard: View {
     private var updated: String
     private var started: String
     
-    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, wildfire: Binding<Bool>, aqi: Binding<Bool>, news: Binding<Bool>, fireData: ForestFire) {
+    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, fireData: ForestFire) {
         self._popup = popup
         self._showFireInformation = showFireInformation
-        self._wildfire = wildfire
-        self._aqi = aqi
-        self._news = news
         self.fireData = fireData
         self.name = fireData.name
         self.locations = fireData.getLocation()

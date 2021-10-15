@@ -10,7 +10,10 @@ import SwiftUI
 struct GlossaryView: View {
     
     @ObservedObject var bar = SearchBar()
+    
     @State var wordsList = [Term]()
+    
+    @Binding var showDefinition: Bool
     
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var terms = GlossaryDatabase.getAllWords().sorted()
@@ -25,9 +28,7 @@ struct GlossaryView: View {
             }.sorted()
         }
     }
-    
-    @Binding var showDefinition: Bool
-        
+            
     var body: some View {
         VStack(spacing: 0) {
             Divider()
@@ -36,9 +37,9 @@ struct GlossaryView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     if bar.text == "" {
-//                        ForEach(letters, id: \.self) { letter in
+    //                        ForEach(letters, id: \.self) { letter in
                         GlossaryCard(showDefinition: $showDefinition)
-//                        }
+    //                        }
                     } else {
                         LazyVStack(spacing: 13) {
                             ForEach(wordsList) { word in
@@ -67,4 +68,5 @@ struct GlossaryView: View {
             }
         }
     }
+
 }

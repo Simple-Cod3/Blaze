@@ -15,6 +15,7 @@ struct FirePin: View {
     
     var body: some View {
         Image(systemName: showLabels ? "" : "flame.fill")
+            .scaleEffect(showLabels ? 0 : 1)
             .font(.footnote)
             .foregroundColor(.blaze)
             .padding(showLabels ? 5 : 7)

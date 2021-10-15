@@ -28,7 +28,7 @@ struct HeaderButton: View {
             
             SymbolButton(symbol)
         }
-        .padding([.vertical, .leading], 20)
+        .padding(20)
         .contentShape(Rectangle())
     }
 }

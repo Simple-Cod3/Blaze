@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-struct CreditsButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .padding(.vertical, configuration.isPressed ? 40 : 0)
-            .animation(.spring())
-    }
-}
-
 struct NoButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

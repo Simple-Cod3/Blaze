@@ -9,9 +9,16 @@ import SwiftUI
 
 struct Option: View {
     
+    @State var showSettings = false
+    
+    @Binding var zoom: Bool
+    @Binding var showLabels: Bool
+    
     private var foreground: Color
     
-    init(_ foreground: Color) {
+    init(zoom: Binding<Bool>, showLabels: Binding<Bool>, _ foreground: Color) {
+        self._zoom = zoom
+        self._showLabels = showLabels
         self.foreground = foreground
     }
     
@@ -20,31 +27,31 @@ struct Option: View {
             HStack(spacing: 15) {
                 Button(action: {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                    
+                        zoom.toggle()
                     }
                 }) {
                     Image(systemName: "arrow.up.left.and.arrow.down.right")
                         .padding([.leading, .vertical], 11)
-                        .contentShape(Rectangle())
                 }
-
+                .contentShape(Rectangle())
+                
                 Button(action: {
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                    
+                        showLabels.toggle()
                     }
                 }) {
                     Image(systemName: "bubble.middle.bottom")
                         .padding(.vertical, 11)
-                        .contentShape(Rectangle())
                 }
+                .contentShape(Rectangle())
                 
                 Button(action: {
                     
                 }) {
                     Image(systemName: "location")
                         .padding([.trailing, .vertical], 11)
-                        .contentShape(Rectangle())
                 }
+                .contentShape(Rectangle())
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
@@ -55,7 +62,7 @@ struct Option: View {
             HStack(spacing: 15) {
                 Button(action: {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                    
+                        showSettings = true
                     }
                 }) {
                     Image(systemName: "gearshape")

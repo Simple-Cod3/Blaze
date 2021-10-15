@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterSafariView
 
 struct NewsCard: View {
         
@@ -36,5 +37,33 @@ struct NewsCard: View {
         .background(Color(.quaternarySystemFill))
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+    }
+}
+
+struct NewsCardButton: View {
+    
+    @State var presenting = false
+    
+    var news: News
+    
+    var body: some View {
+        Button(action: { presenting = true }) {
+            NewsCard(news: news)
+                .contextMenu {
+                    Button(action: { news.share(0) }) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                }
+                .safariView(isPresented: $presenting) {
+                    SafariView(
+                        url: news.url,
+                        configuration: SafariView.Configuration(
+                            barCollapsingEnabled: true
+                        )
+                    )
+                    .preferredControlAccentColor(Color.orange)
+                }
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }

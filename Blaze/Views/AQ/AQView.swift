@@ -29,17 +29,10 @@ struct AQView: View {
                 HeaderButton("Air Quality Overview", popup ? "chevron.down" : "chevron.up")
             }
             .buttonStyle(DefaultButtonStyle())
-            .padding(.trailing, 20)
             .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                 .onEnded({ value in
-                    if value.translation.height > 0 {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = false
-                        }
-                    } else {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = true
-                        }
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                        popup = value.translation.height > 0 ? false : true
                     }
                 }))
             
@@ -59,14 +52,14 @@ struct AQView: View {
                     ZStack {
                         if let color = forecast.forecasts[1].category.number, color != -1 {
                             determineColor(cat: color)
-                                .frame(width: 230, height: 230)
+                                .frame(width: 220, height: 220)
                                 .clipShape(Circle())
-                                .scaleEffect(showCircle ? 1.0 : 0.5)
+                                .scaleEffect(showCircle ? 1 : 0.5)
                                 .animation(Animation.spring(response: 1.1, dampingFraction: 1), value: showCircle)
                                 .opacity(0.7)
-                                .scaleEffect(startAnimation ? 1 : 1.03)
+                                .scaleEffect(startAnimation ? 1 : 1.05)
                                 .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[1].category.number))
-                                            .repeatForever(autoreverses: true), value: startAnimation)
+                                        .repeatForever(autoreverses: true), value: startAnimation)
                                 .onAppear {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { startAnimation = true }
                                 }

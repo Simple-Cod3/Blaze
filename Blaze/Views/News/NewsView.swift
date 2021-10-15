@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import BetterSafariView
 
 struct NewsView: View {
     
@@ -17,9 +16,9 @@ struct NewsView: View {
     @State private var done = false
     @State private var newsShown = 20
     @State private var shown: NewsModals?
-    @State var contacts = false
-    @State var glossary = false
-    @State var showDefinition = false
+    @State private var contacts = false
+    @State private var glossary = false
+    @State private var showDefinition = false
     
     private enum NewsModals: String, Identifiable {
         var id: String { rawValue }
@@ -53,42 +52,36 @@ struct NewsView: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
-                    HeaderButton(contacts ? "Contacts" : glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
+                    HeaderButton(glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
                 }
                 .buttonStyle(DefaultButtonStyle())
-                .padding(.trailing, 20)
                 .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                     .onEnded({ value in
-                        if value.translation.height > 0 {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                popup = false
-                            }
-                        } else {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                popup = true
-                            }
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup = value.translation.height > 0 ? false : true
                         }
                     }))
-
-                Spacer()
                 
-                if glossary && popup {
+                if glossary {
+                    Spacer()
+                    
                     Button(action: {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            if showDefinition {
-                                showDefinition = false
-                            } else {
+                            if !showDefinition {
                                 glossary = false
+                            } else {
+                                showDefinition = false
                             }
                         }
                     }) {
                         TrailingButton("chevron.left")
                     }
                     .buttonStyle(DefaultButtonStyle())
+                    .padding(.leading, -20)
                 }
             }
-
+            
             if popup {
                 if contacts {
                     PhoneView()
@@ -139,7 +132,7 @@ struct NewsView: View {
                         .padding(.top, 20)
                         .padding(.bottom, 16)
 
-                    VStack(spacing: 13) {
+                    LazyVStack(spacing: 13) {
                         ForEach(news.newsList.prefix(newsShown)) { news in
                             NewsCardButton(news: news)
                         }
@@ -173,32 +166,5 @@ struct NewsView: View {
 //            done = true
 //        }
 //    }
-    }
-}
-
-struct NewsCardButton: View {
-    
-    @State var presenting = false
-    var news: News
-    
-    var body: some View {
-        Button(action: { presenting = true }) {
-            NewsCard(news: news)
-                .contextMenu {
-                    Button(action: { news.share(0) }) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
-                }
-                .safariView(isPresented: $presenting) {
-                    SafariView(
-                        url: news.url,
-                        configuration: SafariView.Configuration(
-                            barCollapsingEnabled: true
-                        )
-                    )
-                    .preferredControlAccentColor(Color.orange)
-                }
-        }
-        .buttonStyle(PlainButtonStyle())
     }
 }
