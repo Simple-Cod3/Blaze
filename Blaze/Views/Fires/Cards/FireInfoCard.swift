@@ -124,7 +124,7 @@ struct FireInfoCard: View {
 
                 InformationView(data: $data, info: $info, fireData: fireData)
                     .padding(.top, 16)
-                    .padding([.horizontal, .bottom], 20)
+                    .padding(.bottom, 20)
             }
         }
     }

@@ -38,6 +38,7 @@ struct InformationView: View {
             
             if data {
                 dataView
+                    .padding(.horizontal, 20)
             }
             
             if info {

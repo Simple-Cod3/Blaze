@@ -274,7 +274,9 @@ struct InciWebContent: View {
             guard let data: Data = unsafeData else {
                 print("🚫 Couldn't get Inciweb data")
                 DispatchQueue.main.async {
-                    self.html = "<p>Couldn't find extra information.</p>"
+                    withAnimation {
+                        self.html = "<p>Couldn't find extra information.</p>"
+                    }
                 }
                 return
             }
@@ -283,15 +285,28 @@ struct InciWebContent: View {
                 let document = try HTMLDocument(data: data)
                 
                 var builtHTML = ""
-                for pTag in document.xpath("//*[@id=\"incidentOverview\"]/div/div/p") {
-                    builtHTML += pTag.rawXML
+
+                let paragraphs = document.xpath("//*[@id=\"incidentOverview\"]/div/div/p")
+                if paragraphs.count > 0 {
+                    for pTag in paragraphs {
+                        builtHTML += pTag.rawXML
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            self.html = "<p>Couldn't find extra information.</p>"
+                        }
+                    }
+                    return
                 }
-                
+
                 DispatchQueue.main.async {
                     withAnimation {
                         self.html = builtHTML
                     }
                 }
+
+                print("🎉 Got info for", url)
             } catch {
                 print("🚫 Couldn't get Inciweb data: \(error)")
             }
@@ -301,7 +316,7 @@ struct InciWebContent: View {
     var body: some View {
         Group {
             if html == "" {
-                HStack(spacing: 20) {
+                HStack(spacing: 10) {
                     Spacer()
                     ProgressView()
                     Text("Loading...")
@@ -312,7 +327,7 @@ struct InciWebContent: View {
                 .onAppear { showLoading = true }
             } else {
                 NativeWebView(html: html)
-                    .padding(.top, 20)
+                    .padding([.top, .horizontal], 20)
             }
         }
         .onAppear {
