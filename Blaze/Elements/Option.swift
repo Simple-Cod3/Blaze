@@ -73,6 +73,12 @@ struct Option: View {
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .sheet(isPresented: $showSettings) {
+                NavigationView {
+                    SettingsView(showSettings: $showSettings)
+                        .navigationTitle("Settings")
+                }
+            }
         }
         .font(Font.title2.weight(.regular))
         .foregroundColor(foreground)

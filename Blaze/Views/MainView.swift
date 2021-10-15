@@ -80,7 +80,7 @@ struct MainView: View {
                     if page == 1 {
                         AQView(popup: $popup)
                     }
-                    
+
                     if page == 2 {
                         NewsView(popup: $popup)
                     }
