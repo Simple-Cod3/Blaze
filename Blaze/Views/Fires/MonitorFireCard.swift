@@ -11,12 +11,12 @@ struct MonitorFireCard: View {
     
     @EnvironmentObject var fireB: FireBackend
     
-    @Binding var showFireInformation: Bool
+    @Binding var showFireInformation: String
     @Binding var popup: Bool
     
     var fireData: ForestFire
         
-    init(showFireInformation: Binding<Bool>, popup: Binding<Bool>, fireData: ForestFire) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, fireData: ForestFire) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self.fireData = fireData
@@ -25,7 +25,7 @@ struct MonitorFireCard: View {
     var body: some View {
         Button(action: {
             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                showFireInformation = true
+                showFireInformation = fireData.name
                 popup = true
             }
         }) {

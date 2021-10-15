@@ -11,7 +11,7 @@ struct FiresView: View {
     
     @EnvironmentObject var fireB: FireBackend
 
-    @State private var showFireInformation = false
+    @State private var showFireInformation = ""
     @State private var prefix = 10
     @State private var largest = true
     @State private var latest = false
@@ -25,7 +25,7 @@ struct FiresView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if !showFireInformation {
+            if showFireInformation == "" {
                 Button(action: {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
@@ -46,7 +46,7 @@ struct FiresView: View {
                     wildfiremain
                 }
             } else {
-                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[3])
+                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.filter { $0.name == showFireInformation }[0])
             }
         }
     }

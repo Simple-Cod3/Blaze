@@ -288,7 +288,9 @@ struct InciWebContent: View {
                 }
                 
                 DispatchQueue.main.async {
-                    self.html = builtHTML
+                    withAnimation {
+                        self.html = builtHTML
+                    }
                 }
             } catch {
                 print("🚫 Couldn't get Inciweb data: \(error)")
@@ -299,10 +301,11 @@ struct InciWebContent: View {
     var body: some View {
         Group {
             if html == "" {
-                LazyHStack {
+                HStack(spacing: 20) {
+                    Spacer()
                     ProgressView()
                     Text("Loading...")
-                        .padding(20)
+                    Spacer()
                 }
                 .scaleEffect(showLoading ? 1 : 0)
                 .animation(.spring())

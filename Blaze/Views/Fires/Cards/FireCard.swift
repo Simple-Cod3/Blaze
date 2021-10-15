@@ -12,13 +12,13 @@ struct FireCard: View {
     @AppStorage("areaUnits") var areaUnits: String = currentUnit ?? units[0]
     @EnvironmentObject var fireB: FireBackend
     
-    @Binding var showFireInformation: Bool
+    @Binding var showFireInformation: String
     @Binding var popup: Bool
     
     var fireData: ForestFire
     private var area: Bool
     
-    init(showFireInformation: Binding<Bool>, popup: Binding<Bool>, fireData: ForestFire, area: Bool) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, fireData: ForestFire, area: Bool) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self.fireData = fireData
@@ -28,7 +28,7 @@ struct FireCard: View {
     var body: some View {
         Button(action: {
             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                showFireInformation = true
+                showFireInformation = fireData.name
                 popup = true
             }
         }) {

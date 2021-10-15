@@ -22,7 +22,7 @@ struct InformationView: View {
     private var isNotAccesible: Bool { fireData.acres == -1 && fireData.contained == -1 }
     
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             if isNotAccesible {
                 Section {
                     VStack(alignment: .leading) {
@@ -47,7 +47,7 @@ struct InformationView: View {
     }
     
     private var dataView: some View {
-        LazyVStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 10) {
             DataSection(
                 symbol: "info.circle.fill",
                 unit: "Name",
@@ -101,7 +101,8 @@ struct InformationView: View {
             .padding(.top, 6)
         }
     }
-    
+
+    @ViewBuilder
     private var infoView: some View {
         ScrollView {
             if let html = fireData.conditionStatement, html != "" {
@@ -109,20 +110,19 @@ struct InformationView: View {
             } else if fireData.sourceType == .inciweb {
                 InciWebContent(url: URL(string: fireData.url)!)
             }
-            
-            HStack(spacing: 0) {
-                Spacer()
-                
-                if let url = URL(string: fireData.url) {
-                    MoreButtonLink(url: url)
-                } else {
-                    MoreButtonLink(url: URL(string: "https://google.com")!)
-                        .disabled(true)
-                }
-                
-                Spacer()
-            }
-            .padding(.top, 6)
         }
+        HStack(spacing: 0) {
+            Spacer()
+
+            if let url = URL(string: fireData.url) {
+                MoreButtonLink(url: url)
+            } else {
+                MoreButtonLink(url: URL(string: "https://google.com")!)
+                    .disabled(true)
+            }
+
+            Spacer()
+        }
+        .padding(.top, 6)
     }
 }

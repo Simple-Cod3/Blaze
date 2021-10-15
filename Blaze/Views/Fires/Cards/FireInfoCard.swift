@@ -16,7 +16,7 @@ struct FireInfoCard: View {
     @State private var info = false
     
     @Binding var popup: Bool
-    @Binding var showFireInformation: Bool
+    @Binding var showFireInformation: String
     
     private var fireData: ForestFire
     private var name: String
@@ -26,7 +26,7 @@ struct FireInfoCard: View {
     private var updated: String
     private var started: String
     
-    init(popup: Binding<Bool>, showFireInformation: Binding<Bool>, fireData: ForestFire) {
+    init(popup: Binding<Bool>, showFireInformation: Binding<String>, fireData: ForestFire) {
         self._popup = popup
         self._showFireInformation = showFireInformation
         self.fireData = fireData
@@ -78,7 +78,7 @@ struct FireInfoCard: View {
                 if popup {
                     Button(action: {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = false }
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = "" }
                     }) {
                         TrailingButton("chevron.left")
                     }
