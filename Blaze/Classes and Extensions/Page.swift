@@ -46,7 +46,7 @@ struct PagerView<Content: View>: View {
                     (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 50)) + viewModel.lastDrag :
                     (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 40)) + viewModel.lastDrag
             )
-            .gesture(
+            .highPriorityGesture(
                 DragGesture().updating($translation) { value, state, _ in
                     state = value.translation.width
                     viewModel.lastDrag = value.translation.width
