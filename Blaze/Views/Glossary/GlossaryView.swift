@@ -13,7 +13,7 @@ struct GlossaryView: View {
     
     @State var wordsList = [Term]()
     
-    @Binding var showDefinition: Bool
+    @Binding var showDefinition: String
     
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var terms = GlossaryDatabase.getAllWords().sorted()
@@ -35,38 +35,15 @@ struct GlossaryView: View {
                 .padding(.horizontal, 20)
 
             ScrollView {
-                VStack(spacing: 0) {
-                    if bar.text == "" {
-    //                        ForEach(letters, id: \.self) { letter in
-                        GlossaryCard(showDefinition: $showDefinition)
-    //                        }
-                    } else {
-                        LazyVStack(spacing: 13) {
-                            ForEach(wordsList) { word in
-                                NavigationLink(
-                                    destination: ScrollView {
-            //                                    Header(title: word.id, desc: word.definition)
-            //                                        .padding(.vertical, 50)
-                                    }.navigationBarTitle("Term", displayMode: .inline)
-                                ) {
-                                    Text(word.id)
-                                        .foregroundColor(.secondary)
-                                }
-                            }
-                            .onChange(of: bar.text) { _ in
-                                self.getWords()
-                            }
-                        }
+                ScrollViewReader { value in
+                    VStack(spacing: 0) {
+                        GlossaryCards(showDefinition: $showDefinition, value: value)
                     }
+                    .onAppear { getWords() }
+                    .padding([.horizontal, .bottom], 20)
+                    .padding(.top, 16)
                 }
-                .add(bar)
-                .onAppear {
-                    self.getWords()
-                }
-                .padding([.horizontal, .bottom], 20)
-                .padding(.top, 16)
             }
         }
     }
-
 }

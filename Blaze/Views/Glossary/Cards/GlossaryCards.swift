@@ -7,19 +7,28 @@
 
 import SwiftUI
 
-struct GlossaryCard: View {
+struct GlossaryCards: View {
     
-    @Binding var showDefinition: Bool
-    
+    @Binding var showDefinition: String
+    var value: ScrollViewProxy
+
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var glossary = GlossaryDatabase.terms
     
     var body: some View {
-        if !showDefinition {
+        if showDefinition == "" {
             LazyVStack(spacing: 13) {
                 ForEach(letters, id: \.self) { letter in
                     Button(action: {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showDefinition.toggle() }
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            showDefinition = letter
+                        }
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                value.scrollTo(0)
+                            }
+                        }
                     }) {
                         HStack(spacing: 0) {
                             VStack(alignment: .leading, spacing: 0) {
@@ -49,7 +58,7 @@ struct GlossaryCard: View {
                 }
             }
         } else {
-            ForEach(letters, id: \.self) { letter in
+            ForEach(letters.filter { $0 == showDefinition }, id: \.self) { letter in
                 VStack(spacing: 0) {
                     (Text(letter.uppercased()) +
                         Text(letter.lowercased()))
@@ -59,6 +68,7 @@ struct GlossaryCard: View {
                         .fixedSize()
                         .padding(.top, 10)
                         .padding(.bottom, 20)
+                        .id(0)
                     
                     LazyVStack(spacing: 13) {
                         ForEach(glossary[letter]!) { term in

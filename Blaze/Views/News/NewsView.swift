@@ -18,7 +18,7 @@ struct NewsView: View {
     @State private var shown: NewsModals?
     @State private var contacts = false
     @State private var glossary = false
-    @State private var showDefinition = false
+    @State private var showDefinition = ""
     
     private enum NewsModals: String, Identifiable {
         var id: String { rawValue }
@@ -68,10 +68,10 @@ struct NewsView: View {
                     Button(action: {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            if !showDefinition {
+                            if showDefinition == "" {
                                 glossary = false
                             } else {
-                                showDefinition = false
+                                showDefinition = ""
                             }
                         }
                     }) {

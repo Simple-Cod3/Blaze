@@ -62,7 +62,7 @@ struct HeroCard: View {
             Hero(
                 "flame",
                 "Wildfires",
-                "Showing 390 hotspots across the United States.",
+                "Showing \(fireB.fires.count) incidents.",
                 Color.blaze
             )
         case 1:
@@ -83,7 +83,7 @@ struct HeroCard: View {
             Hero(
                 "flame",
                 "Wildfires",
-                "Showing 390 hotspots across the United States.",
+                "Showing \(fireB.fires.count) hotspots across the United States.",
                 Color.blaze
             )
         }
