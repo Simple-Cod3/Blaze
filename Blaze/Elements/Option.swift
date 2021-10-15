@@ -61,9 +61,7 @@ struct Option: View {
             
             HStack(spacing: 15) {
                 Button(action: {
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        showSettings = true
-                    }
+                    showSettings = true
                 }) {
                     Image(systemName: "gearshape")
                         .padding(11)
