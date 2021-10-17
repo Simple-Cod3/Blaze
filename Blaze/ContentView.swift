@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-public let units = ["acres", "sq km", "sq mi"]
+public let units = ["Acres", "Sq. km.", "Sq. mi."]
 public var currentUnit: String? { UserDefaults.standard.string(forKey: "areaUnits") }
 public func setUnit(unit: String) { UserDefaults.standard.setValue(unit, forKey: "areaUnits") }
 
