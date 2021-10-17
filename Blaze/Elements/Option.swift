@@ -21,45 +21,54 @@ struct Option: View {
         self.foreground = foreground
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
-        HStack(spacing: 0) {
-            HStack(spacing: 15) {
+        HStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
                 Button(action: {
                     showSearch = true
                 }) {
                     Image(systemName: "magnifyingglass")
-                        .padding([.leading, .vertical], 11)
+                        .padding(11)
                         .contentShape(Rectangle())
                 }
                 .sheet(isPresented: $showSearch) {
                     SearchView(showSearch: $showSearch)
                 }
+                
+                Divider()
+                    .frame(height: textSize(textStyle: .largeTitle))
                                 
                 Button(action: {
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                         showLabels.toggle()
                     }
                 }) {
-                    Image(systemName: "bubble.middle.bottom")
-                        .padding(.vertical, 11)
+                    Image(systemName: showLabels ? "bubble.middle.bottom.fill" : "bubble.middle.bottom")
+                        .padding(11)
                         .contentShape(Rectangle())
                 }
-                                
+
+                Divider()
+                    .frame(height: textSize(textStyle: .largeTitle))
+                
                 Button(action: {
                     
                 }) {
                     Image(systemName: "location")
-                        .padding([.trailing, .vertical], 11)
+                        .padding(11)
                         .contentShape(Rectangle())
                 }
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             
             Spacer()
             
-            HStack(spacing: 15) {
+            HStack(alignment: .center, spacing: 0) {
                 Button(action: {
                     showSettings = true
                 }) {
@@ -70,12 +79,12 @@ struct Option: View {
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .sheet(isPresented: $showSettings) {
                 SettingsView(showSettings: $showSettings)
             }
         }
         .font(Font.title2.weight(.regular))
         .foregroundColor(foreground)
+        .shadow(color: Color.black.opacity(0.07), radius: 10)
     }
 }
