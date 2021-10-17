@@ -85,15 +85,18 @@ struct SearchView: View {
                             content: {
                                 ForEach(firesList) { fire in
                                     NavigationLink(destination: FireMapView(fireData: fire)) {
-                                        Text(fire.name).foregroundColor(.secondary)
+                                        Text(fire.name)
+                                            .font(.body)
+                                            .fontWeight(.regular)
+                                            .foregroundColor(.secondary)
                                     }
                                 }},
                             label: { HStack {
                                 Image(systemName: "flame.fill")
                                     .foregroundColor(.blaze)
-                                    .font(.system(size: 17, weight: .semibold))
+                                    .font(.body)
                                 Text("Forest Fires")
-                                    .font(.headline)
+                                    .font(.body)
                                     .fontWeight(.medium)
                                 Spacer()
                                 if !showFires {

@@ -72,6 +72,12 @@ struct FireInfoCard: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup = value.translation.height > 0 ? false : true
+                        }
+                    }))
                 
                 Spacer()
 
@@ -85,7 +91,8 @@ struct FireInfoCard: View {
                     .buttonStyle(DefaultButtonStyle())
                 }
             }
-            
+            .padding(.bottom, popup ? 0 : UIConstants.margin*1.3)
+
             if popup {
                 fireinformation
             }
