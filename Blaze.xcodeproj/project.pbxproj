@@ -50,7 +50,6 @@
 		E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */ = {isa = PBXBuildFile; productRef = E9458A00254E27F20067BFE8 /* Fuzi */; };
 		E949CFA82517016F00AD467B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* SubHeader.swift */; };
-		E96D2885252EF3CF0002DBB4 /* SwiftUIListSeparator in Frameworks */ = {isa = PBXBuildFile; productRef = E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */; };
 		E97E26DE250837FD00B939F3 /* SearchUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DD250837FD00B939F3 /* SearchUIKit.swift */; };
 		E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E125084ABF00B939F3 /* SplashScreen.swift */; };
 		E97FA5FB2554FFC2009754AA /* MonitorFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */; };
@@ -67,7 +66,6 @@
 		E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF016D24FDBC090058C184 /* NewsView.swift */; };
 		E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF017024FDBC290058C184 /* NewsBackend.swift */; };
 		E9AF017424FDBC870058C184 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF017324FDBC870058C184 /* News.swift */; };
-		E9AF017724FDBEBC0058C184 /* ModalView in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF017624FDBEBC0058C184 /* ModalView */; };
 		E9AF017F24FDC19D0058C184 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF017E24FDC19D0058C184 /* URLImage */; };
 		E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF018324FDC3800058C184 /* NewsCard.swift */; };
 		E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
@@ -200,10 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */,
-				E96D2885252EF3CF0002DBB4 /* SwiftUIListSeparator in Frameworks */,
 				E9AF017F24FDC19D0058C184 /* URLImage in Frameworks */,
 				E9AF019524FDEC700058C184 /* FeedKit in Frameworks */,
-				E9AF017724FDBEBC0058C184 /* ModalView in Frameworks */,
 				E90CE1B12538F93C00217B94 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,10 +513,8 @@
 			);
 			name = Blaze;
 			packageProductDependencies = (
-				E9AF017624FDBEBC0058C184 /* ModalView */,
 				E9AF017E24FDC19D0058C184 /* URLImage */,
 				E9AF019424FDEC700058C184 /* FeedKit */,
-				E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */,
 				E90CE1B02538F93C00217B94 /* BetterSafariView */,
 				E9458A00254E27F20067BFE8 /* Fuzi */,
 			);
@@ -552,10 +546,8 @@
 			);
 			mainGroup = E9AF014824FDB8DD0058C184;
 			packageReferences = (
-				E9AF017524FDBEBC0058C184 /* XCRemoteSwiftPackageReference "modal-view" */,
 				E9AF017D24FDC19D0058C184 /* XCRemoteSwiftPackageReference "url-image" */,
 				E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */,
-				E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */,
 				E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */,
 			);
@@ -931,22 +923,6 @@
 				minimumVersion = 3.1.2;
 			};
 		};
-		E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SchmidtyApps/SwiftUIListSeparator.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		E9AF017524FDBEBC0058C184 /* XCRemoteSwiftPackageReference "modal-view" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/diniska/modal-view";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		E9AF017D24FDC19D0058C184 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
@@ -975,16 +951,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */;
 			productName = Fuzi;
-		};
-		E96D2884252EF3CF0002DBB4 /* SwiftUIListSeparator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E96D2883252EF3CF0002DBB4 /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */;
-			productName = SwiftUIListSeparator;
-		};
-		E9AF017624FDBEBC0058C184 /* ModalView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9AF017524FDBEBC0058C184 /* XCRemoteSwiftPackageReference "modal-view" */;
-			productName = ModalView;
 		};
 		E9AF017E24FDC19D0058C184 /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;

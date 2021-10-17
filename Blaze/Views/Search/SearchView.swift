@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ModalView
 
 struct SearchView: View {
     
@@ -76,136 +75,134 @@ struct SearchView: View {
     
     /// No environment variable needed (directly contact App Defaults)
     var body: some View {
-        ModalPresenter {
-            NavigationView {
-                Form {
-                    Section {
-                        DisclosureGroup(
-                            isExpanded: $showFires,
-                            content: {
-                                ForEach(firesList) { fire in
-                                    NavigationLink(destination: FireMapView(fireData: fire)) {
-                                        Text(fire.name)
-                                            .font(.body)
-                                            .fontWeight(.regular)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }},
-                            label: { HStack {
-                                Image(systemName: "flame.fill")
-                                    .foregroundColor(.blaze)
-                                    .font(.body)
-                                Text("Forest Fires")
-                                    .font(.body)
-                                    .fontWeight(.medium)
-                                Spacer()
-                                if !showFires {
-                                    Text("\(firesList.count)")
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color(.secondarySystemBackground))
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color.secondary)
-                                        .clipShape(Capsule())
-                                        .scaleEffect(showWords ? 0 : 1)
-                                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                        .animation(.spring())
+        NavigationView {
+            Form {
+                Section {
+                    DisclosureGroup(
+                        isExpanded: $showFires,
+                        content: {
+                            ForEach(firesList) { fire in
+                                NavigationLink(destination: FireMapView(fireData: fire)) {
+                                    Text(fire.name)
+                                        .font(.body)
+                                        .fontWeight(.regular)
+                                        .foregroundColor(.secondary)
                                 }
-                            }}
-                        )
-                        
-                        DisclosureGroup(
-                            isExpanded: $showWords,
-                            content: {
-                                ForEach(wordsList) { word in
-                                    NavigationLink(
-                                        destination: ScrollView {
+                            }},
+                        label: { HStack {
+                            Image(systemName: "flame.fill")
+                                .foregroundColor(.blaze)
+                                .font(.body)
+                            Text("Forest Fires")
+                                .font(.body)
+                                .fontWeight(.medium)
+                            Spacer()
+                            if !showFires {
+                                Text("\(firesList.count)")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(.secondarySystemBackground))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.secondary)
+                                    .clipShape(Capsule())
+                                    .scaleEffect(showWords ? 0 : 1)
+                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
+                                    .animation(.spring())
+                            }
+                        }}
+                    )
+                    
+                    DisclosureGroup(
+                        isExpanded: $showWords,
+                        content: {
+                            ForEach(wordsList) { word in
+                                NavigationLink(
+                                    destination: ScrollView {
 //                                            Header(title: word.id, desc: word.definition)
 //                                                .padding(.vertical, 50)
-                                        }
-                                        .navigationBarTitle("Term", displayMode: .inline)
-                                    ) {
-                                        Text(word.id).foregroundColor(.secondary)
                                     }
-                                }
-                            },
-                            label: { HStack {
-                                Image(systemName: "a.book.closed.fill")
-                                    .foregroundColor(.blaze)
-                                    .font(.system(size: 17, weight: .semibold))
-                                Text("Terms and Definitions")
-                                    .font(.headline)
-                                    .fontWeight(.medium)
-                                Spacer()
-                                if !showWords {
-                                    Text("\(wordsList.count)")
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color(.secondarySystemBackground))
-                                        .padding(.horizontal, 8)
-                                        .padding(.vertical, 4)
-                                        .background(Color.secondary)
-                                        .clipShape(Capsule())
-                                        .scaleEffect(showWords ? 0 : 1)
-                                        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                        .animation(.spring())
-                                }
-                            }}
-                        )
-                    }
-                }
-                .navigationBarItems(
-                    leading: Menu(
-                        content: {
-                            Text("Sorting Mode")
-                            Divider()
-                            Button(action: { sorting = .alpha; getFires() }) {
-                                HStack {
-                                    Text("A-Z")
-                                    Spacer()
-                                    if sorting == .alpha { Image(systemName: "checkmark.circle.fill") }
-                                }
-                            }
-                            Button(action: { sorting = .alphaReverse; getFires() }) {
-                                HStack {
-                                    Text("Z-A")
-                                    Spacer()
-                                    if sorting == .alphaReverse { Image(systemName: "checkmark.circle.fill") }
-                                }
-                            }
-                            Button(action: { sorting = .size; getFires() }) {
-                                HStack {
-                                    Text("Largest Fires")
-                                    Spacer()
-                                    if sorting == .size { Image(systemName: "checkmark.circle.fill") }
-                                }
-                            }
-                            Button(action: { sorting = .updated; getFires() }) {
-                                HStack {
-                                    Text("Latest Updated")
-                                    Spacer()
-                                    if sorting == .updated { Image(systemName: "checkmark.circle.fill") }
+                                    .navigationBarTitle("Term", displayMode: .inline)
+                                ) {
+                                    Text(word.id).foregroundColor(.secondary)
                                 }
                             }
                         },
-                        label: {
-                            Image(systemName: "line.horizontal.3.decrease")
-                                .font(Font.title2.weight(.regular))
-                        }
+                        label: { HStack {
+                            Image(systemName: "a.book.closed.fill")
+                                .foregroundColor(.blaze)
+                                .font(.system(size: 17, weight: .semibold))
+                            Text("Terms and Definitions")
+                                .font(.headline)
+                                .fontWeight(.medium)
+                            Spacer()
+                            if !showWords {
+                                Text("\(wordsList.count)")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color(.secondarySystemBackground))
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(Color.secondary)
+                                    .clipShape(Capsule())
+                                    .scaleEffect(showWords ? 0 : 1)
+                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
+                                    .animation(.spring())
+                            }
+                        }}
                     )
+                }
+            }
+            .navigationBarItems(
+                leading: Menu(
+                    content: {
+                        Text("Sorting Mode")
+                        Divider()
+                        Button(action: { sorting = .alpha; getFires() }) {
+                            HStack {
+                                Text("A-Z")
+                                Spacer()
+                                if sorting == .alpha { Image(systemName: "checkmark.circle.fill") }
+                            }
+                        }
+                        Button(action: { sorting = .alphaReverse; getFires() }) {
+                            HStack {
+                                Text("Z-A")
+                                Spacer()
+                                if sorting == .alphaReverse { Image(systemName: "checkmark.circle.fill") }
+                            }
+                        }
+                        Button(action: { sorting = .size; getFires() }) {
+                            HStack {
+                                Text("Largest Fires")
+                                Spacer()
+                                if sorting == .size { Image(systemName: "checkmark.circle.fill") }
+                            }
+                        }
+                        Button(action: { sorting = .updated; getFires() }) {
+                            HStack {
+                                Text("Latest Updated")
+                                Spacer()
+                                if sorting == .updated { Image(systemName: "checkmark.circle.fill") }
+                            }
+                        }
+                    },
+                    label: {
+                        Image(systemName: "line.horizontal.3.decrease")
+                            .font(Font.title2.weight(.regular))
+                    }
                 )
-                .navigationBarTitle("Search")
-                .add(self.searchBar)
-            }
-            .onChange(of: searchBar.text, perform: { _ in
-                getFires()
-                getWords()
-            })
-            .onAppear {
-                getFires()
-                getWords()
-            }
+            )
+            .navigationBarTitle("Search")
+            .add(self.searchBar)
+        }
+        .onChange(of: searchBar.text, perform: { _ in
+            getFires()
+            getWords()
+        })
+        .onAppear {
+            getFires()
+            getWords()
         }
     }
 }

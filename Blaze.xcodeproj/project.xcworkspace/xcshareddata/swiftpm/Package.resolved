@@ -29,24 +29,6 @@
         }
       },
       {
-        "package": "ModalView",
-        "repositoryURL": "https://github.com/diniska/modal-view",
-        "state": {
-          "branch": "master",
-          "revision": "ad7c17cbbdf0662f3defc5bfefd6d912d458d4a4",
-          "version": null
-        }
-      },
-      {
-        "package": "SwiftUIListSeparator",
-        "repositoryURL": "https://github.com/SchmidtyApps/SwiftUIListSeparator.git",
-        "state": {
-          "branch": "master",
-          "revision": "0f42224e4f32e5372a435068a908fb132723fae7",
-          "version": null
-        }
-      },
-      {
         "package": "URLImage",
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
         "state": {
