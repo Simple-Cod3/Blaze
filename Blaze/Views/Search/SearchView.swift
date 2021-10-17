@@ -23,6 +23,12 @@ struct SearchView: View {
     
     @State private var sorting = SortingType.alpha
     
+    @Binding var showSearch: Bool
+    
+    init(showSearch: Binding<Bool>) {
+        self._showSearch = showSearch
+    }
+    
     private enum SortingType {
         case alpha
         case alphaReverse

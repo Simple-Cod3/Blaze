@@ -37,14 +37,14 @@ struct PagerView<Content: View>: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack(alignment: .top, spacing: -20) {
-                content.frame(width: geometry.size.width-20)
+            HStack(alignment: .top, spacing: -11) {
+                content.frame(width: geometry.size.width-11)
             }
-            .frame(width: geometry.size.width-20, alignment: .leading)
+            .frame(width: geometry.size.width-11, alignment: .leading)
             .offset(x:
                 viewModel.currentIndex == pageCount - 1 ?
-                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 50)) + viewModel.lastDrag :
-                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 40)) + viewModel.lastDrag
+                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 11*2.5)) + viewModel.lastDrag :
+                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 22)) + viewModel.lastDrag
             )
             .highPriorityGesture(
                 DragGesture().updating($translation) { value, state, _ in

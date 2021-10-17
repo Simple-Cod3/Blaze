@@ -57,9 +57,10 @@ struct ProgressBar: View {
                 Color.blaze
                     .frame(width: geo.size.width*CGFloat(min(self.progress, 1.0)))
             }
-                .frame(height: 4)
-                .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
-                .animation(Animation.spring(dampingFraction: 0.5), value: self.progress)
-        }.frame(height: 4)
+            .frame(height: 4)
+            .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
+            .animation(Animation.spring(dampingFraction: 0.9), value: self.progress)
+        }
+        .frame(height: 4)
     }
 }

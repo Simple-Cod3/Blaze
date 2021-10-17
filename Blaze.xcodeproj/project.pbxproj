@@ -19,6 +19,7 @@
 		6D2DE04B2555F3B100D07038 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04A2555F3B100D07038 /* MoreButton.swift */; };
 		6D2DE04F2555F56200D07038 /* Caption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2DE04E2555F56200D07038 /* Caption.swift */; };
 		6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E8A4253B782F009096C9 /* UpdateLog.swift */; };
+		6D411A0B271CBFBA00432DE8 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D411A0A271CBFBA00432DE8 /* UIConstants.swift */; };
 		6D58B33B26B4F90C00311CF3 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D58B33A26B4F90C00311CF3 /* Blur.swift */; };
 		6D6362C525534C38005A18A8 /* LongButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6362C425534C38005A18A8 /* LongButton.swift */; };
 		6D7405D32509C85000F45BB2 /* AQMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7405D22509C85000F45BB2 /* AQMeter.swift */; };
@@ -124,6 +125,7 @@
 		6D2DE04A2555F3B100D07038 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		6D2DE04E2555F56200D07038 /* Caption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caption.swift; sourceTree = "<group>"; };
 		6D38E8A4253B782F009096C9 /* UpdateLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLog.swift; sourceTree = "<group>"; };
+		6D411A0A271CBFBA00432DE8 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		6D58B33A26B4F90C00311CF3 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		6D6362C425534C38005A18A8 /* LongButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongButton.swift; sourceTree = "<group>"; };
 		6D7405D22509C85000F45BB2 /* AQMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQMeter.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				E9AF016224FDB8DE0058C184 /* Info.plist */,
 				E9AF015424FDB8DD0058C184 /* AppDelegate.swift */,
 				E9AF015824FDB8DD0058C184 /* ContentView.swift */,
+				6D411A0A271CBFBA00432DE8 /* UIConstants.swift */,
 				E9AF015624FDB8DD0058C184 /* SceneDelegate.swift */,
 				E9AF015A24FDB8DE0058C184 /* Assets.xcassets */,
 				E9AF015F24FDB8DE0058C184 /* LaunchScreen.storyboard */,
@@ -408,9 +411,9 @@
 		E9AF017A24FDC0DC0058C184 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				E9AF016B24FDBBF80058C184 /* SearchView.swift */,
 				E9C41A8B2555030600AC3052 /* UpdateLog */,
 				E9C41A86255502C400AC3052 /* Credits */,
-				E9AF016B24FDBBF80058C184 /* SearchView.swift */,
 				E97E26DC250837E000B939F3 /* UIKit Search Functionality */,
 			);
 			path = Search;
@@ -651,6 +654,7 @@
 				E9AF017424FDBC870058C184 /* News.swift in Sources */,
 				6DE79D282558BADE008397E9 /* VerticalButton.swift in Sources */,
 				E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */,
+				6D411A0B271CBFBA00432DE8 /* UIConstants.swift in Sources */,
 				6D38E8A5253B782F009096C9 /* UpdateLog.swift in Sources */,
 				6DA2FF362506B55E00C86F0C /* SettingsCards.swift in Sources */,
 				6D77EB4726D4C2F90057BB0E /* FirePin.swift in Sources */,
@@ -835,7 +839,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -847,7 +851,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -866,7 +870,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C53YYLJPD6;
+				DEVELOPMENT_TEAM = C4DBP4HKWQ;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -878,7 +882,7 @@
 				MARKETING_VERSION = 2.1;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

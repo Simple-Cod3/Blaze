@@ -9,15 +9,14 @@ import SwiftUI
 
 struct Option: View {
     
+    @State var showSearch = false
     @State var showSettings = false
     
-    @Binding var zoom: Bool
     @Binding var showLabels: Bool
     
     private var foreground: Color
     
-    init(zoom: Binding<Bool>, showLabels: Binding<Bool>, _ foreground: Color) {
-        self._zoom = zoom
+    init(showLabels: Binding<Bool>, _ foreground: Color) {
         self._showLabels = showLabels
         self.foreground = foreground
     }
@@ -26,15 +25,16 @@ struct Option: View {
         HStack(spacing: 0) {
             HStack(spacing: 15) {
                 Button(action: {
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        zoom.toggle()
-                    }
+                    showSearch = true
                 }) {
-                    Image(systemName: "arrow.up.left.and.arrow.down.right")
+                    Image(systemName: "magnifyingglass")
                         .padding([.leading, .vertical], 11)
+                        .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
-                
+                .sheet(isPresented: $showSearch) {
+                    SearchView(showSearch: $showSearch)
+                }
+                                
                 Button(action: {
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                         showLabels.toggle()
@@ -42,16 +42,16 @@ struct Option: View {
                 }) {
                     Image(systemName: "bubble.middle.bottom")
                         .padding(.vertical, 11)
+                        .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
-                
+                                
                 Button(action: {
                     
                 }) {
                     Image(systemName: "location")
                         .padding([.trailing, .vertical], 11)
+                        .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
@@ -65,17 +65,14 @@ struct Option: View {
                 }) {
                     Image(systemName: "gearshape")
                         .padding(11)
+                        .contentShape(Rectangle())
                 }
-                .contentShape(Rectangle())
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .sheet(isPresented: $showSettings) {
-                NavigationView {
-                    SettingsView(showSettings: $showSettings)
-                        .navigationTitle("Settings")
-                }
+                SettingsView(showSettings: $showSettings)
             }
         }
         .font(Font.title2.weight(.regular))

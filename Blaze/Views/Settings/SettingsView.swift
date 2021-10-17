@@ -26,11 +26,18 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(spacing: 0) {
+            Button(action: {
+                showSettings = false
+            }) {
+                HeaderButton("Settings", "chevron.down")
+            }
+            .buttonStyle(DefaultButtonStyle())
+            
             Divider()
                 .padding(.horizontal, 20)
 
             ScrollView {
-                VStack(alignment: .leading, spacing: show ? 13 : 200) {                    
+                VStack(alignment: .leading, spacing: 13) {
                     UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
                     
                     SettingsCardCustom(title: "All Fires", desc: "View fires outside of California", loading: loading) {
@@ -41,11 +48,11 @@ struct SettingsView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
                                 .foregroundColor(caliOnly ? Color.blaze : Color(.tertiaryLabel))
-                                .scaleEffect(caliOnly ? 1 : 0.00001)
+                                .scaleEffect(caliOnly ? 1 : 0.0001)
                                 .background(
                                     Image(systemName: "circle")
                                         .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
-                                        .foregroundColor(Color(.tertiaryLabel))
+                                                             .foregroundColor(Color(.tertiaryLabel))
                                         .scaleEffect(caliOnly ? 0.8 : 1)
                                 )
                                 .contentShape(Rectangle())
@@ -66,11 +73,10 @@ struct SettingsView: View {
                 .padding(20)
             }
         }
-        .onAppear {
-            withAnimation(Animation.spring()) {
-                show = true
-            }
-        }
+        .background(
+            RegularBlurBackground()
+                .edgesIgnoringSafeArea(.all)
+        )
         .onChange(of: caliOnly) { _ in
             fires.refreshFireList()
         }

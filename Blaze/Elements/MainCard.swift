@@ -20,7 +20,8 @@ struct MainCard<Content: View>: View {
             content()
         }
         .background(RegularBlurBackground())
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+        .shadow(color: Color.black.opacity(0.05), radius: 10)
     }
 }

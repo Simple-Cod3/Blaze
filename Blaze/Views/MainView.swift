@@ -19,7 +19,6 @@ struct MainView: View {
     @State private var done = false
     @State private var popup = false
     @State private var showLabels = false
-    @State private var zoom = false
     @State private var showSettings = false
     @State private var page = 0
     
@@ -43,7 +42,7 @@ struct MainView: View {
                 alignment: .top
             )
             .overlay(
-                main,
+                main.edgesIgnoringSafeArea(.bottom),
                 alignment: .bottom
             )
         } else if fireB.failed {
@@ -61,16 +60,17 @@ struct MainView: View {
         VStack(spacing: 0) {
             HeroCard(page)
                 .opacity(0)
+            
+            Spacer()
                 
             if !popup {
                 Option(
-                    zoom: $zoom,
                     showLabels: $showLabels,
                     page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                 )
-                .padding(.bottom, 15)
+                .padding([.horizontal, .bottom], 11)
             }
-            
+                        
             VStack(spacing: 0) {
                 MainCard {
                     if page == 0 {
@@ -87,6 +87,5 @@ struct MainView: View {
                 }
             }
         }
-        .padding([.horizontal, .bottom], 20)
     }
 }
