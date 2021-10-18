@@ -46,7 +46,7 @@ struct MainView: View {
                 alignment: .bottom
             )
         } else if fireB.failed {
-        
+            Text("😢 Unknown problem...please reload the app.")
         } else {
             ProgressBarView(
                 progressObjs: $fireB.progress,

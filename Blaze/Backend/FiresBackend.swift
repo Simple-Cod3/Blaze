@@ -46,6 +46,14 @@ class FireBackend: ObservableObject {
         monitoringFires = monitoringFires.filter({ $0.name != name })
         UserDefaults.standard.setValue(monitoringFires.map { $0.name }, forKey: "monitoringFires")
     }
+
+    private func sameFire(caFire: ForestFire, inciWebFire: ForestFire) -> Bool {
+        return
+            caFire.coordinate == inciWebFire.coordinate ||
+            caFire.name == inciWebFire.name ||
+            caFire.name == inciWebFire.name.replacingOccurrences(of: " Fire", with: "") ||
+            caFire.name + " (CA)" == inciWebFire.name
+    }
     
     func refreshFireList(with: URL? = nil) {
         self.failed = false
@@ -55,9 +63,8 @@ class FireBackend: ObservableObject {
         
         // Secondary fire source (inciweb)
         let url2 = with ?? URL(string: "https://inciweb.nwcg.gov/feeds/json/esri/")!
-        print("🔥 [ Grabbing secondary fire data ]")
-        
-        let task2 = URLSession.shared.dataTask(with: url2) { unsafeData, _, error in
+
+        let task2 = URLSession.shared.dataTask(with: url2) { [self] unsafeData, _, error in
             guard let data: Data = unsafeData else {
                 self.failed = true
                 print("🚫 No fire data found")
@@ -73,76 +80,63 @@ class FireBackend: ObservableObject {
                 DateFormatter.dateTimeSeconds
             ]
 
-            DispatchQueue.main.async {
-                do {
-                    let newFires = try jsonDecoder.decode(InciWebIncidents.self, from: data)
-                    let calOnly = UserDefaults.standard.bool(forKey: "californiaOnly") 
-                    
-                    let filteredNewFires = newFires.markers.filter({
-                        $0.type == "Wildfire" && ($0.state == "CALIFORNIA" || calOnly) 
-                    })
-                    
-                    if self.fires.count == 0 {
-                        self.fires += filteredNewFires.map { inciWebFire in
-                            ForestFire(
-                                name: inciWebFire.name,
-                                updated: inciWebFire.updated,
-                                location: inciWebFire.state.capitalized,
-                                latitude: inciWebFire.lat.becomeDouble(),
-                                longitude: inciWebFire.lng.becomeDouble(),
-                                acres: inciWebFire.size.becomeInt(),
-                                contained: inciWebFire.contained.becomeInt(),
-                                relURL: inciWebFire.url,
-                                sourceType: .inciweb
-                            )
+            do {
+                let newFires = try jsonDecoder.decode(InciWebIncidents.self, from: data)
+
+                // Filter to only Wildfires (and appropriate, to only California Wildfires)
+                let calOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
+
+                // Inciweb Fires have more information!
+                let inciWebFires = newFires.markers.filter({
+                    $0.type == "Wildfire" && ($0.state == "CALIFORNIA" || calOnly)
+                })
+
+                // Fires that won't merge but will still be added to the global list
+                var uniqueInciWebFires = [ForestFire]()
+                var builtUniqueList = false
+
+                let firesListToReplaceOld: [ForestFire] = self.fires.map { initialFire in
+                    for inciWebFire in inciWebFires {
+                        let inciWebFireObject = ForestFire(
+                            name: inciWebFire.name,
+                            updated: inciWebFire.updated,
+                            location: inciWebFire.state.capitalized,
+                            latitude: inciWebFire.lat.becomeDouble(),
+                            longitude: inciWebFire.lng.becomeDouble(),
+                            acres: inciWebFire.size.becomeInt(),
+                            contained: inciWebFire.contained.becomeInt(),
+                            relURL: inciWebFire.url,
+                            sourceType: .inciweb
+                        )
+
+                        // Various checks to see if the fires are the same between the two sources
+                        if self.sameFire(caFire: initialFire, inciWebFire: inciWebFireObject){
+                            print("Merged:", inciWebFireObject.name)
+                            return inciWebFireObject
+                        } else if !builtUniqueList && !self.fires.contains(where: { self.sameFire(caFire: $0, inciWebFire: inciWebFireObject) }) {
+                            uniqueInciWebFires.append(inciWebFireObject)
+                            print("Unique:", inciWebFireObject.name)
                         }
                     }
-                    
-                    var unAddedFires = [ForestFire]()
-                    for fireI in self.fires.indices {
-                        for inciI in filteredNewFires.indices {
-                            
-                            let inciWebFire = filteredNewFires[inciI]
-                            
-                            let forestFireObject = ForestFire(
-                                name: inciWebFire.name,
-                                updated: inciWebFire.updated,
-                                location: inciWebFire.state.capitalized,
-                                latitude: inciWebFire.lat.becomeDouble(),
-                                longitude: inciWebFire.lng.becomeDouble(),
-                                acres: inciWebFire.size.becomeInt(),
-                                contained: inciWebFire.contained.becomeInt(),
-                                relURL: inciWebFire.url,
-                                sourceType: .inciweb
-                            )
-                            
-                            if  self.fires[fireI].acresO == nil &&
-                                filteredNewFires[inciI].coordinate == self.fires[fireI].coordinate ||
-                                filteredNewFires[inciI].name == self.fires[fireI].name ||
-                                filteredNewFires[inciI].name == self.fires[fireI].name.replacingOccurrences(of: " Fire", with: "") {
-                                
-                                print("🔎 Found matching fires: \(filteredNewFires[inciI].name)")
-                                self.fires[fireI] = forestFireObject
-                                
-                            } else if fireI == 0 && self.fires.filter({
-                                $0.name == filteredNewFires[inciI].name || 
-                                $0.name.replacingOccurrences(of: " Fire", with: "") == filteredNewFires[inciI].name
-                            }).count == 0 {
-                                unAddedFires.append(forestFireObject)
-                                print("adding", forestFireObject.name)
-                            }
-                        }
-                    }
-                    
-                    self.fires += unAddedFires
+
+                    builtUniqueList = true
+                    return initialFire
+                }
+
+                DispatchQueue.main.async {
+                    print("NewMaps", firesListToReplaceOld.map { $0.name })
+                    print("NewMaps", uniqueInciWebFires.map { $0.name })
+                    self.fires = firesListToReplaceOld
+                    self.fires += uniqueInciWebFires
                     self.fires = self.fires.sorted(by: ForestFire.dateUpdated)
-                    self.updateMonitored()
-                    
-                } catch {
+                    group.leave()
+                }
+            } catch {
+                DispatchQueue.main.async {
                     self.failed = true
+                    group.leave()
                     print("🚫 JSON Decoding failed: \(error)")
                 }
-                group.leave()
             }
         }
         
@@ -151,7 +145,6 @@ class FireBackend: ObservableObject {
         // Primary data source
         let url = with ?? URL(string: "https://www.fire.ca.gov/umbraco/Api/IncidentApi/GetIncidents")!
         print("🔥 [ Grabbing new fires ]")
-        
         let task = URLSession.shared.dataTask(with: url) { unsafeData, _, error in
             guard let data: Data = unsafeData else {
                 self.failed = true
@@ -167,19 +160,24 @@ class FireBackend: ObservableObject {
                 DateFormatter.iso8601NoExtention
             ]
 
-            DispatchQueue.main.async {
-                do {
-                    let newFires = try jsonDecoder.decode(Incidents.self, from: data)
+            do {
+                let newFires = try jsonDecoder.decode(Incidents.self, from: data)
+
+                DispatchQueue.main.async {
                     self.fires = newFires.incidents.sorted(by: ForestFire.dateUpdated)
-                } catch {
+                }
+            } catch {
+                DispatchQueue.main.async {
                     self.failed = true
                     print("🚫 JSON Decoding failed: \(error)")
                 }
-                
-                group.enter()
-                task2.resume()
-                group.leave()
             }
+
+            group.enter()
+            task2.resume()
+            print("🔥 [ Grabbing secondary fire data ]")
+            group.leave()
+
         }
         
         self.progress[0] = task.progress
@@ -188,6 +186,7 @@ class FireBackend: ObservableObject {
         task.resume()
 
         group.notify(queue: .main) {
+            self.updateMonitored()
             print("✅ Done grabbing fires! (\(round(1000.0 * Date().timeIntervalSince(start)) / 1000.0))")
         }
     }

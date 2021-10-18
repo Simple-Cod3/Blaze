@@ -97,19 +97,18 @@ struct SearchView: View {
                                 .font(.body)
                                 .fontWeight(.medium)
                             Spacer()
-                            if !showFires {
-                                Text("\(firesList.count)")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(.secondarySystemBackground))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(Color.secondary)
-                                    .clipShape(Capsule())
-                                    .scaleEffect(showWords ? 0 : 1)
-                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                    .animation(.spring())
-                            }
+
+                            Text("\(firesList.count)")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(.secondarySystemBackground))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color.secondary)
+                                .clipShape(Capsule())
+                                .scaleEffect(showFires ? 0 : 1)
+                                .animation(.spring())
+
                         }}
                     )
                     
@@ -119,12 +118,16 @@ struct SearchView: View {
                             ForEach(wordsList) { word in
                                 NavigationLink(
                                     destination: ScrollView {
-//                                            Header(title: word.id, desc: word.definition)
-//                                                .padding(.vertical, 50)
+                                        WordCard(term: word)
+                                            .padding(.vertical, 50)
+                                            .padding(.horizontal, 20)
                                     }
                                     .navigationBarTitle("Term", displayMode: .inline)
                                 ) {
-                                    Text(word.id).foregroundColor(.secondary)
+                                    Text(word.id)
+                                        .font(.body)
+                                        .fontWeight(.regular)
+                                        .foregroundColor(.secondary)
                                 }
                             }
                         },
@@ -136,19 +139,16 @@ struct SearchView: View {
                                 .font(.headline)
                                 .fontWeight(.medium)
                             Spacer()
-                            if !showWords {
-                                Text("\(wordsList.count)")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(Color(.secondarySystemBackground))
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(Color.secondary)
-                                    .clipShape(Capsule())
-                                    .scaleEffect(showWords ? 0 : 1)
-                                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .identity))
-                                    .animation(.spring())
-                            }
+                            Text("\(wordsList.count)")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundColor(Color(.secondarySystemBackground))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color.secondary)
+                                .clipShape(Capsule())
+                                .scaleEffect(showWords ? 0 : 1)
+                                .animation(.spring())
                         }}
                     )
                 }

@@ -21,7 +21,7 @@ struct ProgressBarView: View {
                     .foregroundColor(.secondary)
             }
             ProgressBar(progress: $progress)
-                .onReceive(timer) { _ in
+                .onReceive(timer) { inn in
                     withAnimation {
                         self.progress = progressObjs
                             .map { $0.fractionCompleted }

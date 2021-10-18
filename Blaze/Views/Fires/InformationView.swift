@@ -32,7 +32,9 @@ struct InformationView: View {
                             .padding(.bottom, 5)
                         Text("This incident is not accessible on this app at the moment. For more information, click on \"More Info\" below.")
                             .foregroundColor(.secondary)
-                    }.padding(.vertical, 10)
+                    }
+                        .padding(.vertical, 10)
+                        .padding([.bottom, .horizontal], 20)
                 }
             }
             
@@ -108,6 +110,7 @@ struct InformationView: View {
         ScrollView {
             if let html = fireData.conditionStatement, html != "" {
                 NativeWebView(html: html)
+                    .padding([.top, .horizontal], 20)
             } else if fireData.sourceType == .inciweb {
                 InciWebContent(url: URL(string: fireData.url)!)
             }
