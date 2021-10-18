@@ -66,7 +66,6 @@
 		E9AF016E24FDBC090058C184 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF016D24FDBC090058C184 /* NewsView.swift */; };
 		E9AF017124FDBC290058C184 /* NewsBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF017024FDBC290058C184 /* NewsBackend.swift */; };
 		E9AF017424FDBC870058C184 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF017324FDBC870058C184 /* News.swift */; };
-		E9AF017F24FDC19D0058C184 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF017E24FDC19D0058C184 /* URLImage */; };
 		E9AF018424FDC3800058C184 /* NewsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF018324FDC3800058C184 /* NewsCard.swift */; };
 		E9AF019224FDE5EF0058C184 /* CloseModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AF019124FDE5EF0058C184 /* CloseModalButton.swift */; };
 		E9AF019524FDEC700058C184 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9AF019424FDEC700058C184 /* FeedKit */; };
@@ -198,7 +197,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */,
-				E9AF017F24FDC19D0058C184 /* URLImage in Frameworks */,
 				E9AF019524FDEC700058C184 /* FeedKit in Frameworks */,
 				E90CE1B12538F93C00217B94 /* BetterSafariView in Frameworks */,
 			);
@@ -513,7 +511,6 @@
 			);
 			name = Blaze;
 			packageProductDependencies = (
-				E9AF017E24FDC19D0058C184 /* URLImage */,
 				E9AF019424FDEC700058C184 /* FeedKit */,
 				E90CE1B02538F93C00217B94 /* BetterSafariView */,
 				E9458A00254E27F20067BFE8 /* Fuzi */,
@@ -546,7 +543,6 @@
 			);
 			mainGroup = E9AF014824FDB8DD0058C184;
 			packageReferences = (
-				E9AF017D24FDC19D0058C184 /* XCRemoteSwiftPackageReference "url-image" */,
 				E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */,
 				E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */,
@@ -923,14 +919,6 @@
 				minimumVersion = 3.1.2;
 			};
 		};
-		E9AF017D24FDC19D0058C184 /* XCRemoteSwiftPackageReference "url-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.19;
-			};
-		};
 		E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nmdias/FeedKit";
@@ -951,11 +939,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */;
 			productName = Fuzi;
-		};
-		E9AF017E24FDC19D0058C184 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9AF017D24FDC19D0058C184 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
 		};
 		E9AF019424FDEC700058C184 /* FeedKit */ = {
 			isa = XCSwiftPackageProductDependency;
