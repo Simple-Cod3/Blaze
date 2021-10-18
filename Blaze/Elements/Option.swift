@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Option: View {
+
+    @EnvironmentObject var mapController: FullFireMapController
     
     @State var showSearch = false
     @State var showSettings = false
@@ -45,9 +47,7 @@ struct Option: View {
             Spacer()
             
             HStack(alignment: .center, spacing: 0) {
-                Button(action: {
-                    showSearch = true
-                }) {
+                Button(action: { showSearch = true }) {
                     Image(systemName: "magnifyingglass")
                         .padding(11)
                         .contentShape(Rectangle())
@@ -72,9 +72,7 @@ struct Option: View {
                 Divider()
                     .frame(height: textSize(textStyle: .largeTitle))
                 
-                Button(action: {
-                    
-                }) {
+                Button(action: mapController.moveBack) {
                     Image(systemName: "location")
                         .padding(11)
                         .contentShape(Rectangle())

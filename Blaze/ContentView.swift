@@ -40,3 +40,26 @@ struct ContentView: View {
 //        }
     }
 }
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        let fireDatabase = FireBackend()
+        let newsBack = NewsBackend()
+        let forecastBack = AirQualityBackend()
+        let phoneBack = PhoneBackend()
+        let mapController = FullFireMapController()
+
+        newsBack.refreshNewsList()
+        fireDatabase.refreshFireList()
+        phoneBack.refreshPhoneList()
+
+        let contentView = ContentView()
+            .environmentObject(newsBack)
+            .environmentObject(fireDatabase)
+            .environmentObject(forecastBack)
+            .environmentObject(phoneBack)
+            .environmentObject(mapController)
+
+        return contentView
+    }
+}

@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let newsBack = NewsBackend()
         let forecastBack = AirQualityBackend()
         let phoneBack = PhoneBackend()
+        let mapController = FullFireMapController()
         
         newsBack.refreshNewsList()
         fireDatabase.refreshFireList()
@@ -32,6 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(fireDatabase)
             .environmentObject(forecastBack)
             .environmentObject(phoneBack)
+            .environmentObject(mapController)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
