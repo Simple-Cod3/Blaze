@@ -86,7 +86,7 @@ class UIConstants: ObservableObject {
                 "iPhone10,5" // iPhone 8 Plus (GSM)
             ]
             .contains(Device.model()) {
-                return -UIConstants.margin*1.3
+                return UIConstants.margin*1.3
             }
             
             return 0
