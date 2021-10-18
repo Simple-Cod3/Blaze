@@ -29,6 +29,23 @@ struct Option: View {
         HStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
                 Button(action: {
+                    showSettings = true
+                }) {
+                    Image(systemName: "gearshape")
+                        .padding(11)
+                        .contentShape(Rectangle())
+                }
+            }
+            .background(RegularBlurBackground())
+            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            .sheet(isPresented: $showSettings) {
+                SettingsView(showSettings: $showSettings)
+            }
+            
+            Spacer()
+            
+            HStack(alignment: .center, spacing: 0) {
+                Button(action: {
                     showSearch = true
                 }) {
                     Image(systemName: "magnifyingglass")
@@ -65,23 +82,6 @@ struct Option: View {
             }
             .background(RegularBlurBackground())
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            
-            Spacer()
-            
-            HStack(alignment: .center, spacing: 0) {
-                Button(action: {
-                    showSettings = true
-                }) {
-                    Image(systemName: "gearshape")
-                        .padding(11)
-                        .contentShape(Rectangle())
-                }
-            }
-            .background(RegularBlurBackground())
-            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            .sheet(isPresented: $showSettings) {
-                SettingsView(showSettings: $showSettings)
-            }
         }
         .font(Font.title2.weight(.regular))
         .foregroundColor(foreground)
