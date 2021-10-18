@@ -73,7 +73,6 @@ struct AQView: View {
                             .padding(.vertical, 60)
                             .scaleEffect(showCircle ? 1.0 : 0)
                             .onAppear {
-                                forecast.refreshForecastList()
                                 withAnimation(nil) { showCircle = false }
                                 withAnimation(.spring(dampingFraction: 0.8)) {
                                     showCircle = true

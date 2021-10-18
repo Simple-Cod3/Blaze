@@ -74,10 +74,13 @@ struct HeroCard: View {
             Hero(
                 "aqi.medium",
                 "Air Quality",
-                !forecast.lost ? "Showing air quality in \(forecast.forecasts.first!.place)" + "." : "Unable to obtain device location.",
+                !forecast.lost ? "Showing air quality in \(forecast.forecasts.first!.place)." : "Unable to obtain device location.",
                 determineColor(cat: forecast.forecasts[1].category.number),
                 1
             )
+                .onAppear {
+                    forecast.refreshForecastList()
+                }
         case 2:
             Hero(
                 "newspaper",

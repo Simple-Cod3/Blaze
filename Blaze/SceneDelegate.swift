@@ -25,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         newsBack.refreshNewsList()
         fireDatabase.refreshFireList()
-        forecastBack.refreshForecastList()
         phoneBack.refreshPhoneList()
         
         let contentView = ContentView()

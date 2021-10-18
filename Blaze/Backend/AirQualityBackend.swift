@@ -13,7 +13,7 @@ import CoreLocation
 class AirQualityBackend: ObservableObject {
     @Published var forecasts = [AirQuality(), AirQuality()]
     @Published var lost = false
-    
+
     @ObservedObject var locationProvider = LocationProvider()
     var progress = Progress()
     
@@ -64,26 +64,26 @@ class AirQualityBackend: ObservableObject {
                 DateFormatter.iso8601,
                 DateFormatter.iso8601NoExtention
             ]
-            
-            DispatchQueue.main.async {
-                do {
-                    let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
-                    if newForecast.count > 0 {
-                        for report in newForecast {
+
+            do {
+                let newForecast = try jsonDecoder.decode([AirQuality].self, from: data)
+                if newForecast.count > 0 {
+                    for report in newForecast {
+                        DispatchQueue.main.async {
                             if report.pollutant == "O3" {
                                 self.forecasts[0] = report
                             } else if report.pollutant == "PM2.5" {
                                 self.forecasts[1] = report
                             }
                         }
-                    } else {
-                        print("📭 Forecast Empty")
                     }
-                } catch {
-                    print("🚫 JSON Decoding failed: \(error)")
+                } else {
+                    print("📭 Forecast Empty")
                 }
-                group.leave()
+            } catch {
+                print("🚫 JSON Decoding failed: \(error)")
             }
+            group.leave()
         }
         
         self.progress = task.progress
