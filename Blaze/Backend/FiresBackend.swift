@@ -110,7 +110,7 @@ class FireBackend: ObservableObject {
                         )
 
                         // Various checks to see if the fires are the same between the two sources
-                        if self.sameFire(caFire: initialFire, inciWebFire: inciWebFireObject){
+                        if self.sameFire(caFire: initialFire, inciWebFire: inciWebFireObject) {
                             print("Merged:", inciWebFireObject.name)
                             return inciWebFireObject
                         } else if !builtUniqueList && !self.fires.contains(where: { self.sameFire(caFire: $0, inciWebFire: inciWebFireObject) }) {
