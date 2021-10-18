@@ -33,7 +33,7 @@ struct FiresView: View {
                     }
                 }) {
                     HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, UIConstants.bottomOffset)
+                        .padding(.bottom, UIConstants.margin*1.3)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)

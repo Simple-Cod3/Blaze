@@ -23,5 +23,6 @@ struct MainCard<Content: View>: View {
         .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
         .shadow(color: Color.black.opacity(0.07), radius: 10)
+        .offset(y: UIConstants.bottomOffset)
     }
 }
