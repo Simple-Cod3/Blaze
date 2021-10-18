@@ -46,14 +46,23 @@ struct FireMapView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        VStack {
+            Spacer()
+            FireInfoCard(popup: $show, fireData: fireData, soloNavigation: true)
+                .font(.body)
+                .background(RegularBlurBackground())
+                .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+                .contentShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
+                .shadow(color: Color.black.opacity(0.07), radius: 10)
+        }
+        .edgesIgnoringSafeArea(.bottom)
+        .background(
             Map(coordinateRegion: $coordinateRegion, annotationItems: [fireData]) { fire in
                 MapAnnotation(coordinate: fire.coordinate) {
-//                    FirePin(showLabels : $showLabels)
+                    FirePin(showLabels: .constant(false))
                 }
             }
-            .offset(y: 30)
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.bottom)
             .onChange(of: coordinateRegion) { region in
                 if free && !caliOnly {
                     if region.span.longitudeDelta > 16 &&
@@ -66,16 +75,16 @@ struct FireMapView: View {
                     } else if region.center.latitude < centerLat - RADIUS {
                         setCenter(option: OPTIONS.DOWN)
                     }
-                    
+
                     if region.center.longitude > centerLong + RADIUS {
                         setCenter(option: OPTIONS.RIGHT)
                     } else if region.center.longitude < centerLong - RADIUS {
                         setCenter(option: OPTIONS.LEFT)
                     }
-                    
+
                 }
             }
-        }
+        )
         .onAppear {
             moveBack()
 
@@ -83,10 +92,11 @@ struct FireMapView: View {
                 hide = false
             }
         }
+        .navigationBarHidden(false)
         .navigationBarTitle(fireData.name, displayMode: .inline)
         .navigationBarItems(trailing: Button(action: moveBack) {
-            Image(systemName: "rotate.3d")
-                .font(.title2)
+            Image(systemName: "location")
+                .font(.body)
         })
     }
     

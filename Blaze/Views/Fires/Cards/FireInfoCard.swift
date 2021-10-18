@@ -25,10 +25,11 @@ struct FireInfoCard: View {
     private var containment: String
     private var updated: String
     private var started: String
+    private var soloNavigation: Bool
     
-    init(popup: Binding<Bool>, showFireInformation: Binding<String>, fireData: ForestFire) {
+    init(popup: Binding<Bool>, showFireInformation: Binding<String>?=nil, fireData: ForestFire, soloNavigation: Bool?=nil) {
         self._popup = popup
-        self._showFireInformation = showFireInformation
+        self._showFireInformation = showFireInformation ?? .constant(fireData.name)
         self.fireData = fireData
         self.name = fireData.name
         self.locations = fireData.getLocation()
@@ -36,6 +37,7 @@ struct FireInfoCard: View {
         self.containment = "\(fireData.getContained()) Contained"
         self.updated = "\(fireData.updated.getDateTime())"
         self.started = "\(fireData.started.getDateTime())"
+        self.soloNavigation = soloNavigation ?? false
     }
     
     var body: some View {
@@ -81,7 +83,7 @@ struct FireInfoCard: View {
                 
                 Spacer()
 
-                if popup {
+                if popup && !soloNavigation {
                     Button(action: {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showFireInformation = "" }

@@ -21,12 +21,13 @@ struct ProgressBarView: View {
                     .foregroundColor(.secondary)
             }
             ProgressBar(progress: $progress)
-                .onReceive(timer) { inn in
+                .onReceive(timer) { _ in
                     withAnimation {
                         self.progress = progressObjs
                             .map { $0.fractionCompleted }
                             .reduce(0, +) / Double(progressObjs.count)
                     }
+
                     if progressObjs.allSatisfy({$0.isFinished}) {
                         timer.upstream.connect().cancel()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

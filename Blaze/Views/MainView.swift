@@ -37,6 +37,11 @@ struct MainView: View {
                     ForEach(0..<3) { page in
                         HeroCard(page)
                     }
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            popup.toggle()
+                        }
+                    }
                 }
                 ,
                 alignment: .top
