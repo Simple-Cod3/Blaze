@@ -88,7 +88,7 @@ struct Swipeable<Content: View>: View {
             content
         }
         .offset(y:
-                viewModel.lastDrag/4
+                viewModel.lastDrag/8
         )
         .highPriorityGesture(
             DragGesture().updating($translation) { value, state, _ in

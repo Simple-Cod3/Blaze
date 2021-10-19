@@ -45,7 +45,7 @@ struct FireCard: View {
                         
                         Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
                     }
-                    .font(Font.subheadline.weight(.medium))
+                    .font(.system(size: UIFont.preferredFont(forTextStyle: .subheadline).pointSize-1).weight(.medium))
                     .foregroundColor(Color.blaze)
                 }
                 

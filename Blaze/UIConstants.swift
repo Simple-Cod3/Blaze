@@ -54,6 +54,46 @@ class UIConstants: ObservableObject {
         }
     }
     
+    static var bottomPadding: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if [
+                "iPhone1,1", // iPhone
+                "iPhone1,2", // iPhone 3G
+                "iPhone2,1", // iPhone 3GS
+                "iPhone3,1", // iPhone 4 (GSM)
+                "iPhone3,2", // iPhone 4 (GSM Rev A)
+                "iPhone3,3", // iPhone 4 (CDMA/Verizon/Sprint)
+                "iPhone4,1", // iPhone 4S
+                "iPhone5,1", // iPhone 5 (model A1428, AT&T/Canada)
+                "iPhone5,2", // iPhone 5 (model A1429, everything else)
+                "iPhone5,3", // iPhone 5c (model A1456, A1532 | GSM)
+                "iPhone5,4", // iPhone 5c (model A1507, A1516, A1526 (China), A1529 | Global)
+                "iPhone6,1", // iPhone 5s (model A1433, A1533 | GSM)
+                "iPhone6,2", // iPhone 5s (model A1457, A1518, A1528 (China), A1530 | Global)
+                "iPhone7,1", // iPhone 6 Plus
+                "iPhone7,2", // iPhone 6
+                "iPhone8,1", // iPhone 6S
+                "iPhone8,2", // iPhone 6S Plus
+                "iPhone8,4", // iPhone SE
+                "iPhone9,1", // iPhone 7 (CDMA)
+                "iPhone9,3", // iPhone 7 (GSM)
+                "iPhone9,2", // iPhone 7 Plus (CDMA)
+                "iPhone9,4", // iPhone 7 Plus (GSM)
+                "iPhone10,1", // iPhone 8 (CDMA)
+                "iPhone10,4", // iPhone 8 (GSM)
+                "iPhone10,2", // iPhone 8 Plus (CDMA)
+                "iPhone10,5" // iPhone 8 Plus (GSM)
+            ]
+            .contains(Device.model()) {
+                return 0
+            }
+            
+            return UIConstants.margin*1.3
+        } else {
+            return 0
+        }
+    }
+    
     static var bottomOffset: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if [

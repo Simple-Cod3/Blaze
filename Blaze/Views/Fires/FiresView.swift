@@ -178,5 +178,6 @@ struct FiresView: View {
                 .padding(.horizontal, 20)
             }
         }
+        .padding(.bottom, UIConstants.bottomPadding*2)
     }
 }
