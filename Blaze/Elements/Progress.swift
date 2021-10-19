@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressBarView: View {
     
-    static let index = [0, 1]
+    static let index = [0, 1, 2, 3, 4, 5]
     
     @Binding var progressObjs: [Progress]
     @Binding var progress: Double
@@ -96,6 +96,71 @@ struct SplashText: View {
                     .foregroundColor(.blaze)
                     .fontWeight(.medium)
             }
+        case 2:
+            VStack(alignment: .center, spacing: 39) {
+                Image(systemName: "plus.rectangle.on.rectangle")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Tap and hold on a ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("Fire Card ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("to pin it to ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("Monitoring List.")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+            }
+        case 3:
+            VStack(alignment: .center, spacing: 39) {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Tap and hold on a ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("News Card ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("to ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("share ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("with other people.")
+                    .foregroundColor(Color(.tertiaryLabel))
+            }
+        case 4:
+            VStack(alignment: .center, spacing: 39) {
+                Image(systemName: "lock.open")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Blaze's code is ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("open sourced ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("on ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("Github.")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+            }
+        case 5:
+            VStack(alignment: .center, spacing: 39) {
+                Image(systemName: "swift")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Blaze is written in ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("SwiftUI.")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+            }
         default:
             VStack(alignment: .center, spacing: 39) {
                 Image(systemName: "hand.tap")
@@ -128,7 +193,7 @@ struct ProgressBar: View {
             }
             .frame(height: 5)
             .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
-            .animation(Animation.spring(dampingFraction: 0.9), value: self.progress)
+            .animation(Animation.spring(response: 0.39, dampingFraction: 0.9), value: self.progress)
         }
         .frame(width: 139, height: 5)
     }

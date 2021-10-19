@@ -58,7 +58,7 @@ struct FireCard: View {
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contextMenu {
-                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Add to Monitoring List", systemImage: "plus.circle") }
+                Button(action: { fireB.addMonitoredFire(name: fireData.name) }) { Label("Add to Monitoring List", systemImage: "plus.rectangle.on.rectangle") }
                 Divider()
                 Button(action: { fireData.share(0) }) { Label("Share", systemImage: "square.and.arrow.up") }
             }

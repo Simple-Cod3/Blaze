@@ -21,6 +21,7 @@ struct MainView: View {
     @State private var showLabels = false
     @State private var showSettings = false
     @State private var page = 0
+    @State private var swipe = 0
     
     var body: some View {
         if fireB.failed {
@@ -72,16 +73,16 @@ struct MainView: View {
                 .opacity(0)
             
             Spacer()
+            
+            Swipeable(currentIndex: $swipe) {
+                if !popup {
+                    Option(
+                        showLabels: $showLabels,
+                        page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
+                    )
+                    .padding([.horizontal, .bottom], 11)
+                }
                 
-            if !popup {
-                Option(
-                    showLabels: $showLabels,
-                    page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
-                )
-                .padding([.horizontal, .bottom], 11)
-            }
-                        
-            VStack(spacing: 0) {
                 MainCard {
                     if page == 0 {
                         FiresView(popup: $popup)
@@ -96,6 +97,7 @@ struct MainView: View {
                     }
                 }
             }
+            .offset(y: popup ? 0 : UIConstants.bottomOffset)
         }
     }
 }

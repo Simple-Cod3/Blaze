@@ -44,7 +44,7 @@ struct PagerView<Content: View>: View {
             .offset(x:
                 viewModel.currentIndex == pageCount - 1 ?
                     (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 11*2.5)) + viewModel.lastDrag :
-                    (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 22)) + viewModel.lastDrag
+                        (-CGFloat(viewModel.currentIndex) * (geometry.size.width - 22)) + viewModel.lastDrag
             )
             .highPriorityGesture(
                 DragGesture().updating($translation) { value, state, _ in
@@ -63,5 +63,40 @@ struct PagerView<Content: View>: View {
                 }
             )
         }
+    }
+}
+
+struct Swipeable<Content: View>: View {
+    
+    let content: Content
+    
+    @ObservedObject var viewModel: PagerViewModel
+    @GestureState private var translation: CGFloat = 0
+    
+    @State var state: CGFloat = 0
+    
+    init(currentIndex: Binding<Int>, @ViewBuilder content: () -> Content) {
+        self.content = content()
+        
+        viewModel = PagerViewModel(currentIndex: currentIndex)
+    }
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Spacer()
+            
+            content
+        }
+        .offset(y:
+                viewModel.lastDrag/4
+        )
+        .highPriorityGesture(
+            DragGesture().updating($translation) { value, state, _ in
+                state = value.translation.height
+                viewModel.lastDrag = value.translation.height
+            }.onEnded { value in
+                withAnimation(.spring(response: 0.3, dampingFraction: 1)) { viewModel.lastDrag = 0 }
+            }
+        )
     }
 }

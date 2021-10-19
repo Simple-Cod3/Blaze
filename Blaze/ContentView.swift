@@ -15,7 +15,7 @@ public func setUnit(unit: String) { UserDefaults.standard.setValue(unit, forKey:
 struct ContentView: View {
     
     @AppStorage("welcomed") private var welcomed = false
-    
+        
     init() {
         if UserDefaults.standard.object(forKey: "monitoringFires") == nil {
             UserDefaults.standard.setValue([String](), forKey: "monitoringFires")

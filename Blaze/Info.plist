@@ -72,5 +72,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string>&lt;key&gt;CADisableMinimumFrameDurationOnPhone&lt;/key&gt;&lt;true/&gt;
+</string>
 </dict>
 </plist>
