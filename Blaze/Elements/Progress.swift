@@ -71,7 +71,7 @@ struct SplashText: View {
     var body: some View {
         switch index {
         case 0:
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 39) {
                 Image(systemName: "hand.tap")
                     .font(.title)
                     .foregroundColor(.blaze)
@@ -85,7 +85,7 @@ struct SplashText: View {
                     .foregroundColor(Color(.tertiaryLabel))
             }
         case 1:
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 39) {
                 Image(systemName: "heart")
                     .font(.title)
                     .foregroundColor(.blaze)
@@ -97,7 +97,7 @@ struct SplashText: View {
                     .fontWeight(.medium)
             }
         default:
-            VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center, spacing: 39) {
                 Image(systemName: "hand.tap")
                     .font(.title)
                     .foregroundColor(.blaze)
