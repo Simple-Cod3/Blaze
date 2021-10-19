@@ -33,16 +33,16 @@ class UIConstants: ObservableObject {
     static var margin: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if [
-                "iPhone8,1",
-                "iPhone8,4",
-                "iPhone9,1",
-                "iPhone9,3",
-                "iPhone10,1",
-                "iPhone10,4",
-                "iPhone11,8",
-                "iPhone12,1",
-                "iPhone12,8",
-                "iPod9,1"
+                "iPhone8,1", // iPhone 6S
+                "iPhone8,4", // iPhone SE
+                "iPhone9,1", // iPhone 7 (CDMA)
+                "iPhone9,3", // iPhone 7 (GSM)
+                "iPhone10,1", // iPhone 8 (CDMA)
+                "iPhone10,4", // iPhone 8 (GSM)
+                "iPhone11,8", // iPhone XR
+                "iPhone12,1", // iPhone 11
+                "iPhone12,8", // iPhone SE (2nd Gen)
+                "iPod9,1" // iPod Touch 7th Generation
             ]
             .contains(Device.model()) {
                 return 20
@@ -57,7 +57,6 @@ class UIConstants: ObservableObject {
     static var bottomOffset: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             if [
-                // Output on an iPhone
                 "iPhone1,1", // iPhone
                 "iPhone1,2", // iPhone 3G
                 "iPhone2,1", // iPhone 3GS
