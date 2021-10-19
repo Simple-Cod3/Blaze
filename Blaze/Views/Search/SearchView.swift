@@ -67,7 +67,8 @@ struct SearchView: View {
             
             self.wordsList = self.terms.filter {
                 query.isEmpty ||
-                    $0.id.lowercased().contains(query)
+                $0.id.lowercased().contains(query) ||
+                $0.definition.lowercased().contains(query)
             }
             .sorted()
         }
