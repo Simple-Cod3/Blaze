@@ -23,7 +23,9 @@ struct MainView: View {
     @State private var page = 0
     
     var body: some View {
-        if done {
+        if fireB.failed {
+            Text("😢 Unknown problem...please reload the app.")
+        } else {
             VStack(spacing: 0) {
                 FullFireMapView(showLabels: $showLabels)
                     .onTapGesture {
@@ -50,13 +52,16 @@ struct MainView: View {
                 main.edgesIgnoringSafeArea(.bottom),
                 alignment: .bottom
             )
-        } else if fireB.failed {
-            Text("😢 Unknown problem...please reload the app.")
-        } else {
-            ProgressBarView(
-                progressObjs: $fireB.progress,
-                progress: $progress,
-                done: $done
+            .overlay(
+                Group {
+                    if !done {
+                        ProgressBarView(
+                            progressObjs: $fireB.progress,
+                            progress: $progress,
+                            done: $done
+                        )
+                    }
+                }
             )
         }
     }

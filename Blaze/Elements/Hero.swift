@@ -45,7 +45,8 @@ struct Hero: View {
         .background(background)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .padding(11)
+        .padding(.horizontal, 11)
+        .padding(.bottom, 5)
     }
 }
 
@@ -74,13 +75,13 @@ struct HeroCard: View {
             Hero(
                 "aqi.medium",
                 "Air Quality",
-                !forecast.lost ? "Showing air quality in \(forecast.forecasts.first!.place)." : "Unable to obtain device location.",
+                !forecast.lost ? "Air quality in \(forecast.forecasts.first!.place)." : "Unable to obtain device location.",
                 determineColor(cat: forecast.forecasts[1].category.number),
                 1
             )
-                .onAppear {
-                    forecast.refreshForecastList()
-                }
+            .onAppear {
+                forecast.refreshForecastList()
+            }
         case 2:
             Hero(
                 "newspaper",
@@ -93,7 +94,7 @@ struct HeroCard: View {
             Hero(
                 "flame",
                 "Wildfires",
-                "Showing \(fireB.fires.count) hotspots across the United States.",
+                "Showing wildfire incidents",
                 Color.blaze,
                 0
             )

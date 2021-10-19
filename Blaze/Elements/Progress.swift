@@ -8,18 +8,31 @@
 import SwiftUI
 
 struct ProgressBarView: View {
+    
+    static let index = [0, 1]
+    
     @Binding var progressObjs: [Progress]
     @Binding var progress: Double
     @Binding var done: Bool
+    
     @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State private var randomIndex: Int = index.randomElement()!
         
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(spacing: 10) {
-                ProgressView()
-                Text("Fetching Data")
-                    .foregroundColor(.secondary)
+        VStack(alignment: .center, spacing: 39) {
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                SplashText(randomIndex)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 80)
+                
+                Spacer()
             }
+            
             ProgressBar(progress: $progress)
                 .onReceive(timer) { _ in
                     withAnimation {
@@ -37,31 +50,68 @@ struct ProgressBarView: View {
                         }
                     }
                 }
-            Text("Hang on...")
-                .font(.caption)
-                .foregroundColor(.secondary)
+        
+            Spacer()
         }
-        .padding(15)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .frame(width: 300)
+        .background(
+            RegularBlurBackground()
+                .edgesIgnoringSafeArea(.all)
+        )
+    }
+}
+
+struct SplashText: View {
+    
+    private var index: Int
+    
+    init(_ index: Int) {
+        self.index = index
+    }
+
+    var body: some View {
+        switch index {
+        case 0:
+            Text("Using one finger, ")
+                .foregroundColor(Color(.tertiaryLabel))
+            + Text("double tap and drag vertically ")
+                .foregroundColor(.blaze)
+                .fontWeight(.medium)
+            + Text("to change map size.")
+                .foregroundColor(Color(.tertiaryLabel))
+        case 1:
+            Text("Developed and designed with ")
+                .foregroundColor(Color(.tertiaryLabel))
+            + Text("love.")
+                .foregroundColor(.blaze)
+                .fontWeight(.medium)
+        default:
+            Text("Using one finger, ")
+                .foregroundColor(Color(.tertiaryLabel))
+            + Text("double tap and drag vertically ")
+                .foregroundColor(.blaze)
+                .fontWeight(.medium)
+            + Text("to change map size.")
+                .foregroundColor(Color(.tertiaryLabel))
+        }
     }
 }
 
 struct ProgressBar: View {
+    
     @Binding var progress: Double
 
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
-                Color.blaze.opacity(0.3)
+                Color(.quaternarySystemFill)
                 Color.blaze
                     .frame(width: geo.size.width*CGFloat(min(self.progress, 1.0)))
+                    .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
             }
-            .frame(height: 4)
-            .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
+            .frame(height: 5)
+            .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
             .animation(Animation.spring(dampingFraction: 0.9), value: self.progress)
         }
-        .frame(height: 4)
+        .frame(width: 139, height: 5)
     }
 }

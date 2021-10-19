@@ -53,7 +53,7 @@ struct NewsView: View {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
                     HeaderButton(glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, UIConstants.margin*1.3)
+                        .padding(.bottom, popup ? 0 : UIConstants.margin*1.3)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
