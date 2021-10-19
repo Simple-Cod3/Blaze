@@ -71,27 +71,45 @@ struct SplashText: View {
     var body: some View {
         switch index {
         case 0:
-            Text("Using one finger, ")
-                .foregroundColor(Color(.tertiaryLabel))
-            + Text("double tap and drag vertically ")
-                .foregroundColor(.blaze)
-                .fontWeight(.medium)
-            + Text("to change map size.")
-                .foregroundColor(Color(.tertiaryLabel))
+            VStack(alignment: .center, spacing: 20) {
+                Image(systemName: "hand.tap")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Using one finger, ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("double tap and drag vertically ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("to change map size.")
+                    .foregroundColor(Color(.tertiaryLabel))
+            }
         case 1:
-            Text("Developed and designed with ")
-                .foregroundColor(Color(.tertiaryLabel))
-            + Text("love.")
-                .foregroundColor(.blaze)
-                .fontWeight(.medium)
+            VStack(alignment: .center, spacing: 20) {
+                Image(systemName: "heart")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Developed and designed with ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("love.")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+            }
         default:
-            Text("Using one finger, ")
-                .foregroundColor(Color(.tertiaryLabel))
-            + Text("double tap and drag vertically ")
-                .foregroundColor(.blaze)
-                .fontWeight(.medium)
-            + Text("to change map size.")
-                .foregroundColor(Color(.tertiaryLabel))
+            VStack(alignment: .center, spacing: 20) {
+                Image(systemName: "hand.tap")
+                    .font(.title)
+                    .foregroundColor(.blaze)
+                
+                Text("Using one finger, ")
+                    .foregroundColor(Color(.tertiaryLabel))
+                + Text("double tap and drag vertically ")
+                    .foregroundColor(.blaze)
+                    .fontWeight(.medium)
+                + Text("to change map size.")
+                    .foregroundColor(Color(.tertiaryLabel))
+            }
         }
     }
 }
