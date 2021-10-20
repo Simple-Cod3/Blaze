@@ -75,7 +75,10 @@ struct Swipeable<Content: View>: View {
     
     @State var state: CGFloat = 0
     
-    init(currentIndex: Binding<Int>, @ViewBuilder content: () -> Content) {
+    @Binding var popup: Bool
+    
+    init(currentIndex: Binding<Int>, popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
+        self._popup = popup
         self.content = content()
         
         viewModel = PagerViewModel(currentIndex: currentIndex)
@@ -87,15 +90,27 @@ struct Swipeable<Content: View>: View {
             
             content
         }
-        .offset(y:
-            viewModel.lastDrag/8
+        .offset(
+            y: viewModel.lastDrag/1.39
         )
         .highPriorityGesture(
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
+                
+                print(viewModel.lastDrag)
             }.onEnded { _ in
-                withAnimation(.spring(response: 0.3, dampingFraction: 1)) { viewModel.lastDrag = 0 }
+                if viewModel.lastDrag < -139.0 {
+                    withAnimation(.spring(response: 0.33, dampingFraction: 0.9)) {
+                        popup = true
+                    }
+                } else if viewModel.lastDrag > 139.0 {
+                    withAnimation(.spring(response: 0.33, dampingFraction: 0.9)) {
+                        popup = false
+                    }
+                }
+                
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
             }
         )
     }

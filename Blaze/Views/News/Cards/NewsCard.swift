@@ -12,6 +12,10 @@ struct NewsCard: View {
         
     var news: News
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
             Text(news.id)
@@ -21,7 +25,7 @@ struct NewsCard: View {
             
             HStack(spacing: 0) {
                 Text(news.publisher)
-                    .font(Font.subheadline.weight(.medium))
+                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
                     .foregroundColor(.orange)
              
                 Spacer()

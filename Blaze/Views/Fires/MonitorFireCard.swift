@@ -22,6 +22,10 @@ struct MonitorFireCard: View {
         self.fireData = fireData
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         Button(action: {
             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
@@ -42,7 +46,7 @@ struct MonitorFireCard: View {
                         
                         Text(fireData.getAreaString())
                     }
-                    .font(Font.subheadline.weight(.medium))
+                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
                     .foregroundColor(Color.blaze)
                 }
                 

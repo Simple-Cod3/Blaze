@@ -71,7 +71,7 @@ struct FireInfoCard: View {
                     }
                     .padding([.leading, .vertical], UIConstants.margin)
                     .padding(.trailing, popup ? 0 : UIConstants.margin)
-                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+200)
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.8)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())

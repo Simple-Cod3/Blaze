@@ -27,7 +27,7 @@ struct AQView: View {
                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
             }) {
                 HeaderButton("Air Quality Overview", popup ? "chevron.down" : "chevron.up")
-                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+200)
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.8)
             }
             .buttonStyle(DefaultButtonStyle())
             

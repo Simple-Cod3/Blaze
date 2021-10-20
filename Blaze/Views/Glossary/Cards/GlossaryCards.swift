@@ -15,6 +15,10 @@ struct GlossaryCards: View {
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var glossary = GlossaryDatabase.terms
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         if showDefinition == "" {
             LazyVStack(spacing: 13) {
@@ -39,7 +43,7 @@ struct GlossaryCards: View {
                                     .fontWeight(.semibold)
                                                 
                                 (Text(glossary[letter]![0].id) + Text(" • " + glossary[letter]![1].id))
-                                    .font(Font.subheadline.weight(.medium))
+                                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
                                     .foregroundColor(Color(.tertiaryLabel))
                                     .lineLimit(1)
                             }

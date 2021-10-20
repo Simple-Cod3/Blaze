@@ -74,7 +74,7 @@ struct MainView: View {
             
             Spacer()
             
-            Swipeable(currentIndex: $swipe) {
+            Swipeable(currentIndex: $swipe, popup: $popup) {
                 if !popup {
                     Option(
                         showLabels: $showLabels,
@@ -98,7 +98,7 @@ struct MainView: View {
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: popup ? 0 : 200)
+            .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.8)
         }
     }
 }
