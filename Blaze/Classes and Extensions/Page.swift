@@ -71,9 +71,11 @@ struct Swipeable<Content: View>: View {
     let content: Content
     
     @ObservedObject var viewModel: PagerViewModel
-    @GestureState private var translation: CGFloat = 0
+    @GestureState private var translation: CGFloat = 0.0
     
-    @State var state: CGFloat = 0
+    @State var lastDragPosition: DragGesture.Value?
+    @State var state: CGFloat = 0.0
+    @State var velocity: CGFloat = 0.0
     
     @Binding var popup: Bool
     
@@ -97,13 +99,23 @@ struct Swipeable<Content: View>: View {
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
-            }.onEnded { _ in
+            }.onEnded { value in
+                print(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
+
                 if viewModel.lastDrag < -139.0 {
-                    withAnimation(.spring(response: 0.33, dampingFraction: 0.85)) {
+                    withAnimation(
+                        .spring(
+                            response:
+                                viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) < 0.3 ?
+                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)*1 : 0.39, dampingFraction: 0.75)) {
                         popup = true
                     }
                 } else if viewModel.lastDrag > 139.0 {
-                    withAnimation(.spring(response: 0.33, dampingFraction: 0.85)) {
+                    withAnimation(
+                        .spring(
+                            response:
+                                viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) < 0.3 ?
+                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)*1 : 0.39, dampingFraction: 0.75)) {
                         popup = false
                     }
                 }
