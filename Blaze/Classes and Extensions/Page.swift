@@ -91,14 +91,12 @@ struct Swipeable<Content: View>: View {
             content
         }
         .offset(
-            y: viewModel.lastDrag/1.39
+            y: viewModel.lastDrag - viewModel.lastDrag/5
         )
         .highPriorityGesture(
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
-                
-                print(viewModel.lastDrag)
             }.onEnded { _ in
                 if viewModel.lastDrag < -139.0 {
                     withAnimation(.spring(response: 0.33, dampingFraction: 0.9)) {
