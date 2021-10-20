@@ -10,6 +10,8 @@ import BetterSafariView
 
 struct MoreButton: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     private var symbol: String
     private var text: String
     private var color: Color
@@ -32,13 +34,15 @@ struct MoreButton: View {
         .foregroundColor(color)
         .padding(.vertical, 9)
         .padding(.horizontal, 13)
-        .background(Color(.quaternarySystemFill))
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
     }
 }
 
 struct MoreButtonLink: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     @State private var presenting = false
     
     var url: URL
@@ -58,7 +62,7 @@ struct MoreButtonLink: View {
             .foregroundColor(.blaze)
             .padding(.vertical, 9)
             .padding(.horizontal, 13)
-            .background(Color(.quaternarySystemFill))
+            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
         }
         .buttonStyle(DefaultButtonStyle())

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GlossaryCards: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     @Binding var showDefinition: String
     var value: ScrollViewProxy
 
@@ -54,7 +56,7 @@ struct GlossaryCards: View {
 
                         }
                         .padding(16)
-                        .background(Color(.quaternarySystemFill))
+                        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
                     }

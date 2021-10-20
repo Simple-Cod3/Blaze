@@ -31,6 +31,10 @@ struct NewsView: View {
         self._popup = popup
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var failed: some View {
         VStack(spacing: 20) {
             Image(systemName: "wifi.exclamationmark")
@@ -53,7 +57,7 @@ struct NewsView: View {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
                     HeaderButton(glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.8)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 
@@ -142,7 +146,8 @@ struct NewsView: View {
                     }
                 }
                 .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding)
+                .padding(.bottom, UIConstants.bottomPadding*2)
+                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
         

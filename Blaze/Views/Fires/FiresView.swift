@@ -37,7 +37,7 @@ struct FiresView: View {
                     }
                 }) {
                     HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.8)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 }
                 .buttonStyle(DefaultButtonStyle())
 

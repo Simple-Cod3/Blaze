@@ -10,6 +10,8 @@ import BetterSafariView
 
 struct NewsCard: View {
         
+    @Environment(\.colorScheme) var colorScheme
+
     var news: News
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -31,14 +33,14 @@ struct NewsCard: View {
                 Spacer()
                 
                 Text(news.getTimeAgo().uppercased())
-                    .font(Font.footnote.weight(.medium))
+                    .font(Font.caption.weight(.medium))
                     .foregroundColor(Color(.tertiaryLabel))
 
             }
         }
         .fixedSize(horizontal: false, vertical: true)
         .padding(16)
-        .background(Color(.quaternarySystemFill))
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }

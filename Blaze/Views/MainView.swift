@@ -41,6 +41,7 @@ struct MainView: View {
                         HeroCard(page)
                     }
                     .onTapGesture {
+                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                             popup.toggle()
                         }
@@ -98,7 +99,7 @@ struct MainView: View {
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.8)
+            .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.85)
         }
     }
 }

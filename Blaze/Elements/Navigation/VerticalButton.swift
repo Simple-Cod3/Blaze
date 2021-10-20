@@ -9,6 +9,8 @@ import SwiftUI
 
 struct VerticalButton: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     private var symbol: String
     private var text: String
     private var desc: String
@@ -21,6 +23,10 @@ struct VerticalButton: View {
         self.desc = desc
         self.mark = mark
         self.color = color
+    }
+    
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
     
     var body: some View {
@@ -36,7 +42,7 @@ struct VerticalButton: View {
                 .font(Font.callout.weight(.medium))
                 
                 Text(desc)
-                    .font(.subheadline)
+                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
                     .fontWeight(.medium)
                     .foregroundColor(Color(.tertiaryLabel))
             }
@@ -46,7 +52,7 @@ struct VerticalButton: View {
             SymbolButton(mark)
         }
         .padding(16)
-        .background(Color(.quaternarySystemFill))
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }

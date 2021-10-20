@@ -75,7 +75,6 @@ struct Swipeable<Content: View>: View {
     
     @State var lastDragPosition: DragGesture.Value?
     @State var state: CGFloat = 0.0
-    @State var velocity: CGFloat = 0.0
     
     @Binding var popup: Bool
     
@@ -93,33 +92,24 @@ struct Swipeable<Content: View>: View {
             content
         }
         .offset(
-            y: viewModel.lastDrag - viewModel.lastDrag/8
+            y: viewModel.lastDrag
         )
         .highPriorityGesture(
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
             }.onEnded { value in
-                print(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
-
-                if viewModel.lastDrag < -139.0 {
-                    withAnimation(
-                        .spring(
-                            response:
-                                abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
-                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.75)) {
-                        popup = true
-                    }
-                } else if viewModel.lastDrag > 139.0 {
-                    withAnimation(
-                        .spring(
-                            response:
-                                abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
-                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.75)) {
-                        popup = false
-                    }
-                }
-                
+                withAnimation(
+                    .spring(response:
+                        abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
+                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.79)) {
+                            if viewModel.lastDrag < -100.0 {
+                                popup = true
+                            } else if viewModel.lastDrag > 100.0 {
+                                popup = false
+                            }
+                        }
+                                
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
             }
         )

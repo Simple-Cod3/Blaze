@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MonitorFireCard: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @EnvironmentObject var fireB: FireBackend
     
     @Binding var showFireInformation: String
@@ -55,7 +57,7 @@ struct MonitorFireCard: View {
                 SymbolButton("chevron.right")
             }
             .padding(16)
-            .background(Color(.quaternarySystemFill))
+            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contextMenu {

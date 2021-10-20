@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WordCard: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     var term: Term
     
     var body: some View {
@@ -23,7 +25,7 @@ struct WordCard: View {
                 .foregroundColor(Color(.tertiaryLabel))
         }
         .padding(16)
-        .background(Color(.quaternarySystemFill))
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }

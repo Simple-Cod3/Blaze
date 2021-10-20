@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AQCard: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     @EnvironmentObject var forecast: AirQualityBackend
     
     private var ozone: String
@@ -44,7 +46,7 @@ struct AQCard: View {
                 Spacer()
             }
             .padding(16)
-            .background(Color(.quaternarySystemFill))
+            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             
@@ -71,7 +73,7 @@ struct AQCard: View {
                 Spacer()
             }
             .padding(16)
-            .background(Color(.quaternarySystemFill))
+            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         }
