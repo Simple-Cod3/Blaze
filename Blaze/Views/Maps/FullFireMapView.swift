@@ -70,10 +70,5 @@ struct FullFireMapView: View {
         .onAppear {
             mapController.moveBack()
         }
-//        .navigationBarTitle("All Wildfires", displayMode: .inline)
-//        .navigationBarItems(trailing: Button(action: moveBack) {
-//            Image(systemName: "rotate.3d")
-//                .font(.title2)
-//        })
     }
 }

@@ -53,15 +53,9 @@ struct NewsView: View {
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
                     HeaderButton(glossary ? "Glossary" : "News Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIConstants.margin*1.3)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxX)
                 }
                 .buttonStyle(DefaultButtonStyle())
-                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded({ value in
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = value.translation.height > 0 ? false : true
-                        }
-                    }))
                 
                 if glossary {
                     Spacer()
@@ -79,7 +73,7 @@ struct NewsView: View {
                         TrailingButton("chevron.left")
                     }
                     .buttonStyle(DefaultButtonStyle())
-                    .padding(.leading, -20)
+                    .padding(.leading, -UIConstants.margin)
                 }
             }
             
@@ -98,7 +92,7 @@ struct NewsView: View {
     private var newsdata: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.horizontal, 20)
+                .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 0) {
@@ -130,8 +124,7 @@ struct NewsView: View {
                     .buttonStyle(DefaultButtonStyle())
                     
                     SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
-                        .padding(.top, 20)
-                        .padding(.bottom, 16)
+                        .padding(.vertical, UIConstants.margin)
 
                     LazyVStack(spacing: 13) {
                         ForEach(news.newsList.prefix(newsShown)) { news in
@@ -148,8 +141,8 @@ struct NewsView: View {
                         }
                     }
                 }
-                .padding(20)
-                .padding(.bottom, UIConstants.margin*1.3)
+                .padding(UIConstants.margin)
+                .padding(.bottom, UIConstants.bottomPadding)
             }
         }
         

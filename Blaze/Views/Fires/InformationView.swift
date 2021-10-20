@@ -33,14 +33,15 @@ struct InformationView: View {
                         Text("This incident is not accessible on this app at the moment. For more information, click on \"More Info\" below.")
                             .foregroundColor(.secondary)
                     }
-                        .padding(.vertical, 10)
-                        .padding([.bottom, .horizontal], 20)
+                    .padding(.vertical, 10)
+                    .padding([.bottom, .horizontal], UIConstants.margin)
                 }
             }
             
             if data {
                 dataView
-                    .padding(.horizontal, 20)
+                    .padding([.horizontal, .bottom], UIConstants.margin)
+                    .padding(.bottom, UIConstants.bottomPadding)
             }
             
             if info {
@@ -49,6 +50,7 @@ struct InformationView: View {
         }
     }
     
+    @ViewBuilder
     private var dataView: some View {
         VStack(alignment: .leading, spacing: 10) {
             DataSection(
@@ -62,8 +64,6 @@ struct InformationView: View {
                 unit: "Location",
                 data: fireData.getLocation()
             )
-
-//            String(fireData.latitude)+"°", String(fireData.longitude)+"°"]
 
             DataSection(
                 symbol: "clock.fill",
@@ -108,25 +108,28 @@ struct InformationView: View {
     @ViewBuilder
     private var infoView: some View {
         ScrollView {
-            if let html = fireData.conditionStatement, html != "" {
-                NativeWebView(html: html)
-                    .padding([.top, .horizontal], 20)
-            } else if fireData.sourceType == .inciweb {
-                InciWebContent(url: URL(string: fireData.url)!)
-            }
-        }
-        HStack(spacing: 0) {
-            Spacer()
+            VStack(spacing: 0) {
+                if let html = fireData.conditionStatement, html != "" {
+                    NativeWebView(html: html)
+                } else if fireData.sourceType == .inciweb {
+                    InciWebContent(url: URL(string: fireData.url)!)
+                }
+                
+                HStack(spacing: 0) {
+                    Spacer()
 
-            if let url = URL(string: fireData.url) {
-                MoreButtonLink(url: url)
-            } else {
-                MoreButtonLink(url: URL(string: "https://google.com")!)
-                    .disabled(true)
-            }
+                    if let url = URL(string: fireData.url) {
+                        MoreButtonLink(url: url)
+                    } else {
+                        MoreButtonLink(url: URL(string: "https://google.com")!)
+                            .disabled(true)
+                    }
 
-            Spacer()
+                    Spacer()
+                }
+                .padding(.top, UIConstants.margin)
+            }
+            .padding(.bottom, UIConstants.margin+UIConstants.bottomPadding)
         }
-        .padding(.top, 6)
     }
 }

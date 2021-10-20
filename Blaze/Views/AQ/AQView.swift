@@ -27,15 +27,9 @@ struct AQView: View {
                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
             }) {
                 HeaderButton("Air Quality Overview", popup ? "chevron.down" : "chevron.up")
-                    .padding(.bottom, popup ? 0 : UIConstants.margin*1.3)
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxX)
             }
             .buttonStyle(DefaultButtonStyle())
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                .onEnded({ value in
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        popup = value.translation.height > 0 ? false : true
-                    }
-                }))
             
             if popup {
                 aqidata
@@ -46,7 +40,7 @@ struct AQView: View {
     private var aqidata: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.horizontal, 20)
+                .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 0) {
@@ -84,8 +78,9 @@ struct AQView: View {
                         .padding(.bottom, 13)
                     
                     Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
-                        .padding([.horizontal, .bottom], 20)
+                        .padding(.horizontal, UIConstants.margin)
                 }
+                .padding(.bottom, UIConstants.bottomPadding)
             }
         }
     }

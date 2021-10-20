@@ -51,7 +51,6 @@
 		E949CFA82517016F00AD467B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E949CFA72517016F00AD467B /* LocationManager.swift */; };
 		E94C30C025075FF20019E1E4 /* SubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C30BF25075FF20019E1E4 /* SubHeader.swift */; };
 		E97E26DE250837FD00B939F3 /* SearchUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26DD250837FD00B939F3 /* SearchUIKit.swift */; };
-		E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E26E125084ABF00B939F3 /* SplashScreen.swift */; };
 		E97FA5FB2554FFC2009754AA /* MonitorFireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */; };
 		E985F5392503781E00A3BA83 /* GlossaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E985F5382503781E00A3BA83 /* GlossaryView.swift */; };
 		E9ABC4392532C3F200E2DE49 /* PhoneInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */; };
@@ -154,7 +153,6 @@
 		E94C30BF25075FF20019E1E4 /* SubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHeader.swift; sourceTree = "<group>"; };
 		E97E26D8250813B300B939F3 /* FullFireMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFireMapView.swift; sourceTree = "<group>"; };
 		E97E26DD250837FD00B939F3 /* SearchUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUIKit.swift; sourceTree = "<group>"; };
-		E97E26E125084ABF00B939F3 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorFireCard.swift; sourceTree = "<group>"; };
 		E985F5382503781E00A3BA83 /* GlossaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryView.swift; sourceTree = "<group>"; };
 		E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInfoView.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				E9ABC4372532C3D100E2DE49 /* Phone */,
 				E9AF017A24FDC0DC0058C184 /* Search */,
 				6DA2FF2E2506AF5400C86F0C /* Settings */,
-				E9C41A9A2555046700AC3052 /* SplashScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,14 +461,6 @@
 				E9C41A952555037800AC3052 /* VersionTag.swift */,
 			);
 			path = UpdateLog;
-			sourceTree = "<group>";
-		};
-		E9C41A9A2555046700AC3052 /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				E97E26E125084ABF00B939F3 /* SplashScreen.swift */,
-			);
-			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		E9E31A92250EDD41007FF855 /* Frameworks */ = {
@@ -616,7 +605,6 @@
 			files = (
 				6D77EB3D26D1FAE30057BB0E /* GlossaryCards.swift in Sources */,
 				6D2DE04B2555F3B100D07038 /* MoreButton.swift in Sources */,
-				E97E26E225084ABF00B939F3 /* SplashScreen.swift in Sources */,
 				E9C41A962555037800AC3052 /* VersionTag.swift in Sources */,
 				6DA2FF302506AF6400C86F0C /* SettingsView.swift in Sources */,
 				6D58B33B26B4F90C00311CF3 /* Blur.swift in Sources */,

@@ -32,7 +32,7 @@ struct GlossaryView: View {
     var body: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.horizontal, 20)
+                .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 ScrollViewReader { value in
@@ -40,8 +40,7 @@ struct GlossaryView: View {
                         GlossaryCards(showDefinition: $showDefinition, value: value)
                     }
                     .onAppear { getWords() }
-                    .padding([.horizontal, .bottom], 20)
-                    .padding(.top, 16)
+                    .padding(UIConstants.margin)
                 }
             }
         }

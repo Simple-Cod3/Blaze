@@ -28,7 +28,7 @@ struct HeaderButton: View {
             
             SymbolButton(symbol)
         }
-        .padding(20)
+        .padding(UIConstants.margin)
         .contentShape(Rectangle())
     }
 }

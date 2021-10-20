@@ -97,7 +97,7 @@ struct MainView: View {
                     }
                 }
             }
-            .offset(y: popup ? 0 : UIConstants.bottomOffset)
+            .offset(y: popup ? 0 : UIScreen.main.bounds.maxX)
         }
     }
 }

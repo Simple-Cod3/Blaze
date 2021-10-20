@@ -66,8 +66,7 @@ struct GlossaryCards: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.orange)
                         .fixedSize()
-                        .padding(.top, 10)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, UIConstants.margin)
                         .id(0)
                     
                     LazyVStack(spacing: 13) {

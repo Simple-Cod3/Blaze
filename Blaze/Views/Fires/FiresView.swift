@@ -33,15 +33,9 @@ struct FiresView: View {
                     }
                 }) {
                     HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIScreen.main.bounds.maxX)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxX)
                 }
                 .buttonStyle(DefaultButtonStyle())
-                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded({ value in
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = value.translation.height > 0 ? false : true
-                        }
-                    }))
 
                 if popup {
                     wildfiremain
@@ -55,7 +49,7 @@ struct FiresView: View {
     private var wildfiremain: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.horizontal, 20)
+                .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 0) {
@@ -69,7 +63,6 @@ struct FiresView: View {
                         RectButton(selected: $monitorList, "Monitoring List")
                     }
                     .buttonStyle(DefaultButtonStyle())
-                    .padding(.top, 20)
                     
                     HStack(spacing: 10) {
                         Button(action: {
@@ -117,7 +110,7 @@ struct FiresView: View {
                             .transition(.opacity)
                         }
                     }
-                    .padding(.top, 20)
+                    .padding(.vertical, UIConstants.margin)
 
                     VStack(spacing: 13) {
                         if largest {
@@ -173,11 +166,10 @@ struct FiresView: View {
                             .buttonStyle(DefaultButtonStyle())
                         }
                     }
-                    .padding(.vertical, 16)
                 }
-                .padding(.horizontal, 20)
+                .padding(UIConstants.margin)
+                .padding(.bottom, UIConstants.bottomPadding)
             }
         }
-        .padding(.bottom, UIConstants.bottomPadding*2)
     }
 }

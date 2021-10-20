@@ -69,17 +69,12 @@ struct FireInfoCard: View {
                         
                         SymbolButton(popup ? "chevron.down" : "chevron.up")
                     }
-                    .padding([.leading, .vertical], 20)
-                    .padding(.trailing, popup ? 0 : 20)
+                    .padding([.leading, .vertical], UIConstants.margin)
+                    .padding(.trailing, popup ? 0 : UIConstants.margin)
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxX)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(DefaultButtonStyle())
-                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onEnded({ value in
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = value.translation.height > 0 ? false : true
-                        }
-                    }))
                 
                 Spacer()
 
@@ -93,7 +88,6 @@ struct FireInfoCard: View {
                     .buttonStyle(DefaultButtonStyle())
                 }
             }
-            .padding(.bottom, popup ? 0 : UIConstants.margin*1.3)
 
             if popup {
                 fireinformation
@@ -104,12 +98,12 @@ struct FireInfoCard: View {
     private var fireinformation: some View {
         VStack(spacing: 0) {
             Divider()
-                .padding(.horizontal, 20)
-
+                .padding(.horizontal, UIConstants.margin)
+            
             VStack(spacing: 0) {
                 HStack(spacing: 10) {
                     Button(action: {
-                        withAnimation(.spring(response: 0.3)) {
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                             data = true
                             info = false
                         }
@@ -119,7 +113,7 @@ struct FireInfoCard: View {
                     .buttonStyle(DefaultButtonStyle())
                     
                     Button(action: {
-                        withAnimation(.spring(response: 0.3)) {
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                             data = false
                             info = true
                         }
@@ -128,12 +122,9 @@ struct FireInfoCard: View {
                     }
                     .buttonStyle(DefaultButtonStyle())
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 20)
+                .padding(UIConstants.margin)
 
                 InformationView(data: $data, info: $info, fireData: fireData)
-                    .padding(.top, 16)
-                    .padding(.bottom, 20)
             }
         }
     }

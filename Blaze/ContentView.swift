@@ -13,9 +13,6 @@ public var currentUnit: String? { UserDefaults.standard.string(forKey: "areaUnit
 public func setUnit(unit: String) { UserDefaults.standard.setValue(unit, forKey: "areaUnits") }
 
 struct ContentView: View {
-    
-    @AppStorage("welcomed") private var welcomed = false
-        
     init() {
         if UserDefaults.standard.object(forKey: "monitoringFires") == nil {
             UserDefaults.standard.setValue([String](), forKey: "monitoringFires")
@@ -29,15 +26,6 @@ struct ContentView: View {
     
     var body: some View {
         MainView()
-//        .if(UIDevice.current.userInterfaceIdiom == .pad) {
-//            $0.sheet(isPresented: !$welcomed) {
-//                SplashScreeniPad(show: self.$welcomed)
-//            }
-//        } else: {
-//            $0.fullScreenCover(isPresented: !$welcomed) {
-//                SplashScreen(show: self.$welcomed)
-//            }   
-//        }
     }
 }
 
