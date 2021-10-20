@@ -93,7 +93,7 @@ struct Swipeable<Content: View>: View {
             content
         }
         .offset(
-            y: viewModel.lastDrag - viewModel.lastDrag/5
+            y: viewModel.lastDrag - viewModel.lastDrag/8
         )
         .highPriorityGesture(
             DragGesture().updating($translation) { value, state, _ in
@@ -106,16 +106,16 @@ struct Swipeable<Content: View>: View {
                     withAnimation(
                         .spring(
                             response:
-                                viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) < 0.3 ?
-                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)*1 : 0.39, dampingFraction: 0.75)) {
+                                abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
+                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.75)) {
                         popup = true
                     }
                 } else if viewModel.lastDrag > 139.0 {
                     withAnimation(
                         .spring(
                             response:
-                                viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) < 0.3 ?
-                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)*1 : 0.39, dampingFraction: 0.75)) {
+                                abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
+                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.75)) {
                         popup = false
                     }
                 }
