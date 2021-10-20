@@ -51,7 +51,7 @@ struct MainView: View {
             )
             .overlay(
                 main.edgesIgnoringSafeArea(.bottom),
-                alignment: .bottom
+                alignment: popup ? .top : .bottom
             )
             .overlay(
                 Group {
@@ -82,7 +82,7 @@ struct MainView: View {
                     )
                     .padding([.horizontal, .bottom], 11)
                 }
-                
+                    
                 MainCard {
                     if page == 0 {
                         FiresView(popup: $popup)
@@ -97,7 +97,8 @@ struct MainView: View {
                     }
                 }
             }
-            .offset(y: popup ? 0 : UIScreen.main.bounds.maxX)
+            .frame(height: UIScreen.main.bounds.maxY)
+            .offset(y: popup ? 0 : 200)
         }
     }
 }

@@ -23,6 +23,10 @@ struct FiresView: View {
         self._popup = popup
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             if showFireInformation == "" {
@@ -33,7 +37,7 @@ struct FiresView: View {
                     }
                 }) {
                     HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxX)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+200)
                 }
                 .buttonStyle(DefaultButtonStyle())
 
@@ -168,7 +172,8 @@ struct FiresView: View {
                     }
                 }
                 .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding)
+                .padding(.bottom, UIConstants.bottomPadding*2)
+                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
     }

@@ -24,6 +24,9 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>&lt;key&gt;CADisableMinimumFrameDurationOnPhone&lt;/key&gt;&lt;true/&gt;
+</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -72,8 +75,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSApplicationCategoryType</key>
-	<string>&lt;key&gt;CADisableMinimumFrameDurationOnPhone&lt;/key&gt;&lt;true/&gt;
-</string>
 </dict>
 </plist>

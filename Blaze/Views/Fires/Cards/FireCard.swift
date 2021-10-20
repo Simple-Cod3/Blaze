@@ -25,6 +25,10 @@ struct FireCard: View {
         self.area = area
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         Button(action: {
             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
@@ -45,7 +49,7 @@ struct FireCard: View {
                         
                         Text(area ? fireData.getAreaString(areaUnits) : fireData.updated.getElapsedInterval() + " ago")
                     }
-                    .font(.system(size: UIFont.preferredFont(forTextStyle: .subheadline).pointSize-1).weight(.medium))
+                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
                     .foregroundColor(Color.blaze)
                 }
                 
