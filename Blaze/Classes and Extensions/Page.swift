@@ -99,11 +99,11 @@ struct Swipeable<Content: View>: View {
                 viewModel.lastDrag = value.translation.height
             }.onEnded { _ in
                 if viewModel.lastDrag < -139.0 {
-                    withAnimation(.spring(response: 0.33, dampingFraction: 0.9)) {
+                    withAnimation(.spring(response: 0.33, dampingFraction: 0.85)) {
                         popup = true
                     }
                 } else if viewModel.lastDrag > 139.0 {
-                    withAnimation(.spring(response: 0.33, dampingFraction: 0.9)) {
+                    withAnimation(.spring(response: 0.33, dampingFraction: 0.85)) {
                         popup = false
                     }
                 }
