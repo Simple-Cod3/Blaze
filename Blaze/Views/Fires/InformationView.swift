@@ -86,7 +86,7 @@ struct InformationView: View {
             )
             
             DataCard(
-                "shield.righthalf.filled",
+                "checkmark.shield",
                 "Area Contained",
                 fireData.getContained(),
                 .blaze
