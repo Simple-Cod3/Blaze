@@ -10,15 +10,21 @@ import SwiftUI
 class PagerViewModel: ObservableObject {
     
     @Published var lastDrag: CGFloat = 0.0
-    @Published var currentDrag: CGFloat = 0.0
-    @Published var velocity: CGFloat = 0.0
-    @Published var swipeUp: Bool = false
     
     @Binding var currentIndex: Int
     
     init(currentIndex: Binding<Int>) {
         self._currentIndex = currentIndex
     }
+}
+
+class SwipeableModel: ObservableObject {
+    
+    @Published var lastDrag: CGFloat = 0.0
+    @Published var currentDrag: CGFloat = 0.0
+    @Published var velocity: CGFloat = 0.0
+    @Published var accel: CGFloat = 0.0
+    @Published var swipeUp: Bool = false
 }
 
 struct PagerView<Content: View>: View {
@@ -74,7 +80,7 @@ struct Swipeable<Content: View>: View {
     
     let content: Content
     
-    @ObservedObject var viewModel: PagerViewModel
+    @ObservedObject var viewModel: SwipeableModel
     @GestureState private var translation: CGFloat = 0.0
     
     @State var lastDragPosition: DragGesture.Value?
@@ -82,11 +88,11 @@ struct Swipeable<Content: View>: View {
     
     @Binding var popup: Bool
     
-    init(currentIndex: Binding<Int>, popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
+    init(popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
         self._popup = popup
         self.content = content()
         
-        viewModel = PagerViewModel(currentIndex: currentIndex)
+        viewModel = SwipeableModel()
     }
     
     var body: some View {
@@ -108,29 +114,21 @@ struct Swipeable<Content: View>: View {
                     viewModel.lastDrag = 0
                 }
                 
-                if value.predictedEndLocation.y - value.location.y < 0 {
-                    viewModel.swipeUp = true
-                } else {
-                    viewModel.swipeUp = false
-                }
-                
-                print(value.predictedEndLocation.y - value.location.y)
-                print(viewModel.lastDrag)
-                print(viewModel.swipeUp)
+                viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
             }.onEnded { value in
-                viewModel.velocity = abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
-                
+                viewModel.accel = abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
+                viewModel.velocity = value.predictedEndLocation.y - value.location.y
+
                 withAnimation(
                     .spring(
                         response:
-                            (viewModel.velocity < 0.39) && (viewModel.velocity > 0.139) ? viewModel.velocity : 0.39,
+                            (viewModel.accel < 0.39) && (viewModel.accel > 0.139) ? viewModel.accel : 0.39,
                         dampingFraction:
                             0.79
                     )) {
-                        if (viewModel.lastDrag < -100.0) || (viewModel.swipeUp && (value.predictedEndLocation.y - value.location.y) < 0.39) {
+                        if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {
                             popup = true
-                        }
-                        if (viewModel.lastDrag > 100.0) || (!viewModel.swipeUp && (value.predictedEndLocation.y - value.location.y) > 0.39) {
+                        } else if (viewModel.velocity > 100.0) || (!viewModel.swipeUp && viewModel.velocity > 0.39) {
                             popup = false
                         }
                     }

@@ -21,7 +21,6 @@ struct MainView: View {
     @State private var showLabels = false
     @State private var showSettings = false
     @State private var page = 0
-    @State private var swipe = 0
     
     var body: some View {
         if fireB.failed {
@@ -75,7 +74,7 @@ struct MainView: View {
             
             Spacer()
             
-            Swipeable(currentIndex: $swipe, popup: $popup) {
+            Swipeable(popup: $popup) {
                 if !popup {
                     Option(
                         showLabels: $showLabels,
