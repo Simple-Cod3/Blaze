@@ -10,6 +10,10 @@ import SwiftUI
 class PagerViewModel: ObservableObject {
     
     @Published var lastDrag: CGFloat = 0.0
+    @Published var currentDrag: CGFloat = 0.0
+    @Published var velocity: CGFloat = 0.0
+    @Published var swipeUp: Bool = false
+    
     @Binding var currentIndex: Int
     
     init(currentIndex: Binding<Int>) {
@@ -98,18 +102,33 @@ struct Swipeable<Content: View>: View {
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
+                viewModel.currentDrag = value.translation.height
+
+                if (popup && viewModel.currentDrag < -1) || (!popup && viewModel.currentDrag > 1) {
+                    viewModel.lastDrag = 0
+                }
+                
+                if viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) < 0 {
+                    viewModel.swipeUp = false
+                } else {
+                    viewModel.swipeUp = true
+                }
+                
+                print(viewModel.swipeUp)
+                print(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
             }.onEnded { value in
+                viewModel.velocity = viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)
+                
                 withAnimation(
                     .spring(response:
-                        abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y)) < 0.39 ?
-                            viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y) : 0.39, dampingFraction: 0.79)) {
+                                abs(viewModel.velocity) < 0.39 ?
+                            viewModel.velocity : 0.39, dampingFraction: 0.79)) {
                             if viewModel.lastDrag < -100.0 {
                                 popup = true
                             } else if viewModel.lastDrag > 100.0 {
                                 popup = false
                             }
                         }
-                                
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
             }
         )
