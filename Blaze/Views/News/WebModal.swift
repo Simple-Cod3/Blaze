@@ -327,7 +327,6 @@ struct InciWebContent: View {
                 .onAppear { showLoading = true }
             } else {
                 NativeWebView(html: html)
-                    .padding([.top, .horizontal], 20)
             }
         }
         .onAppear {

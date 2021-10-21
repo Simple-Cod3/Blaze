@@ -1,28 +1,26 @@
 //
-//  VerticalButton.swift
+//  DataCard.swift
 //  Blaze
 //
-//  Created by Paul Wong on 11/8/20.
+//  Created by Paul Wong on 10/20/21.
 //
 
 import SwiftUI
 
-struct VerticalButton: View {
+struct DataCard: View {
     
     @Environment(\.colorScheme) var colorScheme
 
     private var symbol: String
+    private var symbolCaption: String
     private var text: String
-    private var desc: String
-    private var mark: String
-    private var color: Color
+    private var foreground: Color
     
-    init(symbol: String, text: String, desc: String, mark: String, color: Color) {
+    init(_ symbol: String, _ symbolCaption: String, _ text: String, _ foreground: Color) {
         self.symbol = symbol
+        self.symbolCaption = symbolCaption
         self.text = text
-        self.desc = desc
-        self.mark = mark
-        self.color = color
+        self.foreground = foreground
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -30,29 +28,27 @@ struct VerticalButton: View {
     }
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 5) {
                 HStack(spacing: 5) {
                     Image(systemName: symbol)
-                        .foregroundColor(color)
-
-                    Text(text)
-                        .foregroundColor(color)
+                    
+                    Text(symbolCaption)
                 }
-                .font(Font.callout.weight(.medium))
+                .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
+                .foregroundColor(foreground)
                 
-                Text(desc)
-                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
+                Text(text)
+                    .font(.body)
                     .fontWeight(.medium)
-                    .foregroundColor(Color(.tertiaryLabel))
+                    .foregroundColor(.primary)
             }
             
             Spacer()
-            
-            SymbolButton(mark)
         }
         .padding(16)
         .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }

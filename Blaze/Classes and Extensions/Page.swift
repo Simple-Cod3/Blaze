@@ -121,8 +121,8 @@ struct Swipeable<Content: View>: View {
                 
                 withAnimation(
                     .spring(response:
-                                abs(viewModel.velocity) < 0.39 ?
-                            viewModel.velocity : 0.39, dampingFraction: 0.79)) {
+                        (abs(viewModel.velocity) < 0.39) && (abs(viewModel.velocity) > 0.15) ? viewModel.velocity : 0.39,
+                        dampingFraction: 0.79)) {
                             if viewModel.lastDrag < -100.0 {
                                 popup = true
                             } else if viewModel.lastDrag > 100.0 {

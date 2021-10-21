@@ -34,14 +34,11 @@ struct InformationView: View {
                             .foregroundColor(.secondary)
                     }
                     .padding(.vertical, 10)
-                    .padding([.bottom, .horizontal], UIConstants.margin)
                 }
             }
             
             if data {
                 dataView
-                    .padding([.horizontal, .bottom], UIConstants.margin)
-                    .padding(.bottom, UIConstants.bottomPadding)
             }
             
             if info {
@@ -52,43 +49,49 @@ struct InformationView: View {
     
     @ViewBuilder
     private var dataView: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            DataSection(
-                symbol: "info.circle.fill",
-                unit: "Name",
-                data: fireData.name
+        VStack(spacing: 13) {
+            DataCard(
+                "flame",
+                "Incident",
+                fireData.name,
+                .blaze
             )
             
-            DataSection(
-                symbol: "viewfinder.circle.fill",
-                unit: "Location",
-                data: fireData.getLocation()
+            DataCard(
+                "location",
+                "Location",
+                fireData.getLocation(),
+                .blaze
             )
 
-            DataSection(
-                symbol: "clock.fill",
-                unit: "Updated",
-                data: fireData.updated.getElapsedInterval(true)
+            DataCard(
+                "clock.arrow.2.circlepath",
+                "Last Updated",
+                fireData.updated.getElapsedInterval(true),
+                .blaze
             )
             
-            DataSection(
-                symbol: "calendar.circle.fill",
-                unit: "Fire Started",
-                data: fireData.started.getElapsedInterval(true)
+            DataCard(
+                "calendar.badge.clock",
+                "Fire Started",
+                fireData.started.getElapsedInterval(true),
+                .blaze
+            )
+
+            DataCard(
+                "location.viewfinder",
+                "Area Burned",
+                fireData.getAreaString(),
+                .blaze
             )
             
-            DataSection(
-                symbol: "viewfinder.circle.fill",
-                unit: "Area Burned",
-                data: fireData.getAreaString()
+            DataCard(
+                "shield.righthalf.filled",
+                "Area Contained",
+                fireData.getContained(),
+                .blaze
             )
-            
-            DataSection(
-                symbol: "lock.circle.fill",
-                unit: "Containment",
-                data: fireData.getContained()
-            )
-            
+
             HStack(spacing: 0) {
                 Spacer()
                 
@@ -101,35 +104,31 @@ struct InformationView: View {
                 
                 Spacer()
             }
-            .padding(.top, 6)
         }
     }
 
     @ViewBuilder
     private var infoView: some View {
-        ScrollView {
-            VStack(spacing: 0) {
-                if let html = fireData.conditionStatement, html != "" {
-                    NativeWebView(html: html)
-                } else if fireData.sourceType == .inciweb {
-                    InciWebContent(url: URL(string: fireData.url)!)
-                }
-                
-                HStack(spacing: 0) {
-                    Spacer()
-
-                    if let url = URL(string: fireData.url) {
-                        MoreButtonLink(url: url)
-                    } else {
-                        MoreButtonLink(url: URL(string: "https://google.com")!)
-                            .disabled(true)
-                    }
-
-                    Spacer()
-                }
-                .padding(.top, UIConstants.margin)
+        VStack(spacing: 0) {
+            if let html = fireData.conditionStatement, html != "" {
+                NativeWebView(html: html)
+            } else if fireData.sourceType == .inciweb {
+                InciWebContent(url: URL(string: fireData.url)!)
             }
-            .padding(.bottom, UIConstants.margin+UIConstants.bottomPadding)
+            
+            HStack(spacing: 0) {
+                Spacer()
+
+                if let url = URL(string: fireData.url) {
+                    MoreButtonLink(url: url)
+                } else {
+                    MoreButtonLink(url: URL(string: "https://google.com")!)
+                        .disabled(true)
+                }
+
+                Spacer()
+            }
+            .padding(.top, UIConstants.margin)
         }
     }
 }

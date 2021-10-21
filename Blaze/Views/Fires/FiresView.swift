@@ -172,7 +172,7 @@ struct FiresView: View {
                     }
                 }
                 .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding*2)
+                .padding(.bottom, UIConstants.bottomPadding)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }

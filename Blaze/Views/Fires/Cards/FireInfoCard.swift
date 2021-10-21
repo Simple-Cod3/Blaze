@@ -40,6 +40,10 @@ struct FireInfoCard: View {
         self.soloNavigation = soloNavigation ?? false
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
@@ -100,31 +104,36 @@ struct FireInfoCard: View {
             Divider()
                 .padding(.horizontal, UIConstants.margin)
             
-            VStack(spacing: 0) {
-                HStack(spacing: 10) {
-                    Button(action: {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            data = true
-                            info = false
+            ScrollView {
+                VStack(spacing: 0) {
+                    HStack(spacing: 10) {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                data = true
+                                info = false
+                            }
+                        }) {
+                            RectButton(selected: $data, "Data")
                         }
-                    }) {
-                        RectButton(selected: $data, "Data")
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                    
-                    Button(action: {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            data = false
-                            info = true
+                        .buttonStyle(DefaultButtonStyle())
+                        
+                        Button(action: {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                data = false
+                                info = true
+                            }
+                        }) {
+                            RectButton(selected: $info, "Information")
                         }
-                    }) {
-                        RectButton(selected: $info, "Information")
+                        .buttonStyle(DefaultButtonStyle())
                     }
-                    .buttonStyle(DefaultButtonStyle())
+                    .padding(.bottom, UIConstants.margin)
+
+                    InformationView(data: $data, info: $info, fireData: fireData)
                 }
                 .padding(UIConstants.margin)
-
-                InformationView(data: $data, info: $info, fireData: fireData)
+                .padding(.bottom, UIConstants.bottomPadding)
+                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
     }

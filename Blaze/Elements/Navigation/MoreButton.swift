@@ -34,7 +34,7 @@ struct MoreButton: View {
         .foregroundColor(color)
         .padding(.vertical, 9)
         .padding(.horizontal, 13)
-        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
         .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
     }
 }
@@ -62,7 +62,7 @@ struct MoreButtonLink: View {
             .foregroundColor(.blaze)
             .padding(.vertical, 9)
             .padding(.horizontal, 13)
-            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground))
+            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
             .clipShape(RoundedRectangle(cornerRadius: 39, style: .continuous))
         }
         .buttonStyle(DefaultButtonStyle())
