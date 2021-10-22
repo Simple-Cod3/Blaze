@@ -49,10 +49,10 @@ class FireBackend: ObservableObject {
 
     private func sameFire(caFire: ForestFire, inciWebFire: ForestFire) -> Bool {
         return
-            caFire.coordinate == inciWebFire.coordinate ||
-            caFire.name == inciWebFire.name ||
-            caFire.name == inciWebFire.name.replacingOccurrences(of: " Fire", with: "") ||
-            caFire.name + " (CA)" == inciWebFire.name
+        caFire.coordinate == inciWebFire.coordinate ||
+        caFire.name == inciWebFire.name ||
+        caFire.name == inciWebFire.name.replacingOccurrences(of: " Fire", with: "") ||
+        caFire.name + " (CA)" == inciWebFire.name
     }
     
     func refreshFireList(with: URL? = nil) {
@@ -87,47 +87,44 @@ class FireBackend: ObservableObject {
                 let calOnly = UserDefaults.standard.bool(forKey: "californiaOnly")
 
                 // Inciweb Fires have more information!
-                let inciWebFires = newFires.markers.filter({
-                    $0.type == "Wildfire" && ($0.state == "CALIFORNIA" || calOnly)
-                })
-
-                // Fires that won't merge but will still be added to the global list
-                var uniqueInciWebFires = [ForestFire]()
-                var builtUniqueList = false
-
-                let firesListToReplaceOld: [ForestFire] = self.fires.map { initialFire in
-                    for inciWebFire in inciWebFires {
-                        let inciWebFireObject = ForestFire(
-                            name: inciWebFire.name,
-                            updated: inciWebFire.updated,
-                            location: inciWebFire.state.capitalized,
-                            latitude: inciWebFire.lat.becomeDouble(),
-                            longitude: inciWebFire.lng.becomeDouble(),
-                            acres: inciWebFire.size.becomeInt(),
-                            contained: inciWebFire.contained.becomeInt(),
-                            relURL: inciWebFire.url,
+                let inciWebFires = newFires.markers
+                    .filter {
+                        $0.type == "Wildfire" && ($0.state == "CALIFORNIA" || calOnly)
+                    }
+                    .map {
+                        ForestFire(
+                            name: $0.name,
+                            updated: $0.updated,
+                            location: $0.state.capitalized,
+                            latitude: $0.lat.becomeDouble(),
+                            longitude: $0.lng.becomeDouble(),
+                            acres: $0.size.becomeInt(),
+                            contained: $0.contained.becomeInt(),
+                            relURL: $0.url,
                             sourceType: .inciweb
                         )
+                    }
 
+                // Fires that won't merge but will still be added to the global list
+                var firesListToReplaceOld: [ForestFire] = self.fires.map { initialFire in
+                    for inciWebFire in inciWebFires {
                         // Various checks to see if the fires are the same between the two sources
-                        if self.sameFire(caFire: initialFire, inciWebFire: inciWebFireObject) {
-                            print("Merged:", inciWebFireObject.name)
-                            return inciWebFireObject
-                        } else if !builtUniqueList && !self.fires.contains(where: { self.sameFire(caFire: $0, inciWebFire: inciWebFireObject) }) {
-                            uniqueInciWebFires.append(inciWebFireObject)
-                            print("Unique:", inciWebFireObject.name)
+                        if self.sameFire(caFire: initialFire, inciWebFire: inciWebFire) {
+                            return inciWebFire
                         }
                     }
 
-                    builtUniqueList = true
                     return initialFire
                 }
 
+                inciWebFires.forEach { inciWebFire in
+                    if !firesListToReplaceOld.contains(where: { $0.name == inciWebFire.name }) {
+                        firesListToReplaceOld.append(inciWebFire)
+                    }
+                }
+
                 DispatchQueue.main.async {
-                    print("NewMaps", firesListToReplaceOld.map { $0.name })
-                    print("NewMaps", uniqueInciWebFires.map { $0.name })
                     self.fires = firesListToReplaceOld
-                    self.fires += uniqueInciWebFires
                     self.fires = self.fires.sorted(by: ForestFire.dateUpdated)
                     group.leave()
                 }
@@ -160,23 +157,20 @@ class FireBackend: ObservableObject {
                 DateFormatter.iso8601NoExtention
             ]
 
-            do {
-                let newFires = try jsonDecoder.decode(Incidents.self, from: data)
-
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                do {
+                    let newFires = try jsonDecoder.decode(Incidents.self, from: data)
                     self.fires = newFires.incidents.sorted(by: ForestFire.dateUpdated)
-                }
-            } catch {
-                DispatchQueue.main.async {
+                } catch {
                     self.failed = true
                     print("🚫 JSON Decoding failed: \(error)")
                 }
-            }
 
-            group.enter()
-            task2.resume()
-            print("🔥 [ Grabbing secondary fire data ]")
-            group.leave()
+                group.enter()
+                task2.resume()
+                print("🔥 [ Grabbing secondary fire data ]")
+                group.leave()
+            }
 
         }
         
