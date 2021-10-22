@@ -23,6 +23,7 @@ struct MainView: View {
     @State private var page = 0
     @State private var secondaryPopup = false
     @State private var secondaryClose = false
+    @State private var showDefinition = ""
     
     var body: some View {
         if fireB.failed {
@@ -56,8 +57,8 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
-                fireInfo.edgesIgnoringSafeArea(.bottom)
-                    .offset(y: page != 0 ? UIScreen.main.bounds.maxY : 0)
+                secondaryModal.edgesIgnoringSafeArea(.bottom)
+                    .offset(y: page == 1 ? UIScreen.main.bounds.maxY : 0)
                 ,
                 alignment: secondaryPopup ? .top : .bottom
             )
@@ -101,16 +102,16 @@ struct MainView: View {
                     }
 
                     if page == 2 {
-                        NewsView(popup: $popup)
+                        NewsView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                     }
                 }
             }
-            .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: page != 0 ? (popup ? 0 : UIScreen.main.bounds.maxY*0.85) : (popup ? 0 : UIScreen.main.bounds.maxY*0.85))
+            .frame(minHeight: UIScreen.main.bounds.maxY)
+            .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.85)
         }
     }
     
-    private var fireInfo: some View {
+    private var secondaryModal: some View {
         VStack(spacing: 0) {
             HeroCard(page)
                 .opacity(0)
@@ -128,10 +129,16 @@ struct MainView: View {
                 }
                 
                 MainCard {
-                    POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                    if page == 0 {
+                        POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                    }
+                    
+                    if page == 2 {
+                        GlossaryView(showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                    }
                 }
             }
-            .frame(height: UIScreen.main.bounds.maxY)
+            .frame(minHeight: UIScreen.main.bounds.maxY)
             .offset(y: secondaryClose ? (secondaryPopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
         }
     }

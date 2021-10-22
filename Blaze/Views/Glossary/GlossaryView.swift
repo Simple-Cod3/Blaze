@@ -14,6 +14,8 @@ struct GlossaryView: View {
     @State var wordsList = [Term]()
     
     @Binding var showDefinition: String
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
     
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var terms = GlossaryDatabase.getAllWords().sorted()
@@ -28,11 +30,15 @@ struct GlossaryView: View {
             }.sorted()
         }
     }
+    
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
             
     var body: some View {
         VStack(spacing: 0) {
-            HeaderButton("Glossary")
-//                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            SecondaryHeaderButton(secondaryClose: $secondaryClose, "Glossary")
+                .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 
             Divider()
                 .padding(.horizontal, UIConstants.margin)
@@ -44,6 +50,8 @@ struct GlossaryView: View {
                     }
                     .onAppear { getWords() }
                     .padding(UIConstants.margin)
+                    .padding(.bottom, UIConstants.bottomPadding)
+                    .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
                 }
             }
         }

@@ -18,7 +18,6 @@ struct NewsView: View {
     @State private var shown: NewsModals?
     @State private var contacts = false
     @State private var glossary = false
-    @State private var showDefinition = ""
     
     private enum NewsModals: String, Identifiable {
         var id: String { rawValue }
@@ -26,9 +25,13 @@ struct NewsView: View {
     }
         
     @Binding var popup: Bool
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
     
-    init(popup: Binding<Bool>) {
+    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
         self._popup = popup
+        self._secondaryPopup = secondaryPopup
+        self._secondaryClose = secondaryClose
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -55,18 +58,12 @@ struct NewsView: View {
                 .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             
             if popup {
-                if contacts {
-                    PhoneView()
-                } else if glossary {
-                    GlossaryView(showDefinition: $showDefinition)
-                } else {
-                    newsdata
-                }
+                newsdata
             }
         }
     }
     
-    private var newsdata: some View {
+    var newsdata: some View {
         VStack(spacing: 0) {
             Divider()
                 .padding(.horizontal, UIConstants.margin)
@@ -88,7 +85,11 @@ struct NewsView: View {
 //                    .padding(.bottom, 13)
                     
                     Button(action: {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { glossary = true }
+                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            popup = true
+                            secondaryPopup = true
+                            secondaryClose = true
+                        }
                     }) {
                         VerticalButton(
                             symbol: "character.book.closed.fill",

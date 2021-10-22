@@ -30,7 +30,7 @@ struct POCFireInfoCard: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
-                FireHeaderButton(secondaryClose: $secondaryClose, "Name")
+                SecondaryHeaderButton(secondaryClose: $secondaryClose, "Name")
                     .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
 

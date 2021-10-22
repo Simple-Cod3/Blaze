@@ -38,7 +38,7 @@ struct HeaderButton: View {
     }
 }
 
-struct FireHeaderButton: View {
+struct SecondaryHeaderButton: View {
     
     @Binding var secondaryClose: Bool
     
