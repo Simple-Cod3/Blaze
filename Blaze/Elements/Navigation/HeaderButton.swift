@@ -40,12 +40,12 @@ struct HeaderButton: View {
 
 struct FireHeaderButton: View {
     
-    @Binding var showFirePopup: Bool
+    @Binding var secondaryClose: Bool
     
     private var title: String
     
-    init(showFirePopup: Binding<Bool>, _ title: String) {
-        self._showFirePopup = showFirePopup
+    init(secondaryClose: Binding<Bool>, _ title: String) {
+        self._secondaryClose = secondaryClose
         self.title = title
     }
     
@@ -67,7 +67,7 @@ struct FireHeaderButton: View {
                 
                 Button(action: {
                     withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                        showFirePopup = false
+                        secondaryClose = false
                     }
                 }) {
                     Image(systemName: "xmark.circle.fill")

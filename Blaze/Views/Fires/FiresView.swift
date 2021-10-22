@@ -18,13 +18,13 @@ struct FiresView: View {
     @State private var monitorList = false
     
     @Binding var popup: Bool
-    @Binding var firePopup: Bool
-    @Binding var showFirePopup: Bool
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
     
-    init(popup: Binding<Bool>, firePopup: Binding<Bool>, showFirePopup: Binding<Bool>) {
+    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
         self._popup = popup
-        self._firePopup = firePopup
-        self._showFirePopup = showFirePopup
+        self._firePopup = secondaryPopup
+        self._secondaryClose = secondaryClose
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -117,8 +117,8 @@ struct FiresView: View {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
-                                        firePopup: $firePopup,
-                                        showFirePopup: $showFirePopup,
+                                        secondaryPopup: $firePopup,
+                                        secondaryClose: $secondaryClose,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
                                     )
@@ -131,8 +131,8 @@ struct FiresView: View {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
-                                        firePopup: $firePopup,
-                                        showFirePopup: $showFirePopup,
+                                        secondaryPopup: $firePopup,
+                                        secondaryClose: $secondaryClose,
                                         fireData: fireB.fires.sorted(by: {
                                             $0.updated > $1.updated
                                         })[index],
@@ -146,8 +146,8 @@ struct FiresView: View {
                                 MonitorFireCard(
                                     showFireInformation: $showFireInformation,
                                     popup: $popup,
-                                    firePopup: $firePopup,
-                                    showFirePopup: $showFirePopup,
+                                    secondaryPopup: $firePopup,
+                                    secondaryClose: $secondaryClose,
                                     fireData: fire
                                 )
                                 .buttonStyle(PlainButtonStyle())

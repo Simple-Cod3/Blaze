@@ -21,8 +21,8 @@ struct MainView: View {
     @State private var showLabels = false
     @State private var showSettings = false
     @State private var page = 0
-    @State private var firePopup = false
-    @State private var showFirePopup = false
+    @State private var secondaryPopup = false
+    @State private var secondaryClose = false
     
     var body: some View {
         if fireB.failed {
@@ -59,7 +59,7 @@ struct MainView: View {
                 fireInfo.edgesIgnoringSafeArea(.bottom)
                     .offset(y: page != 0 ? UIScreen.main.bounds.maxY : 0)
                 ,
-                alignment: firePopup ? .top : .bottom
+                alignment: secondaryPopup ? .top : .bottom
             )
             .overlay(
                 Group {
@@ -93,7 +93,7 @@ struct MainView: View {
                     
                 MainCard {
                     if page == 0 {
-                        FiresView(popup: $popup, firePopup: $firePopup, showFirePopup: $showFirePopup)
+                        FiresView(popup: $popup, secondaryPopup: $firePopup, secondaryClose: $secondaryClose)
                     }
                     
                     if page == 1 {
@@ -128,11 +128,11 @@ struct MainView: View {
                 }
                 
                 MainCard {
-                    POCFireInfoCard(firePopup: $firePopup, showFirePopup: $showFirePopup)
+                    POCFireInfoCard(firePopup: $firePopup, secondaryClose: $secondaryClose)
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: showFirePopup ? (firePopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
+            .offset(y: secondaryClose ? (firePopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
         }
     }
 }

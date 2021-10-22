@@ -15,12 +15,12 @@ struct POCFireInfoCard: View {
     @State private var data = true
     @State private var info = false
     
-    @Binding var firePopup: Bool
-    @Binding var showFirePopup: Bool
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
     
-    init(firePopup: Binding<Bool>, showFirePopup: Binding<Bool>) {
-        self._firePopup = firePopup
-        self._showFirePopup = showFirePopup
+    init(firePopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+        self._firePopup = secondaryPopup
+        self._secondaryClose = secondaryClose
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -30,11 +30,11 @@ struct POCFireInfoCard: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
-                FireHeaderButton(showFirePopup: $showFirePopup, "Name")
-                    .padding(.bottom, firePopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+                FireHeaderButton(secondaryClose: $secondaryClose, "Name")
+                    .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
 
-            if firePopup {
+            if secondaryPopup {
                 fireinformation
             }
         }

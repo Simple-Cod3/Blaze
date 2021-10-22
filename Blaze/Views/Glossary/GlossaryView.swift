@@ -31,6 +31,9 @@ struct GlossaryView: View {
             
     var body: some View {
         VStack(spacing: 0) {
+            HeaderButton("Glossary")
+                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+                
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
