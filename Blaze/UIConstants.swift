@@ -90,7 +90,7 @@ class UIConstants: ObservableObject {
             
             return UIConstants.margin*2
         } else {
-            return 0
+            return UIConstants.margin*2
         }
     }
 }
