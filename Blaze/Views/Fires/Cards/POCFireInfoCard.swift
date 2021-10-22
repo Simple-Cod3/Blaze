@@ -17,10 +17,13 @@ struct POCFireInfoCard: View {
     
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
+
+    var fireData: ForestFire
     
-    init(secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+    init(secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, fireData: ForestFire) {
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
+        self.fireData = fireData
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
