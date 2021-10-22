@@ -29,66 +29,69 @@ struct AQCard: View {
     
     var body: some View {
         VStack(spacing: 13) {
-            HStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 5) {
-                    HStack(spacing: 5) {
-                        Image(systemName: "sun.dust.fill")
-                        
-                        Text("Ozone")
-                    }
-                    .font(Font.callout.weight(.medium))
-                    .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 5) {
+                    Image(systemName: "sun.dust.fill")
                     
-                    Text(ozone)
+                    Text("Ozone")
+                }
+                .font(Font.callout.weight(.medium))
+                .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+                
+                HStack(spacing: 0) {
+                    Text(ozoneAQI)
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
+                    + Text("ppb")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    Text(ozone)
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(Color(.tertiaryLabel))
                 }
-                
-                Spacer()
-
-                Text(ozoneAQI)
-                    .foregroundColor(.secondary)
-                    .fontWeight(.medium)
-                    .font(.subheadline)
             }
             .padding(16)
             .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            
-            HStack(spacing: 0) {
-                VStack(alignment: .leading, spacing: 5) {
-                    HStack(spacing: 5) {
-                        Image(systemName: "aqi.low")
-                        
-                        Text("Particulate Matter")
-                    }
-                    .font(Font.callout.weight(.medium))
-                    .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+        
+            VStack(alignment: .leading, spacing: 5) {
+                HStack(spacing: 5) {
+                    Image(systemName: "aqi.low")
                     
-                    Text(primaryPollutant + " ")
+                    Text("Dominant Pollutant")
+                }
+                .font(Font.callout.weight(.medium))
+                .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+                    
+                HStack(spacing: 0) {
+                    Text("PM")
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
-                    + Text(primaryPollutantType)
+                    + Text(primaryPollutantAQI)
                         .font(.callout)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                
+                    Spacer()
+                    
+                    Text(primaryPollutant)
+                        .font(.body)
                         .fontWeight(.medium)
                         .foregroundColor(Color(.tertiaryLabel))
                 }
-                
-                Spacer()
-
-                Text(primaryPollutantAQI)
-                    .foregroundColor(.secondary)
-                    .fontWeight(.medium)
-                    .font(.subheadline)
             }
             .padding(16)
             .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         }
-        .padding(.horizontal, 20)
     }
 }

@@ -19,6 +19,10 @@ struct AQView: View {
     init(popup: Binding<Bool>) {
         self._popup = popup
     }
+    
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -72,9 +76,10 @@ struct AQView: View {
                         .padding(.bottom, 13)
                     
                     Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
-                        .padding(.horizontal, UIConstants.margin)
                 }
+                .padding([.horizontal, .bottom], UIConstants.margin)
                 .padding(.bottom, UIConstants.bottomPadding)
+                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
     }

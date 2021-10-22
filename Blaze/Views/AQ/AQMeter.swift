@@ -12,7 +12,7 @@ struct AQMeter: View {
     var airQ: AirQuality
     
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 3) {
             if String(airQ.AQI) == "-1" {
                 ProgressView()
             } else {

@@ -37,8 +37,51 @@ struct GlossaryView: View {
             
     var body: some View {
         VStack(spacing: 0) {
-            SecondaryHeaderButton(secondaryClose: $secondaryClose, "Glossary")
-                .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            VStack(spacing: 0) {
+                Capsule()
+                    .fill(Color(.quaternaryLabel))
+                    .frame(width: 39, height: 5)
+                    .padding(.top, 7)
+                    .padding(.bottom, 11)
+                
+                HStack(spacing: 0) {
+                    if showDefinition != "" {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                
+                            }
+                        }) {
+                            Image(systemName: "chevron.left.circle.fill")
+                                .font(.title2.weight(.semibold))
+                                .foregroundColor(Color(.tertiaryLabel))
+                                .contentShape(Rectangle())
+                                .padding(.trailing, 11)
+                        }
+                    }
+                    
+                    Text("Glossary")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            secondaryClose = false
+                        }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2.weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                            .contentShape(Rectangle())
+                    }
+                }
+                .padding(.bottom, UIConstants.margin)
+            }
+            .padding(.horizontal, UIConstants.margin)
+            .contentShape(Rectangle())
+            .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 
             Divider()
                 .padding(.horizontal, UIConstants.margin)
