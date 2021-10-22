@@ -21,8 +21,8 @@ struct MainView: View {
     @State private var showLabels = false
     @State private var showSettings = false
     @State private var page = 0
-    @State var firePopup = false
-    @State var showFirePopup = false
+    @State private var firePopup = false
+    @State private var showFirePopup = false
     
     var body: some View {
         if fireB.failed {
@@ -106,7 +106,7 @@ struct MainView: View {
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: page != 0 ? (popup ? 0 : UIScreen.main.bounds.maxY*0.85) : (showFirePopup ? UIScreen.main.bounds.maxY*1.1 : (popup ? 0 : UIScreen.main.bounds.maxY*0.85)))
+            .offset(y: page != 0 ? (popup ? 0 : UIScreen.main.bounds.maxY*0.85) : (popup ? 0 : UIScreen.main.bounds.maxY*0.85))
         }
     }
     
@@ -124,6 +124,7 @@ struct MainView: View {
                         page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                     )
                     .padding([.horizontal, .bottom], 11)
+                    .opacity(0)
                 }
                 
                 MainCard {
