@@ -51,18 +51,18 @@ struct Option: View {
             Spacer()
             
             HStack(alignment: .center, spacing: 0) {
-                Button(action: { showSearch = true }) {
-                    Image(systemName: "magnifyingglass")
-                        .padding(11)
-                        .contentShape(Rectangle())
-                }
-                .sheet(isPresented: $showSearch) {
-                    SearchView(showSearch: $showSearch, secondaryShow: $secondaryShow, searchMap: $searchMap)
-                }
-                
-                Divider()
-                    .frame(height: textSize(textStyle: .largeTitle))
-                                
+//                Button(action: { showSearch = true }) {
+//                    Image(systemName: "magnifyingglass")
+//                        .padding(11)
+//                        .contentShape(Rectangle())
+//                }
+//                .sheet(isPresented: $showSearch) {
+//                    SearchView(showSearch: $showSearch, secondaryShow: $secondaryShow, searchMap: $searchMap)
+//                }
+//
+//                Divider()
+//                    .frame(height: textSize(textStyle: .largeTitle))
+//
                 Button(action: {
                     withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                         showLabels.toggle()
