@@ -93,7 +93,7 @@ struct MainView: View {
                     
                 MainCard {
                     if page == 0 {
-                        FiresView(popup: $popup, secondaryPopup: $firePopup, secondaryClose: $secondaryClose)
+                        FiresView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                     }
                     
                     if page == 1 {
@@ -117,8 +117,8 @@ struct MainView: View {
             
             Spacer()
             
-            Swipeable(popup: $firePopup) {
-                if !firePopup {
+            Swipeable(popup: $secondaryPopup) {
+                if !secondaryPopup {
                     Option(
                         showLabels: $showLabels,
                         page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
@@ -128,11 +128,11 @@ struct MainView: View {
                 }
                 
                 MainCard {
-                    POCFireInfoCard(firePopup: $firePopup, secondaryClose: $secondaryClose)
+                    POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: secondaryClose ? (firePopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
+            .offset(y: secondaryClose ? (secondaryPopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
         }
     }
 }

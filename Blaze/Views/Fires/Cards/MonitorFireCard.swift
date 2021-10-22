@@ -23,7 +23,7 @@ struct MonitorFireCard: View {
     init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, fireData: ForestFire) {
         self._showFireInformation = showFireInformation
         self._popup = popup
-        self._firePopup = secondaryPopup
+        self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
         self.fireData = fireData
     }

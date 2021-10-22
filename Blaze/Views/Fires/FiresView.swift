@@ -23,7 +23,7 @@ struct FiresView: View {
     
     init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
         self._popup = popup
-        self._firePopup = secondaryPopup
+        self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
     }
     
@@ -117,7 +117,7 @@ struct FiresView: View {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
-                                        secondaryPopup: $firePopup,
+                                        secondaryPopup: $secondaryPopup,
                                         secondaryClose: $secondaryClose,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
@@ -131,7 +131,7 @@ struct FiresView: View {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
-                                        secondaryPopup: $firePopup,
+                                        secondaryPopup: $secondaryPopup,
                                         secondaryClose: $secondaryClose,
                                         fireData: fireB.fires.sorted(by: {
                                             $0.updated > $1.updated
@@ -146,7 +146,7 @@ struct FiresView: View {
                                 MonitorFireCard(
                                     showFireInformation: $showFireInformation,
                                     popup: $popup,
-                                    secondaryPopup: $firePopup,
+                                    secondaryPopup: $secondaryPopup,
                                     secondaryClose: $secondaryClose,
                                     fireData: fire
                                 )

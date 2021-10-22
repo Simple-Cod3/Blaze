@@ -18,8 +18,8 @@ struct POCFireInfoCard: View {
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
     
-    init(firePopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
-        self._firePopup = secondaryPopup
+    init(secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+        self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
     }
     
