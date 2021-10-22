@@ -75,6 +75,8 @@ class AirQualityBackend: ObservableObject {
                             } else if report.pollutant == "PM2.5" {
                                 self.forecasts[1] = report
                             }
+
+                            self.forecasts = self.forecasts.sorted(by: { $0.AQI > $1.AQI })
                         }
                     }
                 } else {

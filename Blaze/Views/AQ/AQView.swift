@@ -39,7 +39,7 @@ struct AQView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     ZStack {
-                        if let color = forecast.forecasts[1].category.number, color != -1 {
+                        if let color = forecast.forecasts[0].category.number, color != -1 {
                             determineColor(cat: color)
                                 .frame(width: 220, height: 220)
                                 .clipShape(Circle())
@@ -47,7 +47,7 @@ struct AQView: View {
                                 .animation(Animation.spring(response: 1.1, dampingFraction: 1), value: showCircle)
                                 .opacity(0.7)
                                 .scaleEffect(startAnimation ? 1 : 1.05)
-                                .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[1].category.number))
+                                .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[0].category.number))
                                         .repeatForever(autoreverses: true), value: startAnimation)
                                 .onAppear {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) { startAnimation = true }
@@ -57,7 +57,7 @@ struct AQView: View {
                                 }
                         }
                         
-                        AQMeter(airQ: forecast.forecasts[1])
+                        AQMeter(airQ: forecast.forecasts[0])
                             .padding(.vertical, 60)
                             .scaleEffect(showCircle ? 1.0 : 0)
                             .onAppear {
@@ -68,7 +68,7 @@ struct AQView: View {
                             }
                     }
                     
-                    AQCard(ozone: forecast.forecasts[0], primary: forecast.forecasts[1])
+                    AQCard(ozone: forecast.forecasts.filter { $0.pollutant == "O3" }.first, primary: forecast.forecasts.filter { $0.pollutant == "PM2.5" }.first)
                         .padding(.bottom, 13)
                     
                     Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")

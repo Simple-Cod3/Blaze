@@ -14,15 +14,17 @@ struct AQCard: View {
     @EnvironmentObject var forecast: AirQualityBackend
     
     private var ozone: String
-    private var ozoneCaption: String
+    private var ozoneAQI: String
     private var primaryPollutant: String
-    private var primaryPollutantCaption: String
+    private var primaryPollutantType: String
+    private var primaryPollutantAQI: String
     
-    init (ozone: AirQuality, primary: AirQuality) {
-        self.ozone = ozone.category.name
-        self.ozoneCaption = ozone.pollutant
-        self.primaryPollutant = primary.category.name
-        self.primaryPollutantCaption = primary.pollutant
+    init (ozone: AirQuality?=nil, primary: AirQuality?=nil) {
+        self.ozone = ozone?.category.name ?? "Unknown"
+        self.ozoneAQI = ozone != nil ? "\(ozone!.AQI)": "-"
+        self.primaryPollutant = primary?.category.name ?? "Unknown"
+        self.primaryPollutantType = primary?.pollutant ?? "Unknown"
+        self.primaryPollutantAQI = primary != nil ? "\(primary!.AQI)" : "-"
     }
     
     var body: some View {
@@ -44,6 +46,11 @@ struct AQCard: View {
                 }
                 
                 Spacer()
+
+                Text(ozoneAQI)
+                    .foregroundColor(.secondary)
+                    .fontWeight(.medium)
+                    .font(.subheadline)
             }
             .padding(16)
             .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
@@ -64,13 +71,18 @@ struct AQCard: View {
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
-                    + Text(primaryPollutantCaption)
+                    + Text(primaryPollutantType)
                         .font(.callout)
                         .fontWeight(.medium)
                         .foregroundColor(Color(.tertiaryLabel))
                 }
                 
                 Spacer()
+
+                Text(primaryPollutantAQI)
+                    .foregroundColor(.secondary)
+                    .fontWeight(.medium)
+                    .font(.subheadline)
             }
             .padding(16)
             .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
