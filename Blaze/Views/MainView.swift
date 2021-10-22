@@ -39,7 +39,7 @@ struct MainView: View {
                     }
             }
             .overlay(
-                PagerView(pageCount: 3, currentIndex: $page) {
+                PagerView(pageCount: 3, currentIndex: $page, secondaryClose: $secondaryClose) {
                     ForEach(0..<3) { page in
                         HeroCard(page)
                     }
