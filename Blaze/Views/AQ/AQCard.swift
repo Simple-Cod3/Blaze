@@ -43,7 +43,7 @@ struct AQCard: View {
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
-                    + Text("ppb")
+                    + Text(" AQI")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
@@ -65,17 +65,17 @@ struct AQCard: View {
                 HStack(spacing: 5) {
                     Image(systemName: "aqi.low")
                     
-                    Text("Dominant Pollutant")
+                    Text("PM2.5")
                 }
                 .font(Font.callout.weight(.medium))
                 .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
                     
                 HStack(spacing: 0) {
-                    Text("PM")
+                    Text(primaryPollutantAQI)
                         .font(.title)
                         .fontWeight(.medium)
                         .foregroundColor(.primary)
-                    + Text(primaryPollutantAQI)
+                    + Text(" AQI")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .foregroundColor(.primary)
