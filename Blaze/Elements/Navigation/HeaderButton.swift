@@ -40,14 +40,17 @@ struct HeaderButton: View {
 
 struct FireHeaderButton: View {
     
+    @Binding var showFirePopup: Bool
+    
     private var title: String
     
-    init(_ title: String) {
+    init(showFirePopup: Binding<Bool>, _ title: String) {
+        self._showFirePopup = showFirePopup
         self.title = title
     }
     
     var body: some View {
-        VStack(spacing : 0) {
+        VStack(spacing: 0) {
             Capsule()
                 .fill(Color(.quaternaryLabel))
                 .frame(width: 39, height: 5)
@@ -61,6 +64,17 @@ struct FireHeaderButton: View {
                     .foregroundColor(.primary)
 
                 Spacer()
+                
+                Button(action: {
+                    withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                        showFirePopup = false
+                    }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title2.weight(.semibold))
+                        .foregroundColor(Color(.tertiaryLabel))
+                        .contentShape(Rectangle())
+                }
             }
             .padding(.bottom, UIConstants.margin)
         }

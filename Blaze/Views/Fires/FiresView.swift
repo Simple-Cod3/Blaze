@@ -126,6 +126,7 @@ struct FiresView: View {
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         firePopup: $firePopup,
+                                        showFirePopup: $showFirePopup,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
                                     )
@@ -139,6 +140,7 @@ struct FiresView: View {
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         firePopup: $firePopup,
+                                        showFirePopup: $showFirePopup,
                                         fireData: fireB.fires.sorted(by: {
                                             $0.updated > $1.updated
                                         })[index],

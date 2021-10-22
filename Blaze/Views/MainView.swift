@@ -56,8 +56,7 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
-                fireInfo.edgesIgnoringSafeArea(.bottom).opacity(firePopup ? 1 : 0)
-                ,
+                fireInfo.edgesIgnoringSafeArea(.bottom),
                 alignment: firePopup ? .top : .bottom
             )
             .overlay(
@@ -105,7 +104,7 @@ struct MainView: View {
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.85)
+            .offset(y: showFirePopup ? UIScreen.main.bounds.maxY*1.1 : (popup ? 0 : UIScreen.main.bounds.maxY*0.85))
         }
     }
     
@@ -126,11 +125,11 @@ struct MainView: View {
                 }
                 
                 MainCard {
-                    POCFireInfoCard(firePopup: $firePopup)
+                    POCFireInfoCard(firePopup: $firePopup, showFirePopup: $showFirePopup)
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: firePopup ? 0 : UIScreen.main.bounds.maxY*0.85)
+            .offset(y: showFirePopup ? (firePopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
         }
     }
 }

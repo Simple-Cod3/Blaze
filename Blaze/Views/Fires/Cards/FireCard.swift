@@ -17,14 +17,16 @@ struct FireCard: View {
     @Binding var showFireInformation: String
     @Binding var popup: Bool
     @Binding var firePopup: Bool
+    @Binding var showFirePopup: Bool
     
     var fireData: ForestFire
     private var area: Bool
     
-    init(showFireInformation: Binding<String>, popup: Binding<Bool>, firePopup: Binding<Bool>, fireData: ForestFire, area: Bool) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, firePopup: Binding<Bool>, showFirePopup: Binding<Bool>, fireData: ForestFire, area: Bool) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self._firePopup = firePopup
+        self._showFirePopup = showFirePopup
         self.fireData = fireData
         self.area = area
     }
@@ -35,10 +37,11 @@ struct FireCard: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+            withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                 showFireInformation = fireData.name
-                popup = true
+                popup = false
                 firePopup = true
+                showFirePopup = true
             }
         }) {
             HStack(spacing: 0) {

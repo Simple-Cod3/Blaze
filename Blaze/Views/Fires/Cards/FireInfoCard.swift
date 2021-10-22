@@ -51,8 +51,8 @@ struct FireInfoCard: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
-                    FireHeaderButton(name)
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+//                    FireHeaderButton(name)
+//                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 

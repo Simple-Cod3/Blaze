@@ -16,9 +16,11 @@ struct POCFireInfoCard: View {
     @State private var info = false
     
     @Binding var firePopup: Bool
+    @Binding var showFirePopup: Bool
     
-    init(firePopup: Binding<Bool>) {
+    init(firePopup: Binding<Bool>, showFirePopup: Binding<Bool>) {
         self._firePopup = firePopup
+        self._showFirePopup = showFirePopup
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -27,14 +29,17 @@ struct POCFireInfoCard: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Button(action: {
-                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { firePopup.toggle() }
-            }) {
-                FireHeaderButton("Name")
-                    .padding(.bottom, firePopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            HStack(alignment: .center, spacing: 0) {
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { firePopup.toggle() }
+                }) {
+                    FireHeaderButton(showFirePopup: $showFirePopup, "Name")
+                        .padding(.bottom, firePopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+                    
+                }
+                .buttonStyle(NoButtonStyle())
             }
-            .buttonStyle(NoButtonStyle())
 
             if firePopup {
                 fireinformation
