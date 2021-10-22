@@ -56,7 +56,9 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
-                fireInfo.edgesIgnoringSafeArea(.bottom),
+                fireInfo.edgesIgnoringSafeArea(.bottom)
+                    .offset(y: page != 0 ? UIScreen.main.bounds.maxY : 0)
+                ,
                 alignment: firePopup ? .top : .bottom
             )
             .overlay(
@@ -104,7 +106,7 @@ struct MainView: View {
                 }
             }
             .frame(height: UIScreen.main.bounds.maxY)
-            .offset(y: showFirePopup ? UIScreen.main.bounds.maxY*1.1 : (popup ? 0 : UIScreen.main.bounds.maxY*0.85))
+            .offset(y: page != 0 ? (popup ? 0 : UIScreen.main.bounds.maxY*0.85) : (showFirePopup ? UIScreen.main.bounds.maxY*1.1 : (popup ? 0 : UIScreen.main.bounds.maxY*0.85)))
         }
     }
     
