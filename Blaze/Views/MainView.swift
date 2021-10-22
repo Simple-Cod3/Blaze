@@ -56,7 +56,7 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
-                fireInfo.edgesIgnoringSafeArea(.bottom)
+                fireInfo.edgesIgnoringSafeArea(.bottom).opacity(firePopup ? 1 : 0)
                 ,
                 alignment: firePopup ? .top : .bottom
             )

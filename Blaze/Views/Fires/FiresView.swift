@@ -122,40 +122,28 @@ struct FiresView: View {
                                 fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
                                 id: \.self
                             ) { index in
-                                Button(action: {
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        firePopup = true
-                                        showFirePopup = true
-                                    }
-                                }) {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
+                                        firePopup: $firePopup,
                                         fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
                                         area: true
                                     )
-                                }
                             }
                         } else if latest {
                             ForEach(
                                 fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
                                 id: \.self
                             ) { index in
-                                Button(action: {
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        firePopup = true
-                                        showFirePopup = true
-                                    }
-                                }) {
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
+                                        firePopup: $firePopup,
                                         fireData: fireB.fires.sorted(by: {
                                             $0.updated > $1.updated
                                         })[index],
                                         area: false
                                     )
-                                }
                             }
                         }
                     
