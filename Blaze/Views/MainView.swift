@@ -132,7 +132,7 @@ struct MainView: View {
                 
                 MainCard {
                     if page == 0 {
-                        POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose, fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire())
+                        FireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose, fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire())
                     }
                     
                     if page == 2 {
