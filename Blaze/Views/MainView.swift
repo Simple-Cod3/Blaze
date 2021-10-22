@@ -21,6 +21,8 @@ struct MainView: View {
     @State private var showLabels = false
     @State private var showSettings = false
     @State private var page = 0
+    @State var firePopup = false
+    @State var showFirePopup = false
     
     var body: some View {
         if fireB.failed {
@@ -54,6 +56,10 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
+                fireInfo.edgesIgnoringSafeArea(.bottom),
+                alignment: firePopup ? .top : .bottom
+            )
+            .overlay(
                 Group {
                     if !done {
                         ProgressBarView(
@@ -85,7 +91,7 @@ struct MainView: View {
                     
                 MainCard {
                     if page == 0 {
-                        FiresView(popup: $popup)
+                        FiresView(popup: $popup, firePopup: $firePopup, showFirePopup: $showFirePopup)
                     }
                     
                     if page == 1 {
@@ -99,6 +105,23 @@ struct MainView: View {
             }
             .frame(height: UIScreen.main.bounds.maxY)
             .offset(y: popup ? 0 : UIScreen.main.bounds.maxY*0.85)
+        }
+    }
+    
+    private var fireInfo: some View {
+        VStack(spacing: 0) {
+            HeroCard(page)
+                .opacity(0)
+            
+            Spacer()
+            
+            Swipeable(popup: $firePopup) {
+                MainCard {
+                    POCFireInfoCard(firePopup: $firePopup)
+                }
+            }
+            .frame(height: UIScreen.main.bounds.maxY)
+            .offset(y: firePopup ? 0 : UIScreen.main.bounds.maxY*0.85)
         }
     }
 }

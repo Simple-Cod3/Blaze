@@ -51,32 +51,8 @@ struct FireInfoCard: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
                 }) {
-                    HStack(spacing: 0) {
-//                        Image(systemName: "flame.fill")
-//                            .font(.footnote)
-//                            .foregroundColor(.blaze)
-//                            .padding(7)
-//                            .background(colorScheme == .dark ? Color(.tertiarySystemBackground) : Color.borderBackground)
-//                            .clipShape(Circle())
-//                            .overlay(
-//                                Circle()
-//                                    .stroke(colorScheme == .dark ? (Color.borderBackground) : Color(.tertiarySystemBackground), lineWidth: 2)
-//                            )
-//                            .padding(.trailing, 10)
-                        
-                        Text(name)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        SymbolButton(popup ? "chevron.down" : "chevron.up")
-                    }
-                    .padding([.leading, .vertical], UIConstants.margin)
-                    .padding(.trailing, popup ? 0 : UIConstants.margin)
-                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-                    .contentShape(Rectangle())
+                    FireHeaderButton(name)
+                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 }
                 .buttonStyle(DefaultButtonStyle())
                 
@@ -89,7 +65,7 @@ struct FireInfoCard: View {
                     }) {
                         TrailingButton("chevron.left")
                     }
-                    .buttonStyle(DefaultButtonStyle())
+                    .buttonStyle(NoButtonStyle())
                 }
             }
 

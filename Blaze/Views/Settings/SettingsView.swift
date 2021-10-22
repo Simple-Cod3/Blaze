@@ -29,9 +29,9 @@ struct SettingsView: View {
             Button(action: {
                 showSettings = false
             }) {
-                HeaderButton("Settings", "chevron.down")
+                HeaderButton("Settings")
             }
-            .buttonStyle(DefaultButtonStyle())
+            .buttonStyle(NoButtonStyle())
             
             Divider()
                 .padding(.horizontal, 20)

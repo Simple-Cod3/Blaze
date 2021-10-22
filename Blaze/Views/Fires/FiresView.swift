@@ -18,9 +18,13 @@ struct FiresView: View {
     @State private var monitorList = false
     
     @Binding var popup: Bool
+    @Binding var firePopup: Bool
+    @Binding var showFirePopup: Bool
     
-    init(popup: Binding<Bool>) {
+    init(popup: Binding<Bool>, firePopup: Binding<Bool>, showFirePopup: Binding<Bool>) {
         self._popup = popup
+        self._firePopup = firePopup
+        self._showFirePopup = showFirePopup
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -29,23 +33,19 @@ struct FiresView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if showFireInformation == "" {
-                Button(action: {
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                        popup.toggle()
-                    }
-                }) {
-                    HeaderButton("Wildfires Overview", popup ? "chevron.down" : "chevron.up")
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            Button(action: {
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                    popup.toggle()
                 }
-                .buttonStyle(DefaultButtonStyle())
+            }) {
+                HeaderButton("Wildfires Overview")
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            }
+            .buttonStyle(NoButtonStyle())
 
-                if popup {
-                    wildfiremain
-                }
-            } else {
-                FireInfoCard(popup: $popup, showFireInformation: $showFireInformation, fireData: fireB.fires.filter { $0.name == showFireInformation }[0])
+            if popup {
+                wildfiremain
             }
         }
     }
@@ -122,26 +122,40 @@ struct FiresView: View {
                                 fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
                                 id: \.self
                             ) { index in
-                                FireCard(
-                                    showFireInformation: $showFireInformation,
-                                    popup: $popup,
-                                    fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
-                                    area: true
-                                )
+                                Button(action: {
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        firePopup = true
+                                        showFirePopup = true
+                                    }
+                                }) {
+                                    FireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                        area: true
+                                    )
+                                }
                             }
                         } else if latest {
                             ForEach(
                                 fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
                                 id: \.self
                             ) { index in
-                                FireCard(
-                                    showFireInformation: $showFireInformation,
-                                    popup: $popup,
-                                    fireData: fireB.fires.sorted(by: {
-                                        $0.updated > $1.updated
-                                    })[index],
-                                    area: false
-                                )
+                                Button(action: {
+                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                        firePopup = true
+                                        showFirePopup = true
+                                    }
+                                }) {
+                                    FireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        fireData: fireB.fires.sorted(by: {
+                                            $0.updated > $1.updated
+                                        })[index],
+                                        area: false
+                                    )
+                                }
                             }
                         }
                     

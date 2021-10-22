@@ -10,25 +10,61 @@ import SwiftUI
 struct HeaderButton: View {
     
     private var title: String
-    private var symbol: String
     
-    init(_ title: String, _ symbol: String) {
+    init(_ title: String) {
         self.title = title
-        self.symbol = symbol
     }
     
     var body: some View {
-        HStack(spacing: 0) {
-            Text(title)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .foregroundColor(.primary)
+        VStack(spacing : 0) {
+            Capsule()
+                .fill(Color(.quaternaryLabel))
+                .frame(width: 39, height: 5)
+                .padding(.top, 7)
+                .padding(.bottom, 11)
             
-            Spacer()
-            
-            SymbolButton(symbol)
+            HStack(spacing: 0) {
+                Text(title)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.primary)
+
+                Spacer()
+            }
+            .padding(.bottom, UIConstants.margin)
         }
-        .padding(UIConstants.margin)
+        .padding(.horizontal, UIConstants.margin)
+        .contentShape(Rectangle())
+    }
+}
+
+struct FireHeaderButton: View {
+    
+    private var title: String
+    
+    init(_ title: String) {
+        self.title = title
+    }
+    
+    var body: some View {
+        VStack(spacing : 0) {
+            Capsule()
+                .fill(Color(.quaternaryLabel))
+                .frame(width: 39, height: 5)
+                .padding(.top, 7)
+                .padding(.bottom, 11)
+            
+            HStack(spacing: 0) {
+                Text(title)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.primary)
+
+                Spacer()
+            }
+            .padding(.bottom, UIConstants.margin)
+        }
+        .padding(.horizontal, UIConstants.margin)
         .contentShape(Rectangle())
     }
 }
