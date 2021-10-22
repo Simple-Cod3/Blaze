@@ -56,7 +56,8 @@ struct MainView: View {
                 alignment: popup ? .top : .bottom
             )
             .overlay(
-                fireInfo.edgesIgnoringSafeArea(.bottom),
+                fireInfo.edgesIgnoringSafeArea(.bottom)
+                ,
                 alignment: firePopup ? .top : .bottom
             )
             .overlay(
@@ -116,6 +117,14 @@ struct MainView: View {
             Spacer()
             
             Swipeable(popup: $firePopup) {
+                if !firePopup {
+                    Option(
+                        showLabels: $showLabels,
+                        page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
+                    )
+                    .padding([.horizontal, .bottom], 11)
+                }
+                
                 MainCard {
                     POCFireInfoCard(firePopup: $firePopup)
                 }
