@@ -48,7 +48,8 @@ struct FireMapView: View {
     var body: some View {
         VStack {
             Spacer()
-            FireInfoCard(popup: $show, fireData: fireData, soloNavigation: true)
+            
+            FireInfoCard(secondaryPopup: $show, secondaryClose: .constant(false), fireData: fireData)
                 .font(.body)
                 .background(RegularBlurBackground())
                 .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))
