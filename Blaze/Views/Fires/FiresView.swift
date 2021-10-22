@@ -33,16 +33,8 @@ struct FiresView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Button(action: {
-                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                    popup.toggle()
-                }
-            }) {
-                HeaderButton("Wildfires Overview")
-                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-            }
-            .buttonStyle(NoButtonStyle())
+            HeaderButton("Wildfires Overview")
+                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
 
             if popup {
                 wildfiremain
@@ -154,6 +146,8 @@ struct FiresView: View {
                                 MonitorFireCard(
                                     showFireInformation: $showFireInformation,
                                     popup: $popup,
+                                    firePopup: $firePopup,
+                                    showFirePopup: $showFirePopup,
                                     fireData: fire
                                 )
                                 .buttonStyle(PlainButtonStyle())

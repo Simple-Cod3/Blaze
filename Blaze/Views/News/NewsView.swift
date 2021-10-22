@@ -52,14 +52,8 @@ struct NewsView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Button(action: {
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { popup.toggle() }
-                }) {
-                    HeaderButton(glossary ? "Glossary" : "News Overview")
-                        .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-                }
-                .buttonStyle(NoButtonStyle())
+                HeaderButton(glossary ? "Glossary" : "News Overview")
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
                 
                 if glossary {
                     Spacer()

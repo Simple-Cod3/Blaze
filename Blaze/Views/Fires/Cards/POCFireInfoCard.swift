@@ -30,15 +30,8 @@ struct POCFireInfoCard: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
-                Button(action: {
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { firePopup.toggle() }
-                }) {
-                    FireHeaderButton(showFirePopup: $showFirePopup, "Name")
-                        .padding(.bottom, firePopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-                    
-                }
-                .buttonStyle(NoButtonStyle())
+                FireHeaderButton(showFirePopup: $showFirePopup, "Name")
+                    .padding(.bottom, firePopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
 
             if firePopup {

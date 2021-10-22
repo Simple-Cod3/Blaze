@@ -104,7 +104,7 @@ struct Swipeable<Content: View>: View {
         .offset(
             y: viewModel.lastDrag
         )
-        .highPriorityGesture(
+        .gesture(
             DragGesture().updating($translation) { value, state, _ in
                 state = value.translation.height
                 viewModel.lastDrag = value.translation.height
@@ -132,6 +132,7 @@ struct Swipeable<Content: View>: View {
                             popup = false
                         }
                     }
+                
                 withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
             }
         )

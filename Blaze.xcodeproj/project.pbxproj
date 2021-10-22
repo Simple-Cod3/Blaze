@@ -214,6 +214,7 @@
 			children = (
 				E9CE22A6250308F900929D13 /* FireCard.swift */,
 				6DF73D7A2502A3A90051E4A2 /* FireInfoCard.swift */,
+				E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */,
 				6DB9DE532722344F0079B13C /* POCFireInfoCard.swift */,
 			);
 			path = Cards;
@@ -401,7 +402,6 @@
 				6DF6590B2510684100D47118 /* DataView.swift */,
 				E9AF016924FDBBEB0058C184 /* FiresView.swift */,
 				E9E769EE250319F4006038FD /* InformationView.swift */,
-				E97FA5FA2554FFC2009754AA /* MonitorFireCard.swift */,
 			);
 			path = Fires;
 			sourceTree = "<group>";
