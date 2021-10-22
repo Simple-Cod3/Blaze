@@ -23,9 +23,13 @@ struct SearchView: View {
     @State private var sorting = SortingType.alpha
     
     @Binding var showSearch: Bool
+    @Binding var secondaryShow: Bool
+    @Binding var searchMap: Bool
     
-    init(showSearch: Binding<Bool>) {
+    init(showSearch: Binding<Bool>, secondaryShow: Binding<Bool>, searchMap: Binding<Bool>) {
         self._showSearch = showSearch
+        self._secondaryShow = secondaryShow
+        self._searchMap = searchMap
     }
     
     private enum SortingType {
@@ -83,12 +87,18 @@ struct SearchView: View {
                         isExpanded: $showFires,
                         content: {
                             ForEach(firesList) { fire in
-                                NavigationLink(destination: FireMapView(fireData: fire)) {
+//                                NavigationLink(destination: FireMapView(fireData: fire)) {
+                                Button(action: {
+                                    showSearch = false
+                                    secondaryShow = true
+                                    searchMap = true
+                                }) {
                                     Text(fire.name)
                                         .font(.body)
                                         .fontWeight(.regular)
                                         .foregroundColor(.secondary)
                                 }
+//                                }
                             }},
                         label: { HStack {
                             Image(systemName: "flame.fill")

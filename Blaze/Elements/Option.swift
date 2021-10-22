@@ -15,11 +15,15 @@ struct Option: View {
     @State var showSettings = false
     
     @Binding var showLabels: Bool
+    @Binding var secondaryShow: Bool
+    @Binding var searchMap: Bool
     
     private var foreground: Color
     
-    init(showLabels: Binding<Bool>, _ foreground: Color) {
+    init(showLabels: Binding<Bool>, secondaryShow: Binding<Bool>, searchMap: Binding<Bool>, _ foreground: Color) {
         self._showLabels = showLabels
+        self._secondaryShow = secondaryShow
+        self._searchMap = searchMap
         self.foreground = foreground
     }
     
@@ -53,7 +57,7 @@ struct Option: View {
                         .contentShape(Rectangle())
                 }
                 .sheet(isPresented: $showSearch) {
-                    SearchView(showSearch: $showSearch)
+                    SearchView(showSearch: $showSearch, secondaryShow: $secondaryShow, searchMap: $searchMap)
                 }
                 
                 Divider()

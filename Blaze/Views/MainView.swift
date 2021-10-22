@@ -25,18 +25,18 @@ struct MainView: View {
     @State private var secondaryPopup = false
     @State private var secondaryClose = false
     @State private var showDefinition = ""
+    @State private var searchMap = false
     
     var body: some View {
         if fireB.failed {
             Text("😢 Unknown problem...please reload the app.")
         } else {
             VStack(spacing: 0) {
-                FullFireMapView(showLabels: $showLabels)
-                    .onTapGesture {
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup = false
-                        }
-                    }
+                if searchMap {
+                    FullFireMapView(showLabels: $showLabels) // Use FireMapView when search
+                } else {
+                    FullFireMapView(showLabels: $showLabels)
+                }
             }
             .overlay(
                 PagerView(pageCount: 3, currentIndex: $page, secondaryClose: $secondaryClose) {
@@ -89,6 +89,8 @@ struct MainView: View {
                 if !popup {
                     Option(
                         showLabels: $showLabels,
+                        secondaryShow: $secondaryClose,
+                        searchMap: $searchMap,
                         page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                     )
                     .padding([.horizontal, .bottom], 11)
@@ -124,6 +126,8 @@ struct MainView: View {
                 if !secondaryPopup {
                     Option(
                         showLabels: $showLabels,
+                        secondaryShow: $secondaryClose,
+                        searchMap: $searchMap,
                         page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                     )
                     .padding([.horizontal, .bottom], 11)
