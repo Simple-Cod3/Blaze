@@ -112,37 +112,38 @@ struct Swipeable<Content: View>: View {
         .offset(
             y: viewModel.lastDrag
         )
-        .gesture(
-            DragGesture().updating($translation) { value, state, _ in
-                state = value.translation.height
-                viewModel.lastDrag = value.translation.height
-                viewModel.currentDrag = value.translation.height
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 30, coordinateSpace: .local)
+                .updating($translation) { value, _, _ in
+                    withAnimation(.linear(duration: 0.1)) {
+                        viewModel.lastDrag = value.translation.height
+                        viewModel.currentDrag = value.translation.height
 
-                if (popup && viewModel.currentDrag < -1) || (!popup && viewModel.currentDrag > 1) {
-                    viewModel.lastDrag = 0
-                }
-                
-                viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
-            }.onEnded { value in
-                viewModel.accel = abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
-                viewModel.velocity = value.predictedEndLocation.y - value.location.y
-
-                withAnimation(
-                    .spring(
-                        response:
-                            (viewModel.accel < 0.39) && (viewModel.accel > 0.139) ? viewModel.accel : 0.39,
-                        dampingFraction:
-                            0.79
-                    )) {
-                        if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {
-                            popup = true
-                        } else if (viewModel.velocity > 100.0) || (!viewModel.swipeUp && viewModel.velocity > 0.39) {
-                            popup = false
+                        if (popup && viewModel.currentDrag < -1) || (!popup && viewModel.currentDrag > 1) {
+                            viewModel.lastDrag = 0
                         }
+
+                        viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
                     }
-                
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
-            }
+                }
+                .onEnded { value in
+                    viewModel.accel = abs(viewModel.lastDrag/(value.predictedEndLocation.y - value.location.y))
+                    viewModel.velocity = value.predictedEndLocation.y - value.location.y
+
+                    withAnimation(
+                        .spring(
+                            response: (viewModel.accel < 0.39) && (viewModel.accel > 0.139) ? viewModel.accel : 0.39,
+                            dampingFraction: 0.79
+                        )) {
+                            if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {
+                                popup = true
+                            } else if (viewModel.velocity > 100.0) || (!viewModel.swipeUp && viewModel.velocity > 0.39) {
+                                popup = false
+                            }
+                        }
+
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
+                }
         )
     }
 }

@@ -48,11 +48,10 @@ class FireBackend: ObservableObject {
     }
 
     private func sameFire(caFire: ForestFire, inciWebFire: ForestFire) -> Bool {
-        return
-        caFire.coordinate == inciWebFire.coordinate ||
-        caFire.name == inciWebFire.name ||
-        caFire.name == inciWebFire.name.replacingOccurrences(of: " Fire", with: "") ||
-        caFire.name + " (CA)" == inciWebFire.name
+        return caFire.coordinate == inciWebFire.coordinate ||
+            caFire.name == inciWebFire.name ||
+            caFire.name == inciWebFire.name.replacingOccurrences(of: " Fire", with: "") ||
+            caFire.name + " (CA)" == inciWebFire.name
     }
     
     func refreshFireList(with: URL? = nil) {

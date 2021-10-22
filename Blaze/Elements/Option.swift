@@ -76,7 +76,7 @@ struct Option: View {
                 Divider()
                     .frame(height: textSize(textStyle: .largeTitle))
                 
-                Button(action: mapController.moveBack) {
+                Button(action: { mapController.moveBack() }) {
                     Image(systemName: "location")
                         .padding(11)
                         .contentShape(Rectangle())

@@ -10,6 +10,7 @@ import SwiftUI
 struct FireInfoCard: View {
     
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var mapController: FullFireMapController
 
     @State private var random = false
     @State private var data = true
@@ -17,13 +18,17 @@ struct FireInfoCard: View {
     
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
+    @Binding var popup: Bool
 
+    var staticModal: Bool
     var fireData: ForestFire
     
-    init(secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, fireData: ForestFire) {
-        self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+    init(secondaryPopup: Binding<Bool>?=nil, secondaryClose: Binding<Bool>?=nil, popup: Binding<Bool>?=nil, fireData: ForestFire, staticModal: Bool?=nil) {
+        self._secondaryPopup = secondaryPopup ?? .constant(true)
+        self._secondaryClose = secondaryClose ?? .constant(false)
+        self._popup = popup ?? .constant(true)
         self.fireData = fireData
+        self.staticModal = staticModal ?? false
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -32,7 +37,7 @@ struct FireInfoCard: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SecondaryHeaderButton(secondaryClose: $secondaryClose, fireData.name)
+            SecondaryHeaderButton(secondaryClose: $secondaryClose, fireData.name, staticModal: staticModal)
                 .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
 
             if secondaryPopup {
@@ -48,33 +53,48 @@ struct FireInfoCard: View {
             
             ScrollView {
                 VStack(spacing: 0) {
-                    HStack(spacing: 10) {
-                        Button(action: {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                data = true
-                                info = false
+                    VStack(spacing: 10) {
+                        if !staticModal {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    secondaryPopup = false
+                                    popup = false
+                                }
+
+                                mapController.moveBack(lat: fireData.latitude, long: fireData.longitude, span: 1)
+                            }) {
+                                RectButton(selected: .constant(false), "Show in Map")
                             }
-                        }) {
-                            RectButton(selected: $data, "Data")
+                            .buttonStyle(DefaultButtonStyle())
                         }
-                        .buttonStyle(DefaultButtonStyle())
-                        
-                        Button(action: {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                data = false
-                                info = true
+
+                        HStack(spacing: 10) {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    data = true
+                                    info = false
+                                }
+                            }) {
+                                RectButton(selected: $data, "Data")
                             }
-                        }) {
-                            RectButton(selected: $info, "Information")
+                            .buttonStyle(DefaultButtonStyle())
+
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    data = false
+                                    info = true
+                                }
+                            }) {
+                                RectButton(selected: $info, "Information")
+                            }
+                            .buttonStyle(DefaultButtonStyle())
                         }
-                        .buttonStyle(DefaultButtonStyle())
+                        .padding(.bottom, UIConstants.margin)
                     }
-                    .padding(.bottom, UIConstants.margin)
 
                     InformationView(data: $data, info: $info, fireData: fireData)
                 }
                 .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }

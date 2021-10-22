@@ -21,11 +21,11 @@ class FullFireMapController: ObservableObject {
 
     let RADIUS = 11.0
 
-    func moveBack() {
+    func moveBack(lat: Double?=nil, long: Double?=nil, span: Double?=nil) {
         withAnimation {
             self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: centerLat, longitude: centerLong),
-                span: .init(latitudeDelta: 7, longitudeDelta: 7)
+                center: .init(latitude: lat ?? centerLat, longitude: long ?? centerLong),
+                span: .init(latitudeDelta: span ?? 7, longitudeDelta: span ?? 7)
             )
         }
     }

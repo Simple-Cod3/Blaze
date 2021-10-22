@@ -45,17 +45,26 @@ struct SettingsView: View {
                             UIImpactFeedbackGenerator(style: .light).impactOccurred()
                             withAnimation(.spring(response: 0.39, dampingFraction: 0.7)) { caliOnly.toggle() }
                         }) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
-                                .foregroundColor(caliOnly ? Color.blaze : Color(.tertiaryLabel))
-                                .scaleEffect(caliOnly ? 1 : 0.0001)
-                                .background(
-                                    Image(systemName: "circle")
-                                        .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
-                                                             .foregroundColor(Color(.tertiaryLabel))
-                                        .scaleEffect(caliOnly ? 0.8 : 1)
-                                )
-                                .contentShape(Rectangle())
+
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
+                                    .foregroundColor(caliOnly ? Color.blaze : Color(.tertiaryLabel))
+                                    .scaleEffect(caliOnly ? 1 : 0.0001)
+                                    .background(
+                                        Image(systemName: "circle")
+                                            .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
+                                            .foregroundColor(Color(.tertiaryLabel))
+                                            .scaleEffect(caliOnly ? 0.8 : 1)
+                                    )
+                                    .scaleEffect(!fires.progress.allSatisfy({$0.isFinished}) ? 0.0001 : 1)
+                                    .animation(.spring())
+                                    .contentShape(Rectangle())
+                                    .overlay(
+                                        ProgressView()
+                                            .scaleEffect(fires.progress.allSatisfy({$0.isFinished}) ? 0.0001 : 1)
+                                            .animation(.spring())
+                                    )
+
                         }
                         .disabled(!fires.progress.allSatisfy({$0.isFinished}))
                     }

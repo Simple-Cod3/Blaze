@@ -66,6 +66,7 @@ struct SearchView: View {
     }
     
     private func getWords() {
+        print("Updating index")
         DispatchQueue.main.async {
             let query = searchBar.text.lowercased()
             
@@ -87,19 +88,14 @@ struct SearchView: View {
                         isExpanded: $showFires,
                         content: {
                             ForEach(firesList) { fire in
-//                                NavigationLink(destination: FireMapView(fireData: fire)) {
-                                Button(action: {
-                                    showSearch = false
-                                    secondaryShow = true
-                                    searchMap = true
-                                }) {
+                                NavigationLink(destination: FireMapView(fireData: fire)) {
                                     Text(fire.name)
                                         .font(.body)
                                         .fontWeight(.regular)
                                         .foregroundColor(.secondary)
                                 }
-//                                }
-                            }},
+                            }
+                        },
                         label: { HStack {
                             Image(systemName: "flame.fill")
                                 .foregroundColor(.blaze)
@@ -118,7 +114,7 @@ struct SearchView: View {
                                 .background(Color.secondary)
                                 .clipShape(Capsule())
                                 .scaleEffect(showFires ? 0 : 1)
-                                .animation(.spring())
+                                .animation(.spring(), value: showFires)
 
                         }}
                     )
@@ -159,7 +155,7 @@ struct SearchView: View {
                                 .background(Color.secondary)
                                 .clipShape(Capsule())
                                 .scaleEffect(showWords ? 0 : 1)
-                                .animation(.spring())
+                                .animation(.spring(), value: showWords)
                         }}
                     )
                 }

@@ -35,11 +35,11 @@ struct FireMapView: View {
     private func moveBack() {
         let lat = fireData.latitude
         let long = fireData.longitude
-        let spread = 0.15
+        let spread = 1.0
         
         withAnimation {
             self.coordinateRegion = MKCoordinateRegion(
-                center: .init(latitude: lat-0.05, longitude: long),
+                center: .init(latitude: lat-0.5, longitude: long),
                 span: .init(latitudeDelta: spread, longitudeDelta: spread)
             )
         }
@@ -48,8 +48,9 @@ struct FireMapView: View {
     var body: some View {
         VStack {
             Spacer()
+                .frame(height: 300)
             
-            FireInfoCard(secondaryPopup: $show, secondaryClose: .constant(false), fireData: fireData)
+            FireInfoCard(fireData: fireData, staticModal: true)
                 .font(.body)
                 .background(RegularBlurBackground())
                 .clipShape(RoundedRectangle(cornerRadius: 11, style: .continuous))

@@ -16,7 +16,7 @@ struct HeaderButton: View {
     }
     
     var body: some View {
-        VStack(spacing : 0) {
+        VStack(spacing: 0) {
             Capsule()
                 .fill(Color(.quaternaryLabel))
                 .frame(width: 39, height: 5)
@@ -43,10 +43,12 @@ struct SecondaryHeaderButton: View {
     @Binding var secondaryClose: Bool
     
     private var title: String
+    private var staticModal: Bool
     
-    init(secondaryClose: Binding<Bool>, _ title: String) {
+    init(secondaryClose: Binding<Bool>, _ title: String, staticModal: Bool?=nil) {
         self._secondaryClose = secondaryClose
         self.title = title
+        self.staticModal = staticModal ?? false
     }
     
     var body: some View {
@@ -56,6 +58,7 @@ struct SecondaryHeaderButton: View {
                 .frame(width: 39, height: 5)
                 .padding(.top, 7)
                 .padding(.bottom, 11)
+                .opacity(staticModal ? 0 : 1)
             
             HStack(spacing: 0) {
                 Text(title)
@@ -64,16 +67,18 @@ struct SecondaryHeaderButton: View {
                     .foregroundColor(.primary)
 
                 Spacer()
-                
-                Button(action: {
-                    withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                        secondaryClose = false
+
+                if !staticModal {
+                    Button(action: {
+                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            secondaryClose = false
+                        }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2.weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                            .contentShape(Rectangle())
                     }
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2.weight(.semibold))
-                        .foregroundColor(Color(.tertiaryLabel))
-                        .contentShape(Rectangle())
                 }
             }
             .padding(.bottom, UIConstants.margin)

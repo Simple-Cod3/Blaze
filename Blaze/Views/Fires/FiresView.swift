@@ -11,7 +11,7 @@ struct FiresView: View {
     
     @EnvironmentObject var fireB: FireBackend
 
-    @State private var prefix = 10
+    @State private var prefix = 5
     @State private var largest = true
     @State private var latest = false
     @State private var monitorList = false
@@ -160,9 +160,9 @@ struct FiresView: View {
                             }
                         }
                         
-                        if !monitorList {
+                        if !monitorList && prefix < fireB.fires.count {
                             Button(action: {
-                                prefix += 10
+                                prefix += 5
                             }) {
                                 MoreButton(symbol: "plus.circle", text: "View More", color: .blaze)
                             }

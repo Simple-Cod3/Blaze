@@ -98,7 +98,12 @@ struct MainView: View {
                     
                 MainCard {
                     if page == 0 {
-                        FiresView(showFireInformation: $showFireInformation, popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        FiresView(
+                            showFireInformation: $showFireInformation,
+                            popup: $popup,
+                            secondaryPopup: $secondaryPopup,
+                            secondaryClose: $secondaryClose
+                        )
                     }
                     
                     if page == 1 {
@@ -136,7 +141,12 @@ struct MainView: View {
                 
                 MainCard {
                     if page == 0 {
-                        FireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose, fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire())
+                        FireInfoCard(
+                            secondaryPopup: $secondaryPopup,
+                            secondaryClose: $secondaryClose,
+                            popup: $popup,
+                            fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire()
+                        )
                     }
                     
                     if page == 2 {

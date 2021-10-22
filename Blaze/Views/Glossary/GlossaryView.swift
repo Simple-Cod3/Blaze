@@ -48,7 +48,7 @@ struct GlossaryView: View {
                     if showDefinition != "" {
                         Button(action: {
                             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                
+                                showDefinition = ""
                             }
                         }) {
                             Image(systemName: "chevron.left.circle.fill")
@@ -69,6 +69,7 @@ struct GlossaryView: View {
                     Button(action: {
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                             secondaryClose = false
+                            showDefinition = ""
                         }
                     }) {
                         Image(systemName: "xmark.circle.fill")
