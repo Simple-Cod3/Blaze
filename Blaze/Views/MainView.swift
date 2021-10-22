@@ -11,7 +11,8 @@ struct MainView: View {
     
     @EnvironmentObject var fireB: FireBackend
     @EnvironmentObject var forecast: AirQualityBackend
-    
+
+    @State private var showFireInformation = ""
     @State private var selectAll = 0
     @State private var selectLargest = 0
     @State private var progress = 0.0
@@ -46,6 +47,7 @@ struct MainView: View {
                         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                             popup.toggle()
+                            secondaryPopup = popup
                         }
                     }
                 }
@@ -94,7 +96,7 @@ struct MainView: View {
                     
                 MainCard {
                     if page == 0 {
-                        FiresView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        FiresView(showFireInformation: $showFireInformation, popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                     }
                     
                     if page == 1 {
@@ -130,7 +132,7 @@ struct MainView: View {
                 
                 MainCard {
                     if page == 0 {
-                        POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        POCFireInfoCard(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose, fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire())
                     }
                     
                     if page == 2 {

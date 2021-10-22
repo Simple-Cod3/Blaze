@@ -33,7 +33,7 @@ struct POCFireInfoCard: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
-                SecondaryHeaderButton(secondaryClose: $secondaryClose, "Name")
+                SecondaryHeaderButton(secondaryClose: $secondaryClose, fireData.name)
                     .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
 
@@ -61,50 +61,49 @@ struct POCFireInfoCard: View {
                         DataCard(
                             "flame",
                             "Incident",
-                            "fireData.name",
+                            fireData.name,
                             .blaze
                         )
                         
                         DataCard(
                             "location",
                             "Location",
-                            "fireData.getLocation()",
+                            fireData.getLocation(),
                             .blaze
                         )
 
                         DataCard(
                             "clock.arrow.2.circlepath",
                             "Last Updated",
-                            "fireData.updated.getElapsedInterval(true)",
+                            fireData.updated.getElapsedInterval(true),
                             .blaze
                         )
                         
                         DataCard(
                             "calendar.badge.clock",
                             "Fire Started",
-                            "fireData.started.getElapsedInterval(true)",
+                            fireData.started.getElapsedInterval(true),
                             .blaze
                         )
 
                         DataCard(
                             "location.viewfinder",
                             "Area Burned",
-                            "fireData.getAreaString()",
+                            fireData.getAreaString(),
                             .blaze
                         )
                         
                         DataCard(
                             "checkmark.shield",
                             "Area Contained",
-                            "fireData.getContained()",
+                            fireData.getContained(),
                             .blaze
                         )
 
                         HStack(spacing: 0) {
                             Spacer()
                             
-                            MoreButtonLink(url: URL(string: "https://google.com")!)
-                                .disabled(true)
+                            MoreButtonLink(url: URL(string: fireData.url)!)
                             
                             Spacer()
                         }

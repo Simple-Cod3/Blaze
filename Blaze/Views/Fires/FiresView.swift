@@ -11,17 +11,18 @@ struct FiresView: View {
     
     @EnvironmentObject var fireB: FireBackend
 
-    @State private var showFireInformation = ""
     @State private var prefix = 10
     @State private var largest = true
     @State private var latest = false
     @State private var monitorList = false
-    
+
+    @Binding var showFireInformation: String
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
     
-    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+        self._showFireInformation = showFireInformation
         self._popup = popup
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
