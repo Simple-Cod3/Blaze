@@ -43,28 +43,20 @@ struct PhoneView: View {
         
         self.pinned = pinObjects
     }
-    
-    // Pin a phonenumber and save it
-    private func addPin(_ newPin: PhoneNumber) {
-        var pinned = UserDefaults.standard.stringArray(forKey: "pinnedFacilities") ?? [String]()
-        
-        if let name = newPin.name,
-           !pinned.contains(name) {
-            pinned.append(name)
-            self.pinned.append(newPin)
+
+    private func togglePin(_ pin: PhoneNumber) {
+        let savedPinned = UserDefaults.standard.stringArray(forKey: "pinnedFacilities") ?? [String]()
+
+        if let name = pin.name {
+            withAnimation {
+                if savedPinned.contains(name) {
+                    pinned = pinned.filter { $0.name != name }
+                } else {
+                    pinned.append(pin)
+                }
+            }
         }
-        
-        UserDefaults.standard.setValue(pinned, forKey: "pinnedFacilities")
-    }
-    
-    // When envoke remove
-    private func removePin(indexSet: IndexSet) {
-        pinned.remove(atOffsets: indexSet)
-        syncStates()
-    }
-    
-    // Updates UserDefaults
-    private func syncStates() {
+
         UserDefaults.standard.setValue(pinned.map { $0.name }, forKey: "pinnedFacilities")
     }
     
@@ -73,7 +65,6 @@ struct PhoneView: View {
     private var choices = ["Location", "ABC", "Pinned"]
     
     private func sortNums() {
-        print(loc.location?.coordinate)
         DispatchQueue.main.async {
             sortedPhones = Array(
                 numbers.numbers
@@ -125,9 +116,6 @@ struct PhoneView: View {
 
     private var searchAnimation = Animation.spring(response: 0.3, dampingFraction: 1)
     private var searching: Bool { searchText != "" && secondaryPopup && !showPhoneInfo }
-    private func searchFilter(number: PhoneNumber) {
-
-    }
     private var search: some View {
         HStack(spacing: 10) {
             HStack(spacing: 5) {
@@ -318,9 +306,9 @@ struct PhoneView: View {
                         ForEach(
                             pinned.filter({
                                 searchText == "" ||
-                                    ($0.county?.lowercased() ?? "???").contains(searchText.lowercased()) ||
-                                    ($0.phoneNumber?.lowercased() ?? "???").contains(searchText.lowercased()) ||
-                                    ($0.name?.lowercased() ?? "???").contains(searchText.lowercased())
+                                ($0.county?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                                ($0.phoneNumber?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                                ($0.name?.lowercased() ?? "???").contains(searchText.lowercased())
                             })
                         ) { number in
                             Button(action: {
@@ -330,11 +318,10 @@ struct PhoneView: View {
                                     focused = false
                                 }
                             }) {
-                                PhoneCard(addPin: addPin, number: number)
+                                PhoneCard(togglePin: togglePin, number: number)
                             }
                             .buttonStyle(DefaultButtonStyle())
                         }
-                        .onDelete(perform: removePin)
                     }
                 }
             } else {
@@ -346,7 +333,7 @@ struct PhoneView: View {
                                 showPhoneInfo = true
                             }
                         }) {
-                            PhoneCard(addPin: addPin, number: number)
+                            PhoneCard(togglePin: togglePin, number: number)
                         }
                         .buttonStyle(DefaultButtonStyle())
                     }

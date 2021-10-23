@@ -11,7 +11,7 @@ struct PhoneCard: View {
         
     @Environment(\.colorScheme) var colorScheme
     
-    var addPin: (PhoneNumber) -> Void
+    var togglePin: (PhoneNumber) -> Void
     var number: PhoneNumber
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -43,7 +43,7 @@ struct PhoneCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
         .contextMenu {
-            Button(action: { addPin(number) }) { Label("Pin Facility", systemImage: "plus.rectangle.on.rectangle") }
+            Button(action: { togglePin(number) }) { Label("Pin/Unpin Facility", systemImage: "pin") }
         }
     }
 }
