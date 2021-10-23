@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Option: View {
-
+    
+    @EnvironmentObject var fires: FireBackend
     @EnvironmentObject var mapController: FullFireMapController
     
     @State var showSearch = false
@@ -46,6 +47,7 @@ struct Option: View {
             .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
             .sheet(isPresented: $showSettings) {
                 SettingsView(showSettings: $showSettings)
+                    .environmentObject(fires)
             }
             
             Spacer()
