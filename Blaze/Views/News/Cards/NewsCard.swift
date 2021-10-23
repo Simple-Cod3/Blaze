@@ -35,7 +35,6 @@ struct NewsCard: View {
                 Text(news.getTimeAgo().uppercased())
                     .font(Font.caption.weight(.medium))
                     .foregroundColor(Color(.tertiaryLabel))
-
             }
         }
         .fixedSize(horizontal: false, vertical: true)

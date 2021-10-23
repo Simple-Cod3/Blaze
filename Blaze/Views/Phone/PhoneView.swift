@@ -93,7 +93,7 @@ struct PhoneView: View {
                             ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
                             ($0.name?.lowercased() ?? "???").contains(text.lowercased())
                     })
-                    .prefix(text == "" ? 7 : numbers.numbers.count)
+                    .prefix(10)
             )
         }
     }

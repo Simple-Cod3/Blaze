@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LegacyTextField: UIViewRepresentable {
+    
     @Binding public var isFirstResponder: Bool
     @Binding public var text: String
 

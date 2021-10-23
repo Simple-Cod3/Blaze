@@ -26,9 +26,11 @@ struct PhoneCard: View {
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
                 
-                Text(number.phoneNumber!)
-                    .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
-                    .foregroundColor(.orange)
+                HStack(spacing: 5) {
+                    Text((number.county ?? "Unknown") + " • " + (number.phoneNumber  ?? "Unknown Number"))
+                }
+                .font(.system(size: textSize(textStyle: .subheadline)-1).weight(.medium))
+                .foregroundColor(.orange)
             }
             
             Spacer()

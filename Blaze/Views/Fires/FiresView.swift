@@ -96,7 +96,7 @@ struct FiresView: View {
                         searchText = ""
                     }
                 }
-                .font(.callout)
+                .font(.body)
             }
         }
         .padding([.horizontal, .bottom], UIConstants.margin)

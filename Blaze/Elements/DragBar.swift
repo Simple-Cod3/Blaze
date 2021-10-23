@@ -16,4 +16,3 @@ struct DragBar: View {
             .padding(.bottom, 11)
     }
 }
-
