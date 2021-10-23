@@ -268,6 +268,8 @@
 		6DA2FF2E2506AF5400C86F0C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E9C41A8B2555030600AC3052 /* UpdateLog */,
+				E9C41A86255502C400AC3052 /* Credits */,
 				6DA2FF352506B55E00C86F0C /* SettingsCards.swift */,
 				6DA2FF2F2506AF6400C86F0C /* SettingsView.swift */,
 				6DA2FF312506B00400C86F0C /* UnitsCard.swift */,
@@ -406,8 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				E9AF016B24FDBBF80058C184 /* SearchView.swift */,
-				E9C41A8B2555030600AC3052 /* UpdateLog */,
-				E9C41A86255502C400AC3052 /* Credits */,
 				E97E26DC250837E000B939F3 /* UIKit Search Functionality */,
 			);
 			path = Search;
