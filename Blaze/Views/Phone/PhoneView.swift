@@ -105,7 +105,7 @@ struct PhoneView: View {
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
     }
-    
+        
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
@@ -163,107 +163,11 @@ struct PhoneView: View {
                 .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
-                VStack(spacing: 0) {
-                    HStack(spacing: 10) {
-                        ForEach(choices.indices) { index in
-                            Button(action: {
-                                if index != mode {
-                                    mode = index
-                                    sortNums()
-                                }
-                            }) {
-                                HStack {
-                                    Spacer()
-                                    
-                                    Text(choices[index])
-                                        .font(.subheadline)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.primary.opacity(index == mode ? 1 : 0.7))
-                                    
-                                    Spacer()
-                                }
-                                .padding(.vertical, 9)
-                                .background(index == mode ? (colorScheme == .dark ? Color(.tertiaryLabel) : Color.white) : Color(.quaternarySystemFill))
-                                .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                            }
-                            .buttonStyle(DefaultButtonStyle())
-                        }
-                    }
-                    
-                    Group {
-                        if mode == 0 {
-                            SubHeader(
-                                title: "Sort by location",
-                                desc: "Fire stations are sorted by distance from you."
-                            )
-                        }
-                        
-                        if mode == 1 {
-                            SubHeader(
-                                title: "Sort by alphabetical order",
-                                desc: "Fire stations are sorted by ascending alphabetical order."
-                            )
-                        }
-                        
-                        if mode == 2 {
-                            SubHeader(
-                                title: "Pinned fire stations",
-                                desc: "Pinned fire stations are sorted by time pinned."
-                            )
-                        }
-                    }
-                    .padding(.vertical, UIConstants.margin)
-                    
-                    if mode == 2 {
-                        if pinned.count == 0 {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text("Save Facilities")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
-                                
-                                Text("Press and hold on a facility to pin it.")
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.secondary)
-                            }
-                            .padding(.bottom, 20)
-                        } else {
-                            VStack(spacing: 13) {
-                                ForEach(
-                                    pinned.filter({
-                                        text == "" ||
-                                            ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                            ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                            ($0.name?.lowercased() ?? "???").contains(text.lowercased())
-                                    })
-                                ) { number in
-                                    Button(action: {
-                                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                            showPhoneInfo = true
-                                        }
-                                    }) {
-                                        PhoneCard(addPin: addPin, number: number)
-                                    }
-                                }
-                                .onDelete(perform: removePin)
-                            }
-                        }
-                    } else {
-                        VStack(spacing: 13) {
-                            ForEach(sortedPhones) { number in
-                                Button(action: {
-                                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                        showPhoneInfo = true
-                                    }
-                                }) {
-                                    PhoneCard(addPin: addPin, number: number)
-                                }
-                            }
-                        }
-                    }
+                if showPhoneInfo {
+//                    PhoneInfoView(phoneData: number)
+                } else {
+                    phoneList
                 }
-                .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding)
-                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
         .onAppear {
@@ -271,5 +175,109 @@ struct PhoneView: View {
             sortNums()
             show = true
         }
+    }
+    
+    private var phoneList: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 10) {
+                ForEach(choices.indices) { index in
+                    Button(action: {
+                        if index != mode {
+                            mode = index
+                            sortNums()
+                        }
+                    }) {
+                        HStack {
+                            Spacer()
+                            
+                            Text(choices[index])
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.primary.opacity(index == mode ? 1 : 0.7))
+                            
+                            Spacer()
+                        }
+                        .padding(.vertical, 9)
+                        .background(index == mode ? (colorScheme == .dark ? Color(.tertiaryLabel) : Color.white) : Color(.quaternarySystemFill))
+                        .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                }
+            }
+            
+            Group {
+                if mode == 0 {
+                    SubHeader(
+                        title: "Sort by location",
+                        desc: "Fire stations are sorted by distance from you."
+                    )
+                }
+                
+                if mode == 1 {
+                    SubHeader(
+                        title: "Sort by alphabetical order",
+                        desc: "Fire stations are sorted by ascending alphabetical order."
+                    )
+                }
+                
+                if mode == 2 {
+                    SubHeader(
+                        title: "Pinned fire stations",
+                        desc: "Pinned fire stations are sorted by time pinned."
+                    )
+                }
+            }
+            .padding(.vertical, UIConstants.margin)
+            
+            if mode == 2 {
+                if pinned.count == 0 {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Save Facilities")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        
+                        Text("Press and hold on a facility to pin it.")
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.bottom, 20)
+                } else {
+                    VStack(spacing: 13) {
+                        ForEach(
+                            pinned.filter({
+                                text == "" ||
+                                    ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                    ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
+                                    ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                            })
+                        ) { number in
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    showPhoneInfo = true
+                                }
+                            }) {
+                                PhoneCard(addPin: addPin, number: number)
+                            }
+                        }
+                        .onDelete(perform: removePin)
+                    }
+                }
+            } else {
+                VStack(spacing: 13) {
+                    ForEach(sortedPhones) { number in
+                        Button(action: {
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                showPhoneInfo = true
+                            }
+                        }) {
+                            PhoneCard(addPin: addPin, number: number)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(UIConstants.margin)
+        .padding(.bottom, UIConstants.bottomPadding)
+        .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
     }
 }

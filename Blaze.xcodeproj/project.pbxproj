@@ -237,7 +237,6 @@
 		6D10C756271953AC001A4B1C /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				E9C41A80255501B500AC3052 /* PhoneCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -296,6 +295,7 @@
 		E9ABC4372532C3D100E2DE49 /* Phone */ = {
 			isa = PBXGroup;
 			children = (
+				E9C41A80255501B500AC3052 /* PhoneCard.swift */,
 				E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */,
 				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
 			);
