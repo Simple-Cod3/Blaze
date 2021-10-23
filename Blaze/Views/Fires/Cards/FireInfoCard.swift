@@ -98,5 +98,8 @@ struct FireInfoCard: View {
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
+        .onAppear {
+            mapController.moveBack(lat: fireData.latitude, long: fireData.longitude, span: 1)
+        }
     }
 }

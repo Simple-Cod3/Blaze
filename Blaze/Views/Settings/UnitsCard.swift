@@ -13,8 +13,17 @@ struct UnitsCard: View {
 
     @State var selection: Int = units.firstIndex(of: currentUnit ?? units[0])!
     
-    var title: String
-    var desc: String
+    private var title: String
+    private var desc: String
+    
+    init(title: String, desc: String) {
+        self.title = title
+        self.desc = desc
+    }
+    
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
         
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -24,7 +33,7 @@ struct UnitsCard: View {
                 .foregroundColor(.primary)
             
             Text(desc)
-                .font(.subheadline)
+                .font(.system(size: textSize(textStyle: .subheadline)-1))
                 .foregroundColor(Color(.tertiaryLabel))
             
             Picker("", selection: $selection) {
