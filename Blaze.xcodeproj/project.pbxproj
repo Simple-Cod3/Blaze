@@ -85,7 +85,6 @@
 		E9F222E625005BEB00EC5A06 /* ForestFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E525005BEB00EC5A06 /* ForestFire.swift */; };
 		E9F222E82500886800EC5A06 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222E72500886800EC5A06 /* DateExtension.swift */; };
 		E9F222EB2500C4A800EC5A06 /* FireMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F222EA2500C4A800EC5A06 /* FireMapView.swift */; };
-		E9FE47112723E0310050D382 /* Focuser in Frameworks */ = {isa = PBXBuildFile; productRef = E9FE47102723E0310050D382 /* Focuser */; };
 		E9FE47152723FB4C0050D382 /* LegacyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE47142723FB4C0050D382 /* LegacyTextView.swift */; };
 /* End PBXBuildFile section */
 
@@ -203,7 +202,6 @@
 			files = (
 				E9458A01254E27F20067BFE8 /* Fuzi in Frameworks */,
 				E9AF019524FDEC700058C184 /* FeedKit in Frameworks */,
-				E9FE47112723E0310050D382 /* Focuser in Frameworks */,
 				E90CE1B12538F93C00217B94 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,7 +504,6 @@
 				E9AF019424FDEC700058C184 /* FeedKit */,
 				E90CE1B02538F93C00217B94 /* BetterSafariView */,
 				E9458A00254E27F20067BFE8 /* Fuzi */,
-				E9FE47102723E0310050D382 /* Focuser */,
 			);
 			productName = Blaze;
 			productReference = E9AF015124FDB8DD0058C184 /* Blaze.app */;
@@ -539,7 +536,6 @@
 				E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */,
 				E90CE1AF2538F93C00217B94 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				E94589FF254E27F20067BFE8 /* XCRemoteSwiftPackageReference "Fuzi" */,
-				E9FE470F2723E0310050D382 /* XCRemoteSwiftPackageReference "swift-focuser" */,
 			);
 			productRefGroup = E9AF015224FDB8DD0058C184 /* Products */;
 			projectDirPath = "";
@@ -821,9 +817,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Blaze/Blaze.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -835,7 +831,7 @@
 				MARKETING_VERSION = 3.0;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -852,9 +848,9 @@
 				CODE_SIGN_ENTITLEMENTS = Blaze/Blaze.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"Blaze/Preview Content\"";
-				DEVELOPMENT_TEAM = C4DBP4HKWQ;
+				DEVELOPMENT_TEAM = C53YYLJPD6;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Blaze/Info.plist;
@@ -866,7 +862,7 @@
 				MARKETING_VERSION = 3.0;
 				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simplycode.Blaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -923,14 +919,6 @@
 				minimumVersion = 9.1.2;
 			};
 		};
-		E9FE470F2723E0310050D382 /* XCRemoteSwiftPackageReference "swift-focuser" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/art-technologies/swift-focuser.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -948,11 +936,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E9AF019324FDEC700058C184 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
-		};
-		E9FE47102723E0310050D382 /* Focuser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9FE470F2723E0310050D382 /* XCRemoteSwiftPackageReference "swift-focuser" */;
-			productName = Focuser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
