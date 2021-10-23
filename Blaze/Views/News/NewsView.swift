@@ -14,7 +14,7 @@ struct NewsView: View {
     
     @State private var progress = 0.0
     @State private var done = false
-    @State private var newsShown = 20
+    @State private var newsShown = 10
     @State private var shown: NewsModals?
     
     private enum NewsModals: String, Identifiable {
@@ -130,7 +130,7 @@ struct NewsView: View {
                         if news.newsList.count > newsShown {
                             Button(action: {
                                 print(news.newsList.count)
-                                newsShown += 20
+                                newsShown += 10
                             }) {
                                 MoreButton(symbol: "plus.circle", text: "Show More", color: .orange)
                             }
