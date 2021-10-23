@@ -115,12 +115,8 @@ struct PhoneView: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
-                Capsule()
-                    .fill(Color(.quaternaryLabel))
-                    .frame(width: 39, height: 5)
-                    .padding(.top, 7)
-                    .padding(.bottom, 11)
-                
+                DragBar()
+
                 HStack(spacing: 0) {
                     if showPhoneInfo {
                         Button(action: {

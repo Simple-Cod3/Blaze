@@ -30,11 +30,7 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
-                Capsule()
-                    .fill(Color(.quaternaryLabel))
-                    .frame(width: 39, height: 5)
-                    .padding(.top, 7)
-                    .padding(.bottom, 11)
+                DragBar()
                 
                 HStack(spacing: 0) {
                     if showUpdates || showCredits {
@@ -81,33 +77,14 @@ struct SettingsView: View {
                 .padding(.horizontal, 20)
 
             ScrollView {
-                VStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 13) {
-                        UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
-                        
-                        fireToggle
-                        
-                        Button(action: {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                showUpdates = true
-                            }
-                        }) {
-                            SettingsCardLink(title: "Updates", desc: "See the latest changes to Blaze.")
-                        }
-                        .buttonStyle(DefaultButtonStyle())
-
-                        Button(action: {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                showCredits = true
-                            }
-                        }) {
-                            SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.")
-                        }
-                        .buttonStyle(DefaultButtonStyle())
+                Group {
+                    if showUpdates {
+                        UpdateLog()
+                    } else if showCredits {
+                        CreditsView()
+                    } else {
+                        settingsMain
                     }
-                    .padding(.bottom, UIConstants.margin)
-                    
-                    Caption("Blaze: Wildfires (Blaze) is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.\n\nBlaze is not responsible for any consequences caused by misinformation while using the app.")
                 }
                 .padding(UIConstants.margin)
             }
@@ -149,5 +126,36 @@ struct SettingsView: View {
         }
         .buttonStyle(DefaultButtonStyle())
         .disabled(!fires.progress.allSatisfy({$0.isFinished}))
+    }
+    
+    private var settingsMain: some View {
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 13) {
+                UnitsCard(title: "Units", desc: "Change the units of measurement for area.")
+                
+                fireToggle
+                
+                Button(action: {
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                        showUpdates = true
+                    }
+                }) {
+                    SettingsCardLink(title: "Updates", desc: "See the latest changes to Blaze.")
+                }
+                .buttonStyle(DefaultButtonStyle())
+
+                Button(action: {
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                        showCredits = true
+                    }
+                }) {
+                    SettingsCardLink(title: "Credits", desc: "Meet the team behind the app.")
+                }
+                .buttonStyle(DefaultButtonStyle())
+            }
+            .padding(.bottom, UIConstants.margin)
+            
+            Caption("Blaze: Wildfires (Blaze) is in constant development. All content is subject to change. In order to provide feedback and contribute, please contact any team members listed in Credits.\n\nBlaze is not responsible for any consequences caused by misinformation while using the app.")
+        }
     }
 }

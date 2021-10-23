@@ -17,11 +17,7 @@ struct HeaderButton: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Capsule()
-                .fill(Color(.quaternaryLabel))
-                .frame(width: 39, height: 5)
-                .padding(.top, 7)
-                .padding(.bottom, 11)
+            DragBar()
             
             HStack(spacing: 0) {
                 Text(title)
@@ -57,12 +53,7 @@ struct SecondaryHeaderButton: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Capsule()
-                .fill(Color(.quaternaryLabel))
-                .frame(width: 39, height: 5)
-                .padding(.top, 7)
-                .padding(.bottom, 11)
-                .opacity(staticModal ? 0 : 1)
+            DragBar()
             
             HStack(spacing: 0) {
                 Text(title)
