@@ -37,7 +37,13 @@ struct FireInfoCard: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SecondaryHeaderButton(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose, fireData.name, staticModal: staticModal)
+            SecondaryHeaderButton(
+                popup: $popup,
+                secondaryPopup: $secondaryPopup,
+                secondaryClose: $secondaryClose,
+                fireData.name,
+                staticModal: staticModal
+            )
                 .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
 
             if secondaryPopup {

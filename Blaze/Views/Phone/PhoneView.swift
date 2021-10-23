@@ -16,11 +16,18 @@ struct PhoneView: View {
     
     @State private var pinned = [PhoneNumber]()
     @State var sortedPhones = [PhoneNumber]()
+    @State var number = PhoneNumber(name: "Unknown", address: "Unknown", city: "Unknown", phoneNumber: "Unknown", county: "Unknown")
     
     @State private var text = ""
     @State private var mode = 0
     @State private var show = false
     @State private var showPhoneInfo = false
+    @State private var focused = false
+    @State private var searchText = ""
+
+    @Binding var popup: Bool
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
 
     // MARK: - Pin Functionality
     
@@ -98,10 +105,6 @@ struct PhoneView: View {
         }
     }
     
-    @Binding var popup: Bool
-    @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
-    
     init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
         self._popup = popup
         self._secondaryPopup = secondaryPopup
@@ -111,64 +114,113 @@ struct PhoneView: View {
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
+
+    private var searchAnimation = Animation.spring(response: 0.3, dampingFraction: 1)
+    private var searching: Bool { searchText != "" && secondaryPopup }
+    private var search: some View {
+        HStack(spacing: 10) {
+            HStack(spacing: 5) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16))
+                    .foregroundColor(searching ? .blaze : Color(.tertiaryLabel))
+
+                LegacyTextField(
+                    text: $searchText.animation(searchAnimation),
+                    isFirstResponder: $focused
+                ) {
+                    $0.placeholder = "Search"
+                    $0.returnKeyType = .search
+                    $0.autocorrectionType = .no
+                }
+                .frame(maxHeight: 20)
+            }
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                    .fill(Color(.quaternarySystemFill))
+            )
+
+            if searching {
+                Button("Cancel") {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    withAnimation(searchAnimation) {
+                        searchText = ""
+                    }
+                }
+                .font(.callout)
+            }
+        }
+        .padding([.horizontal, .bottom], UIConstants.margin)
+        .padding(.top, searching ? UIConstants.margin : 0)
+    }
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
-                DragBar()
 
-                HStack(spacing: 0) {
-                    if showPhoneInfo {
+            if !searching {
+                VStack(spacing: 0) {
+                    DragBar()
+
+                    HStack(spacing: 0) {
+                        if showPhoneInfo {
+                            Button(action: {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    showPhoneInfo = false
+                                }
+                            }) {
+                                Image(systemName: "chevron.left.circle.fill")
+                                    .font(.title2.weight(.semibold))
+                                    .foregroundColor(Color(.tertiaryLabel))
+                                    .contentShape(Rectangle())
+                                    .padding(.trailing, 11)
+                            }
+                        }
+
+                        Text(showPhoneInfo ? number.name ?? "Unknown" : "Facility Contacts")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                            .lineLimit(1)
+
+                        Spacer()
+
                         Button(action: {
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                showPhoneInfo = false
+                            if secondaryPopup {
+                                popup = true
+                            } else {
+                                popup = false
+                            }
+
+                            focused = false
+
+                            withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                                secondaryClose = false
                             }
                         }) {
-                            Image(systemName: "chevron.left.circle.fill")
+                            Image(systemName: "xmark.circle.fill")
                                 .font(.title2.weight(.semibold))
                                 .foregroundColor(Color(.tertiaryLabel))
                                 .contentShape(Rectangle())
-                                .padding(.trailing, 11)
                         }
                     }
-                    
-                    Text(showPhoneInfo ? "Facility name" : "Facility Contacts")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                        .lineLimit(1)
-
-                    Spacer()
-                    
-                    Button(action: {
-                        if secondaryPopup {
-                            popup = true
-                        } else {
-                            popup = false
-                        }
-                        
-                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryClose = false
-                        }
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title2.weight(.semibold))
-                            .foregroundColor(Color(.tertiaryLabel))
-                            .contentShape(Rectangle())
-                    }
+                    .padding(.bottom, UIConstants.margin)
                 }
-                .padding(.bottom, UIConstants.margin)
+                .padding(.horizontal, UIConstants.margin)
+                .contentShape(Rectangle())
+                .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
-            .padding(.horizontal, UIConstants.margin)
-            .contentShape(Rectangle())
-            .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-            
+
+            if !showPhoneInfo {
+                search
+            }
+
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 if showPhoneInfo {
-//                    PhoneInfoView(phoneData: number)
+                    PhoneInfoView(phoneData: number)
+                        .padding(.vertical, UIConstants.margin)
                 } else {
                     phoneList
                 }
@@ -257,7 +309,9 @@ struct PhoneView: View {
                         ) { number in
                             Button(action: {
                                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    self.number = number
                                     showPhoneInfo = true
+                                    focused = false
                                 }
                             }) {
                                 PhoneCard(addPin: addPin, number: number)
@@ -271,6 +325,7 @@ struct PhoneView: View {
                 VStack(spacing: 13) {
                     ForEach(sortedPhones) { number in
                         Button(action: {
+                            self.number = number
                             withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                                 showPhoneInfo = true
                             }
