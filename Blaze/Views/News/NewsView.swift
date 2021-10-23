@@ -13,7 +13,6 @@ struct NewsView: View {
     @EnvironmentObject var news: NewsBackend
     
     @State private var progress = 0.0
-    @State private var done = false
     @State private var newsShown = 10
     @State private var shown: NewsModals?
     
@@ -40,18 +39,26 @@ struct NewsView: View {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize
     }
     
-    var failed: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "wifi.exclamationmark")
-                .font(.system(size: 30))
-                .foregroundColor(.blaze)
-            
-            Text("No Connection")
+    private var failed: some View {
+        VStack(alignment: .center, spacing: 39) {
+            Image(systemName: "xmark.octagon")
                 .font(.title)
-                .fontWeight(.bold)
+                .foregroundColor(.red)
             
-            Button("Click to Retry", action: { news.refreshNewsList() })
+            Text("Content ")
+                .foregroundColor(Color(.tertiaryLabel))
+            + Text("failed ")
+                .foregroundColor(.red)
+                .fontWeight(.medium)
+            + Text("to load.")
+                .foregroundColor(Color(.tertiaryLabel))
+            
+            Spacer()
         }
+        .font(.subheadline)
+        .multilineTextAlignment(.center)
+        .padding(.top, UIScreen.main.bounds.maxY*0.3)
+        .padding(.horizontal, 80)
     }
 
     var body: some View {
@@ -65,98 +72,92 @@ struct NewsView: View {
         }
     }
     
-    var newsdata: some View {
+    private var newsdata: some View {
         VStack(spacing: 0) {
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
-            ScrollView {
-                VStack(spacing: 0) {
-                    Button(action: {
-                        showContacts = true
-                        showGlossary = false
-                        
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            secondaryPopup = true
-                            secondaryClose = true
+            if news.loaded {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        Button(action: {
+                            showContacts = true
+                            showGlossary = false
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                popup = false
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                secondaryPopup = true
+                                secondaryClose = true
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    popup = false
+                                }
                             }
+                        }) {
+                            VerticalButton(
+                                symbol: "phone.fill",
+                                text: "Facility Contacts",
+                                desc: "Find the nearest fire stations",
+                                mark: "chevron.right",
+                                color: .orange
+                            )
                         }
-                    }) {
-                        VerticalButton(
-                            symbol: "phone.fill",
-                            text: "Facility Contacts",
-                            desc: "Find the nearest fire stations",
-                            mark: "chevron.right",
-                            color: .orange
-                        )
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                    .padding(.bottom, 13)
-                    
-                    Button(action: {
-                        showContacts = false
-                        showGlossary = true
+                        .buttonStyle(DefaultButtonStyle())
+                        .padding(.bottom, 13)
                         
-                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryPopup = true
-                            secondaryClose = true
+                        Button(action: {
+                            showContacts = false
+                            showGlossary = true
                             
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                popup = false
+                            withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                                secondaryPopup = true
+                                secondaryClose = true
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    popup = false
+                                }
                             }
+                        }) {
+                            VerticalButton(
+                                symbol: "character.book.closed.fill",
+                                text: "Glossary",
+                                desc: "Learn wildfire terms",
+                                mark: "chevron.right",
+                                color: .orange
+                            )
                         }
-                    }) {
-                        VerticalButton(
-                            symbol: "character.book.closed.fill",
-                            text: "Glossary",
-                            desc: "Learn wildfire terms",
-                            mark: "chevron.right",
-                            color: .orange
-                        )
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                    
-                    SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
-                        .padding(.vertical, UIConstants.margin)
+                        .buttonStyle(DefaultButtonStyle())
+                        
+                        SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
+                            .padding(.vertical, UIConstants.margin)
 
-                    LazyVStack(spacing: 13) {
-                        ForEach(news.newsList.prefix(newsShown)) { news in
-                            NewsCardButton(news: news)
-                        }
-                        
-                        if news.newsList.count > newsShown {
-                            Button(action: {
-                                print(news.newsList.count)
-                                newsShown += 10
-                            }) {
-                                MoreButton(symbol: "plus.circle", text: "Show More", color: .orange)
+                        LazyVStack(spacing: 13) {
+                            ForEach(news.newsList.prefix(newsShown)) { news in
+                                NewsCardButton(news: news)
+                            }
+                            
+                            if news.newsList.count > newsShown {
+                                Button(action: {
+                                    print(news.newsList.count)
+                                    newsShown += 10
+                                }) {
+                                    MoreButton(symbol: "plus.circle", text: "Show More", color: .orange)
+                                }
                             }
                         }
                     }
+                    .padding(UIConstants.margin)
+                    .padding(.bottom, UIConstants.bottomPadding*2)
+                    .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
                 }
-                .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding*2)
-                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
+            } else if news.failed {
+                failed
+            } else {
+                ProgressBarView(
+                    progressObjs: $news.progress,
+                    progress: $progress,
+                    done: $news.loaded
+                )
             }
         }
-        
-//        } else if news.failed {
-//            failed
-//        } else {
-//            ProgressBarView(
-//                progressObjs: $news.progress,
-//                progress: $progress,
-//                done: $done.animation(.easeInOut)
-//            )
-//        }
-//    }
-//    .onAppear {
-//        if news.loaded {
-//            done = true
-//        }
-//    }
     }
 }

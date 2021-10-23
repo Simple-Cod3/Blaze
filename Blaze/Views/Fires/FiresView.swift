@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FiresView: View {
+    
     @EnvironmentObject var fireB: FireBackend
 
     // Search Bar stuff
