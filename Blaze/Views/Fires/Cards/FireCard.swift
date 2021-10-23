@@ -39,9 +39,12 @@ struct FireCard: View {
         Button(action: {
             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                 showFireInformation = fireData.name
-                popup = false
                 secondaryPopup = true
                 secondaryClose = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    popup = false
+                }
             }
         }) {
             HStack(spacing: 0) {
