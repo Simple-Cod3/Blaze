@@ -15,20 +15,19 @@ struct CreditsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: show ? 20 : 400) {
                 Text("Three curious students with a passion for code and design.")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 20)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary.opacity(0.7))
                 
                 Link(destination: URL(string: "https://github.com/b0kch01")!) {
-                    ProfileCircle(img: "b0kch01", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
+                    ProfileCircle(img: "choi", name: "Nathan Choi", role: "Lead Developer", link: "github.com/b0kch01")
                 }
                 
                 Link(destination: URL(string: "https://dribbble.com/polarizz")!) {
-                    ProfileCircle(img: "polarizz", name: "Paul Wong", role: "Lead Designer", link: "dribbble.com/polarizz")
+                    ProfileCircle(img: "wong", name: "Paul Wong", role: "Lead Designer", link: "dribbble.com/polarizz")
                 }
                 
                 Link(destination: URL(string: "https://github.com/Sakend")!) {
-                    ProfileCircle(img: "sakend", name: "Max Kerns", role: "Developer", link: "github.com/Sakend")
+                    ProfileCircle(img: "kerns", name: "Max Kerns", role: "Developer", link: "github.com/Sakend")
                 }
                 
                 Spacer()

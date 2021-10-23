@@ -40,7 +40,7 @@ struct VersionDotSoon: View {
                             .font(.subheadline)
                     }
                 }
-                .foregroundColor(Color(.tertiaryLabel))
+                .foregroundColor(.secondary.opacity(0.7))
             }
         }
         .padding(16)
