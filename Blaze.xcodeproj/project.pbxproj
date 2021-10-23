@@ -296,7 +296,6 @@
 		E9ABC4372532C3D100E2DE49 /* Phone */ = {
 			isa = PBXGroup;
 			children = (
-				6D10C756271953AC001A4B1C /* Cards */,
 				E9ABC4382532C3F200E2DE49 /* PhoneInfoView.swift */,
 				279FE6FD25214AAE004AC147 /* PhoneView.swift */,
 			);
@@ -461,6 +460,7 @@
 				E9C41A8C2555032000AC3052 /* VersionCard.swift */,
 				E9C41A8F2555033B00AC3052 /* VersionDot.swift */,
 				E9C41A922555035900AC3052 /* VersionDotSoon.swift */,
+				6D10C756271953AC001A4B1C /* Cards */,
 				E9C41A952555037800AC3052 /* VersionTag.swift */,
 			);
 			path = UpdateLog;

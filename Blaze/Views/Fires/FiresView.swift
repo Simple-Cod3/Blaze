@@ -51,11 +51,9 @@ struct FiresView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                            largest = false
-                            latest = false
-                            monitorList = true
-                        }
+                        largest = false
+                        latest = false
+                        monitorList = true
                     }) {
                         RectButton(selected: $monitorList, "Monitoring List")
                     }
@@ -63,22 +61,18 @@ struct FiresView: View {
                     
                     HStack(spacing: 10) {
                         Button(action: {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                                largest = true
-                                latest = false
-                                monitorList = false
-                            }
+                            largest = true
+                            latest = false
+                            monitorList = false
                         }) {
                             RectButton(selected: $largest, "Largest Fires")
                         }
                         .buttonStyle(DefaultButtonStyle())
                         
                         Button(action: {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) {
-                                largest = false
-                                latest = true
-                                monitorList = false
-                            }
+                            largest = false
+                            latest = true
+                            monitorList = false
                         }) {
                             RectButton(selected: $latest, "Latest Fires")
                         }
