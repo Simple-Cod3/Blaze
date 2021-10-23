@@ -33,7 +33,7 @@ struct AirQuality: Codable, Identifiable {
     }
     
     /// Everything is optional!
-    init(dateIssue: String? = "-/-/-", place: String? = "Unknown", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "Unknown", AQI: Int? = -1) {
+    init(dateIssue: String? = "-/-/-", place: String? = "Unknown", stateCode: String? = "CA", latitude: Double? = 0.0, longitude: Double? = 0.0, pollutant: String? = "Unknown", AQI: Int? = -1, category: Category?=nil) {
         self.dateObserved = dateIssue!
         self.place = place!
         self.stateCode = stateCode!
@@ -41,7 +41,7 @@ struct AirQuality: Codable, Identifiable {
         self.longitude = longitude!
         self.pollutant = pollutant!
         self.AQI = AQI!
-        self.category = Category(number: -1, name: "Unknown")
+        self.category = category ?? Category(number: -1, name: "Unknown")
     }
     
     // CodingKeys

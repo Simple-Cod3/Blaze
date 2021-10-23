@@ -53,7 +53,7 @@ class NewsBackend: ObservableObject {
         /// Load news content
         var newNews = [News]()
         let group = DispatchGroup()
-        let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/incidents/")!
+        let feedURL = URL(string: "https://inciweb.nwcg.gov/feeds/rss/articles/")!
         
         let task = URLSession.shared.dataTask(with: feedURL) { data, _, error in
             guard let data: Data = data else {

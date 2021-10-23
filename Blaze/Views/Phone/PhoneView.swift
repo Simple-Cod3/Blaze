@@ -339,6 +339,15 @@ struct PhoneView: View {
                     }
                 }
             }
+
+            if sortedPhones.count < 1 {
+                HStack {
+                    Spacer()
+                    Label("No results", systemImage: "tag.slash")
+                    Spacer()
+                }
+                .padding(.vertical, UIConstants.margin)
+            }
         }
         .padding(UIConstants.margin)
         .padding(.bottom, UIConstants.bottomPadding)
