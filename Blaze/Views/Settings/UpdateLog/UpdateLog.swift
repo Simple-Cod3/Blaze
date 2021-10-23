@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct UpdateLog: View {
-    @State var show = false
-    
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: show ? 5 : 400) {
+            VStack(spacing: 13) {
                 VersionDotSoon(
-                    version: "2.0",
-                    changes: ["• Transition to new map structure to include dynamic area and data viewing on map"]
+                    version: "2.1",
+                    changes: ["• Transition to new map API"]
                 )
                 
                 VersionCard(
-                    // 1.5.20
+                    // 10.24.21
+                    version: "2.0",
+                    changes: ["• Major redesign",
+                              "• Transition to new map structure to include dynamic area and data viewing on map"
+                             ]
+                )
+                
+                VersionDot(
                     version: "1.2",
+                    date: "1.5.21",
                     changes: ["• Tweaks and changes to current UI",
                               "• Split code to improve run-time processes",
                               "• Improved dynamic type on all devices",
@@ -66,15 +72,6 @@ struct UpdateLog: View {
                     date: "10.17.20",
                     changes: ["• Initial release"]
                 )
-            }
-            .padding(.top, 20)
-            .padding(.bottom, 50)
-        }
-        .navigationBarTitle("Updates", displayMode: .large)
-        .onAppear {
-            show = false
-            withAnimation(Animation.spring(response: 0.5).delay(0.05)) {
-                show = true
             }
         }
     }

@@ -20,43 +20,34 @@ struct VersionDot: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 0) {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.title)
-                    .foregroundColor(.blaze)
-                    .padding(5)
-                    .padding(.trailing, 7)
+        VStack(alignment: .leading, spacing: 7) {
+            HStack(spacing: 7) {
+                Image(systemName: "checkmark.circle")
                 
                 Text("Blaze \(version)")
-                    .font(.title3)
-                    .fontWeight(.medium)
                 
                 Spacer()
-                
-                Text(date).foregroundColor(Color(.tertiaryLabel))
             }
+            .font(.body.weight(.medium))
+            .foregroundColor(.blaze)
             
-            HStack(alignment: .top) {
-                VStack { Spacer()}
-                    .frame(width: 2)
-                    .background(Color(.tertiaryLabel))
-                    .clipShape(Capsule())
-                    .padding(.horizontal, 17)
-                    .padding(.vertical, 3)
-                    
-                VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 7) {
+                Image(systemName: "checkmark.circle")
+                    .font(.body.weight(.medium))
+                    .opacity(0)
+                
+                VStack(alignment: .leading, spacing: 7) {
                     ForEach(changes, id: \.self) { change in
                         Text(change)
+                            .font(.subheadline)
                     }
                 }
-                .foregroundColor(Color.secondary)
-                .padding(.bottom, 15)
-                
-                Spacer()
+                .foregroundColor(Color(.tertiaryLabel))
             }
-            .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(.horizontal, 30)
+        .padding(16)
+        .background(Color(.quaternarySystemFill))
+        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }

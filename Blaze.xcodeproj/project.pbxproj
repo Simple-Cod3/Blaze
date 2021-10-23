@@ -76,7 +76,6 @@
 		E9C41A8D2555032000AC3052 /* VersionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A8C2555032000AC3052 /* VersionCard.swift */; };
 		E9C41A902555033B00AC3052 /* VersionDot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A8F2555033B00AC3052 /* VersionDot.swift */; };
 		E9C41A932555035900AC3052 /* VersionDotSoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A922555035900AC3052 /* VersionDotSoon.swift */; };
-		E9C41A962555037800AC3052 /* VersionTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41A952555037800AC3052 /* VersionTag.swift */; };
 		E9CE22A52502F48700929D13 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A42502F48700929D13 /* Extensions.swift */; };
 		E9CE22A7250308F900929D13 /* FireCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE22A6250308F900929D13 /* FireCard.swift */; };
 		E9E31A8A250E958B007FF855 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E31A89250E958B007FF855 /* Progress.swift */; };
@@ -181,7 +180,6 @@
 		E9C41A8C2555032000AC3052 /* VersionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCard.swift; sourceTree = "<group>"; };
 		E9C41A8F2555033B00AC3052 /* VersionDot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionDot.swift; sourceTree = "<group>"; };
 		E9C41A922555035900AC3052 /* VersionDotSoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionDotSoon.swift; sourceTree = "<group>"; };
-		E9C41A952555037800AC3052 /* VersionTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTag.swift; sourceTree = "<group>"; };
 		E9CE22A42502F48700929D13 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E9CE22A6250308F900929D13 /* FireCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireCard.swift; sourceTree = "<group>"; };
 		E9E31A89250E958B007FF855 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
@@ -456,7 +454,6 @@
 				E9C41A8C2555032000AC3052 /* VersionCard.swift */,
 				E9C41A8F2555033B00AC3052 /* VersionDot.swift */,
 				E9C41A922555035900AC3052 /* VersionDotSoon.swift */,
-				E9C41A952555037800AC3052 /* VersionTag.swift */,
 			);
 			path = UpdateLog;
 			sourceTree = "<group>";
@@ -603,7 +600,6 @@
 			files = (
 				6D77EB3D26D1FAE30057BB0E /* GlossaryCards.swift in Sources */,
 				6D2DE04B2555F3B100D07038 /* MoreButton.swift in Sources */,
-				E9C41A962555037800AC3052 /* VersionTag.swift in Sources */,
 				6DA2FF302506AF6400C86F0C /* SettingsView.swift in Sources */,
 				6D58B33B26B4F90C00311CF3 /* Blur.swift in Sources */,
 				27313E4C250ACD0F009876FA /* AirQualityBackend.swift in Sources */,

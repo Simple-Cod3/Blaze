@@ -9,6 +9,8 @@ import SwiftUI
 
 struct VersionCard: View {
     
+    @Environment(\.colorScheme) var colorScheme
+
     private var version: String
     private var changes: [String]
     
@@ -17,44 +19,39 @@ struct VersionCard: View {
         self.changes = changes
     }
     
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.title)
-                    .foregroundColor(.blaze)
-                    .padding(.trailing, 10)
+        VStack(alignment: .leading, spacing: 7) {
+            HStack(spacing: 7) {
+                Image(systemName: "checkmark.circle")
                 
-                VStack(alignment: .leading) {
-                    Text("What's new in")
-                        .font(.title)
-                        .fontWeight(.medium)
-
-                    Text("Blaze " + version)
-                        .font(.title)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color.blaze)
-                }
+                Text("What's new in Blaze " + version)
                 
                 Spacer()
             }
-            .padding(.bottom, 5)
+            .font(.body.weight(.medium))
+            .foregroundColor(.blaze)
             
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(changes, id: \.self) { change in
-                    Text(change)
+            HStack(spacing: 7) {
+                Image(systemName: "checkmark.circle")
+                    .font(.body.weight(.medium))
+                    .opacity(0)
+                
+                VStack(alignment: .leading, spacing: 7) {
+                    ForEach(changes, id: \.self) { change in
+                        Text(change)
+                            .font(.subheadline)
+                    }
                 }
+                .foregroundColor(Color(.tertiaryLabel))
             }
-            .foregroundColor(Color.secondary)
-            .padding(.leading, 40)
-
         }
-        .padding(.horizontal, 15)
-        .padding(.vertical, 20)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .padding(.horizontal, 20)
-        .padding(.top, 3)
-        .padding(.bottom, 10)
+        .padding(16)
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
+        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }
