@@ -159,9 +159,9 @@ struct MainView: View {
                     
                     if page == 2 {
                         if showGlossary {
-                            GlossaryView(showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                            GlossaryView(popup: $popup, showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                         } else if showContacts {
-                            PhoneView(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                            PhoneView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
                         }
                     }
                 }

@@ -13,6 +13,7 @@ struct GlossaryView: View {
     
     @State var wordsList = [Term]()
     
+    @Binding var popup: Bool
     @Binding var showDefinition: String
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
@@ -67,6 +68,12 @@ struct GlossaryView: View {
                     Spacer()
                     
                     Button(action: {
+                        if secondaryPopup {
+                            popup = true
+                        } else {
+                            popup = false
+                        }
+                        
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                             secondaryClose = false
                             showDefinition = ""
