@@ -17,8 +17,7 @@ struct PhoneView: View {
     @State private var pinned = [PhoneNumber]()
     @State var sortedPhones = [PhoneNumber]()
     @State var number = PhoneNumber(name: "Unknown", address: "Unknown", city: "Unknown", phoneNumber: "Unknown", county: "Unknown")
-    
-    @State private var text = ""
+
     @State private var mode = 0
     @State private var show = false
     @State private var showPhoneInfo = false
@@ -74,6 +73,7 @@ struct PhoneView: View {
     private var choices = ["Location", "ABC", "Pinned"]
     
     private func sortNums() {
+        print(loc.location?.coordinate)
         DispatchQueue.main.async {
             sortedPhones = Array(
                 numbers.numbers
@@ -95,12 +95,12 @@ struct PhoneView: View {
                         }
                     })
                     .filter({
-                        text == "" ||
-                            ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                            ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                            ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                        searchText == "" ||
+                            ($0.county?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                            ($0.phoneNumber?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                            ($0.name?.lowercased() ?? "???").contains(searchText.lowercased())
                     })
-                    .prefix(10)
+                    .prefix(searchText.count > 0 ? 999999 : 10)
             )
         }
     }
@@ -109,6 +109,14 @@ struct PhoneView: View {
         self._popup = popup
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
+
+        do {
+            loc.lm.allowsBackgroundLocationUpdates = false
+            try loc.start()
+        } catch {
+            print("!!! 🚫 Failed to get access to location 🚫 !!!")
+            loc.requestAuthorization()
+        }
     }
         
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -116,7 +124,10 @@ struct PhoneView: View {
     }
 
     private var searchAnimation = Animation.spring(response: 0.3, dampingFraction: 1)
-    private var searching: Bool { searchText != "" && secondaryPopup }
+    private var searching: Bool { searchText != "" && secondaryPopup && !showPhoneInfo }
+    private func searchFilter(number: PhoneNumber) {
+
+    }
     private var search: some View {
         HStack(spacing: 10) {
             HStack(spacing: 5) {
@@ -133,6 +144,9 @@ struct PhoneView: View {
                     $0.autocorrectionType = .no
                 }
                 .frame(maxHeight: 20)
+                .onChange(of: searchText) { _ in
+                    sortNums()
+                }
             }
             .padding(8)
             .background(
@@ -194,7 +208,9 @@ struct PhoneView: View {
                             focused = false
 
                             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                                showPhoneInfo = false
                                 secondaryClose = false
+                                searchText = ""
                             }
                         }) {
                             Image(systemName: "xmark.circle.fill")
@@ -220,7 +236,7 @@ struct PhoneView: View {
             ScrollView {
                 if showPhoneInfo {
                     PhoneInfoView(phoneData: number)
-                        .padding(.vertical, UIConstants.margin)
+                        .padding(.vertical, UIConstants.margin*2)
                 } else {
                     phoneList
                 }
@@ -301,10 +317,10 @@ struct PhoneView: View {
                     VStack(spacing: 13) {
                         ForEach(
                             pinned.filter({
-                                text == "" ||
-                                    ($0.county?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                    ($0.phoneNumber?.lowercased() ?? "???").contains(text.lowercased()) ||
-                                    ($0.name?.lowercased() ?? "???").contains(text.lowercased())
+                                searchText == "" ||
+                                    ($0.county?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                                    ($0.phoneNumber?.lowercased() ?? "???").contains(searchText.lowercased()) ||
+                                    ($0.name?.lowercased() ?? "???").contains(searchText.lowercased())
                             })
                         ) { number in
                             Button(action: {
