@@ -13,7 +13,7 @@ struct FiresView: View {
     // Search Bar stuff
     @State private var searchText = ""
 
-    @State private var prefix = 5
+    @State private var prefix = 7
     @State private var largest = true
     @State private var latest = false
     @State private var monitorList = false
@@ -224,7 +224,7 @@ struct FiresView: View {
                         
                         if !monitorList && prefix < fireB.fires.filter(searchFilter).count {
                             Button(action: {
-                                prefix += 5
+                                prefix += 7
                             }) {
                                 MoreButton(symbol: "plus.circle", text: "View More", color: .blaze)
                             }
