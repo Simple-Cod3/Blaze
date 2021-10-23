@@ -18,7 +18,7 @@ struct PhoneView: View {
     @State private var text = ""
     @State private var mode = 0
     @State private var show = false
-        
+
     // MARK: - Pin Functionality
     
     // Run first when appear (sets the state)
@@ -92,10 +92,58 @@ struct PhoneView: View {
             )
         }
     }
+    
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryClose: Bool
+    
     var body: some View {
         VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                Capsule()
+                    .fill(Color(.quaternaryLabel))
+                    .frame(width: 39, height: 5)
+                    .padding(.top, 7)
+                    .padding(.bottom, 11)
+                
+                HStack(spacing: 0) {
+//                    Button(action: {
+//                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+//
+//                        }
+//                    }) {
+//                        Image(systemName: "chevron.left.circle.fill")
+//                            .font(.title2.weight(.semibold))
+//                            .foregroundColor(Color(.tertiaryLabel))
+//                            .contentShape(Rectangle())
+//                            .padding(.trailing, 11)
+//                    }
+                    
+                    Text("Facility Contacts")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            secondaryClose = false
+                        }
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2.weight(.semibold))
+                            .foregroundColor(Color(.tertiaryLabel))
+                            .contentShape(Rectangle())
+                    }
+                }
+                .padding(.bottom, UIConstants.margin)
+            }
+            .padding(.horizontal, UIConstants.margin)
+            .contentShape(Rectangle())
+            .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            
             Divider()
-                .padding(.horizontal, 20)
+                .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 10) {
@@ -162,14 +210,14 @@ struct PhoneView: View {
                                     ($0.name?.lowercased() ?? "???").contains(text.lowercased())
                             })
                         ) { number in
-                            PhoneNumberCard(addPin: addPin, number: number)
+                            PhoneCard(addPin: addPin, number: number)
                         }
                         .onDelete(perform: removePin)
                     }
                 }
             } else {
                 ForEach(sortedPhones) { number in
-                    PhoneNumberCard(addPin: addPin, number: number)
+                    PhoneCard(addPin: addPin, number: number)
                 }
             }
         }

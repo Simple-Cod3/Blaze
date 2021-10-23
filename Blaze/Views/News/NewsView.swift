@@ -16,19 +16,21 @@ struct NewsView: View {
     @State private var done = false
     @State private var newsShown = 20
     @State private var shown: NewsModals?
-    @State private var contacts = false
-    @State private var glossary = false
     
     private enum NewsModals: String, Identifiable {
         var id: String { rawValue }
         case phone, glossary
     }
         
+    @Binding var showContacts: Bool
+    @Binding var showGlossary: Bool
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
     
-    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+    init(showContacts: Binding<Bool>, showGlossary: Binding<Bool>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+        self._showContacts = showContacts
+        self._showGlossary = showGlossary
         self._popup = popup
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
@@ -70,23 +72,31 @@ struct NewsView: View {
 
             ScrollView {
                 VStack(spacing: 0) {
-//                    Button(action: {
-//                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { contacts = true }
-//                    }) {
-//                        VerticalButton(
-//                            symbol: "phone.circle",
-//                            text: "Emergency Contacts",
-//                            desc: "Find the nearest fire stations",
-//                            mark: "chevron.right",
-//                            color: .orange
-//                        )
-//                    }
-//                    .buttonStyle(DefaultButtonStyle())
-//                    .padding(.bottom, 13)
+                    Button(action: {
+                        showContacts = true
+                        showGlossary = false
+                        
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            secondaryPopup = true
+                            secondaryClose = true
+                        }
+                    }) {
+                        VerticalButton(
+                            symbol: "phone.fill",
+                            text: "Facility Contacts",
+                            desc: "Find the nearest fire stations",
+                            mark: "chevron.right",
+                            color: .orange
+                        )
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                    .padding(.bottom, 13)
                     
                     Button(action: {
+                        showContacts = false
+                        showGlossary = true
+                        
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            popup = true
                             secondaryPopup = true
                             secondaryClose = true
                         }

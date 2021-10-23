@@ -39,7 +39,7 @@ struct FireCard: View {
         Button(action: {
             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                 showFireInformation = fireData.name
-                popup = true
+                popup = false
                 secondaryPopup = true
                 secondaryClose = true
             }

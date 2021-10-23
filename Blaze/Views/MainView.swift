@@ -26,6 +26,8 @@ struct MainView: View {
     @State private var secondaryClose = false
     @State private var showDefinition = ""
     @State private var searchMap = false
+    @State private var showContacts = false
+    @State private var showGlossary = false
     
     var body: some View {
         if fireB.failed {
@@ -111,7 +113,13 @@ struct MainView: View {
                     }
 
                     if page == 2 {
-                        NewsView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        NewsView(
+                            showContacts: $showContacts,
+                            showGlossary: $showGlossary,
+                            popup: $popup,
+                            secondaryPopup: $secondaryPopup,
+                            secondaryClose: $secondaryClose
+                        )
                     }
                 }
             }
@@ -150,7 +158,11 @@ struct MainView: View {
                     }
                     
                     if page == 2 {
-                        GlossaryView(showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        if showGlossary {
+                            GlossaryView(showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        } else if showContacts {
+                            PhoneView(secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                        }
                     }
                 }
             }

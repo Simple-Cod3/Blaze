@@ -42,7 +42,7 @@ struct PhoneInfoView: View {
                         
                         phoneCircle
                             .overlay(
-                                Check(yes: closed, interval: 0, size: 40).offset(x: 45, y: -45)
+                                Check(yes: closed)
                             )
                         
                         VStack(spacing: 15) {
