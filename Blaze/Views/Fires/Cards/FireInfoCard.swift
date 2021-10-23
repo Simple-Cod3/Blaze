@@ -95,6 +95,7 @@ struct FireInfoCard: View {
                     InformationView(data: $data, info: $info, fireData: fireData)
                 }
                 .padding(UIConstants.margin)
+                .padding(.bottom, UIConstants.bottomPadding*2)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
