@@ -26,6 +26,7 @@ struct MainView: View {
     @State private var secondaryClose = false
     @State private var showDefinition = ""
     @State private var searchMap = false
+    @State private var focused = false
     @State private var showContacts = false
     @State private var showGlossary = false
     
@@ -93,7 +94,10 @@ struct MainView: View {
                         showLabels: $showLabels,
                         secondaryShow: $secondaryClose,
                         searchMap: $searchMap,
-                        page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
+                        focused: $focused,
+                        popup: $popup,
+                        page: $page,
+                        foreground: page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                     )
                     .padding([.horizontal, .bottom], 11)
                 }
@@ -104,7 +108,8 @@ struct MainView: View {
                             showFireInformation: $showFireInformation,
                             popup: $popup,
                             secondaryPopup: $secondaryPopup,
-                            secondaryClose: $secondaryClose
+                            secondaryClose: $secondaryClose,
+                            focused: $focused
                         )
                     }
                     
@@ -141,7 +146,10 @@ struct MainView: View {
                         showLabels: $showLabels,
                         secondaryShow: $secondaryClose,
                         searchMap: $searchMap,
-                        page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
+                        focused: $focused,
+                        popup: $popup,
+                        page: $page,
+                        foreground: page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
                     )
                     .padding([.horizontal, .bottom], 11)
                     .opacity(0)

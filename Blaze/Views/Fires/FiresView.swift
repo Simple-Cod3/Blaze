@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct FiresView: View {
-    
     @EnvironmentObject var fireB: FireBackend
+
+    // Search Bar stuff
+    @State private var searchText = ""
 
     @State private var prefix = 5
     @State private var largest = true
@@ -20,12 +22,14 @@ struct FiresView: View {
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
     @Binding var secondaryClose: Bool
+    @Binding var focused: Bool
     
-    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, focused: Binding<Bool>) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self._secondaryPopup = secondaryPopup
         self._secondaryClose = secondaryClose
+        self._focused = focused
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -34,110 +38,174 @@ struct FiresView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HeaderButton("Wildfires Overview")
-                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            if !searching {
+                HeaderButton("Wildfires Overview")
+                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            }
 
             if popup {
                 wildfiremain
             }
         }
     }
+
+    private var searchAnimation = Animation.spring(response: 0.3, dampingFraction: 1)
+
+    private func searchFilter(fire: ForestFire) -> Bool {
+        return
+            searchText == "" ||
+            fire.name.lowercased().contains(searchText.lowercased()) ||
+            fire.location.lowercased().contains(searchText) ||
+            fire.searchKeywords?.lowercased().contains(searchText) == true ||
+            fire.searchDescription?.lowercased().contains(searchText) == true
+    }
+
+    private var searching: Bool { searchText != "" && popup }
+    private var noResults: Bool {
+        if monitorList { return fireB.monitoringFires.filter(searchFilter).count < 1 }
+        return fireB.fires.filter(searchFilter).count < 1
+    }
+
+    private var search: some View {
+        HStack(spacing: 10) {
+            HStack(spacing: 5) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16))
+                    .foregroundColor(searching ? .blaze : Color(.tertiaryLabel))
+
+                LegacyTextField(
+                    text: $searchText.animation(searchAnimation),
+                    isFirstResponder: $focused
+                ) {
+                    $0.placeholder = "Search"
+                    $0.returnKeyType = .search
+                    $0.autocorrectionType = .no
+                }
+                .frame(maxHeight: 20)
+            }
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                    .fill(Color(.quaternarySystemFill))
+            )
+
+            if searching {
+                Button("Cancel") {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    withAnimation(searchAnimation) {
+                        searchText = ""
+                    }
+                }
+                .font(.callout)
+            }
+        }
+        .padding([.horizontal, .bottom], UIConstants.margin)
+        .padding(.top, searching ? UIConstants.margin : 0)
+    }
     
     private var wildfiremain: some View {
         VStack(spacing: 0) {
+            search
+
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 0) {
-                    Button(action: {
-                        largest = false
-                        latest = false
-                        monitorList = true
-                    }) {
-                        RectButton(selected: $monitorList, "Monitoring List")
-                    }
-                    .buttonStyle(DefaultButtonStyle())
-                    
-                    HStack(spacing: 10) {
-                        Button(action: {
-                            largest = true
-                            latest = false
-                            monitorList = false
-                        }) {
-                            RectButton(selected: $largest, "Largest Fires")
-                        }
-                        .buttonStyle(DefaultButtonStyle())
-                        
+                    if !searching {
                         Button(action: {
                             largest = false
-                            latest = true
-                            monitorList = false
+                            latest = false
+                            monitorList = true
                         }) {
-                            RectButton(selected: $latest, "Latest Fires")
+                            RectButton(selected: $monitorList, "Monitoring List")
                         }
                         .buttonStyle(DefaultButtonStyle())
-                    }
-                    .padding(.top, 11)
-                    
-                    Group {
-                        if monitorList {
-                            SubHeader(
-                                title: "Monitoring List",
-                                desc: "Showing pinned wildfires."
-                            )
-                            .transition(.opacity)
-                        } else if largest {
-                            SubHeader(
-                                title: "Largest Fires",
-                                desc: "Wildfires are sorted according to their sizes from largest to smallest."
-                            )
-                            .transition(.opacity)
-                        } else if latest {
-                            SubHeader(
-                                title: "Latest Fires",
-                                desc: "Wildfires are sorted based on time updated."
-                            )
-                            .transition(.opacity)
+
+                        HStack(spacing: 10) {
+                            Button(action: {
+                                largest = true
+                                latest = false
+                                monitorList = false
+                            }) {
+                                RectButton(selected: $largest, "Largest Fires")
+                            }
+                            .buttonStyle(DefaultButtonStyle())
+
+                            Button(action: {
+                                largest = false
+                                latest = true
+                                monitorList = false
+                            }) {
+                                RectButton(selected: $latest, "Latest Fires")
+                            }
+                            .buttonStyle(DefaultButtonStyle())
                         }
+                        .padding(.top, 11)
+
+                        Group {
+                            if monitorList {
+                                SubHeader(
+                                    title: "Monitoring List",
+                                    desc: "Showing pinned wildfires."
+                                )
+                                    .transition(.opacity)
+                            } else if largest {
+                                SubHeader(
+                                    title: "Largest Fires",
+                                    desc: "Wildfires are sorted according to their sizes from largest to smallest."
+                                )
+                                    .transition(.opacity)
+                            } else if latest {
+                                SubHeader(
+                                    title: "Latest Fires",
+                                    desc: "Wildfires are sorted based on time updated."
+                                )
+                                    .transition(.opacity)
+                            }
+                        }
+                        .padding(.vertical, UIConstants.margin)
                     }
-                    .padding(.vertical, UIConstants.margin)
 
                     VStack(spacing: 13) {
                         if largest {
                             ForEach(
-                                fireB.fires.sorted(by: { $0.acres > $1.acres }).prefix(prefix).indices,
-                                id: \.self
-                            ) { index in
+                                fireB.fires
+                                    .filter(searchFilter)
+                                    .sorted(by: { $0.acres > $1.acres })
+                                    .prefix(prefix)
+                            ) { fire in
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         secondaryPopup: $secondaryPopup,
                                         secondaryClose: $secondaryClose,
-                                        fireData: fireB.fires.sorted(by: { $0.acres > $1.acres })[index],
+                                        fireData: fire,
                                         area: true
                                     )
                             }
+                            .transition(.opacity)
                         } else if latest {
                             ForEach(
-                                fireB.fires.sorted(by: { $0.updated > $1.updated }).prefix(prefix).indices,
-                                id: \.self
-                            ) { index in
+                                fireB.fires
+                                    .filter(searchFilter)
+                                    .sorted(by: { $0.updated > $1.updated })
+                                    .prefix(prefix)
+                            ) { fire in
                                     FireCard(
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         secondaryPopup: $secondaryPopup,
                                         secondaryClose: $secondaryClose,
-                                        fireData: fireB.fires.sorted(by: {
-                                            $0.updated > $1.updated
-                                        })[index],
+                                        fireData: fire,
                                         area: false
                                     )
                             }
+                            .transition(.opacity)
                         }
                     
                         if monitorList {
-                            ForEach(fireB.monitoringFires) { fire in
+                            ForEach(fireB.monitoringFires.filter(searchFilter)) { fire in
                                 MonitorFireCard(
                                     showFireInformation: $showFireInformation,
                                     popup: $popup,
@@ -154,7 +222,7 @@ struct FiresView: View {
                             }
                         }
                         
-                        if !monitorList && prefix < fireB.fires.count {
+                        if !monitorList && prefix < fireB.fires.filter(searchFilter).count {
                             Button(action: {
                                 prefix += 5
                             }) {
@@ -162,10 +230,19 @@ struct FiresView: View {
                             }
                             .buttonStyle(DefaultButtonStyle())
                         }
+
+                        if noResults {
+                            HStack {
+                                Spacer()
+                                Label("No results", systemImage: "tag.slash")
+                                Spacer()
+                            }
+                            .padding(.vertical, UIConstants.margin)
+                        }
                     }
                 }
                 .padding(UIConstants.margin)
-                .padding(.bottom, UIConstants.bottomPadding)
+                .padding(.bottom, UIConstants.bottomPadding*2)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }

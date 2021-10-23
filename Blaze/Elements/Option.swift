@@ -18,15 +18,11 @@ struct Option: View {
     @Binding var showLabels: Bool
     @Binding var secondaryShow: Bool
     @Binding var searchMap: Bool
+    @Binding var focused: Bool
+    @Binding var popup: Bool
+    @Binding var page: Int
     
-    private var foreground: Color
-    
-    init(showLabels: Binding<Bool>, secondaryShow: Binding<Bool>, searchMap: Binding<Bool>, _ foreground: Color) {
-        self._showLabels = showLabels
-        self._secondaryShow = secondaryShow
-        self._searchMap = searchMap
-        self.foreground = foreground
-    }
+    var foreground: Color
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
         return UIFont.preferredFont(forTextStyle: textStyle).pointSize
@@ -53,22 +49,23 @@ struct Option: View {
             Spacer()
             
             HStack(alignment: .center, spacing: 0) {
-                Button(action: { showSearch = true }) {
+                Button(action: {
+                    withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                        page = 0
+                        popup = true
+                        focused = true
+                    }
+                }) {
                     Image(systemName: "magnifyingglass")
                         .padding(11)
                         .contentShape(Rectangle())
-                }
-                .sheet(isPresented: $showSearch) {
-                    SearchView(showSearch: $showSearch, secondaryShow: $secondaryShow, searchMap: $searchMap)
                 }
 
                 Divider()
                     .frame(height: textSize(textStyle: .largeTitle))
 
                 Button(action: {
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                        showLabels.toggle()
-                    }
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { showLabels.toggle() }
                 }) {
                     Image(systemName: showLabels ? "bubble.middle.bottom.fill" : "bubble.middle.bottom")
                         .padding(11)

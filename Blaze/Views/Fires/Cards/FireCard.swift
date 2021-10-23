@@ -37,6 +37,7 @@ struct FireCard: View {
     
     var body: some View {
         Button(action: {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                 showFireInformation = fireData.name
                 secondaryPopup = true

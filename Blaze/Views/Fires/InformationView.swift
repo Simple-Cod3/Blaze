@@ -33,7 +33,8 @@ struct InformationView: View {
                         Text("This incident is not accessible on this app at the moment. For more information, click on \"More Info\" below.")
                             .foregroundColor(.secondary)
                     }
-                    .padding(.vertical, 10)
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
                 }
             }
             

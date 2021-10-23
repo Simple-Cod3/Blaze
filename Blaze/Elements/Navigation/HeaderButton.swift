@@ -10,9 +10,11 @@ import SwiftUI
 struct HeaderButton: View {
     
     private var title: String
+    private var bottomPadding: CGFloat
     
-    init(_ title: String) {
+    init(_ title: String, bottomPadding: CGFloat?=nil) {
         self.title = title
+        self.bottomPadding = bottomPadding ?? UIConstants.margin
     }
     
     var body: some View {
@@ -27,7 +29,7 @@ struct HeaderButton: View {
 
                 Spacer()
             }
-            .padding(.bottom, UIConstants.margin)
+            .padding(.bottom, bottomPadding)
         }
         .padding(.horizontal, UIConstants.margin)
         .contentShape(Rectangle())
