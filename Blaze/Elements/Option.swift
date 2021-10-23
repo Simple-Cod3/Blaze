@@ -17,7 +17,6 @@ struct Option: View {
     
     @Binding var showLabels: Bool
     @Binding var secondaryShow: Bool
-    @Binding var searchMap: Bool
     @Binding var focused: Bool
     @Binding var popup: Bool
     @Binding var page: Int

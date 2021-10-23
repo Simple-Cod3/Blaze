@@ -25,7 +25,6 @@ struct MainView: View {
     @State private var secondaryPopup = false
     @State private var secondaryClose = false
     @State private var showDefinition = ""
-    @State private var searchMap = false
     @State private var focused = false
     @State private var showContacts = false
     @State private var showGlossary = false
@@ -34,50 +33,44 @@ struct MainView: View {
         if fireB.failed {
             Text("😢 Unknown problem...please reload the app.")
         } else {
-            VStack(spacing: 0) {
-                if searchMap {
-                    FullFireMapView(showLabels: $showLabels) // Use FireMapView when search
-                } else {
-                    FullFireMapView(showLabels: $showLabels)
-                }
-            }
-            .overlay(
-                PagerView(pageCount: 3, currentIndex: $page, secondaryClose: $secondaryClose) {
-                    ForEach(0..<3) { page in
-                        HeroCard(page)
-                    }
-                    .onTapGesture {
-                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                            popup.toggle()
-                            secondaryPopup = popup
+            FullFireMapView(showLabels: $showLabels)
+                .overlay(
+                    PagerView(pageCount: 3, currentIndex: $page, secondaryClose: $secondaryClose) {
+                        ForEach(0..<3) { page in
+                            HeroCard(page)
+                        }
+                        .onTapGesture {
+                            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                popup.toggle()
+                                secondaryPopup = popup
+                            }
                         }
                     }
-                }
-                ,
-                alignment: .top
-            )
-            .overlay(
-                main.edgesIgnoringSafeArea(.bottom),
-                alignment: popup ? .top : .bottom
-            )
-            .overlay(
-                secondaryModal.edgesIgnoringSafeArea(.bottom)
-                    .offset(y: page == 1 ? UIScreen.main.bounds.maxY : 0)
-                ,
-                alignment: secondaryPopup ? .top : .bottom
-            )
-            .overlay(
-                Group {
-                    if !done {
-                        ProgressBarView(
-                            progressObjs: $fireB.progress,
-                            progress: $progress,
-                            done: $done
-                        )
+                    ,
+                    alignment: .top
+                )
+                .overlay(
+                    main.edgesIgnoringSafeArea(.bottom),
+                    alignment: popup ? .top : .bottom
+                )
+                .overlay(
+                    secondaryModal.edgesIgnoringSafeArea(.bottom)
+                        .offset(y: page == 1 ? UIScreen.main.bounds.maxY : 0)
+                    ,
+                    alignment: secondaryPopup ? .top : .bottom
+                )
+                .overlay(
+                    Group {
+                        if !done {
+                            ProgressBarView(
+                                progressObjs: $fireB.progress,
+                                progress: $progress,
+                                done: $done
+                            )
+                        }
                     }
-                }
-            )
+                )
         }
     }
     
@@ -93,7 +86,6 @@ struct MainView: View {
                     Option(
                         showLabels: $showLabels,
                         secondaryShow: $secondaryClose,
-                        searchMap: $searchMap,
                         focused: $focused,
                         popup: $popup,
                         page: $page,
@@ -145,7 +137,6 @@ struct MainView: View {
                     Option(
                         showLabels: $showLabels,
                         secondaryShow: $secondaryClose,
-                        searchMap: $searchMap,
                         focused: $focused,
                         popup: $popup,
                         page: $page,

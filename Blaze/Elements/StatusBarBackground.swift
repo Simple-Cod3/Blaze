@@ -14,6 +14,7 @@ struct StatusBarBackground: View {
                 Blur(.systemUltraThinMaterial)
                     .frame(height: geo.safeAreaInsets.top)
                     .edgesIgnoringSafeArea(.top)
+                
                 Spacer()
             }
         }

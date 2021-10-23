@@ -11,36 +11,6 @@ import WebKit
 import SafariServices
 import Fuzi
 
-// MARK: - SwiftUI Modal View
-
-/// Loading website modal
-struct WebModal: View {
-    
-    var dismiss: () -> Void
-    var url: URL
-    
-    private func actionSheet() {
-        let activityView = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        UIApplication.shared.windows[1].rootViewController?.present(activityView, animated: true, completion: nil)
-    }
-    
-    var body: some View {
-        NavigationView {
-            URLWebView(url: url)
-                .edgesIgnoringSafeArea(.bottom)
-                .navigationBarTitle("News Update", displayMode: .inline)
-                .navigationBarItems(
-                    leading: Button(action: actionSheet) {
-                        Image(systemName: "square.and.arrow.up")
-                            .font(.system(size: 20))
-                    }, trailing: Button(action: dismiss) {
-                        CloseModalButton()
-                    }
-                )
-        }
-    }
-}
-
 // MARK: - SwiftUI Wrapper
 
 /// Loading Websites
