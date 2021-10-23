@@ -57,7 +57,7 @@ struct NewsView: View {
         }
         .font(.subheadline)
         .multilineTextAlignment(.center)
-        .padding(.top, UIScreen.main.bounds.maxY*0.3)
+        .padding(.top, 120)
         .padding(.horizontal, 80)
     }
 
@@ -77,59 +77,61 @@ struct NewsView: View {
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
-            if news.loaded {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        Button(action: {
-                            showContacts = true
-                            showGlossary = false
-                            
-                            withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
-                                secondaryPopup = true
-                                secondaryClose = true
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    popup = false
-                                }
-                            }
-                        }) {
-                            VerticalButton(
-                                symbol: "phone.fill",
-                                text: "Facility Contacts",
-                                desc: "Find the nearest fire stations",
-                                mark: "chevron.right",
-                                color: .orange
-                            )
-                        }
-                        .buttonStyle(DefaultButtonStyle())
-                        .padding(.bottom, 13)
+            ScrollView {
+                VStack(spacing: 0) {
+                    Button(action: {
+                        showContacts = true
+                        showGlossary = false
                         
-                        Button(action: {
-                            showContacts = false
-                            showGlossary = true
+                        withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                            secondaryPopup = true
+                            secondaryClose = true
                             
-                            withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                                secondaryPopup = true
-                                secondaryClose = true
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    popup = false
-                                }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                popup = false
                             }
-                        }) {
-                            VerticalButton(
-                                symbol: "character.book.closed.fill",
-                                text: "Glossary",
-                                desc: "Learn wildfire terms",
-                                mark: "chevron.right",
-                                color: .orange
-                            )
                         }
-                        .buttonStyle(DefaultButtonStyle())
+                    }) {
+                        VerticalButton(
+                            symbol: "phone.fill",
+                            text: "Facility Contacts",
+                            desc: "Find the nearest fire stations",
+                            mark: "chevron.right",
+                            color: .orange
+                        )
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                    .padding(.bottom, 13)
+                    
+                    Button(action: {
+                        showContacts = false
+                        showGlossary = true
                         
-                        SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
-                            .padding(.vertical, UIConstants.margin)
+                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            secondaryPopup = true
+                            secondaryClose = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                popup = false
+                            }
+                        }
+                    }) {
+                        VerticalButton(
+                            symbol: "character.book.closed.fill",
+                            text: "Glossary",
+                            desc: "Learn wildfire terms",
+                            mark: "chevron.right",
+                            color: .orange
+                        )
+                    }
+                    .buttonStyle(DefaultButtonStyle())
+                    
+                    SubHeader(title: "Alerts", desc: "Latest news and alerts are sorted by time and in order.")
+                        .padding(.vertical, UIConstants.margin)
 
+                    if (news.newsList.count == 0) || news.failed {
+                        failed
+                    } else {
                         LazyVStack(spacing: 13) {
                             ForEach(news.newsList.prefix(newsShown)) { news in
                                 NewsCardButton(news: news)
@@ -145,18 +147,10 @@ struct NewsView: View {
                             }
                         }
                     }
-                    .padding(UIConstants.margin)
-                    .padding(.bottom, UIConstants.bottomPadding*2)
-                    .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
                 }
-            } else if news.failed {
-                failed
-            } else {
-                ProgressBarView(
-                    progressObjs: $news.progress,
-                    progress: $progress,
-                    done: $news.loaded
-                )
+                .padding(UIConstants.margin)
+                .padding(.bottom, UIConstants.bottomPadding*2)
+                .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
         }
     }
