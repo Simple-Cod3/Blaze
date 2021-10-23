@@ -258,6 +258,7 @@ struct PhoneView: View {
                             }) {
                                 PhoneCard(addPin: addPin, number: number)
                             }
+                            .buttonStyle(DefaultButtonStyle())
                         }
                         .onDelete(perform: removePin)
                     }
@@ -272,6 +273,7 @@ struct PhoneView: View {
                         }) {
                             PhoneCard(addPin: addPin, number: number)
                         }
+                        .buttonStyle(DefaultButtonStyle())
                     }
                 }
             }
