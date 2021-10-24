@@ -22,14 +22,14 @@ struct FiresView: View {
     @Binding var showFireInformation: String
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     @Binding var focused: Bool
     
-    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, focused: Binding<Bool>) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryShow: Binding<Bool>, focused: Binding<Bool>) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
         self._focused = focused
     }
     
@@ -180,7 +180,7 @@ struct FiresView: View {
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         secondaryPopup: $secondaryPopup,
-                                        secondaryClose: $secondaryClose,
+                                        secondaryShow: $secondaryShow,
                                         fireData: fire,
                                         area: true
                                     )
@@ -197,7 +197,7 @@ struct FiresView: View {
                                         showFireInformation: $showFireInformation,
                                         popup: $popup,
                                         secondaryPopup: $secondaryPopup,
-                                        secondaryClose: $secondaryClose,
+                                        secondaryShow: $secondaryShow,
                                         fireData: fire,
                                         area: false
                                     )
@@ -211,7 +211,7 @@ struct FiresView: View {
                                     showFireInformation: $showFireInformation,
                                     popup: $popup,
                                     secondaryPopup: $secondaryPopup,
-                                    secondaryClose: $secondaryClose,
+                                    secondaryShow: $secondaryShow,
                                     fireData: fire
                                 )
                                 .buttonStyle(PlainButtonStyle())

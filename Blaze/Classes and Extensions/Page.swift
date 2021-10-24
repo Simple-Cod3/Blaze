@@ -33,15 +33,15 @@ struct PagerView<Content: View>: View {
     let content: Content
 
     @Binding var currentIndex: Int
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     
     @ObservedObject var viewModel: PagerViewModel
     @GestureState private var translation: CGFloat = 0
     
-    init(pageCount: Int, currentIndex: Binding<Int>, secondaryClose: Binding<Bool>, @ViewBuilder content: () -> Content) {
+    init(pageCount: Int, currentIndex: Binding<Int>, secondaryShow: Binding<Bool>, @ViewBuilder content: () -> Content) {
         self.pageCount = pageCount
         self._currentIndex = currentIndex
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
         self.content = content()
         
         viewModel = PagerViewModel(currentIndex: currentIndex)
@@ -73,7 +73,7 @@ struct PagerView<Content: View>: View {
                         }
                         
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryClose = false
+                            secondaryShow = false
                         }
                     } else {
                         withAnimation(.spring(response: 0.3, dampingFraction: 1)) { viewModel.lastDrag = 0 }

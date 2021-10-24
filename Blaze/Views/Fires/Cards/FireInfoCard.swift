@@ -17,15 +17,15 @@ struct FireInfoCard: View {
     @State private var info = false
     
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     @Binding var popup: Bool
 
     var staticModal: Bool
     var fireData: ForestFire
     
-    init(secondaryPopup: Binding<Bool>?=nil, secondaryClose: Binding<Bool>?=nil, popup: Binding<Bool>?=nil, fireData: ForestFire, staticModal: Bool?=nil) {
+    init(secondaryPopup: Binding<Bool>?=nil, secondaryShow: Binding<Bool>?=nil, popup: Binding<Bool>?=nil, fireData: ForestFire, staticModal: Bool?=nil) {
         self._secondaryPopup = secondaryPopup ?? .constant(true)
-        self._secondaryClose = secondaryClose ?? .constant(false)
+        self._secondaryShow = secondaryShow ?? .constant(false)
         self._popup = popup ?? .constant(true)
         self.fireData = fireData
         self.staticModal = staticModal ?? false
@@ -40,7 +40,7 @@ struct FireInfoCard: View {
             SecondaryHeaderButton(
                 popup: $popup,
                 secondaryPopup: $secondaryPopup,
-                secondaryClose: $secondaryClose,
+                secondaryShow: $secondaryShow,
                 fireData.name,
                 staticModal: staticModal
             )

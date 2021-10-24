@@ -17,16 +17,16 @@ struct FireCard: View {
     @Binding var showFireInformation: String
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     
     var fireData: ForestFire
     private var area: Bool
     
-    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, fireData: ForestFire, area: Bool) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryShow: Binding<Bool>, fireData: ForestFire, area: Bool) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
         self.fireData = fireData
         self.area = area
     }
@@ -41,7 +41,7 @@ struct FireCard: View {
             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                 showFireInformation = fireData.name
                 secondaryPopup = true
-                secondaryClose = true
+                secondaryShow = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     popup = false

@@ -25,14 +25,14 @@ struct NewsView: View {
     @Binding var showGlossary: Bool
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     
-    init(showContacts: Binding<Bool>, showGlossary: Binding<Bool>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>) {
+    init(showContacts: Binding<Bool>, showGlossary: Binding<Bool>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryShow: Binding<Bool>) {
         self._showContacts = showContacts
         self._showGlossary = showGlossary
         self._popup = popup
         self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
     }
     
     func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
@@ -85,7 +85,7 @@ struct NewsView: View {
                         
                         withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                             secondaryPopup = true
-                            secondaryClose = true
+                            secondaryShow = true
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 popup = false
@@ -109,7 +109,7 @@ struct NewsView: View {
                         
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                             secondaryPopup = true
-                            secondaryClose = true
+                            secondaryShow = true
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 popup = false

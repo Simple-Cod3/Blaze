@@ -16,7 +16,7 @@ struct GlossaryView: View {
     @Binding var popup: Bool
     @Binding var showDefinition: String
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     
     var letters = Array(GlossaryDatabase.terms.keys).sorted()
     var terms = GlossaryDatabase.getAllWords().sorted()
@@ -71,7 +71,7 @@ struct GlossaryView: View {
                         }
                         
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryClose = false
+                            secondaryShow = false
                             showDefinition = ""
                         }
                     }) {

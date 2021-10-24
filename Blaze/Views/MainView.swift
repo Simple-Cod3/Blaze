@@ -23,7 +23,7 @@ struct MainView: View {
     @State private var showSettings = false
     @State private var page = 0
     @State private var secondaryPopup = false
-    @State private var secondaryClose = false
+    @State private var secondaryShow = false
     @State private var showDefinition = ""
     @State private var focused = false
     @State private var showContacts = false
@@ -35,7 +35,7 @@ struct MainView: View {
         } else {
             FullFireMapView(showLabels: $showLabels)
                 .overlay(
-                    PagerView(pageCount: 3, currentIndex: $page, secondaryClose: $secondaryClose) {
+                    PagerView(pageCount: 3, currentIndex: $page, secondaryShow: $secondaryShow) {
                         ForEach(0..<3) { page in
                             HeroCard(page)
                         }
@@ -85,7 +85,7 @@ struct MainView: View {
                 if !popup {
                     Option(
                         showLabels: $showLabels,
-                        secondaryShow: $secondaryClose,
+                        secondaryShow: $secondaryShow,
                         focused: $focused,
                         popup: $popup,
                         page: $page,
@@ -100,7 +100,7 @@ struct MainView: View {
                             showFireInformation: $showFireInformation,
                             popup: $popup,
                             secondaryPopup: $secondaryPopup,
-                            secondaryClose: $secondaryClose,
+                            secondaryShow: $secondaryShow,
                             focused: $focused
                         )
                     }
@@ -115,7 +115,7 @@ struct MainView: View {
                             showGlossary: $showGlossary,
                             popup: $popup,
                             secondaryPopup: $secondaryPopup,
-                            secondaryClose: $secondaryClose
+                            secondaryShow: $secondaryShow
                         )
                     }
                 }
@@ -136,7 +136,7 @@ struct MainView: View {
                 if !secondaryPopup {
                     Option(
                         showLabels: $showLabels,
-                        secondaryShow: $secondaryClose,
+                        secondaryShow: $secondaryShow,
                         focused: $focused,
                         popup: $popup,
                         page: $page,
@@ -150,7 +150,7 @@ struct MainView: View {
                     if page == 0 {
                         FireInfoCard(
                             secondaryPopup: $secondaryPopup,
-                            secondaryClose: $secondaryClose,
+                            secondaryShow: $secondaryShow,
                             popup: $popup,
                             fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire()
                         )
@@ -158,15 +158,15 @@ struct MainView: View {
                     
                     if page == 2 {
                         if showGlossary {
-                            GlossaryView(popup: $popup, showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                            GlossaryView(popup: $popup, showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryShow: $secondaryShow)
                         } else if showContacts {
-                            PhoneView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryClose: $secondaryClose)
+                            PhoneView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryShow: $secondaryShow)
                         }
                     }
                 }
             }
             .frame(minHeight: UIScreen.main.bounds.maxY)
-            .offset(y: secondaryClose ? (secondaryPopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
+            .offset(y: secondaryShow ? (secondaryPopup ? 0 : UIScreen.main.bounds.maxY*0.85) : UIScreen.main.bounds.maxY*1.1)
         }
     }
 }

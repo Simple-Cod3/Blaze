@@ -16,15 +16,15 @@ struct MonitorFireCard: View {
     @Binding var showFireInformation: String
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     
     var fireData: ForestFire
     
-    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, fireData: ForestFire) {
+    init(showFireInformation: Binding<String>, popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryShow: Binding<Bool>, fireData: ForestFire) {
         self._showFireInformation = showFireInformation
         self._popup = popup
         self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
         self.fireData = fireData
     }
     
@@ -38,7 +38,7 @@ struct MonitorFireCard: View {
                 showFireInformation = fireData.name
                 popup = true
                 secondaryPopup = true
-                secondaryClose = true
+                secondaryShow = true
             }
         }) {
             HStack(spacing: 0) {
