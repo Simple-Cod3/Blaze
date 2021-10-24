@@ -78,6 +78,7 @@ struct SecondaryHeaderButton: View {
                         }
                         
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
+                            popup = false
                             secondaryShow = false
                             showLabels = false
                             mapController.moveBack()
