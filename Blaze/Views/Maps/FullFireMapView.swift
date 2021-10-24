@@ -26,35 +26,36 @@ struct FullFireMapView: View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $mapController.coordinateRegion, annotationItems: fireBackend.fires) { fire in
                 AnyMapAnnotationProtocol(MapAnnotation(coordinate: fire.coordinate) {
-                    VStack(spacing: 5) {
-                        Text(fire.name)
-                            .font(.caption2)
-                            .foregroundColor(.primary.opacity(0.7))
-                            .multilineTextAlignment(.center)
-                            .lineLimit(2)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: 120)
-                            .padding(5)
-                            .background(Color(.tertiarySystemBackground))
-                            .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                            .scaleEffect(showLabels ? 1 : 0.0001)
-                            .animation(.spring(response: 0.39, dampingFraction: 0.9))
+                    Button(action: {
+                        withAnimation(Animation.spring(response: 0.39, dampingFraction: 0.9)) {
+                            showLabels = true
+                            page = 0
+                            secondaryShow = true
+                            secondaryPopup = false
+                            showFireInformation = fire.name
+                        }
 
-                        Button(action: {
-                            withAnimation(Animation.spring(response: 0.39, dampingFraction: 0.9)) {
-                                showLabels = true
-                                page = 0
-                                secondaryShow = true
-                                secondaryPopup = false
-                                showFireInformation = fire.name
-                            }
-                            
-                            mapController.moveBack(lat: fire.latitude, long: fire.longitude, span: 0.3)
-                        }) {
+                        mapController.moveBack(lat: fire.latitude, long: fire.longitude, span: 0.3)
+                    }) {
+                        VStack(spacing: 5) {
+                            Text(fire.name)
+                                .font(.caption2)
+                                .foregroundColor(.primary.opacity(0.7))
+                                .multilineTextAlignment(.center)
+                                .lineLimit(2)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(maxWidth: 120)
+                                .padding(5)
+                                .background(Color(.tertiarySystemBackground))
+                                .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+                                .scaleEffect(showLabels ? 1 : 0.0001)
+                                .animation(.spring(response: 0.39, dampingFraction: 0.9))
+
                             FirePin(showLabels: $showLabels)
                         }
-                        .buttonStyle(DefaultButtonStyle())
                     }
+                    .buttonStyle(DefaultButtonStyle())
+
                 })
             }
             .edgesIgnoringSafeArea(.all)
