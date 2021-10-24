@@ -28,22 +28,28 @@ class SwipeableModel: ObservableObject {
 }
 
 struct PagerView<Content: View>: View {
-    
-    let pageCount: Int
-    let content: Content
+
+    @ObservedObject var viewModel: PagerViewModel
 
     @Binding var currentIndex: Int
     @Binding var secondaryShow: Bool
-    
-    @ObservedObject var viewModel: PagerViewModel
+    @Binding var showFireInformation: String
+    @Binding var showContacts: Bool
+    @Binding var showGlossary: Bool
+
+    let pageCount: Int
+    let content: Content
+
     @GestureState private var translation: CGFloat = 0
     
-    init(pageCount: Int, currentIndex: Binding<Int>, secondaryShow: Binding<Bool>, @ViewBuilder content: () -> Content) {
+    init(pageCount: Int, currentIndex: Binding<Int>, secondaryShow: Binding<Bool>, showFireInfomation: Binding<String>, showContacts: Binding<Bool>, showGlossary: Binding<Bool>, @ViewBuilder content: () -> Content) {
         self.pageCount = pageCount
+        self._showFireInformation = showFireInfomation
+        self._showContacts = showContacts
+        self._showGlossary = showGlossary
         self._currentIndex = currentIndex
         self._secondaryShow = secondaryShow
         self.content = content()
-        
         viewModel = PagerViewModel(currentIndex: currentIndex)
     }
     
@@ -68,15 +74,17 @@ struct PagerView<Content: View>: View {
                     let newIndexBound = min(max(Int(newIndex), 0), self.pageCount - 1)
                     let indexToChangeTo = min(max(newIndexBound, currentIndex - 1), currentIndex + 1)
                     if indexToChangeTo != viewModel.currentIndex {
+                        showGlossary = false
+                        showContacts = false
+                        secondaryShow = false
+
                         withAnimation(.spring(response: 0.3, dampingFraction: 1)) {
                             viewModel.currentIndex = indexToChangeTo
                         }
-                        
-                        withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryShow = false
-                        }
                     } else {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 1)) { viewModel.lastDrag = 0 }
+                        withAnimation(.spring(response: 0.3, dampingFraction: 1)) {
+                            viewModel.lastDrag = 0
+                        }
                     }
                 }
             )

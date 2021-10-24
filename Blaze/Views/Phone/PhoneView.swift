@@ -214,7 +214,7 @@ struct PhoneView: View {
                 .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
             }
 
-            if !showPhoneInfo {
+            if secondaryPopup {
                 search
             }
 

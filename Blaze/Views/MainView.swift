@@ -41,7 +41,14 @@ struct MainView: View {
                 page: $page
             )
                 .overlay(
-                    PagerView(pageCount: 3, currentIndex: $page, secondaryShow: $secondaryShow) {
+                    PagerView(
+                        pageCount: 3,
+                        currentIndex: $page.animation(.spring(response: 0.49, dampingFraction: 0.9)),
+                        secondaryShow: $secondaryShow.animation(.spring(response: 0.49, dampingFraction: 0.9)),
+                        showFireInfomation: $showFireInformation.animation(.spring(response: 0.49, dampingFraction: 0.9)),
+                        showContacts: $showContacts,
+                        showGlossary: $showGlossary
+                    ) {
                         ForEach(0..<3) { page in
                             HeroCard(page)
                         }
@@ -141,19 +148,19 @@ struct MainView: View {
             Swipeable(popup: $secondaryPopup) {
                 if !secondaryPopup {
                     Option(
-                        showLabels: $showLabels,
-                        secondaryShow: $secondaryShow,
-                        focused: $focused,
-                        popup: $popup,
-                        page: $page,
-                        foreground: page == 0 ? Color.blaze : page == 1 ? determineColor(cat: forecast.forecasts[1].category.number) : Color.orange
+                        showLabels: .constant(false),
+                        secondaryShow: .constant(false),
+                        focused: .constant(false),
+                        popup: .constant(false),
+                        page: .constant(0),
+                        foreground: .clear
                     )
                     .padding([.horizontal, .bottom], 11)
                     .opacity(0)
                 }
                 
                 MainCard {
-                    if page == 0 {
+                    if page == 0 && showFireInformation != "" {
                         FireInfoCard(
                             secondaryPopup: $secondaryPopup,
                             secondaryShow: $secondaryShow,
@@ -162,11 +169,13 @@ struct MainView: View {
                             fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire()
                         )
                     }
-                    
+
                     if page == 2 {
                         if showGlossary {
                             GlossaryView(popup: $popup, showDefinition: $showDefinition, secondaryPopup: $secondaryPopup, secondaryShow: $secondaryShow)
-                        } else if showContacts {
+                        }
+
+                        if showContacts {
                             PhoneView(popup: $popup, secondaryPopup: $secondaryPopup, secondaryShow: $secondaryShow)
                         }
                     }
