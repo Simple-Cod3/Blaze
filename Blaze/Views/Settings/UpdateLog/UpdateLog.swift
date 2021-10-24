@@ -19,9 +19,18 @@ struct UpdateLog: View {
                 VersionCard(
                     // 10.24.21
                     version: "2.0",
-                    changes: ["• Major redesign",
-                              "• Fix duplicate fires",
-                              "• Transition to new map structure to include dynamic area and data viewing on map"
+                    changes: ["• Fixed duplicate fires",
+                              "• New map features include dynamic area and data viewing",
+                              "• Transition to new map structure to include dynamic area and data viewing on map",
+                              "• Improved animation when showing wildfire names on map",
+                              "• Updated AQI backend to report more accurate AQI readings",
+                              "• Dynamic animations for AQI meter to better illustrate AQI safety levels",
+                              "• New UI tint color to differentiate content.",
+                              "• Overhauled search function to browse selected fire stations",
+                              "• General front-end and back-end clean up",
+                              "• Further reduced app size",
+                              "• All new loading screens with FAQs",
+                              "• New alert screen when load errors occur"
                              ]
                 )
                 

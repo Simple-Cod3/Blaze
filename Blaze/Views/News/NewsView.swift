@@ -45,7 +45,10 @@ struct NewsView: View {
                 .font(.title)
                 .foregroundColor(.red)
             
-            Text("InciWeb is currently facing ")
+            Text("InciWeb ")
+                .foregroundColor(.red)
+                .fontWeight(.medium)
+            Text("is currently facing ")
                 .foregroundColor(Color(.tertiaryLabel))
             + Text("issues.")
                 .foregroundColor(.red)
@@ -55,7 +58,7 @@ struct NewsView: View {
         }
         .font(.subheadline)
         .multilineTextAlignment(.center)
-        .padding(.top, 120)
+        .padding(.top, 100)
         .padding(.horizontal, 80)
     }
 
