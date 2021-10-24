@@ -64,7 +64,7 @@ struct Option: View {
                     .frame(height: textSize(textStyle: .largeTitle))
 
                 Button(action: {
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) { showLabels.toggle() }
+                    withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) { showLabels.toggle() }
                 }) {
                     Image(systemName: showLabels ? "bubble.middle.bottom.fill" : "bubble.middle.bottom")
                         .padding(11)

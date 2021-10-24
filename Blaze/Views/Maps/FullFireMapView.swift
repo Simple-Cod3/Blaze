@@ -37,21 +37,23 @@ struct FullFireMapView: View {
                             .padding(5)
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                            .scaleEffect(showLabels ? 1 : 0.0001)
-                            .animation(.spring(response: 0.45, dampingFraction: 0.7))
+                            .scaleEffect(showLabels ? 1 : 0)
+                            .animation(.spring(response: 0.39, dampingFraction: 0.9))
 
-                        FirePin(showLabels: $showLabels)
-                            .onTapGesture {
-                                // TODO: PAUL FIX ANIMATION
-                                withAnimation {
-                                    page = 0
-                                    showLabels = true
-                                    secondaryShow = true
-                                    secondaryPopup = false
-                                    showFireInformation = fire.name
-                                    mapController.moveBack(lat: fire.latitude, long: fire.longitude, span: 0.3)
-                                }
+                        Button(action: {
+                            withAnimation(Animation.spring(response: 0.39, dampingFraction: 0.9)) {
+                                showLabels = true
+                                page = 0
+                                secondaryShow = true
+                                secondaryPopup = false
+                                showFireInformation = fire.name
                             }
+                            
+                            mapController.moveBack(lat: fire.latitude, long: fire.longitude, span: 0.3)
+                        }) {
+                            FirePin(showLabels: $showLabels)
+                        }
+                        .buttonStyle(DefaultButtonStyle())
                     }
                 })
             }
