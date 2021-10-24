@@ -45,7 +45,8 @@ extension CLLocationCoordinate2D: Equatable {
 
 extension Color {
     static var blaze = Color("blaze")
-    static var borderBackground = Color("borderBackground")
+    static var pinBackground = Color("pinBackground")
+    static var pinBorderBackground = Color("pinBorderBackground")
 }
 
 /// Inverting any binding boolean with prefix: `!`

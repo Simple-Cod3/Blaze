@@ -139,5 +139,4 @@ class PhoneBackend: ObservableObject {
             print("✅ Done grabbing numbers!")
         }
     }
-    
 }

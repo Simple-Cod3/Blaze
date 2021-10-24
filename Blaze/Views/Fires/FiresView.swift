@@ -235,9 +235,10 @@ struct FiresView: View {
                         if noResults {
                             HStack {
                                 Spacer()
-                                Label("No results", systemImage: "tag.slash")
+                                Label("No results", systemImage: "xmark.circle")
                                 Spacer()
                             }
+                            .foregroundColor(.secondary.opacity(0.7))
                             .padding(.vertical, UIConstants.margin)
                         }
                     }
