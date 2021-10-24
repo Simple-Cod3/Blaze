@@ -36,7 +36,7 @@ struct ProfileCircle: View {
                     .foregroundColor(.secondary.opacity(0.7))
                     .font(.subheadline)
 
-                Text(link)
+                Text(link).underline()
                     .font(.subheadline)
                     .foregroundColor(.secondary.opacity(0.7))
 

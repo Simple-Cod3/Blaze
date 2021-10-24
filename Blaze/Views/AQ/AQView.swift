@@ -97,5 +97,3 @@ struct AQView: View {
         }
     }
 }
-
-// "Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\n
