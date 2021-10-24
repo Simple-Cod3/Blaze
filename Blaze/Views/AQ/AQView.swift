@@ -72,10 +72,23 @@ struct AQView: View {
                             }
                     }
                     
-                    AQCard(ozone: forecast.forecasts.filter { $0.pollutant == "O3" }.first, primary: forecast.forecasts.filter { $0.pollutant == "PM2.5" }.first)
+                    AQData(ozone: forecast.forecasts.filter { $0.pollutant == "O3" }.first, primary: forecast.forecasts.filter { $0.pollutant == "PM2.5" }.first)
                         .padding(.bottom, 13)
                     
-                    Caption("Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\nAir quality data is provided by the AirNow.gov. See more at AirNow.gov")
+                    HStack(spacing: 0) {
+                        Text("Air quality data is provided by the AirNow. See more at ")
+                            .fontWeight(.regular)
+                            .foregroundColor(Color(.tertiaryLabel))
+                        + Text("AirNow.gov").underline()
+                            .fontWeight(.medium)
+                            .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+                        
+                        Spacer()
+                    }
+                    .font(.caption)
+                    .onTapGesture {
+//                       Link to AirNow.gov
+                    }
                 }
                 .padding([.horizontal, .bottom], UIConstants.margin)
                 .padding(.bottom, UIConstants.bottomPadding)
@@ -84,3 +97,5 @@ struct AQView: View {
         }
     }
 }
+
+// "Ozone is harmful to air quality at ground level. \n\nPM values indicate the diameter of particulate matter measured in microns. \n\n

@@ -2,96 +2,57 @@
 //  AQCard.swift
 //  Blaze
 //
-//  Created by Paul Wong on 9/9/20.
+//  Created by Paul Wong on 10/23/21.
 //
 
 import SwiftUI
 
-struct AQCard: View {
+struct AQCard<Content: View>: View {
     
     @Environment(\.colorScheme) var colorScheme
 
-    @EnvironmentObject var forecast: AirQualityBackend
-    
-    private var ozone: String
-    private var ozoneAQI: String
-    private var primaryPollutant: String
-    private var primaryPollutantType: String
-    private var primaryPollutantAQI: String
-    
-    init (ozone: AirQuality?=nil, primary: AirQuality?=nil) {
-        self.ozone = ozone?.category.name ?? "Unknown"
-        self.ozoneAQI = ozone != nil ? "\(ozone!.AQI)": "-"
-        self.primaryPollutant = primary?.category.name ?? "Unknown"
-        self.primaryPollutantType = primary?.pollutant ?? "Unknown"
-        self.primaryPollutantAQI = primary != nil ? "\(primary!.AQI)" : "-"
+    private var symbol: String
+    private var title: String
+    private var status: String
+    private var caption: String
+    private var foreground: Color
+    private var content: () -> Content
+
+    init(symbol: String, title: String, status: String, caption: String, foreground: Color, @ViewBuilder content: @escaping () -> Content) {
+        self.symbol = symbol
+        self.title = title
+        self.status = status
+        self.caption = caption
+        self.foreground = foreground
+        self.content = content
     }
     
     var body: some View {
-        VStack(spacing: 13) {
-            VStack(alignment: .leading, spacing: 5) {
-                HStack(spacing: 5) {
-                    Image(systemName: "sun.dust.fill")
-                    
-                    Text("Ozone")
-                }
-                .font(Font.callout.weight(.medium))
-                .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
+        VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 5) {
+                Image(systemName: symbol)
                 
-                HStack(spacing: 0) {
-                    Text(ozoneAQI)
-                        .font(.title)
-                        .fontWeight(.medium)
-                        .foregroundColor(.primary)
-                    + Text(" AQI")
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
-                    
-                    Spacer()
-                    
-                    Text(ozone)
-                        .font(.body)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color(.tertiaryLabel))
-                }
+                Text(title)
             }
-            .padding(16)
-            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
-            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-        
-            VStack(alignment: .leading, spacing: 5) {
-                HStack(spacing: 5) {
-                    Image(systemName: "aqi.low")
-                    
-                    Text("PM2.5")
-                }
-                .font(Font.callout.weight(.medium))
-                .foregroundColor(determineColor(cat: forecast.forecasts[1].category.number))
-                    
-                HStack(spacing: 0) {
-                    Text(primaryPollutantAQI)
-                        .font(.title)
-                        .fontWeight(.medium)
-                        .foregroundColor(.primary)
-                    + Text(" AQI")
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.primary)
+            .font(Font.callout.weight(.medium))
+            .foregroundColor(foreground)
                 
-                    Spacer()
-                    
-                    Text(primaryPollutant)
-                        .font(.body)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color(.tertiaryLabel))
-                }
+            HStack(spacing: 0) {
+                content()
+            
+                Spacer()
+                
+                Text(status)
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .foregroundColor(Color(.tertiaryLabel))
             }
-            .padding(16)
-            .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
-            .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
-            .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+            
+            Caption(caption)
         }
+        .padding(16)
+        .background(colorScheme == .dark ? Color(.tertiarySystemFill) : Color(.tertiarySystemBackground).opacity(0.79))
+        .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+        .contentShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
     }
 }
