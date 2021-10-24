@@ -37,19 +37,21 @@ struct HeaderButton: View {
 }
 
 struct SecondaryHeaderButton: View {
+
+    @EnvironmentObject var mapController: FullFireMapController
     
     @Binding var popup: Bool
     @Binding var secondaryPopup: Bool
-    @Binding var secondaryClose: Bool
+    @Binding var secondaryShow: Bool
     @Binding var showLabels: Bool
     
     private var title: String
     private var staticModal: Bool
     
-    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryClose: Binding<Bool>, showLabels: Binding<Bool>, _ title: String, staticModal: Bool?=nil) {
+    init(popup: Binding<Bool>, secondaryPopup: Binding<Bool>, secondaryShow: Binding<Bool>, showLabels: Binding<Bool>, _ title: String, staticModal: Bool?=nil) {
         self._popup = popup
         self._secondaryPopup = secondaryPopup
-        self._secondaryClose = secondaryClose
+        self._secondaryShow = secondaryShow
         self._showLabels = showLabels
         self.title = title
         self.staticModal = staticModal ?? false
@@ -76,8 +78,9 @@ struct SecondaryHeaderButton: View {
                         }
                         
                         withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                            secondaryClose = false
+                            secondaryShow = false
                             showLabels = false
+                            mapController.moveBack()
                         }
                     }) {
                         Image(systemName: "xmark.circle.fill")

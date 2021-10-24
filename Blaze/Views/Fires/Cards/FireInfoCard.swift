@@ -24,7 +24,7 @@ struct FireInfoCard: View {
     var staticModal: Bool
     var fireData: ForestFire
     
-    init(secondaryPopup: Binding<Bool>?=nil, secondaryShow: Binding<Bool>?=nil, popup: Binding<Bool>?=nil, fireData: ForestFire, staticModal: Bool?=nil) {
+    init(secondaryPopup: Binding<Bool>?=nil, secondaryShow: Binding<Bool>?=nil, popup: Binding<Bool>?=nil, showLabels: Binding<Bool>?=nil, fireData: ForestFire, staticModal: Bool?=nil) {
         self._secondaryPopup = secondaryPopup ?? .constant(true)
         self._secondaryShow = secondaryShow ?? .constant(false)
         self._popup = popup ?? .constant(true)
@@ -43,6 +43,7 @@ struct FireInfoCard: View {
                 popup: $popup,
                 secondaryPopup: $secondaryPopup,
                 secondaryShow: $secondaryShow,
+                showLabels: $showLabels,
                 fireData.name,
                 staticModal: staticModal
             )
