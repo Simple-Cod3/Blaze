@@ -19,6 +19,7 @@ struct FireInfoCard: View {
     @Binding var secondaryPopup: Bool
     @Binding var secondaryShow: Bool
     @Binding var popup: Bool
+    @Binding var showLabels: Bool
 
     var staticModal: Bool
     var fireData: ForestFire
@@ -27,6 +28,7 @@ struct FireInfoCard: View {
         self._secondaryPopup = secondaryPopup ?? .constant(true)
         self._secondaryShow = secondaryShow ?? .constant(false)
         self._popup = popup ?? .constant(true)
+        self._showLabels = showLabels ?? .constant(true)
         self.fireData = fireData
         self.staticModal = staticModal ?? false
     }
@@ -104,9 +106,6 @@ struct FireInfoCard: View {
                 .padding(.bottom, UIConstants.bottomPadding*2)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }
-        }
-        .onAppear {
-            mapController.moveBack(lat: fireData.latitude, long: fireData.longitude, span: 1)
         }
     }
 }

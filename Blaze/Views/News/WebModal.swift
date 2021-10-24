@@ -292,7 +292,7 @@ struct InciWebContent: View {
                     Text("Loading...")
                     Spacer()
                 }
-                .scaleEffect(showLoading ? 1 : 0)
+                .scaleEffect(showLoading ? 1 : 0.0001)
                 .animation(.spring())
                 .onAppear { showLoading = true }
             } else {

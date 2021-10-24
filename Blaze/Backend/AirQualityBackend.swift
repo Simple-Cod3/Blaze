@@ -11,7 +11,7 @@ import CoreLocation
 
 /// Manages the fires behinds the scenes and updates UI accordingly
 class AirQualityBackend: ObservableObject {
-    @Published var forecasts = [AirQuality(), AirQuality(pollutant: "PM2.5", AQI: 29, category: AirQuality.Category(number: 0, name: "Good"))]
+    @Published var forecasts = [AirQuality(), AirQuality()]
     @Published var lost = false
 
     @ObservedObject var locationProvider = LocationProvider()

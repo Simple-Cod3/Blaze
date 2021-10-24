@@ -33,7 +33,13 @@ struct MainView: View {
         if fireB.failed {
             Text("😢 Unknown problem...please reload the app.")
         } else {
-            FullFireMapView(showLabels: $showLabels)
+            FullFireMapView(
+                showLabels: $showLabels,
+                showFireInformation: $showFireInformation,
+                secondaryPopup: $secondaryPopup,
+                secondaryShow: $secondaryShow,
+                page: $page
+            )
                 .overlay(
                     PagerView(pageCount: 3, currentIndex: $page, secondaryShow: $secondaryShow) {
                         ForEach(0..<3) { page in
@@ -152,6 +158,7 @@ struct MainView: View {
                             secondaryPopup: $secondaryPopup,
                             secondaryShow: $secondaryShow,
                             popup: $popup,
+                            showLabels: $showLabels,
                             fireData: fireB.fires.filter { $0.name == showFireInformation }.first ?? ForestFire()
                         )
                     }

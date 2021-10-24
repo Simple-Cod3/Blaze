@@ -17,15 +17,15 @@ struct FullFireMapView: View {
     @EnvironmentObject private var mapController: FullFireMapController
 
     @Binding var showLabels: Bool
+    @Binding var showFireInformation: String
+    @Binding var secondaryPopup: Bool
+    @Binding var secondaryShow: Bool
+    @Binding var page: Int
 
-    init(showLabels: Binding<Bool>) {
-        self._showLabels = showLabels
-    }
-    
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Map(coordinateRegion: $mapController.coordinateRegion, annotationItems: fireBackend.fires) { fire in
-                MapAnnotation(coordinate: fire.coordinate) {
+                AnyMapAnnotationProtocol(MapAnnotation(coordinate: fire.coordinate) {
                     VStack(spacing: 5) {
                         Text(fire.name)
                             .font(.caption2)
@@ -37,12 +37,23 @@ struct FullFireMapView: View {
                             .padding(5)
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                            .scaleEffect(showLabels ? 1 : 0)
+                            .scaleEffect(showLabels ? 1 : 0.0001)
                             .animation(.spring(response: 0.45, dampingFraction: 0.7))
 
                         FirePin(showLabels: $showLabels)
+                            .onTapGesture {
+                                // TODO: PAUL FIX ANIMATION
+                                withAnimation {
+                                    page = 0
+                                    showLabels = true
+                                    secondaryShow = true
+                                    secondaryPopup = false
+                                    showFireInformation = fire.name
+                                    mapController.moveBack(lat: fire.latitude, long: fire.longitude, span: 0.3)
+                                }
+                            }
                     }
-                }
+                })
             }
             .edgesIgnoringSafeArea(.all)
             .onChange(of: mapController.coordinateRegion) { region in
