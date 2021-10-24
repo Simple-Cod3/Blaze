@@ -16,6 +16,9 @@ struct AQData: View {
     private var primaryPollutant: String
     private var primaryPollutantType: String
     private var primaryPollutantAQI: String
+
+    private var ozoneObject: AirQuality
+    private var primaryObject: AirQuality
     
     init (ozone: AirQuality?=nil, primary: AirQuality?=nil) {
         self.ozone = ozone?.category.name ?? "Unknown"
@@ -23,6 +26,9 @@ struct AQData: View {
         self.primaryPollutant = primary?.category.name ?? "Unknown"
         self.primaryPollutantType = primary?.pollutant ?? "Unknown"
         self.primaryPollutantAQI = primary != nil ? "\(primary!.AQI)" : "-"
+
+        self.ozoneObject = ozone ?? AirQuality()
+        self.primaryObject = primary ?? AirQuality()
     }
     
     var body: some View {
@@ -32,7 +38,7 @@ struct AQData: View {
                 title: "Ozone",
                 status: ozone,
                 caption: "Ozone is found high in Earth's atmosphere, and prevents ultraviolet (UV) radiation from reaching the Earth. However, ozone found low to the ground can damage lungs, causing respiratory problems.",
-                foreground: determineColor(cat: forecast.forecasts[1].category.number)
+                foreground: determineColor(cat: ozoneObject.category.number)
             ) {
                 Text(ozoneAQI)
                     .font(.title)
@@ -46,10 +52,14 @@ struct AQData: View {
         
             AQCard(
                 symbol: "aqi.low",
-                title: "PM2.5",
+                title: primaryPollutantType,
                 status: primaryPollutant,
-                caption: "PM2.5 (particulate matter 2.5) is a measure of particle diameters less than or equal to 2.5 microns in the air.",
-                foreground: determineColor(cat: forecast.forecasts[1].category.number)
+                caption:
+                    primaryPollutantType.contains("2.5") ?
+                    "PM2.5 (particulate matter 2.5) is a measure of particle diameters less than or equal to 2.5 microns in the air." :
+                    "PM10 (particulate matter 10) is a measure of particle diameters less than or equal to 10 microns in the air."
+                ,
+                foreground: determineColor(cat: primaryObject.category.number)
             ) {
                 Text(primaryPollutantAQI)
                     .font(.title)

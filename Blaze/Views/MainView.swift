@@ -43,9 +43,9 @@ struct MainView: View {
                 .overlay(
                     PagerView(
                         pageCount: 3,
-                        currentIndex: $page.animation(.spring(response: 0.49, dampingFraction: 0.9)),
-                        secondaryShow: $secondaryShow.animation(.spring(response: 0.49, dampingFraction: 0.9)),
-                        showFireInfomation: $showFireInformation.animation(.spring(response: 0.49, dampingFraction: 0.9)),
+                        currentIndex: $page,
+                        secondaryShow: $secondaryShow,
+                        showFireInfomation: $showFireInformation,
                         showContacts: $showContacts,
                         showGlossary: $showGlossary
                     ) {

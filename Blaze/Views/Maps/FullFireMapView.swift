@@ -37,7 +37,7 @@ struct FullFireMapView: View {
                             .padding(5)
                             .background(Color(.tertiarySystemBackground))
                             .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                            .scaleEffect(showLabels ? 1 : 0)
+                            .scaleEffect(showLabels ? 1 : 0.0001)
                             .animation(.spring(response: 0.39, dampingFraction: 0.9))
 
                         Button(action: {

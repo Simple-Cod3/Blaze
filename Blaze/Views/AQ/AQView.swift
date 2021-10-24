@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BetterSafariView
 
 struct AQView: View {
     
@@ -13,6 +14,7 @@ struct AQView: View {
     
     @State private var showCircle = false
     @State private var startAnimation = false
+    @State private var showWebPage = false
     
     @Binding var popup: Bool
     
@@ -63,7 +65,7 @@ struct AQView: View {
                         
                         AQMeter(airQ: forecast.forecasts[0])
                             .padding(.vertical, 60)
-                            .scaleEffect(showCircle ? 1.0 : 0)
+                            .scaleEffect(showCircle ? 1.0 : 0.0001)
                             .onAppear {
                                 withAnimation(nil) { showCircle = false }
                                 withAnimation(.spring(dampingFraction: 0.8)) {
@@ -72,7 +74,7 @@ struct AQView: View {
                             }
                     }
                     
-                    AQData(ozone: forecast.forecasts.filter { $0.pollutant == "O3" }.first, primary: forecast.forecasts.filter { $0.pollutant == "PM2.5" }.first)
+                    AQData(ozone: forecast.forecasts.filter { $0.pollutant == "O3" }.first, primary: forecast.forecasts.filter { $0.pollutant != "O3" }.first)
                         .padding(.bottom, 13)
                     
                     HStack(spacing: 0) {
@@ -86,9 +88,16 @@ struct AQView: View {
                         Spacer()
                     }
                     .font(.caption)
-                    .onTapGesture {
-//                       Link to AirNow.gov
+                    .safariView(isPresented: $showWebPage) {
+                        SafariView(
+                            url: URL(string: "https://airnow.gov")!,
+                            configuration: SafariView.Configuration(
+                                barCollapsingEnabled: true
+                            )
+                        )
+                            .preferredControlAccentColor(Color.orange)
                     }
+                    .onTapGesture { showWebPage = true }
                 }
                 .padding([.horizontal, .bottom], UIConstants.margin)
                 .padding(.bottom, UIConstants.bottomPadding)
