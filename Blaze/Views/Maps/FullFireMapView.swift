@@ -43,7 +43,7 @@ struct FullFireMapView: View {
                         FirePin(showLabels: $showLabels)
                             .onTapGesture {
                                 // TODO: PAUL FIX ANIMATION
-                                withAnimation {
+                                withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
                                     page = 0
                                     showLabels = true
                                     secondaryShow = true

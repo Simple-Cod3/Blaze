@@ -66,8 +66,10 @@ struct FireInfoCard: View {
                         if !staticModal {
                             Button(action: {
                                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    showLabels = true
+                                    secondaryShow = true
                                     secondaryPopup = false
-                                    popup = false
+                                    mapController.moveBack(lat: fireData.latitude, long: fireData.longitude, span: 0.3)
                                 }
 
                                 mapController.moveBack(lat: fireData.latitude, long: fireData.longitude, span: 1)
