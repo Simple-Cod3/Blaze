@@ -187,10 +187,15 @@ struct PhoneView: View {
                         Spacer()
 
                         Button(action: {
+                            if secondaryPopup {
+                                popup = true
+                            } else {
+                                popup = false
+                            }
+
                             focused = false
 
                             withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
-                                showPhoneInfo = false
                                 secondaryShow = false
                                 searchText = ""
                             }

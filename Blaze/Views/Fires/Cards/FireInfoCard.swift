@@ -51,6 +51,10 @@ struct FireInfoCard: View {
 
             if secondaryPopup {
                 fireinformation
+                    .onDisappear {
+                        data = true
+                        info = false
+                    }
             }
         }
     }

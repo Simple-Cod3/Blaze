@@ -41,17 +41,15 @@ struct NewsView: View {
     
     private var failed: some View {
         VStack(alignment: .center, spacing: 39) {
-            Image(systemName: "xmark.octagon")
+            Image(systemName: "exclamationmark.triangle")
                 .font(.title)
                 .foregroundColor(.red)
             
-            Text("Content ")
+            Text("InciWeb is currently facing ")
                 .foregroundColor(Color(.tertiaryLabel))
-            + Text("failed ")
+            + Text("issues.")
                 .foregroundColor(.red)
                 .fontWeight(.medium)
-            + Text("to load.")
-                .foregroundColor(Color(.tertiaryLabel))
             
             Spacer()
         }
