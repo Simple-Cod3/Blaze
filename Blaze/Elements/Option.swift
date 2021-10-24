@@ -49,6 +49,10 @@ struct Option: View {
             
             HStack(alignment: .center, spacing: 0) {
                 Button(action: {
+                    if page != 0 {
+                        secondaryShow = false
+                    }
+
                     withAnimation(.spring(response: 0.49, dampingFraction: 0.9)) {
                         page = 0
                         popup = true
