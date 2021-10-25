@@ -48,7 +48,7 @@ struct NewsView: View {
             Text("InciWeb ")
                 .foregroundColor(.red)
                 .fontWeight(.medium)
-            Text("is currently facing ")
+            + Text("is currently facing ")
                 .foregroundColor(Color(.tertiaryLabel))
             + Text("issues.")
                 .foregroundColor(.red)

@@ -75,7 +75,6 @@ struct SecondaryHeaderButton: View {
                             popup = false
                             secondaryShow = false
                             showLabels = false
-                            mapController.moveBack()
                         }
                     }) {
                         Image(systemName: "xmark.circle.fill")

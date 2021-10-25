@@ -95,7 +95,7 @@ struct AQView: View {
                                 barCollapsingEnabled: true
                             )
                         )
-                            .preferredControlAccentColor(Color.orange)
+                        .preferredControlAccentColor(Color.blaze)
                     }
                     .onTapGesture { showWebPage = true }
                 }
