@@ -140,7 +140,7 @@ struct Swipeable<Content: View>: View {
 
                     withAnimation(
                         .spring(
-                            response: (viewModel.accel < 0.39) && (viewModel.accel > 0.139) ? viewModel.accel : 0.39,
+                            response: (viewModel.accel < 0.39) && (viewModel.accel > 0.27) ? viewModel.accel : 0.39,
                             dampingFraction: 0.79
                         )) {
                             if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {

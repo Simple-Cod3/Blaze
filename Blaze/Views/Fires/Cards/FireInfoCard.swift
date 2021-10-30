@@ -47,7 +47,7 @@ struct FireInfoCard: View {
                 fireData.name,
                 staticModal: staticModal
             )
-                .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
+            .padding(.bottom, secondaryPopup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
 
             if secondaryPopup {
                 fireinformation
