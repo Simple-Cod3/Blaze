@@ -101,6 +101,8 @@ struct Swipeable<Content: View>: View {
     
     @State var lastDragPosition: DragGesture.Value?
     @State var state: CGFloat = 0.0
+    @State private var bandingConstant: CGFloat = 7 // End state banding constant
+    @State private var hitBox: CGFloat = UIScreen.main.bounds.maxY*0.72 // Area restriction
     
     @Binding var popup: Bool
     
@@ -124,14 +126,18 @@ struct Swipeable<Content: View>: View {
             DragGesture(minimumDistance: 30, coordinateSpace: .local)
                 .updating($translation) { value, _, _ in
                     withAnimation(.linear(duration: 0.1)) {
-                        viewModel.lastDrag = value.translation.height
-                        viewModel.currentDrag = value.translation.height
-
-                        if (popup && viewModel.currentDrag < -1) || (!popup && viewModel.currentDrag > 1) {
-                            viewModel.lastDrag = 0
+                        viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
+                        viewModel.lastDrag = min(max(value.translation.height, -hitBox), hitBox)
+                        
+                        if popup && viewModel.lastDrag < -1 || !popup && viewModel.lastDrag > 1 {
+                            viewModel.lastDrag = value.translation.height/8
                         }
 
-                        viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
+                        if value.translation.height > hitBox {
+                            viewModel.lastDrag = (viewModel.lastDrag - (hitBox/5)) + (value.translation.height/5)
+                        } else if value.translation.height < -hitBox {
+                            viewModel.lastDrag = (viewModel.lastDrag + (hitBox/bandingConstant)) + (value.translation.height/bandingConstant)
+                        }
                     }
                 }
                 .onEnded { value in
