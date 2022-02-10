@@ -25,7 +25,10 @@ struct ContentView: View {
     }
     
     var body: some View {
-        MainView()
+        NavigationView {
+            MainView()
+        }
+        .navigationBarHidden(true)
     }
 }
 
