@@ -91,67 +91,160 @@ struct PagerView<Content: View>: View {
     }
 }
 
+//struct Swipeable<Content: View>: View {
+//
+//    let content: Content
+//
+//    @ObservedObject var viewModel: SwipeableModel
+//    @GestureState private var translation: CGFloat = 0.0
+//
+//    @State var lastDragPosition: DragGesture.Value?
+//    @State var state: CGFloat = 0.0
+//    @State private var bandingConstant: CGFloat = 7 // End state banding constant
+//    @State private var hitBox: CGFloat = UIScreen.main.bounds.maxY*0.72 // Area restriction
+//
+//    @Binding var popup: Bool
+//
+//    init(popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
+//        self._popup = popup
+//        self.content = content()
+//
+//        viewModel = SwipeableModel()
+//    }
+//
+//    var body: some View {
+//        VStack(alignment: .center, spacing: 0) {
+//            Spacer()
+//
+//            content
+//        }
+//        .offset(
+//            y: viewModel.lastDrag
+//        )
+//        .highPriorityGesture(
+//            DragGesture(minimumDistance: 20, coordinateSpace: .local)
+//                .updating($translation) { value, _, _ in
+//                    DispatchQueue.main.async {
+//                        viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
+//                        viewModel.lastDrag = min(max(value.translation.height, -hitBox), hitBox)
+//
+//                        if popup && viewModel.lastDrag < -1 || !popup && viewModel.lastDrag > 1 {
+//                            viewModel.lastDrag = value.translation.height/8
+//                        }
+//
+//                        if value.translation.height > hitBox {
+//                            viewModel.lastDrag = (viewModel.lastDrag - (hitBox/5)) + (value.translation.height/5)
+//                        } else if value.translation.height < -hitBox {
+//                            viewModel.lastDrag = (viewModel.lastDrag + (hitBox/bandingConstant)) + (value.translation.height/bandingConstant)
+//                        }
+//                    }
+//                }
+//                .onEnded { value in
+//                    DispatchQueue.main.async {
+//                        viewModel.velocity = value.predictedEndLocation.y - value.location.y
+//
+//                        withAnimation(.interpolatingSpring(stiffness: 390, damping: 31)) {
+//                                if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {
+//                                    popup = true
+//                                } else if (viewModel.velocity > 100.0) || (!viewModel.swipeUp && viewModel.velocity > 0.39) {
+//                                    popup = false
+//                                }
+//                            }
+//
+//                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
+//                    }
+//                }
+//        )
+//    }
+//}
+
 struct Swipeable<Content: View>: View {
-    
+
     let content: Content
-    
-    @ObservedObject var viewModel: SwipeableModel
+
     @GestureState private var translation: CGFloat = 0.0
-    
-    @State var lastDragPosition: DragGesture.Value?
-    @State var state: CGFloat = 0.0
+
     @State private var bandingConstant: CGFloat = 7 // End state banding constant
-    @State private var hitBox: CGFloat = UIScreen.main.bounds.maxY*0.72 // Area restriction
+    @State private var edge: Bool = false
     
+    // Gesture variables
+    @State private var lastDrag: CGFloat = 0.0
+    @State private var velocity: CGFloat = 0.0
+    @State private var swipeUp: Bool = false
+
+    @Binding var showContent: Bool
     @Binding var popup: Bool
-    
-    init(popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
+
+    init(showContent: Binding<Bool>, popup: Binding<Bool>, @ViewBuilder content: () -> Content) {
+        self._showContent = showContent
         self._popup = popup
         self.content = content()
-        
-        viewModel = SwipeableModel()
     }
     
+    private var hitBox: CGFloat {
+        return UIScreen.main.bounds.maxY*0.72
+    }
+    
+    func textSize(textStyle: UIFont.TextStyle) -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: textStyle).pointSize
+    }
+
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             Spacer()
-            
-            content
+
+            withAnimation(nil) {
+                content
+            }
         }
         .offset(
-            y: viewModel.lastDrag
+            y: lastDrag
         )
         .highPriorityGesture(
-            DragGesture(minimumDistance: 20, coordinateSpace: .local)
+            DragGesture(minimumDistance: 0.1, coordinateSpace: .local)
                 .updating($translation) { value, _, _ in
                     DispatchQueue.main.async {
-                        viewModel.swipeUp = value.predictedEndLocation.y - value.location.y < 0 ? true : false
-                        viewModel.lastDrag = min(max(value.translation.height, -hitBox), hitBox)
-                        
-                        if popup && viewModel.lastDrag < -1 || !popup && viewModel.lastDrag > 1 {
-                            viewModel.lastDrag = value.translation.height/8
-                        }
+                        swipeUp = value.predictedEndLocation.y - value.location.y < 0
+                        lastDrag = min(max(value.translation.height, -hitBox), hitBox)
 
+                        // Slowdown translation by 80% when drag is outside hitbox
+                        // Closeby restrictions
+                        if popup && lastDrag < -1 || !popup && lastDrag > 1 {
+                            lastDrag = value.translation.height/8
+                        }
+                        // Far restrictions
                         if value.translation.height > hitBox {
-                            viewModel.lastDrag = (viewModel.lastDrag - (hitBox/5)) + (value.translation.height/5)
+                            lastDrag = lastDrag - hitBox/5 + value.translation.height/5
                         } else if value.translation.height < -hitBox {
-                            viewModel.lastDrag = (viewModel.lastDrag + (hitBox/bandingConstant)) + (value.translation.height/bandingConstant)
+                            lastDrag = lastDrag + hitBox/bandingConstant + value.translation.height/bandingConstant
+                        }
+                        
+                        withAnimation(.spring(response: 0.2, dampingFraction: 1)) {
+                            if swipeUp && (lastDrag > -39 || lastDrag < hitBox) {
+                                showContent = true
+                            } else if !swipeUp && ((lastDrag > -39 && lastDrag < -1 && value.translation.height > -hitBox) || lastDrag > hitBox) {
+                                showContent = false
+                            }
                         }
                     }
                 }
                 .onEnded { value in
                     DispatchQueue.main.async {
-                        viewModel.velocity = value.predictedEndLocation.y - value.location.y
+                        velocity = value.predictedEndLocation.y - value.location.y
 
-                        withAnimation(.interpolatingSpring(stiffness: 390, damping: 31)) {
-                                if (viewModel.velocity < -100.0) || (viewModel.swipeUp && viewModel.velocity < 0.39) {
-                                    popup = true
-                                } else if (viewModel.velocity > 100.0) || (!viewModel.swipeUp && viewModel.velocity > 0.39) {
-                                    popup = false
-                                }
+                        withAnimation(.interpolatingSpring(stiffness: 300.0, damping: 70.0, initialVelocity: 7 + 0.01*abs(velocity))) {
+                            if (velocity < -100.0) || (swipeUp && lastDrag < -300) {
+                                lastDrag = 0
+                                popup = true
+                            } else if (velocity > 100.0) || (!swipeUp && lastDrag > 300) {
+                                lastDrag = 0
+                                popup = false
+                            } else {
+                                lastDrag = 0
                             }
-
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.9)) { viewModel.lastDrag = 0 }
+                            
+                            showContent = popup
+                        }
                     }
                 }
         )

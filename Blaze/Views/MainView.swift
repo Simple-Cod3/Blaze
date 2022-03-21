@@ -28,6 +28,7 @@ struct MainView: View {
     @State private var focused = false
     @State private var showContacts = false
     @State private var showGlossary = false
+    @State private var showContent = false
     
     var body: some View {
         if fireB.failed {
@@ -94,7 +95,7 @@ struct MainView: View {
             
             Spacer()
             
-            Swipeable(popup: $popup) {
+            Swipeable(showContent: $showContent, popup: $popup) {
                 if !popup {
                     Option(
                         showLabels: $showLabels,
@@ -145,7 +146,7 @@ struct MainView: View {
             
             Spacer()
             
-            Swipeable(popup: $secondaryPopup) {
+            Swipeable(showContent: $showContent, popup: $secondaryPopup) {
                 if !secondaryPopup {
                     Option(
                         showLabels: .constant(false),
