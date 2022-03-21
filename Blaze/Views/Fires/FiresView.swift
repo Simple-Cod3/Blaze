@@ -176,30 +176,14 @@ struct FiresView: View {
                                     .sorted(by: { $0.acres > $1.acres })
                                     .prefix(prefix)
                             ) { fire in
-                                NavigationLink(destination: Test()) {
-//                                    FireCard(
-//                                        showFireInformation: $showFireInformation,
-//                                        popup: $popup,
-//                                        secondaryPopup: $secondaryPopup,
-//                                        secondaryShow: $secondaryShow,
-//                                        fireData: fire,
-//                                        area: true
-//                                    )
-                                    
-                                    HStack {
-                                        Spacer()
-                                        
-                                        Text("text")
-                                            .font(.subheadline)
-                                            .fontWeight(.medium)
-                                            .foregroundColor(.primary)
-                                        
-                                        Spacer()
-                                    }
-                                    .padding(.vertical, 9)
-                                    .background(Color(.quaternarySystemFill))
-                                    .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
-                                }
+                                    FireCard(
+                                        showFireInformation: $showFireInformation,
+                                        popup: $popup,
+                                        secondaryPopup: $secondaryPopup,
+                                        secondaryShow: $secondaryShow,
+                                        fireData: fire,
+                                        area: true
+                                    )
                             }
                             .transition(.opacity)
                         } else if latest {
