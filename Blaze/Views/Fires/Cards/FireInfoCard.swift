@@ -70,6 +70,7 @@ struct FireInfoCard: View {
                         if !staticModal {
                             Button(action: {
                                 withAnimation(.spring(response: 0.39, dampingFraction: 0.9)) {
+                                    popup = false
                                     showLabels = true
                                     secondaryShow = true
                                     secondaryPopup = false

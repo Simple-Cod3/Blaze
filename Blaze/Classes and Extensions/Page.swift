@@ -214,9 +214,9 @@ struct Swipeable<Content: View>: View {
                         }
                         // Far restrictions
                         if value.translation.height > hitBox {
-                            lastDrag = lastDrag - hitBox/5 + value.translation.height/5
+                            lastDrag -= hitBox/5 + value.translation.height/5
                         } else if value.translation.height < -hitBox {
-                            lastDrag = lastDrag + hitBox/bandingConstant + value.translation.height/bandingConstant
+                            lastDrag += hitBox/bandingConstant + value.translation.height/bandingConstant
                         }
                         
                         withAnimation(.spring(response: 0.2, dampingFraction: 1)) {
