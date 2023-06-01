@@ -47,6 +47,7 @@ extension Color {
     static var blaze = Color("blaze")
     static var pinBackground = Color("pinBackground")
     static var pinBorderBackground = Color("pinBorderBackground")
+    static var borderBackground = Color("borderBackground")
 }
 
 /// Inverting any binding boolean with prefix: `!`

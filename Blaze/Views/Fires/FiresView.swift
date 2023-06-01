@@ -38,16 +38,7 @@ struct FiresView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            if !searching {
-                HeaderButton("Wildfires Overview")
-                    .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-            }
-
-            if popup {
-                wildfiremain
-            }
-        }
+        wildfiremain
     }
 
     private var searchAnimation = Animation.spring(response: 0.3, dampingFraction: 1)
@@ -71,22 +62,15 @@ struct FiresView: View {
         HStack(spacing: 10) {
             HStack(spacing: 5) {
                 Image(systemName: "magnifyingglass")
-                    .font(.system(size: 16))
-                    .foregroundColor(searching ? .blaze : Color(.tertiaryLabel))
+                    .font(.callout)
+                    .foregroundColor(Color(.tertiaryLabel))
 
-                LegacyTextField(
-                    text: $searchText.animation(searchAnimation),
-                    isFirstResponder: $focused
-                ) {
-                    $0.placeholder = "Search"
-                    $0.returnKeyType = .search
-                    $0.autocorrectionType = .no
-                }
-                .frame(maxHeight: 20)
+                TextField("Search Fires", text: $searchText)
+                    .font(.body)
             }
-            .padding(8)
+            .padding(9)
             .background(
-                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
                     .fill(Color(.quaternarySystemFill))
             )
 
@@ -100,16 +84,15 @@ struct FiresView: View {
                 .font(.body)
             }
         }
-        .padding([.horizontal, .bottom], UIConstants.margin)
-        .padding(.top, searching ? UIConstants.margin : 0)
+        .padding()
+        .padding(.top, 5)
     }
     
     private var wildfiremain: some View {
         VStack(spacing: 0) {
             search
 
-            Divider()
-                .padding(.horizontal, UIConstants.margin)
+            Divider().padding(.horizontal)
 
             ScrollView {
                 VStack(spacing: 0) {
@@ -123,7 +106,7 @@ struct FiresView: View {
                         }
                         .buttonStyle(DefaultButtonStyle())
 
-                        HStack(spacing: 10) {
+                        HStack(spacing: 13) {
                             Button(action: {
                                 largest = true
                                 latest = false
@@ -142,7 +125,7 @@ struct FiresView: View {
                             }
                             .buttonStyle(DefaultButtonStyle())
                         }
-                        .padding(.top, 11)
+                        .padding(.top, 13)
 
                         Group {
                             if monitorList {
@@ -243,7 +226,7 @@ struct FiresView: View {
                         }
                     }
                 }
-                .padding(UIConstants.margin)
+                .padding()
                 .padding(.bottom, UIConstants.bottomPadding*2)
                 .padding(.bottom, (textSize(textStyle: .largeTitle)*4))
             }

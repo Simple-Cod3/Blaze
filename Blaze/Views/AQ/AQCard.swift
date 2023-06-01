@@ -28,13 +28,13 @@ struct AQCard<Content: View>: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 9) {
             HStack(spacing: 5) {
                 Image(systemName: symbol)
                 
                 Text(title)
             }
-            .font(Font.callout.weight(.medium))
+            .font(.callout.weight(.medium))
             .foregroundColor(foreground)
                 
             HStack(spacing: 0) {

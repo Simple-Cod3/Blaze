@@ -64,19 +64,10 @@ struct NewsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderButton("News Overview")
-                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-            
-            if popup {
-                newsdata
-            }
-        }
-    }
-    
-    private var newsdata: some View {
-        VStack(spacing: 0) {
+            HeaderButton(symbol: "magazine", title: "News")
+
             Divider()
-                .padding(.horizontal, UIConstants.margin)
+                .padding(.horizontal)
 
             ScrollView {
                 VStack(spacing: 0) {

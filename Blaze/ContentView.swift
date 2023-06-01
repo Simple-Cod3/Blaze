@@ -26,6 +26,10 @@ struct ContentView: View {
     
     var body: some View {
         MainView()
+            .overlay(
+                SafeAreaBlock()
+                , alignment: .top
+            )
     }
 }
 

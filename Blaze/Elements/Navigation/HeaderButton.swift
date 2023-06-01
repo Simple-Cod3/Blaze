@@ -9,30 +9,29 @@ import SwiftUI
 
 struct HeaderButton: View {
     
+    private var symbol: String
     private var title: String
-    private var bottomPadding: CGFloat
-    
-    init(_ title: String, bottomPadding: CGFloat?=nil) {
+
+    init(symbol: String, title: String) {
+        self.symbol = symbol
         self.title = title
-        self.bottomPadding = bottomPadding ?? UIConstants.margin
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            DragBar()
-            
-            HStack(spacing: 0) {
-                Text(title)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.primary)
+        HStack(spacing: 10) {
+            Image(systemName: symbol)
+                .font(.title3)
+                .fontWeight(.medium)
 
-                Spacer()
-            }
-            .padding(.bottom, bottomPadding)
+            Text(title)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+
+            Spacer()
         }
-        .padding(.horizontal, UIConstants.margin)
-        .contentShape(Rectangle())
+        .padding()
+        .padding(.top, 10)
     }
 }
 

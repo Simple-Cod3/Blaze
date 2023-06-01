@@ -28,40 +28,31 @@ struct AQView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HeaderButton("Air Quality Overview")
-                .padding(.bottom, popup ? 0 : UIConstants.bottomPadding+UIScreen.main.bounds.maxY*0.85)
-            
-            if popup {
-                aqidata
-            }
-        }
-    }
-    
-    private var aqidata: some View {
-        VStack(spacing: 0) {
+            HeaderButton(symbol: "aqi.medium", title: "Air Quality")
+
             Divider()
                 .padding(.horizontal, UIConstants.margin)
 
             ScrollView {
                 VStack(spacing: 0) {
                     ZStack {
-                        if let color = forecast.forecasts[0].category.number, color != -1 {
-                            determineColor(cat: color)
-                                .frame(width: 220, height: 220)
-                                .clipShape(Circle())
-                                .scaleEffect(showCircle ? 1 : 0.5)
-                                .animation(Animation.spring(response: 1.1, dampingFraction: 1), value: showCircle)
-                                .opacity(0.7)
-                                .scaleEffect(startAnimation ? 1 : 1.05)
-                                .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[0].category.number))
-                                        .repeatForever(autoreverses: true), value: startAnimation)
-                                .onAppear {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { startAnimation = true }
-                                }
-                                .onDisappear {
-                                    startAnimation = false
-                                }
-                        }
+//                        if let color = forecast.forecasts[0].category.number, color != -1 {
+//                            determineColor(cat: color)
+//                                .frame(width: 220, height: 220)
+//                                .clipShape(Circle())
+//                                .scaleEffect(showCircle ? 1 : 0.5)
+//                                .animation(Animation.spring(response: 1.1, dampingFraction: 1), value: showCircle)
+//                                .opacity(0.7)
+//                                .scaleEffect(startAnimation ? 1 : 1.05)
+//                                .animation(Animation.easeInOut(duration: 2).delay(determineInt(cat: forecast.forecasts[0].category.number))
+//                                        .repeatForever(autoreverses: true), value: startAnimation)
+//                                .onAppear {
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { startAnimation = true }
+//                                }
+//                                .onDisappear {
+//                                    startAnimation = false
+//                                }
+//                        }
                         
                         AQMeter(airQ: forecast.forecasts[0])
                             .padding(.vertical, 60)

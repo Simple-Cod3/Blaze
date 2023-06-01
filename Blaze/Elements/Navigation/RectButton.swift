@@ -25,7 +25,7 @@ struct RectButton: View {
             Spacer()
             
             Text(text)
-                .font(.subheadline)
+                .font(.callout)
                 .fontWeight(.medium)
                 .foregroundColor(.primary.opacity(selected ? 1 : 0.7))
             
@@ -33,6 +33,7 @@ struct RectButton: View {
         }
         .padding(.vertical, 9)
         .background(selected ? (colorScheme == .dark ? Color(.tertiaryLabel) : Color.white) : Color(.quaternarySystemFill))
-        .clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
+        .shadow(color: Color.black.opacity(selected ? 0.07 : 0), radius: 10)
     }
 }

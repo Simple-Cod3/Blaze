@@ -17,7 +17,7 @@ struct Caption: View {
     var body: some View {
         HStack(spacing: 0) {
             Text(text)
-                .font(.caption)
+                .font(.footnote)
                 .fontWeight(.regular)
                 .foregroundColor(Color(.tertiaryLabel))
             
